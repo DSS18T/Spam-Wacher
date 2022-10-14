@@ -26,9 +26,9 @@ async def bans(_, message):
            try:
                if reply and len(message.command) <2:
                    await bot.ban_chat_member(user_id)
-                   await message.reply_text("Successfully BANNED!\n• `{user_id}`")
+                   await message.reply_text(f"Successfully BANNED!\n• `{user_id}`")
                elif reply and len(message.command) >2:
                    await bot.ban_chat_member(user_id)
-                   await message.reply_text("Successfully BANNED!\n • `{user_id}`\n\nFollowing Reason: {reason}")
+                   await message.reply_text(f"Successfully BANNED!\n • `{user_id}`\n\nFollowing Reason: {reason}")
            except Exception as e:
                 await message.reply(str(e))
