@@ -9,7 +9,7 @@ async def bans(_, message):
       user_id = int(message.from_user.id)
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
-      if (await can_ban_members(chat_id, user_id)) == True or user_id in config.OWNER_ID and reply:    
+      if (await can_ban_members(chat_id, user_id)) == True or user_id == config.OWNER_ID and reply:    
            if reply and len(message.command) <2:
                 user_id = reply.from_user.id
            elif reply and len(message.command) >2:
