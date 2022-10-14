@@ -33,11 +33,11 @@ async def bans(_, message):
 
       else:
             if (await can_ban_members(chat_id, user_id)) == False or not user_id == config.OWNER_ID:
-                 return
+                 return await message.reply_text("your not allow to use.")
             elif len(message.command) <2:
-                 user_id = message.command[1]
+                user_id = int(message.command[1])
             elif len(message.command) >2:
-                user_id = message.command[1]
+                user_id = int(message.command[1])
                 reason = message.text.split(None, 2)[2]
                 if (await is_admin(chat_id, config.BOT_ID)) == False:
                      return await message.reply_text("`make you sure I'm Admin!`")
