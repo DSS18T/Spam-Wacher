@@ -9,7 +9,6 @@ async def bans(_, message):
       user_id = int(message.from_user.id)
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
-      bot_id = (await Nandha.get_me()).id
       if (await can_ban_members(chat_id, user_id)) == True or user_id == config.OWNER_ID and reply:    
            if reply and len(message.command) <2:
                 user_id = reply.from_user.id
@@ -18,9 +17,9 @@ async def bans(_, message):
                 reason = message.text.split("!ban")[1]
            if (await is_admin(chat_id, bot_id)) == False:
                  return await message.reply_text("`make you sure I'm Admin!`")
-           elif user_id == bot_id:
+           elif user_id == config.BOT_ID:
                  return await message.reply_text("`I can't ban myself!`")
-           elif (await is_admin(chat_id, user_id)) ==True:
+           elif (await is_admin(chat_id, user_id)) == True:
                  return await message.reply_text("`The User Is Admin! I can't ban!`")
            elif user_id == config.OWNER_ID:
                  return await message.reply_text("`i can't ban my owner`")
