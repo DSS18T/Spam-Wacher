@@ -25,10 +25,10 @@ async def bans(_, message):
                  return await message.reply_text("`i can't ban my owner`")
            try:
                if reply and len(message.command) <2:
-                   await Nandha.ban_chat_member(user_id)
+                   await Nandha.ban_chat_member(chat_id, user_id)
                    await message.reply_text(f"Successfully BANNED!\n• `{user_id}`")
                elif reply and len(message.command) >2:
-                   await Nandha.ban_chat_member(user_id)
+                   await Nandha.ban_chat_member(chat_id, user_id)
                    await message.reply_text(f"Successfully BANNED!\n • `{user_id}`\n\nFollowing Reason: {reason}")
            except Exception as e:
                 await message.reply(str(e))
