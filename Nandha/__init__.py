@@ -1,4 +1,17 @@
+import logging
+
 from pyrogram import Client
+
+
+
+# enable logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.FileHandler('logs.txt'),
+              logging.StreamHandler()],
+    level=logging.INFO)
+
+LOGGER = logging.getLogger(__name__)
 
 
 APP_ID = 583311
