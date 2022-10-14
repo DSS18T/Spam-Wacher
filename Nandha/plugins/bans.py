@@ -2,6 +2,7 @@ import config
 
 from Nandha import Nandha
 from Nandha.help.admin import *
+from pyrogram import filters
 
 @Nandha.on_message(filters.command("ban",config.CMDS))
 async def bans(_, message):
