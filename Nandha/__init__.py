@@ -22,9 +22,9 @@ TOKEN = "5720769813:AAEMCkgcEB-t0J7MVFr75QG4lshVwMHQ7O8"
 plugins = dict(root="Nandha")
 
 Nandha = Client("Nandha", 
-api_id=int(APP_ID), 
-api_hash=str(APP_HASH), 
-bot_token=str(TOKEN),
+api_id=APP_ID, 
+api_hash=APP_HASH,
+bot_token=TOKEN,
 plugins=plugins)
 
 
