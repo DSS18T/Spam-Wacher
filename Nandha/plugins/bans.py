@@ -19,8 +19,6 @@ async def bans(_, message):
                  return await message.reply_text("`make you sure I'm Admin!`")
            elif user_id == config.BOT_ID:
                  return await message.reply_text("`I can't ban myself!`")
-           elif user_id == config.OWNER_ID:
-                 return await message.reply_text("`i can't ban my owner`")
            elif (await is_admin(chat_id, user_id)) == True:
                  return await message.reply_text("`The User Is Admin! I can't ban!`")
            try:
@@ -44,9 +42,7 @@ async def bans(_, message):
             elif user_id == config.BOT_ID:
                  return await message.reply_text("`I can't ban myself!`")
             elif (await is_admin(chat_id, user_id)) == True:
-                 return await message.reply_text("`The User Is Admin! I can't ban!`")
-            elif user_id == config.OWNER_ID:
-                 return await message.reply_text("`i can't ban my owner`")         
+                 return await message.reply_text("`The User Is Admin! I can't ban!`")         
             try:
                 if len(message.command) <2:
                      await Nandha.ban_chat_member(chat_id, user_id)
