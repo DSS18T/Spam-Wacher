@@ -1,6 +1,9 @@
 import config
 import io
+import sys
+import traceback
 
+from contextlib import redirect_stdout
 from subprocess import getoutput as run
 from pyrogram import filters
 from Nandha import Nandha
@@ -62,9 +65,9 @@ async def eval(client, message):
     else:
         evaluation = "Success"
 
-    final_output = "<b>EVAL</b>: "
+    final_output = "<b>📎 Input</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
-    final_output += "<b>OUTPUT</b>:\n"
+    final_output += "<b>📒 Output</b>:\n"
     final_output += f"<code>{evaluation.strip()}</code> \n"
 
     if len(final_output) > 4096:
