@@ -20,7 +20,7 @@ async def bans(_, message):
           elif reply and len(message.command) >1:
               ban_id = reply.from_user.id
               reason = message.text.split(None, 1)[1]
-          elif reply and len(message.command) <2:
+          elif reply and len(message.command) == 0:
                ban_id = reply_from_user.id
                reason = None
           if (await is_admin(chat_id, config.BOT_ID)) == False:
