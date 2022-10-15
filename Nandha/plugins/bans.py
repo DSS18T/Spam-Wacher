@@ -12,7 +12,7 @@ async def bans(_, message):
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
       try:
-          if (await can_ban_members(chat_id,user_id)) == True:   
+          if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id == config.OWNER_ID:   
                 if not reply and len(message.command) >2:
                     ban_id = int(message.text.split(" ")[1])
                     reason = message.text.split(None, 2)[2]
@@ -29,14 +29,15 @@ async def bans(_, message):
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif ban_id == config.BOT_ID:
                        return await message.reply_text("`I can't ban myself!`")
+                elif ban_id == config.OWNER_ID:
+                       return await message.reply_text("`I can't do against my owner!`")
                 elif (await is_admin(chat_id, ban_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 else:
                     await message.reply_sticker(random.choice(config.FUNNY_STICKER))
                     await Nandha.ban_chat_member(chat_id, ban_id)
                     await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))
-          
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))          
       except Exception as e:
          await message.reply_text(e)
 
