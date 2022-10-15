@@ -36,8 +36,8 @@ async def bans(_, message):
                await Nandha.ban_chat_member(chat_id, ban_id)
                await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))
-             except USER_NOT_PARTICIPANT: 
-                await message.reply_text("`This User Not in Chat`")  
+             except Exception as e: 
+                await message.reply_text(str(e))  
 
 
 @Nandha.on_callback_query(filters.regex("unban_btn"))
