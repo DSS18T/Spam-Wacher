@@ -26,6 +26,6 @@ async def bans(_, message):
                      if len(message.command) >1:
                          await Nandha.ban_chat_member(chat_id, ban_id)
                          await message.reply_text(f"Successfully BANNED!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`")
-                     elif len(message.command) <2:
+                     else:
                          await Nandha.ban_chat_member(chat_id, ban_id)
                          await message.reply_text(f"Successfully BANNED!\n • `{ban_id}`")
