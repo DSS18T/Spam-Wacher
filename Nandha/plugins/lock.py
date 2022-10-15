@@ -17,4 +17,5 @@ async def lock(_, message):
                 if locktypes in "all":
                     await Nandha.set_chat_permissions(chat_id, ChatPermissions())
                     await message.reply("`locked all!`")
-                       
+      except Exception as e:         
+          await message.reply(e)
