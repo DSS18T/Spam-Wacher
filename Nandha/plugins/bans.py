@@ -11,7 +11,7 @@ async def bans(_, message):
       reply = message.reply_to_message
       if reply and (await can_ban_members(chat_id,user_id)) == True: 
           await message.reply_text("yeh banning....")
-          if len(message.command) <1:
+          if len(message.command) <2:
              ban_id = reply.from_user.id
           elif len(message.command) >1:
               ban_id = reply.from_user.id
