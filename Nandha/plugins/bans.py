@@ -17,8 +17,8 @@ async def bans(_, message):
               ban_id = reply.from_user.id
               reason = message.text.split(None, 1)[1]
               try:
-                  if (await is_admin(chat_id, int(config.BOT_ID))) == False:
-                       return await message.reply_text("`make you sure I'm Admin!`")
+                  if (await is_admin(chat_id, config.BOT_ID)) == False:
+                       return await message.reply_text("`Make you sure I'm Admin!`")
                   elif ban_id == config.BOT_ID:
                         return await message.reply_text("`I can't ban myself!`")
                   elif (await is_admin(chat_id, ban_id)) == True:
