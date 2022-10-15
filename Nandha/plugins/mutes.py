@@ -5,8 +5,8 @@ from Nandha.help.admin import *
 from pyrogram.types import *
 from pyrogram import filters
 
-@Nandha.on_message(filters.command("ban",config.CMDS))
-async def bans(_, message):
+@Nandha.on_message(filters.command("mute",config.CMDS))
+async def muted(_, message):
       user_id = int(message.from_user.id)
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
