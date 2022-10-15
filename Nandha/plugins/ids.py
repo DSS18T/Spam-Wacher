@@ -8,7 +8,7 @@ from Nandha import Nandha
 async def ids(_, message):
       reply = message.reply_to_message
       if reply:
-         id = "`here the file ids`:\n\n"
+         id = "`here the ids`:\n\n"
          id += f"**Chat ID**: `{message.chat.id}`\n"
          id += f"**Replied ID**: `{reply.from_user.id}`\n"
          id += f"**Your ID**: `{message.from_user.id}`\n"
