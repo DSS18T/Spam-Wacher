@@ -20,14 +20,13 @@ async def sh(_, message):
           code = message.text.replace(message.text.split(" ")[0], "")
           x = run(code)
           string = f"**📎 Input**: `{code}`\n\n**📒 Output **:\n`{x}`"
-          if len(code) >4000:
+          try:
+             await message.reply_text(string) 
+          except MESSAGE_TOO_LONG:
               with io.BytesIO(str.encode(string)) as out_file:
                  out_file.name = "shell.text"
-                 await message.reply_document(document=out_file, caption="`LONG TEXT MESSAGE CANNOT SHOW SO WE SEND FILE TYPE.`")
-          else:
-             await message.reply_text(string) 
-               
-
+                 await message.reply_document(document=out_file, caption="`LONG TEXT MESSAGE CANNOT SEND SO WE SEND  AS FILE TYPE.`")
+             
 
 async def aexec(code, client, message):
     exec(
