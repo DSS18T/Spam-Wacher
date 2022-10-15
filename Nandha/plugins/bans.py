@@ -9,9 +9,12 @@ async def bans(_, message):
       user_id = int(message.from_user.id)
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
-      if reply and (await can_ban_members(chat_id,user_id)) == True: 
+      if (await can_ban_members(chat_id,user_id)) == True: 
           await message.reply_text("yeh banning....")  
-          ban_id = reply.from_user.id
+          if len(message.command) >1:
+              ban_id = int(message.text.split(" ")[1])
+          else:
+              ban_id = int(reply.from_user.id)
           if (await is_admin(chat_id, config.BOT_ID)) == False:
                    return await message.reply_text("`Make you sure I'm Admin!`")
           elif ban_id == config.BOT_ID:
