@@ -28,6 +28,14 @@ async def sh(_, message):
              await message.reply_text(string) 
                
 
+
+async def aexec(code, client, message):
+    exec(
+        "async def __aexec(client, message): "
+        + "".join(f"\n {l_}" for l_ in code.split("\n"))
+    )
+    return await locals()["__aexec"](client, message)
+
 @Nandha.on_message(filters.command("eval",config.CMDS))
 async def eval(client, message):
     if not message.from_user.id == config.OWNER_ID:
