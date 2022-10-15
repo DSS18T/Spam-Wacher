@@ -13,7 +13,7 @@ async def ids(_, message):
          id += f"**Replied ID**: `{reply.from_user.id}`\n"
          id += f"**Your ID**: `{message.from_user.id}`\n"
          if reply.forward_from:
-             id += f"**Forward From ID**:\n`{message.forward_from.id}`\n"
+             id += f"**Forward From ID**:\n`{reply.forward_from.id}`\n"
          elif reply.photo:
              id += f"**Photo ID**:\n`{reply.photo.file_id}`"
          elif reply.animation:
