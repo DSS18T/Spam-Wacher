@@ -2,6 +2,7 @@ import config
 
 from Nandha import Nandha
 from Nandha.help.admin import *
+from pyrogram.types import *
 from pyrogram import filters
 
 @Nandha.on_message(filters.command("ban",config.CMDS))
@@ -31,5 +32,21 @@ async def bans(_, message):
           else:
               await message.reply_sticker(config.BAN_STICKER)
               await Nandha.ban_chat_member(chat_id, ban_id)
-              await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`")
+              await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
+              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("unban", callback_data=f"unban_btn:{ban_id}")]]))
                      
+
+
+@Nandha.on_callback_query(filters.regex("unban_btn"))
+async def unban_btn(_, query):
+      chat_id = query.message.chat.id
+      user_id = query.from_user.id
+      ban_id = query.data.split(":")[1]
+      if (await is_admin(chat_id, user_id)) == False:
+          return await query.answer("Admins Only!")
+      else:
+         try:
+             await Nandha.unban_chat_member(chat_id, ban_id)
+             await query.message.edit(f"`Semms ban done mistakely admins restored a ban!`\nID: `{ban_id}`")
+         except Exception as e:
+            await query.message.reply_text(str(e))
