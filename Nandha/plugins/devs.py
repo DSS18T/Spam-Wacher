@@ -16,7 +16,7 @@ async def sh(_, message):
     else:
           code = message.text.replace(message.text.split(" ")[0], "")
           x = run(code)
-          string = f"**📎 Input**: `{code}`\n\n**📒 Output **:\n`{x}`")
+          string = f"**📎 Input**: `{code}`\n\n**📒 Output **:\n`{x}`"
           if len(code) >4000:
               with io.BytesIO(str.encode(string)) as out_file:
                  out_file.name = "shell.text"
