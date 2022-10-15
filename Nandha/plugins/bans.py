@@ -33,7 +33,7 @@ async def bans(_, message):
               await message.reply_sticker(config.BAN_STICKER)
               await Nandha.ban_chat_member(chat_id, ban_id)
               await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
-              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("unban", callback_data=f"unban_btn:{ban_id}")]]))
+              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))
                      
 
 
