@@ -13,7 +13,7 @@ async def bans(_, message):
           await message.reply_text("yeh banning....")  
           ban_id = reply.from_user.id
           if len(message.command) >1:
-              reason = message.text.split(None, 1)[1]
+              reason = message.text
           else:
               reason = None
               if (await is_admin(chat_id, config.BOT_ID)) == False:
