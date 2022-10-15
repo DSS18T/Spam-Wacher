@@ -38,18 +38,18 @@ async def bans(_, message):
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))
           
       except Exception as e:
-         await message.reply_text(str(e))
+         await message.reply_text(e)
 
 @Nandha.on_callback_query(filters.regex("unban_btn"))
 async def unban_btn(_, query):
       chat_id = query.message.chat.id
       user_id = query.from_user.id
       ban_id = query.data.split(":")[1]
-      if (await is_admin(chat_id, user_id)) == False:
-          return await query.answer("Admins Only!")
-      else:
-         try:
-             await Nandha.unban_chat_member(chat_id, ban_id)
-             await query.message.edit(f"`Semms ban done mistakely admins restored a ban!`\nID: `{ban_id}`")
-         except Exception as e:
-            await query.message.reply_text(str(e))
+      try:
+         if (await is_admin(chat_id, user_id)) == False:
+               return await query.answer("Admins Only!")
+         else:
+            await Nandha.unban_chat_member(chat_id, ban_id)
+            await query.message.edit(f"`Semms ban done mistakely admins restored a ban!`\nID: `{ban_id}`")
+      except Exception as e:
+            await query.message.reply_text(e)
