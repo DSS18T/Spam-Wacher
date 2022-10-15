@@ -1,4 +1,5 @@
 import config
+import io
 
 from subprocess import getoutput as run
 from pyrogram import filters
