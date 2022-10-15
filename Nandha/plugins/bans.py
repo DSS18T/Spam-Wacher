@@ -1,4 +1,5 @@
 import config
+import random
 
 from Nandha import Nandha
 from Nandha.help.admin import *
@@ -30,7 +31,7 @@ async def bans(_, message):
           elif (await is_admin(chat_id, ban_id)) == True:
                    return await message.reply_text("`The User Is Admin! I can't ban!`")
           else:
-              await message.reply_sticker(config.BAN_STICKER)
+              await message.reply_sticker(random.choice(config.FUNNY_STICKER))
               await Nandha.ban_chat_member(chat_id, ban_id)
               await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))
