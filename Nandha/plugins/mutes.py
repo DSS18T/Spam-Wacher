@@ -11,7 +11,7 @@ async def muted(_, message):
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
       try:
-          if (await can_ban_members(chat_id,user_id)) == True:   
+          if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id == config.OWNER_ID:   
                 if not reply and len(message.command) >2:
                     mute_id = int(message.text.split(" ")[1])
                     reason = message.text.split(None, 2)[2]
@@ -27,7 +27,9 @@ async def muted(_, message):
                 if (await is_admin(chat_id, config.BOT_ID)) == False:
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif mute_id == config.BOT_ID:
-                      return await message.reply_text("`I can't ban myself!`")
+                      return await message.reply_text("`I can't mute myself!`")
+                elif mute_id == config.OWNER_ID:
+                      return await message.reply_text("`I can't do against my owner!`")
                 elif (await is_admin(chat_id, mute_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 else:
