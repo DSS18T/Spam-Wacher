@@ -21,6 +21,12 @@ async def lock(_, message):
                     await Nandha.set_chat_permissions(chat_id,ChatPermissions(can_send_messages=False))
                     await message.reply("`locked messages!`")
                 elif locktypes in "media":
-                     await Nandha.set_chat_permissions(chat_id,ChatPermissions(can_send_media_messages=False))
+                     await Nandha.set_chat_permissions(chat_id,ChatPermissions(
+                     can_send_messages=True,
+                     can_send_media_messages=False,
+                     can_send_other_messages=False,
+                     can_add_web_page_previews=True,
+                     can_invite_users=True))
+                     await message.reply("`locked medias!`")
       except Exception as e:         
           await message.reply(e)
