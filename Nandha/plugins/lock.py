@@ -19,13 +19,13 @@ async def lock(_, message):
                     await message.reply("`locked all!`")
                 elif locktypes in "invite":
                      await Nandha.set_chat_permissions(chat_id,ChatPermissions(
-                      can_send_messages=True,
+                     can_send_messages=True,
                      can_send_media_messages=True,
                      can_send_other_messages=True,
                      can_add_web_page_previews=True,
                      can_invite_users=False,
                      can_send_polls=True ))
-                    await message.reply("`locked invite!`")
+                     await message.reply("`locked invite!`")
                 elif locktypes in "media":
                      await Nandha.set_chat_permissions(chat_id,ChatPermissions(
                      can_send_messages=True,
