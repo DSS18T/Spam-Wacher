@@ -96,7 +96,7 @@ async def lock(_, message):
            await message.reply(f"`already locked! {lock_type}`")
 
 
-@Nandha.on_message(filters.commamd("unlock",config.CMDS))
+@Nandha.on_message(filters.command("unlock",config.CMDS))
 async def unlock(_, message):
         chat_id = message.chat.id
         uset_id = message.from_user.id
