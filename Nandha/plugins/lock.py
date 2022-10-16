@@ -92,6 +92,45 @@ async def lock(_, message):
 
 
 
+LOCKS = """
+• `{} 
+following permissions:`
+
+can_send_messages: {}
+can_send_media_messages: {}
+can_send_other_messages: {}
+can_add_web_page_previews: {}
+can_send_polls: {}
+can_change_info: {}
+can_invite_users: {}
+can_pin_messages: {}
+"""
+
+@Nandha.on_message(filters.command("locks",config.CMDS))
+async def locks(_, message):
+     chat_id = message.chat.id
+     user_id = user_id
+     try:
+         if (await is_admin(chat_id,user_id)) == True:
+                v_perm = message.chat.permissions
+          
+                async def convert_to_emoji(val: bool):
+                     return "✅" if val else "❌"
+
+                vmsg = await convert_to_emoji(v_perm.can_send_messages)
+                vmedia = await convert_to_emoji(v_perm.can_send_media_messages)
+                vother = await convert_to_emoji(v_perm.can_send_other_messages)
+                vwebprev = await convert_to_emoji(v_perm.can_add_web_page_previews)
+                vpolls = await convert_to_emoji(v_perm.can_send_polls)
+                vinfo = await convert_to_emoji(v_perm.can_change_info)
+                vinvite = await convert_to_emoji(v_perm.can_invite_users)
+                vpin = await convert_to_emoji(v_perm.can_pin_messages)
+                if v_perm is not None:
+                    await message.reply_text(LOCKS.format(
+                        message.chat.title, vmsg, vmedia, vother, vwebprev, vpolls, vinfo, vinvite, vpin))
+     except Exception as e:
+         await message.reply(e)
+
 
 @Nandha.on_message(filters.command("locktypes",config.CMDS))
 async def locktypes(_, message):
