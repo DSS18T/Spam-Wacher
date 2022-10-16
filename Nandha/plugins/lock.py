@@ -27,10 +27,7 @@ async def lock(_, message):
                 invite = get_perm.can_invite_users
                 pin = get_perm.can_pin_messages
                 stickers = animations = games = inlinebots = None
-                if lock_type in "all":
-                        await Nandha.set_chat_permissions(chat_id, ChatPermissions())
-                        await message.reply("`locked all`")
-                elif lock_type in "msg":
+                if lock_type in ("msg","all"):
                     msg = False
                     perm = "messages"
 
