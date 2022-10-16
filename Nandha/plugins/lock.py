@@ -91,7 +91,7 @@ async def lock(_, message):
 
 
 
-@Nandha.on_message(filters.command("locktypes"))
+@Nandha.on_message(filters.command("locktypes",config.CMDS))
 async def locktypes(_, message):
      if (await is_admin(message.chat.id, message.from_user.id)) == True:
           await message.reply_text(
