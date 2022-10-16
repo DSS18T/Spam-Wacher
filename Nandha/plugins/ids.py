@@ -37,6 +37,7 @@ async def ids(_, message):
                  id += f"**They ID**: `{they.id}`\n"
                  id += f"**Chat ID**: `{message.chat.id}`\n"
                  id += f"**Your ID**: `{message.from_user.id}`\n"
+                 await message.reply(text=(id))
               except Exception as e:
                    await message.reply(e)
            
