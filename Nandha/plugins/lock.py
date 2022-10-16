@@ -4,6 +4,9 @@ from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha
 from Nandha.help.admin import *
+from pyrogram.errors import (
+ChatNotModified )
+
 
 @Nandha.on_message(filters.command("lock",config.CMDS))
 async def lock(_, message):
@@ -87,7 +90,7 @@ async def lock(_, message):
                               
           else:
               await message.reply_text("`Admins Only!`")
-      except CHAT_NOT_MODIFIED:         
+      except ChatNotModified:         
            await message.reply(f"`already locked! {lock_type}`")
 
 
