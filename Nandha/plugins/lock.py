@@ -85,6 +85,8 @@ async def lock(_, message):
                 can_pin_messages=pin,),)
                 await message.reply_text(f"`locked! {lock_type}`")
                               
+          else:
+              await message.reply_text("`Admins Only!`")
       except Exception as e:         
           await message.reply(e)
 
