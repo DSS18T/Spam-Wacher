@@ -12,7 +12,7 @@ URL = ["https://telegra.ph/file/24ed9f2ebe33bb03a8a5b.mp4",
 @Nandha.on_message(filters.command("test"))
 async def tests(_, m):
    for link in URL:
-      await Nandha.send_media_group(message.chat.id,
+      await Nandha.send_media_group(m.chat.id,
     [
         InputMediaPhoto(link),
         InputMediaPhoto(link, caption="test 1"),
