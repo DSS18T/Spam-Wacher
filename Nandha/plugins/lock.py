@@ -96,14 +96,14 @@ LOCKS = """
 • `{} 
 following permissions:`
 
-can_send_messages: {}
-can_send_media_messages: {}
-can_send_other_messages: {}
-can_add_web_page_previews: {}
-can_send_polls: {}
-can_change_info: {}
-can_invite_users: {}
-can_pin_messages: {}
+**messages**: {}
+**media_messages**: {}
+**other_messages**: {}
+**web_page_previews**: {}
+**send_polls**: {}
+**change_info**: {}
+**invite_users**: {}
+**pin_messages**: {}
 """
 
 @Nandha.on_message(filters.command("locks",config.CMDS))
