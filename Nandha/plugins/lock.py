@@ -99,7 +99,7 @@ async def lock(_, message):
 @Nandha.on_message(filters.command("unlock",config.CMDS))
 async def unlock(_, message):
         chat_id = message.chat.id
-        uset_id = message.from_user.id
+        user_id = message.from_user.id
         try:
             if (await is_admin(chat_id,user_id)) == True:
                   if (await is_admin(chat_id,config.BOT_ID)) == False:
