@@ -30,7 +30,7 @@ async def lock(_, message):
                 if lock_type in "all":
                         await Nandha.set_chat_permissions(chat_id, ChatPermissions())
                         await message.reply("`locked all`")
-                if lock_type in "msg":
+                elif lock_type in "msg":
                     msg = False
                     perm = "messages"
 
