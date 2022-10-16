@@ -187,7 +187,7 @@ async def unlock(_, message):
                    can_change_info=uinfo,
                    can_invite_users=uinvite,
                    can_pin_messages=upin,))
-                   await message.reply(f"`locked! {unlock_type}`")
+                  await message.reply(f"`locked! {unlock_type}`")
 
 
             else:
