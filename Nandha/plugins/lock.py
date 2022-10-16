@@ -27,7 +27,7 @@ async def lock(_, message):
                 invite = get_perm.can_invite_users
                 pin = get_perm.can_pin_messages
                 stickers = animations = games = inlinebots = None
-                if lock_types in "all":
+                if lock_type in "all":
                         await Nandha.set_chat_permissions(chat_id, ChatPermissions())
                         await message.reply("`locked all`")
                 if lock_type in "msg":
@@ -86,7 +86,7 @@ async def lock(_, message):
                 can_change_info=info,
                 can_invite_users=invite,
                 can_pin_messages=pin,),)
-                await message.reply_text("`locked! {lock_type}`")
+                await message.reply_text(f"`locked! {lock_type}`")
                               
       except Exception as e:         
           await message.reply(e)
@@ -111,7 +111,8 @@ async def locktypes(_, message):
             " - `inlinebots`, `inline` = Inline bots\n"
             " - `animations` = Animations\n"
             " - `games` = Game Bots\n"
-            " - `stickers` = Stickers"),)
+            " - `stickers` = Stickers")
+     ,)
      else:
         await message.reply_text("`Admins Only!`")
 
