@@ -18,7 +18,8 @@ async def ids(_, message):
          elif reply.left_chat_member:
              id += f"**left Member ID**: `{reply.left_chat_member.id}`\n"
          elif reply.new_chat_members:
-             id += f"**New Member ID**: `{reply.new_chat_members.id}`\n"
+             for new_member in reply.new_chat_members:
+                   id += f"**New Member ID**: `{new_member.id}`\n"
          elif reply.photo:
              id += f"**Sent Photo ID**:\n`{reply.photo.file_id}`"
          elif reply.animation:
