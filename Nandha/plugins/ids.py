@@ -29,12 +29,12 @@ async def ids(_, message):
          await message.reply(text=(id))
       elif not reply:
               if len(message.text.split()) <2:
-                   await message.reply("`Input username to get ID else reply!`")
+                  return await message.reply("`Input username to get ID else reply!`")
               username = message.text.split()[1]
-              id = "`Here The IDs`:\n\n"
               try:
-                 x = await Nandha.get_users(username)
-                 id += f"**They ID**: `{x.id}`\n"
+                 id = "`Here The IDs`:\n\n"
+                 they = await Nandha.get_users(username)
+                 id += f"**They ID**: `{they.id}`\n"
                  id += f"**Chat ID**: `{message.chat.id}`\n"
                  id += f"**Your ID**: `{message.from_user.id}`\n"
               except Exception as e:
