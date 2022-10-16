@@ -109,7 +109,7 @@ can_pin_messages: {}
 @Nandha.on_message(filters.command("locks",config.CMDS))
 async def locks(_, message):
      chat_id = message.chat.id
-     user_id = user_id
+     user_id = message.from_user.id
      try:
          if (await is_admin(chat_id,user_id)) == True:
                 v_perm = message.chat.permissions
