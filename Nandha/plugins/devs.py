@@ -41,7 +41,7 @@ async def eval(client, message):
     if len(message.text.split()) <2:
           return await message.reply_text("`Input Not Found!`")
     status_message = await message.reply_text("Processing ...")
-    cmd = message.text.split(" ", maxsplit=1)[1]
+    cmd = message.text.split(None, 1)[1]
 
     reply_to_ = message
     if message.reply_to_message:
