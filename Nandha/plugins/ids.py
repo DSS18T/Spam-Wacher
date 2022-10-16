@@ -33,7 +33,7 @@ async def ids(_, message):
               username = message.text.split()[1]
               try:
                  id = "`Here The IDs`:\n\n"
-                 they = await Nandha.get_users(username)
+                 they = await Nandha.get_chat(username)
                  id += f"**They ID**: `{they.id}`\n"
                  id += f"**Chat ID**: `{message.chat.id}`\n"
                  id += f"**Your ID**: `{message.from_user.id}`\n"
