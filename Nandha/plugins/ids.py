@@ -35,7 +35,7 @@ async def ids(_, message):
               try:
                  x = await Nandha.get_users(username)
                  id += f"**They ID**: `{x.id}`\n"
-                 id += f"**Chat ID**: `{message.chat.jd}`\n"
+                 id += f"**Chat ID**: `{message.chat.id}`\n"
                  id += f"**Your ID**: `{message.from_user.id}`\n"
               except Exception as e:
                    await message.reply(e)
