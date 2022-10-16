@@ -22,11 +22,10 @@ async def sh(_, message):
           string = f"**📎 Input**: `{code}`\n\n**📒 Output **:\n`{x}`"
           try:
              await message.reply_text(string) 
-          except MESSAGE_TOO_LONG:
+          except Exception as e:
               with io.BytesIO(str.encode(string)) as out_file:
                  out_file.name = "shell.text"
-                 await message.reply_document(document=out_file, caption="`LONG TEXT MESSAGE CANNOT SEND SO WE SEND  AS FILE TYPE.`")
-             
+                 await message.reply_document(document=out_file, caption=e)
 
 async def aexec(code, client, message):
     exec(
