@@ -2,7 +2,8 @@ import config
 
 from pyrogram import filters
 from Nandha import Nandha
-
+from pyrogram.errors import (
+PeerIdInvalid,UsernameInvalid )
 
 @Nandha.on_message(filters.command("id",config.CMDS))
 async def ids(_, message):
@@ -38,6 +39,8 @@ async def ids(_, message):
                  id += f"**Chat ID**: `{message.chat.id}`\n"
                  id += f"**Your ID**: `{message.from_user.id}`\n"
                  await message.reply(text=(id))
-              except Exception as e:
-                   await message.reply(e)
+              except PeerIdInvalid:
+                    await message.reply("`forward user msg and reply or direct reply user to get id I can't find the user so!`")
+              except UsernameInvalid:
+                   await message.reply("`please check the given input. no user found!`")
            
