@@ -8,7 +8,7 @@ from Nandha import Nandha
 async def ids(_, message):
       reply = message.reply_to_message
       if reply:
-         id = "`Here The IDs`:\n\n"
+         id = "**Here The IDs**:\n\n"
          id += f"**Chat ID**: `{message.chat.id}`\n"
          id += f"**Replied ID**: `{reply.from_user.id}`\n"
          id += f"**Your ID**: `{message.from_user.id}`\n"
@@ -30,9 +30,9 @@ async def ids(_, message):
       elif not reply:
               if len(message.text.split()) <2:
                   return await message.reply("`Input username to get ID else reply!`")
-              username = message.text.split()[1]
+              username = message.text.split(None, 1)[1]
+              id = "**Here The IDs**:\n\n"
               try:
-                 id = "`Here The IDs`:\n\n"
                  they = await Nandha.get_chat(username)
                  id += f"**They ID**: `{they.id}`\n"
                  id += f"**Chat ID**: `{message.chat.id}`\n"
