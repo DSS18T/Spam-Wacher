@@ -16,7 +16,6 @@ async def tests(_, m):
    for link in URL:
       await Nandha.send_media_group(m.chat.id,
     [
-        InputMediaPhoto(link),
-        InputMediaPhoto(link, caption="test 1"),
+        InputMediaVideo(link, caption="test video type"),
     ]
 )
