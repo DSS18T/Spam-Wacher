@@ -87,8 +87,8 @@ async def lock(_, message):
                               
           else:
               await message.reply_text("`Admins Only!`")
-      except Exception as e:         
-          await message.reply(e)
+      except CHAT_NOT_MODIFIED:         
+           await message.reply(f"`already locked! {lock_type}`")
 
 
 
