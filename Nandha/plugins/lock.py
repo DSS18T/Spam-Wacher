@@ -96,6 +96,105 @@ async def lock(_, message):
            await message.reply(f"`already locked! {lock_type}`")
 
 
+@Nandha.on_message(filters.commamd("unlock",config.CMDS))
+async def unlock(_, message):
+        chat_id = message.chat.id
+        uset_id = message.from_user.id
+        try:
+            if (await is_admin(chat_id,user_id)) == True:
+                  if (await is_admin(chat_id,config.BOT_ID)) == False:
+                       return await message.reply("`Make you Sure I'm Admin!`")
+                  if len(message.text.split()) <2:
+                       return await message.reply("`No input found!`")
+                  unlock_type = message.text.split()[1]
+                  if unlock_type == "all":
+                       await Nandha.set_chat_permissions(
+                       chat_id,
+                       ChatPermissions(
+                       can_send_messages=True,
+                       can_send_media_messages=True,
+                       can_send_other_messages=True,
+                       can_add_web_page_previews=True,
+                       can_send_polls=True,
+                       can_change_info=False,
+                       can_invite_users=True,
+                       can_pin_messages=False),)
+                       return await message.reply(f"`locked! {unlock_type}`")
+                  get_uperm = m.chat.permissions
+                  umsg = get_uperm.can_send_messages
+                  umedia = get_uperm.can_send_media_messages
+                  uwebprev = get_uperm.can_add_web_page_previews
+                  upolls = get_uperm.can_send_polls
+                  uinfo = get_uperm.can_change_info
+                  uinvite = get_uperm.can_invite_users
+                  upin = get_uperm.can_pin_messages
+                  ustickers = uanimations = ugames = uinlinebots = None
+                  if unlock_type == "msg":
+                         umsg = True
+                         uperm = "messages"
+
+                  elif unlock_type == "media":
+                         umedia = True
+                         uperm = "audios, documents, photos, videos, video notes, voice notes"
+
+                  elif unlock_type == "stickers":
+                        ustickers = True
+                        uperm = "stickers"
+
+                  elif unlock_type == "animations":
+                        uanimations = True
+                        uperm = "animations"
+
+                  elif unlock_type == "games":
+                       ugames = True
+                       uperm = "games"
+
+                  elif unlock_type in ("inlinebots", "inline"):
+                         uinlinebots = True
+                         uperm = "inline bots"
+
+                  elif unlock_type == "webprev":
+                         uwebprev = True
+                         uperm = "web page previews"
+
+                  elif unlock_type == "polls":
+                       upolls = True
+                       uperm = "polls"
+
+                  elif unlock_type == "info":
+                       uinfo = False
+                       uperm = "info"
+
+                  elif unlock_type == "invite":
+                       uinvite = True
+                       uperm = "invite"
+
+                  elif unlock_type == "pin":
+                        upin = False
+                        uperm = "pin"
+
+                  else:
+                      await message.reply("`Invalid locktypes!`")      
+                  await Nandha.set_chat_permissions(
+                   chat_id,
+                   ChatPermissions(
+                   can_send_messages=umsg,
+                   can_send_media_messages=umedia,
+                   can_send_other_messages=any(
+                     [ustickers, uanimations, ugames, uinlinebots],),
+                   can_add_web_page_previews=uwebprev,
+                   can_send_polls=upolls,
+                   can_change_info=uinfo,
+                   can_invite_users=uinvite,
+                   can_pin_messages=upin,))
+                   await message.reply(f"`locked! {unlock_type}`")
+
+
+            else:
+                await message.reply("`Admins Only!`")
+        except Exception as e:
+              await message.reply(e)
+
 
 LOCKS = """
 • `{} 
