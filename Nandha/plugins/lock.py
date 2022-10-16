@@ -120,7 +120,7 @@ async def unlock(_, message):
                        can_invite_users=True,
                        can_pin_messages=False),)
                        return await message.reply(f"`locked! {unlock_type}`")
-                  get_uperm = m.chat.permissions
+                  get_uperm = message.chat.permissions
                   umsg = get_uperm.can_send_messages
                   umedia = get_uperm.can_send_media_messages
                   uwebprev = get_uperm.can_add_web_page_previews
