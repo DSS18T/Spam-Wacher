@@ -15,8 +15,10 @@ async def lock(_, message):
       try:
           if (await is_admin(chat_id,user_id)) == True:
                  
+                if (await is_admin(chat_id,config.BOT_ID)) == False:
+                       return await message.reply("`Make you Sure I'm Admin!`")
                 if len(message.text.split()) <2:
-                    return await message.reply("`No input found!`")
+                       return await message.reply("`No input found!`")
 
                 lock_type = message.text.split()[1]
 
@@ -115,8 +117,12 @@ async def locks(_, message):
      user_id = message.from_user.id
      try:
          if (await is_admin(chat_id,user_id)) == True:
-                v_perm = message.chat.permissions
-          
+
+                if (await is_admin(chat_id,config.BOT_ID)) == False:
+                       return await message.reply("`Make you Sure I'm Admin!`")
+
+                v_perm = message.chat.permissions   
+            
                 async def convert_to_emoji(val: bool):
                      return "✅" if val else "❌"
 
@@ -131,6 +137,8 @@ async def locks(_, message):
                 if v_perm is not None:
                     await message.reply_text(LOCKS.format(
                         message.chat.title, vmsg, vmedia, vother, vwebprev, vpolls, vinfo, vinvite, vpin))
+         else:
+            await message.reply("`Admins Only!`")
      except Exception as e:
          await message.reply(e)
 
