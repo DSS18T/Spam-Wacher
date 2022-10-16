@@ -38,7 +38,7 @@ async def aexec(code, client, message):
 async def eval(client, message):
     if not message.from_user.id == config.OWNER_ID:
          return await message.reply_text("`You Don't Have Enough Rights To Run This!`")
-    elif len(message.text.split()) <2:
+    if len(message.text.split()) <2:
           return await message.reply_text("`Input Not Found!`")
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
