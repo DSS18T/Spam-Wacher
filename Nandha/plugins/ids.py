@@ -15,9 +15,9 @@ async def ids(_, message):
          if reply.forward_from:
              id += f"**Forward From ID**:\n`{reply.forward_from.id}`\n"
          elif reply.left_chat_member:
-             id += f"**left User ID**: `{reply.left_chat_member.id}`\n"
+             id += f"**left Member ID**: `{reply.left_chat_member.id}`\n"
          elif reply.new_chat_members:
-             id += f"**New User ID**: `{reply.new_chat_members.id}`\n"
+             id += f"**New Member ID**: `{reply.new_chat_members.id}`\n"
          elif reply.photo:
              id += f"**Sent Photo ID**:\n`{reply.photo.file_id}`"
          elif reply.animation:
