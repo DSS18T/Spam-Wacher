@@ -1,4 +1,4 @@
-from pyrogram.types import InputMediaPhoto, InputMediaVideo
+from pyrogram.types import InputMediaPhoto, InputMediaAnimation
 from Nandha import Nandha
 from pyrogram import filters
 
@@ -15,6 +15,7 @@ async def tests(_, m):
    for link in URL:
       await Nandha.send_media_group(m.chat.id,
     [
-        InputMediaPhoto(link, caption="test video type"),
+        InputMediaAnimation(link, caption="test video type"),
+        InputMediaAnimation(link, caption="test video type"),
     ]
 )
