@@ -27,6 +27,16 @@ async def ids(_, message):
          elif reply.sticker:
              id += f"**Sent Sticker ID**:\n`{reply.sticker.file_id}`"
          await message.reply(text=(id))
-
-         
+      elif not reply:
+              if len(message.text.split()) <2:
+                   await message.reply("`Input username to get ID else reply!`")
+              username = message.text.split()[1]
+              id = "`Here The IDs`:\n\n"
+              try:
+                 x = await Nandha.get_users(username)
+                 id += f"**They ID**: `{x.id}`\n"
+                 id += f"**Chat ID**: `{message.chat.jd}`\n"
+                 id += f"**Your ID**: `{message.from_user.id}`\n"
+              except Exception as e:
+                   await message.reply(e)
            
