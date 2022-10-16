@@ -31,6 +31,8 @@ async def ids(_, message):
       elif not reply:
               if len(message.text.split()) <2:
                   return await message.reply("`Input username to get ID else reply!`")
+              elif len(message.text.split()) >2:
+                  return await message.reply("`wrong input!`")
               username = message.text.split(None, 1)[1]
               id = "**Here The IDs**:\n\n"
               try:
