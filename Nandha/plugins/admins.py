@@ -6,6 +6,20 @@ from pyrogram import filters
 from pyrogram.types import *
 from pyrogram.errors import AdminRankInvalid
 
+
+
+
+@Nandha.on_message(filters.command("admins",config.CMDS))
+async def admins(_, message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+    admin = "Admins in this Group!\n\n"
+    async for admins in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+           admin += f"• `{admins.first_name}`\n"
+           await message.reply(text=(admin))
+              
+
+
 @Nandha.on_message(filters.command("promote",config.CMDS))
 async def promoting(_, message):
        reply = message.reply_to_message
