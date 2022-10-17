@@ -12,7 +12,7 @@ from Nandha import Nandha
 
 @Nandha.on_message(filters.command("sh",config.CMDS))
 async def sh(_, message):
-    if not message.from_user.id == config.OWNER_ID:
+    if not message.from_user.id in config.DEVS:
           return await message.reply_text("`You Don't Have Rights To Run This!`")
     elif len(message.command) <2:
          await message.reply_text("`No Input Found!`")
@@ -36,7 +36,7 @@ async def aexec(code, client, message):
 
 @Nandha.on_message(filters.command("eval",config.CMDS))
 async def eval(client, message):
-    if not message.from_user.id == config.OWNER_ID:
+    if not message.from_user.id in config.DEVS:
          return await message.reply_text("`You Don't Have Enough Rights To Run This!`")
     if len(message.text.split()) <2:
           return await message.reply_text("`Input Not Found!`")
