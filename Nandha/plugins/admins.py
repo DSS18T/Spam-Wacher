@@ -69,7 +69,7 @@ async def demoting(_, message):
                       await message.reply("`I don't have enough rights to demote!`")
                 else:
                    try:
-                       await message.chat.demote_member(user_id=user_id,
+                       await message.chat.promote_member(user_id=user_id,
                        privileges=ChatPrivileges(
                can_change_info=False,
                can_invite_users=False,
