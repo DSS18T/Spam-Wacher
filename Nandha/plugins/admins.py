@@ -39,7 +39,7 @@ async def promoting(_, message):
                    try:
                        await message.chat.promote_member(user_id=user_id,privileges=bot.privileges)
                        await Nandha.set_administrator_title(chat_id, user_id, title=admin_title)
-                       await message.reply(f"**Successfully Promoted**!\n**Following Admin Tile**:\n`{admin_title}`") 
+                       await message.reply(f"**Successfully Promoted**!\n**Following Admin Title**:\n`{admin_title}`") 
                    except AdminRankInvalid:
                       return await message.reply("`Input maximum 8 characters!`")
 
