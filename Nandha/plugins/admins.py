@@ -11,7 +11,6 @@ async def promoting(_, message):
        chat_id = message.chat.id
        user_id = message.from_user.id
        if (await can_promote_members(chat_id,user_id)) == True:
-                user_id = reply.from_user.id
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
                 if reply and len(message.text.split()) >1:
                      user_id = reply.from_user.id
@@ -34,7 +33,7 @@ async def promoting(_, message):
                       await message.reply("`User Already A Admin!`")
                 else:
                      await message.chat.promote_member(user_id=user_id,privileges=bot.privileges)
-                     await Nandha.set_administrator_title(chat_id, user_id, title=admin_title)
+                     await Nandha.set_administrator_title(chat_id, user_id, title=admin_title.lower())
                      await message.reply(f"**Successfully Promoted**!\n**Following Admin Tile**: `{admin_title}`") 
        else:
          await message.reply("`You Don't Have Enough Rights!`")
