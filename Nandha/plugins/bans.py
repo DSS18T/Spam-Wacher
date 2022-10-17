@@ -12,7 +12,7 @@ async def bans(_, message):
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
       try:
-          if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id == config.OWNER_ID:   
+          if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.OWNER_ID:   
                 if not reply and len(message.command) >2:
                     ban_id = int(message.text.split(" ")[1])
                     reason = message.text.split(None, 2)[2]
@@ -29,7 +29,7 @@ async def bans(_, message):
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif ban_id == config.BOT_ID:
                        return await message.reply_text("`I can't ban myself!`")
-                elif ban_id == config.OWNER_ID:
+                elif ban_id in config.OWNER_ID:
                        return await message.reply_text("`I can't do against my owner!`")
                 elif (await is_admin(chat_id, ban_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
