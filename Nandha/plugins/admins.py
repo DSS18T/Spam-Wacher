@@ -4,7 +4,7 @@ from Nandha import Nandha
 from Nandha.help.admin import *
 from pyrogram import filters
 from pyrogram.types import *
-from pyrogram.erros import AdminRankInvalid
+from pyrogram.errors import AdminRankInvalid
 
 @Nandha.on_message(filters.command("promote",config.CMDS))
 async def promoting(_, message):
