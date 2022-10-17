@@ -12,7 +12,7 @@ async def promoting(_, message):
        user_id = message.from_user.id
        if (await is_admin(chat_id,user_id)) == False:
             return await message.reply("`Admins Only!`")
-       eilf (await can_promote_members(chat_id,user_id)) == False:
+       elif (await can_promote_members(chat_id,user_id)) == False:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
