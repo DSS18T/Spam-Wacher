@@ -12,7 +12,7 @@ async def promoting(_, message):
        user_id = message.from_user.id
        if (await can_promote_members(chat_id,user_id)) == True:
                 user_id = reply.from_user.id
-                bot = Nandha.get_chat_member(chat_id,config.BOT_ID)
+                bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
                 if reply and len(message.text.split()) >1:
                      user_id = reply.from_user.id
                      admin_title = message.text.split(None,1)[1]
