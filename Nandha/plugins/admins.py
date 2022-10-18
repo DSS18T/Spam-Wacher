@@ -20,6 +20,32 @@ async def admins(_, message):
     await message.reply(text=(admin))
               
 
+
+@Nandha.on_message(filters.command("setphoto"))
+async def setchatphoto(_, message):
+    chat_id = message.chat.jd
+    user_id = message.from_user.id
+    reply = message.reply_to_message
+     if (await is_admin(chat_id,user_id)) == False:
+         return await message.reply_text("`Only Admins!`")
+     elif (await can_change_info(chat_id,user_id)) == False:
+         return await message.reply_text("`You Don't have Enough Rights to Do This!`")
+     else:
+         if reply.text or reply.sticker:
+             return await message.reply("`please reply to a photo or document file to input photo!`")
+         if reply.media:
+              photo = await reply.download()     
+         elif not reply and len(message.text.split()) <2:
+                return await message.reply("`give a photo id or reply to a media to set photo!`")
+         elif not reply and len(message.text.split()) >1:  
+                photo = message.text.split(None,1)[1]
+         if (await is_admin(chat_id,config.BOT_ID)) == False:
+                return await message.reply("`Make you sure I'm Admin!`")
+         else:
+             await Nandha.set_chat_photo(photo=photo)
+
+
+
 @Nandha.on_message(filters.command("settitle",config.CMDS))
 async def setchattitle(_, message):
      chat_id = message.chat.id
