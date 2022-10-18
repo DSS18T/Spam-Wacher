@@ -27,7 +27,7 @@ async def setchattitle(_, message):
      reply = message.reply_to_message
      if (await is_admin(chat_id,user_id)) == False:
          return await message.reply_text("`Only Admins!`")
-     elif (await can_change_info(chat_id,user_id)) = False:
+     elif (await can_change_info(chat_id,user_id)) == False:
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
          if reply:
