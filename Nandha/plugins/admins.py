@@ -32,7 +32,7 @@ async def setchattitle(_, message):
      else:
          if reply:
              title = reply.text
-         elif not reply and len(message.text.split()) <3:
+         elif not reply:
               title = message.text.split(None,1)[1]
          if (await is_admin(chat_id,config.BOT_ID)) == False:
                return await message.reply("`Make you sure I'm Admin!`")
