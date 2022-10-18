@@ -31,7 +31,7 @@ async def setchatphoto(_, message):
      elif (await can_change_info(chat_id,user_id)) == False:
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
-         if reply.text or reply.sticker:
+         if not reply.media:
              return await message.reply("`please reply to a photo or document file to input photo!`")
          elif reply.media:
               photo = await reply.download()     
