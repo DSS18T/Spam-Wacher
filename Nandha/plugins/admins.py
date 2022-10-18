@@ -31,11 +31,13 @@ async def setchattitle(_, message):
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
          if reply:
-             title = reply.text
-         elif not reply:
-              title = message.text.split(None,1)[1]
+             title = reply.text         
+         elif not reply and len(message.text.split()) <2:
+                return await message.reply("`give a title or reply to a message to set title!`")
+         elif not reply and len(message.text.split()) >1:  
+                title = message.text.split(None,1)[1]
          if (await is_admin(chat_id,config.BOT_ID)) == False:
-               return await message.reply("`Make you sure I'm Admin!`")
+                return await message.reply("`Make you sure I'm Admin!`")
          else:
              await Nandha.set_chat_title(chat_id, title=title)
              await message.reply("`Successfully New title Inputed!`")
