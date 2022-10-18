@@ -33,17 +33,17 @@ async def setchatphoto(_, message):
      else:
          if not reply.media:
              return await message.reply("`please reply to a photo or document file to insert photo!`")    
-         if reply.media:
+         elif reply.media:
               photo = await reply.download() 
-         elif not reply and len(message.text.split()) <2:
-                return await message.reply("`give a photo id or reply to a media to set photo!`")
-         elif not reply and len(message.text.split()) >1:  
-                photo = await Nandha.download_media(message.text.split(None, 1)[1])
-         if (await is_admin(chat_id,config.BOT_ID)) == False:
-                return await message.reply("`Make you sure I'm Admin!`")
-         else:
-             await Nandha.set_chat_photo(chat_id=chat_id,photo=photo)
-             await message.reply("**Successfully New Photo Insert!**")
+              if not reply and len(message.text.split()) <2:
+                    return await message.reply("`give a photo id or reply to a media to set photo!`")
+              elif not reply and len(message.text.split()) >1:  
+                    photo = await Nandha.download_media(message.text.split(None, 1)[1])
+              if (await is_admin(chat_id,config.BOT_ID)) == False:
+                     return await message.reply("`Make you sure I'm Admin!`")
+              else:
+                  await Nandha.set_chat_photo(chat_id=chat_id,photo=photo)
+                  await message.reply("**Successfully New Photo Insert!**")
 
 
 
