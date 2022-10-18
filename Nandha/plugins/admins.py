@@ -21,9 +21,9 @@ async def admins(_, message):
               
 
 
-@Nandha.on_message(filters.command("setphoto"))
+@Nandha.on_message(filters.command("setphoto",config.CMDS))
 async def setchatphoto(_, message):
-     chat_id = message.chat.jd
+     chat_id = message.chat.id
      user_id = message.from_user.id
      reply = message.reply_to_message
      if (await is_admin(chat_id,user_id)) == False:
