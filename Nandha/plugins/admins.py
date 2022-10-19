@@ -36,9 +36,10 @@ async def setchatphoto(_, message):
 
          elif reply and reply.media:
               photo = await reply.download() 
-         else:
-              photo = await Nandha.download_media(message.text.split(None, 1)[1])
-
+         elif not reply and len(message.text.split()) >1:
+                  photo = await Nandha.download_media(message.text.split(None, 1)[1])
+         elif not reply and len(message.text.split()) <2:
+              return await message.reply("`give me a photo id or reply to photo!`")
          if (await is_admin(chat_id,config.BOT_ID)) == False:
                      return await message.reply("`Make you sure I'm Admin!`")
          else:
