@@ -31,13 +31,12 @@ async def setchatphoto(_, message):
      elif (await can_change_info(chat_id,user_id)) == False:
             return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
-
-         if reply and not reply.media:
+          if reply and not reply.media:
                return await message.reply("`please reply to a photo or document file to insert photo!`")   
 
-         elif reply.media:
+          elif reply and reply.media:
               photo = await reply.download() 
-         else:  
+          else:
               photo = await Nandha.download_media(message.text.split(None, 1)[1])
 
          if (await is_admin(chat_id,config.BOT_ID)) == False:
