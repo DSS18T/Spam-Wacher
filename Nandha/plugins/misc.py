@@ -9,5 +9,5 @@ from datetime import datetime as time
 async def ping(_, message):
       start = time.now()
       end = time.now()
-      ping = (end - start) / 1000
+      ping = (end - start).microseconds / 1000
       await message.reply(f"**PING**: `{ping}` ms")
