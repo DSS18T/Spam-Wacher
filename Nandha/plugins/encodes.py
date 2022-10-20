@@ -14,7 +14,7 @@ async def encodes(_, message):
                encodedBytes = base64.b64encode(data.encode("utf-8"))
                encodedStr = str(encodedBytes, "utf-8")
                await message.reply(encodedStr)
-          elif endswith("de"):
+          if endswith("de"):
                decodedBytes = base64.b64decode(str(data))
                decodedStr = str(decodedBytes, "utf-8")
                await message.reply(decodedStr)
