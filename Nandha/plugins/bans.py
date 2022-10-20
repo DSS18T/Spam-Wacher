@@ -1,6 +1,7 @@
 import config
 import random
-
+import requests
+import asyncio
 from Nandha import Nandha
 from Nandha.help.admin import *
 from pyrogram.types import *
@@ -11,6 +12,8 @@ async def bans(_, message):
       user_id = int(message.from_user.id)
       chat_id = int(message.chat.id)
       reply = message.reply_to_message
+      api = requests.get("https://api.waifu.pics/sfw/kick").json()
+      url = api["url"]
       try:
           if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
                 if not reply and len(message.command) >2:
@@ -36,11 +39,11 @@ async def bans(_, message):
                 else:
                     await message.reply_sticker(random.choice(config.FUNNY_STICKER))
                     await Nandha.ban_chat_member(chat_id, ban_id)
-                    await message.reply_text(f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
+                    await message.reply_animation(url,caption=f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))          
       except Exception as e:
          await message.reply_text(e)
-
+       
 @Nandha.on_callback_query(filters.regex("unban_btn"))
 async def unban_btn(_, query):
       chat_id = query.message.chat.id
@@ -48,9 +51,11 @@ async def unban_btn(_, query):
       ban_id = query.data.split(":")[1]
       try:
          if (await is_admin(chat_id, user_id)) == False:
-               return await query.answer("Admins Only!")
+               return await query.answer("Admins Only!", show_alert=True)
          else:
             await Nandha.unban_chat_member(chat_id, ban_id)
-            await query.message.edit(f"`Semms ban done mistakely admins restored a ban!`\nID: `{ban_id}`")
+            await query.message.edit_caption(f"`fine they can join again now!`\nID: `{ban_id}`")
       except Exception as e:
-            await query.message.reply_text(e)
+            msg = await query.message.reply_text(e)
+            await asyncio.sleep(10)
+            await msg.delete()
