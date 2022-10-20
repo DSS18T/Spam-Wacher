@@ -33,7 +33,7 @@ async def purge(_, message):
                 for ids in range(message_reply_id, message_id +0):
                     await Nandha.delete_messages(chat_id, ids)
                 end = time.now()
-                y = (end - start).microseconds / 1000
+                y = (end - start).microseconds / 10000
                 await message.reply(f"`Purged!` {y} ms!")
 
 
