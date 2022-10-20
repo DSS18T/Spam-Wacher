@@ -6,7 +6,7 @@ import base64
 
 @Nandha.on_message(filters.command(["encode","decode"],config.CMDS))
 async def encodes(_, message):
-      if not message.reply_to_message or is not message.reply_to_message.text:
+      if not message.reply_to_message or not message.reply_to_message.text:
          return await message.reply("`reply to a message text to encode/decode!`")   
       try:
           date = message.reply_to_message.text
