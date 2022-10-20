@@ -9,7 +9,7 @@ async def encodes(_, message):
       if not message.reply_to_message or is not message.reply_to_message.text:
          return await message.reply("`reply to a message text to encode/decode!`")   
       try:
-      date = message.reply_to_message.text
+          date = message.reply_to_message.text
           if startswith("en"):
                encodedBytes = base64.b64encode(data.encode("utf-8"))
                encodedStr = str(encodedBytes, "utf-8")
