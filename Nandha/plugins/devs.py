@@ -93,6 +93,7 @@ async def eval(client, message):
 async def leave(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
+    reply = message.reply_to_message
     if not user_id in config.DEVS:
         return await message.reply("`You Don't Enough Rights To Do This!`")
     if reply or not reply and len(message.text.split()) <2:
