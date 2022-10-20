@@ -89,7 +89,7 @@ async def eval(client, message):
     await status_message.delete()
 
 
-@Nandha.on_message(filters.commamd("leave",config.CMDS))
+@Nandha.on_message(filters.command("leave",config.CMDS))
 async def leave(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
