@@ -31,7 +31,10 @@ async def ids(_, message):
          await message.reply(text=(id))
       elif not reply:
               if len(message.text.split()) <2:
-                  return await message.reply("`Input username to get ID else reply!`")
+                  id = "**Here The IDs**:\n\n"
+                  id += f"**Chat ID**: `{message.chat.id}`\n"
+                  id += f"**Your ID**: `{message.from_user.id}`\n"
+                  return await message.reply(text=(id))
               elif len(message.text.split()) >2:
                   return await message.reply("`wrong input!`")
               username = message.text.split()[1]
