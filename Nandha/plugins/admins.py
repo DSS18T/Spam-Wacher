@@ -6,8 +6,35 @@ from Nandha.help.admin import *
 from pyrogram import filters
 from pyrogram.types import *
 from pyrogram.errors import AdminRankInvalid
+from datetime import datetime as time
 
 
+@Nandha.on_message(filters.command("purge",config.CMDS))
+async def purge(_, message):
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    reply = message.reply_to_message
+    if (await is_admin(chat_id,user_id)) == False:
+          return await message.reply("`Admins Only!`")
+    elif (await can_delete_messages(chat_id,user_id)) == False:
+         return await message.reply("`You Don't have Enough Rights to Do This!`")
+    else:
+          if (await is_admin(chat_id,config.BOT_ID)) == False:
+               return await message.reply("`Make you Sure I'm Admin!`")
+          elif (await can_delete_messages(chat_id,user_id)) == False:
+               return await message.reply("`I Don't have Enough Rights to Do This!`")
+          else:
+                if reply:
+                     message_reply_id = reply.id
+                     message_id = message.id
+                elif not reply:
+                      return await message.reply("`Reply to Message for purge!`")
+                else:
+                     start = time.now()
+                     for ids in range(message_reply_id,message_id +0):
+                          await Nandha.delete_messages(chat_id, ids)
+                     end = time.now()
+                     await message.reply("`Purged!`")
 
 
 @Nandha.on_message(filters.command("admins",config.CMDS))
