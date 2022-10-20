@@ -49,12 +49,14 @@ async def unban_btn(_, query):
       chat_id = query.message.chat.id
       user_id = query.from_user.id
       ban_id = query.data.split(":")[1]
+      api = requests.get("https://api.waifu.pics/sfw/smile").json()
+      url = api["url"]
       try:
          if (await is_admin(chat_id, user_id)) == False:
                return await query.answer("Admins Only!", show_alert=True)
          else:
             await Nandha.unban_chat_member(chat_id, ban_id)
-            await query.message.edit_caption(f"`fine they can join again now!`\nID: `{ban_id}`")
+            await query.message.edit_media(media=InputMediaAnimation(url,caption=f"`fine they can join again now!`\nID: `{ban_id}`"))
       except Exception as e:
             msg = await query.message.reply_text(e)
             await asyncio.sleep(10)
