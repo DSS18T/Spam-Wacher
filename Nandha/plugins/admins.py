@@ -14,11 +14,15 @@ async def purge(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
     reply = message.reply_to_message
-    if (await is_admin(chat_id,user_id)) == False:
-          return await message.reply("`Admins Only!`")
-    elif (await can_delete_messages(chat_id,user_id)) == False:
-         return await message.reply("`You Don't have Enough Rights to Do This!`")
+    if message.chat.type == eums.ChatType.PRIVATE:
+           for ids in range(reply.id, message.id +0):
+             await Nandha.delete_messages(chat_id, ids)
     else:
+       if (await is_admin(chat_id,user_id)) == False:
+            return await message.reply("`Admins Only!`")
+       elif (await can_delete_messages(chat_id,user_id)) == False:
+            return await message.reply("`You Don't have Enough Rights to Do This!`")
+       else:
           if (await is_admin(chat_id,config.BOT_ID)) == False:
                return await message.reply("`Make you Sure I'm Admin!`")
           elif (await can_delete_messages(chat_id,user_id)) == False:
