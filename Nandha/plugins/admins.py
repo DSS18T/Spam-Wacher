@@ -17,6 +17,7 @@ async def purge(_, message):
     if message.chat.type == enums.ChatType.PRIVATE:
            for ids in range(reply.id, message.id +0):
              await Nandha.delete_messages(chat_id, ids)
+             await message.reply(f"**Success Purged {len{ids}} messages!**")
     else:
        if (await is_admin(chat_id,user_id)) == False:
             return await message.reply("`Admins Only!`")
