@@ -14,7 +14,7 @@ async def purge(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
     reply = message.reply_to_message
-    if message.chat.type == eums.ChatType.PRIVATE:
+    if message.chat.type == enums.ChatType.PRIVATE:
            for ids in range(reply.id, message.id +0):
              await Nandha.delete_messages(chat_id, ids)
     else:
