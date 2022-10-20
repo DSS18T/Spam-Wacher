@@ -1,9 +1,10 @@
+import config
 from Nandha import Nandha
 from pyrogram import filters
 
 import base64
 
-@Nandha.on_message(filters.commamd(["encode,decode],config.CMDS))
+@Nandha.on_message(filters.command(["encode,decode],config.CMDS))
 async def encodes(_, message):
       if not message.reply_to_message or not message.reply_to_message.text:
          return await message.reply("`reply to a message text to encode/decode!`")
