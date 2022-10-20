@@ -18,11 +18,11 @@ async def purge(_, message):
            for ids in range(reply.id, message.id +0):
              await Nandha.delete_messages(chat_id, ids)
     return await message.reply(f"**Success Purged {len({ids})} messages!**")
-       if (await is_admin(chat_id,user_id)) == False:
+    if (await is_admin(chat_id,user_id)) == False:
             return await message.reply("`Admins Only!`")
-       elif (await can_delete_messages(chat_id,user_id)) == False:
+    elif (await can_delete_messages(chat_id,user_id)) == False:
             return await message.reply("`You Don't have Enough Rights to Do This!`")
-       else:
+    else:
           if (await is_admin(chat_id,config.BOT_ID)) == False:
                return await message.reply("`Make you Sure I'm Admin!`")
           elif (await can_delete_messages(chat_id,user_id)) == False:
