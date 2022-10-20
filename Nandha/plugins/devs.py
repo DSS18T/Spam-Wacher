@@ -87,3 +87,20 @@ async def eval(client, message):
     else:
         await reply_to_.reply_text(final_output)
     await status_message.delete()
+
+
+@Nandha.on_message(filters.commamd("leave",config.CMDS))
+async def leave(_, message):
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    if not user_id in config.DEVS:
+        return await message.reply("`You Don't Enough Rights To Do This!`")
+    if reply or not reply and len(message.text.split()) <2:
+         await message.reply("`I'm leaving here bye buddy's!`")
+         await Nandha.leave_chat(chat_id)
+    elif reply or not reply and len(message.text.split()) >2:
+          return await message.reply("`Give me only chat ID!`")
+    elif reply or not reply and len(message.text.split()) == 1:
+         await message.reply("`I'm leaving here bye buddy's!`")
+         await Nandha.leave_chat(message.text.split()[1])
+    
