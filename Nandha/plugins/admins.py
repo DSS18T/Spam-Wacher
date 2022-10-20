@@ -31,10 +31,11 @@ async def purge(_, message):
                       return await message.reply("`Reply to Message for purge!`")
                 else:
                      start = time.now()
-                     for ids in range(message_reply_id,message_id +0):
+                     for ids in range(message_reply_id, message_id +0):
                           await Nandha.delete_messages(chat_id, ids)
                      end = time.now()
-                     await message.reply("`Purged!`")
+                     y = (end - start).microseconds / 1000
+                     await message.reply(f"`Purged!` {y} ms!")
 
 
 @Nandha.on_message(filters.command("admins",config.CMDS))
