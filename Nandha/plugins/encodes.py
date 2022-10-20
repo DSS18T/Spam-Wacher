@@ -10,13 +10,8 @@ async def encodes(_, message):
          return await message.reply("`reply to a message text to encode/decode!`")   
       try:
           date = message.reply_to_message.text
-          if startswith("en"):
-               encodedBytes = base64.b64encode(data.encode("utf-8"))
-               encodedStr = str(encodedBytes, "utf-8")
-               await message.reply(encodedStr)
-          if endswith("de"):
-               decodedBytes = base64.b64decode(str(data))
-               decodedStr = str(decodedBytes, "utf-8")
-               await message.reply(decodedStr)
+          encodedBytes = base64.b64encode(data.encode("utf-8"))
+          encodedStr = str(encodedBytes, "utf-8")
+          await message.reply(encodedStr)         
       except Exception as e:
          await message.reply(e)
