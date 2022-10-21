@@ -1,7 +1,7 @@
 
 
 
-
+import re
 import requests
 import random
 
@@ -66,15 +66,16 @@ GA_TEXT = [
 
 @Nandha.on_message(filters.text, group=200)
 async def mornings(_, message):
-    if not message.text.lower() in ("good morning","good night","good afternoon","good evening"):
-         return
-    elif message.text.lower() in ("good morning","good night","good afternoon","good evening"):
-            if "morning" in message.text.lower():
-                  await message.reply(text="**yee? {} good morning! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GM_TEXT)))
-            elif "night" in message.text.lower():
-                  await message.reply(text="**yee? {} good night! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GN_TEXT)))
-            elif "evening" in message.text.lower():
-                  await message.reply(text="**yee? {} good evening! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GE_TEXT)))
-            elif "afternoon" in message.text.lower():
-                  await message.reply(text="**yee? {} good afternoon! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GA_TEXT)))
+        if re.search("morning", message.text.lower()):
+              return await message.reply(text="**yee? {} good morning! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GM_TEXT)))
+        elif re.search("night", message.text.lower()):
+                 return await message.reply(text="**yee? {} good night! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GN_TEXT)))
+        elif re.search("evening", message.text.lower()):
+                  return await message.reply(text="**yee? {} good evening! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GE_TEXT)))
+        elif re.search("afternoon", message.text.lower()):
+                  return await message.reply(text="**yee? {} good afternoon! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GA_TEXT)))
            
+
+
+
+
