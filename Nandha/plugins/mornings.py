@@ -70,7 +70,8 @@ async def mornings(_, message):
          return
     elif not message.text.lower() in ("good morning","good night","good afternoon","good evening"):
          return
-    elif message.text.lower() in ("good morning","good night","good afternoon","good evening"):
+    else:
+           message.text.lower() in ("good morning","good night","good afternoon","good evening"):
            if "morning" in message.text.lower():
                   await message.reply(text="**yee? {} good morning! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GM_TEXT)))
            elif "night" in message.text.lower():
