@@ -3,3 +3,4 @@ tgcrypto
 requests 
 asyncio
 aiohttp
+aiofiles
