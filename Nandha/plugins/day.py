@@ -64,7 +64,7 @@ async def day(_, message):
            dayname = day.strftime("%A")
            date = f"{day.day}-{day.month}-{day.year}"
            mention = message.from_user.mention
-           await message.reply_animation(url,caption=TEXT = """
+           await message.reply_animation(url,caption="""
 🤗 **Hi and good {part} 
 {mention}**, **we have nice quote for this {part}!**
 
