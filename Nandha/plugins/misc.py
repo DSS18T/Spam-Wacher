@@ -21,7 +21,7 @@ async def paste(_, message):
     if reply and reply.text or reply.caption:
          text = reply.text or reply.caption
     elif reply and reply.document:
-          doc = reply.download()
+          doc = await reply.download()
           async with aiofiles.open(doc, mode="r") as f:
                text = await f.read()
           os.remove(doc)
