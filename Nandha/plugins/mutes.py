@@ -57,6 +57,6 @@ async def unmute_btn(_, query):
                 return await query.answer("Admins Only!")
           else:
              await Nandha.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
-             await query.message.edit_media(media=InputMediaAnimation(url,caption=f"`fine they can speck now!`\nID: `{ban_id}`"))
+             await query.message.edit_media(media=InputMediaAnimation(url,caption=f"`fine they can speck now!`\nID: `{mute_id}`"))
       except Exception as e:
             await query.message.reply_text(e)
