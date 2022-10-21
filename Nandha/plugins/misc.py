@@ -31,6 +31,6 @@ async def paste(_, message):
     elif not reply and len(message.text.split()) >1:
          text = message.text.split(None, 1)[1]
     link = await spacebin(text)
-    await Nandha.send_message(chat_id,f"`{link}`",reply_to_message_id=message.id)
+    await Nandha.send_message(chat_id,f"here paste:\n`{link}`",reply_to_message_id=message.id)
     
         
