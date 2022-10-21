@@ -15,7 +15,7 @@ async def encodes(_, message):
       elif reply and reply.text:
            data = reply.text
       elif not reply and len(message.text.split()) <2:
-             return await message.reply("`reply to text or give me some text to encode!`")
+             return await message.reply("`reply to text or give me some text to (en/de) code!`")
       elif not reply and len(message.text.split()) >1:
             data = message.text.split(None,1)[1]
       if message.text.split()[0].startswith("en"):
