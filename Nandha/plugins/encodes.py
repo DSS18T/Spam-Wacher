@@ -23,6 +23,7 @@ async def encodes(_, message):
              encoded = str(encodedBytes, "utf-8")
              await Nandha.send_message(chat_id, text=encoded, reply_to_message_id=message.id)
       elif message.text.split()[0].startswith("de"):
-            decodedbytes = base64.b64decode(data)
-            decoded = str(decodedbytes, "utf-8")
-            await Nandha.send_message(chat_id, text=decoded, reply_to_message_id=message.id)
+             decodedbytes = base64.b64decode(data)
+             decoded = str(decodedbytes, "utf-8")
+             pass
+             await Nandha.send_message(chat_id, text=decoded, reply_to_message_id=message.id)
