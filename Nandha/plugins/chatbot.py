@@ -18,7 +18,7 @@ async def chatbot(_, message):
             return
     if message.chat.id in ACTIVE_CHAT:
          if message.text:
-               if reply.from_user.id == config.BOT_ID:
+               if message.reply_to_message.from_user.id == 5720769813:
                    Message = message.text
-                   API = requests.get(f"https://merissachatbot.tk/api/apikey=1491497760-MERISSAri2hds2WK4/groupprotectionbot/nandhaxd/message="+Message).json()
+                   API = requests.get("https://merissachatbot.tk/api/apikey=1491497760-MERISSAri2hds2WK4/groupprotectionbot/nandhaxd/message="+Message).json()
                    await message.reply(API["reply"])
