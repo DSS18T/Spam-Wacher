@@ -19,7 +19,7 @@ async def ping(_, message):
 async def paste(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
-    if reply and reply.text
+    if reply and reply.text:
          text = reply.text 
     elif reply and reply.caption:
           text = reply.caption
