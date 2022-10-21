@@ -66,7 +66,6 @@ GA_TEXT = [
 
 @Nandha.on_message(group=30)
 async def day(_, message):
-    part = await get_part_of_day(datetime.now().hour)
     if message.text.lower() in ("good morning","good night","good afternoon","good evening"):
            if "morning" in message.text.lower():
                   await message.reply(text="*yee? {} good morning! and for you my quote 🥰*\n`{}`".format(message.from_user.mention, random.choice(GM_TEXT)))
