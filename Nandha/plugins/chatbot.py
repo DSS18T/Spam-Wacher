@@ -1,3 +1,5 @@
+import requests
+
 import config
 from Nandha import Nandha
 from pyrogram import filters
