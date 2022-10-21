@@ -66,12 +66,9 @@ GA_TEXT = [
 
 @Nandha.on_message(filters.text, group=200)
 async def mornings(_, message):
-    if not message.text.lower():
+    if not message.text.lower() in ("good morning","good night","good afternoon","good evening"):
          return
-    elif not message.text.lower() in ("good morning","good night","good afternoon","good evening"):
-         return
-    else:
-       if message.text.lower() in ("good morning","good night","good afternoon","good evening"):
+    elif message.text.lower() in ("good morning","good night","good afternoon","good evening"):
             if "morning" in message.text.lower():
                   await message.reply(text="**yee? {} good morning! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GM_TEXT)))
             elif "night" in message.text.lower():
