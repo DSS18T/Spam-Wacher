@@ -24,7 +24,11 @@ async def addchatbot(_, message):
 @Nandha.on_message(filters.text, group=200)
 async def chatbot(_, message):
      if message.chat.id in ACTIVE_CHAT:
-          if message.reply_to_message.from_user.id == config.BOT_ID:
+          if not message.reply_to_message:
+                return
+          elif not message.reply_to_message.from_user.id == config.BOT_ID:
+                return
+          elif message.reply_to_message.from_user.id == config.BOT_ID:
                Message = message.text
                API = requests.get("https://merissachatbot.tk/api/apikey=1491497760-MERISSAri2hds2WK4/groupprotectionbot/nandhaxd/message="+Message).json()
                await message.reply(API["reply"])
