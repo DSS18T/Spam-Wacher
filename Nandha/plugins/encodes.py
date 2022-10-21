@@ -5,7 +5,7 @@ from pyrogram import filters
 
 
 
-@Nandha.on_message(filters.command(["encode","decode",],config.CMDS))
+@Nandha.on_message(filters.command("encode",config.CMDS))
 async def encodes(_, message):
       reply = message.reply_to_message
       chat_id = message.chat.id
