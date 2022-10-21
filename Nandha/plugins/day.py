@@ -53,11 +53,11 @@ async def day(_, message):
            url = api["url"]
            if message.text in "morning":
                quote = random.choice(GM_TEXT)
-           elif message.text in "night":
+           elif "night" in message.text:
                  quote = random.choice(GN_TEXT)
-           elif message.text in "afternoon":
+           elif "afternoon" in message.text:
                  qoute = "good afternoon qoute"
-           elif message.text in "evening":
+           elif "evening" in message.text:
                  quote = "good evening quote"
            await message.reply(quote)
 
