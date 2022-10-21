@@ -1,7 +1,7 @@
 import logging
 
 from pyrogram import Client
-
+from aiohttp import ClientSession
 
 
 # enable logging
@@ -30,3 +30,4 @@ plugins=plugins)
 
 
      
+session = ClientSession()
