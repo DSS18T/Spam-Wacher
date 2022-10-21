@@ -52,13 +52,13 @@ async def day(_, message):
     if message.text in ("good morning","good night","good afternoon"):
            api = requests.get("https://api.waifu.pics/sfw/smile").json()
            url = api["url"]
-           if part == "morning":
+           if message.text in "morning":
                quote = random.choice(GM_TEXT)
-           elif part == "night":
+           elif message.text in "night":
                  quote = random.choice(GN_TEXT)
-           elif part == "afternoon":
+           elif message.text in "afternoon":
                  qoute = "good afternoon qoute"
-           elif part == "evening":
+           elif message.text in "evening":
                  quote = "good evening quote"
            day = datetime.now()
            dayname = day.strftime("%A")
