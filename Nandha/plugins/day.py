@@ -41,7 +41,7 @@ async def day(_, message):
            elif message.text in "good afternoon":
                  qoute = "good afternoon qoute"
            day = datetime.now()
-           dayname = ok.strftime("%A")
+           dayname = day.strftime("%A")
            date = f"{day.day}-{day.month}-{day.year}"
            mention = message.from_user.mention
            await message.reply_animation(url,caption=GM_TEXT.format(
