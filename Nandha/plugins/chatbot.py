@@ -21,7 +21,7 @@ async def addchatbot(_, message):
     else:
         await message.reply("This Chat Already Enabled ChatBot!")
     
-@Nandha.on_message(filters.text & group=200)
+@Nandha.on_message(filters.text | group=200)
 async def chatbot(_, message):
      if message.chat.id in ACTIVE_CHAT:
           if message.reply_to_message.from_user.id == config.BOT_ID:
