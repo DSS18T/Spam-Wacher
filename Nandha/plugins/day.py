@@ -18,9 +18,6 @@ async def get_part_of_day(h):
 
 
 
-DAY = ["good morning","good afternoon","good night"]
-
-
 GM_TEXT = """
 🤗 **Hi and good morning {}**,
 we have nice quote for this morning!
@@ -31,7 +28,7 @@ we have nice quote for this morning!
 my wish's for you have good day!
 """
 
-@Nandha.on_message(filters.regex(DAY))
+@Nandha.on_message(filters.regex(["good morning","good afternoon","good night"]))
 async def day(_, message):
     part = await get_part_of_day(datetime.now().hour)
     if part == "morning":
