@@ -68,11 +68,11 @@ GA_TEXT = [
 async def day(_, message):
     if message.text.lower() in ("good morning","good night","good afternoon","good evening"):
            if "morning" in message.text.lower():
-                  await message.reply(text="*yee? {} good morning! and for you my quote 🥰*\n`{}`".format(message.from_user.mention, random.choice(GM_TEXT)))
+                  await message.reply(text="**yee? {} good morning! and for you my quote 🥰**\n`{}`".format(message.from_user.mention, random.choice(GM_TEXT)))
            elif "night" in message.text.lower():
-                  await message.reply(text="*yee? {} good night! and for you my quote 🥰*\n`{}`".format(message.from_user.mention, random.choice(GN_TEXT)))
+                  await message.reply(text="**yee? {} good night! and for you my quote 🥰**\n`{}`".format(message.from_user.mention, random.choice(GN_TEXT)))
            elif "evening" in message.text.lower():
-                  await message.reply(text="*yee? {} good evening! and for you my quote 🥰*\n`{}`".format(message.from_user.mention, random.choice(GE_TEXT)))
+                  await message.reply(text="**yee? {} good evening! and for you my quote 🥰**\n`{}`".format(message.from_user.mention, random.choice(GE_TEXT)))
            elif "afternoon" in message.text.lower():
-                  await message.reply(text="*yee? {} good afternoon! and for you my quote 🥰*\n`{}`".format(message.from_user.mention, random.choice(GA_TEXT)))
+                  await message.reply(text="**yee? {} good afternoon! and for you my quote 🥰**\n`{}`".format(message.from_user.mention, random.choice(GA_TEXT)))
            
