@@ -12,6 +12,6 @@ async def baka(_, message):
        anime = api["results"][0]["anime_name"]
        name = message.from_user.first_name
        if reply:
-            await reply.reply_animation(caption="**• {}**\n**Baka! {}**".format(anime, name))
+            await reply.reply_animation(url,caption="**• {}**\n**Baka! {}**".format(anime, name))
        else:
-           await message.reply_animation(caption="**• {}**\n**Baka! {}**".format(anime, name))
+           await message.reply_animation(url,caption="**• {}**\n**Baka! {}**".format(anime, name))
