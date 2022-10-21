@@ -1,3 +1,7 @@
+
+
+
+
 import requests
 import random
 
@@ -45,21 +49,36 @@ GN_TEXT = [
 "A new morning is waiting for you. Sleep well and sleep tight. Because the new day wants you to be fit and all charged up. Good night!",]
 
 
+
 @Nandha.on_message(group=20)
 async def day(_, message):
     part = await get_part_of_day(datetime.now().hour)
-    if message.text in ("good morning","good night","good afternoon","good evening"):
+    if message.text in ("good morning","good night","good afternoon"):
            api = requests.get("https://api.waifu.pics/sfw/smile").json()
            url = api["url"]
-           if message.text in "morning":
+           if "morning" == part:
                quote = random.choice(GM_TEXT)
-           elif "night" in message.text:
+           elif "night" == part:
                  quote = random.choice(GN_TEXT)
-           elif "afternoon" in message.text:
+           elif "afternoon" == part:
                  qoute = "good afternoon qoute"
-           elif "evening" in message.text:
+           elif "evening" == part:
                  quote = "good evening quote"
-           await message.reply(quote)
+           day = datetime.now()
+           dayname = day.strftime("%A")
+           date = f"{day.day}-{day.month}-{day.year}"
+           mention = message.from_user.mention
+           await message.reply_animation(url,caption=f"""
+🤗 **Hi and good {part} 
+{mention}**, **we have nice quote for this {part}!**
+
+**quote**:
+{quote}
+
+**this is {dayname} and date 
+{date} my wish's for you have good day today!**
+""")
+
 
 
 
