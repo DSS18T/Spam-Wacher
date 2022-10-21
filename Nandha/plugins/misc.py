@@ -17,9 +17,7 @@ async def ping(_, message):
 async def paste(_, message):
     reply = message.reply_to_message
     chat_id = message.chat.id
-    if reply and not reply.text or reply.caption or reply.document:
-         return await message.reply("`please reply to (text/file) or give text to paste!`")
-    elif reply and reply.text or reply.caption:
+    if reply and reply.text or reply.caption:
          text = reply.text or reply.caption
     elif reply and reply.document:
           async with aiofiles.open(doc, mode="r") as f:
