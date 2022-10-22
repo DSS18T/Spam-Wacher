@@ -24,7 +24,7 @@ async def ud(_, message):
       if reply and reply.text:
          try:
             query = reply.text
-            search = ( reply.text
+            search = ( reply.text.split()[1]
                        if len(reply.text.split()) <3
                        else reply.text.replace(" ","%20")
             )
