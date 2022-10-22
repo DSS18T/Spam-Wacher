@@ -24,7 +24,7 @@ def ask(question, chat_log=None):
         engine="davinci",
         prompt=prompt_text,
         temperature=0.8,
-        max_tokens=15000000,
+        max_tokens=200,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.3,
@@ -81,9 +81,13 @@ async def chatbot(_, message):
                 return
           elif not message.reply_to_message.from_user.id == config.BOT_ID:
                 return
-          elif message.text and message.reply_to_message.from_user.id == config.BOT_ID:
-               Message = message.text
-               chat_log = session.get('chat_log')
-               answer = ask(Message, chat_log)
-               session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
-               await message.reply(f"{str(answer)}")
+          try:
+            elif message.text and message.reply_to_message.from_user.id == config.BOT_ID:
+                 Message = message.text
+                 chat_log = session.get('chat_log')
+                 answer = ask(Message, chat_log)
+                 session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
+                 await message.reply(f"{str(answer)}")
+          except Exception as e:
+                await message.reply(f"{str(e)}")
+
