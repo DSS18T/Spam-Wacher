@@ -57,7 +57,7 @@ async def chatbot(_, message):
 async def chatbot(_, query):
      chat_id = query.message.chat.id
      user_id = query.from_user.id
-     if message.chat.type == enums.ChatType.PRIVATE:
+     if query.message.chat.type == enums.ChatType.PRIVATE:
           addchat(chat_id)
           await query.message.edit(f"`Successfully Connected ChatBot!`\nby **{query.from_user.first_name}**")
      else:
@@ -71,7 +71,7 @@ async def chatbot(_, query):
 async def chatbot(_, query):
      chat_id = query.message.chat.id
      user_id = query.from_user.id
-     if message.chat.type == enums.ChatType.PRIVATE:
+     if query.message.chat.type == enums.ChatType.PRIVATE:
           removechat(chat_id)
           await query.message.edit(f"`Successfully Disconnected ChatBot!`\nby **{query.from_user.first_name}**")
      else:
