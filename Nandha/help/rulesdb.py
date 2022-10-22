@@ -10,7 +10,7 @@ def rules_chat():
     return chats
 
 def get_rules(chat_id: int):
-     if not rules_chat in chat_id:
+     if not chat_id in rules_chat():
          return
      x = rulesdb.find_one({"_id": chat_id})
      return x["rules"]
