@@ -22,18 +22,18 @@ async def ud(_, message):
       reply = message.reply_to_message
       if reply and reply.text:
          try:
-            text = reply.text
-            results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
-            text = f'**results: {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
-            await Nandha.send_message(message.chat.id,text=text, reply_to_message_id=message.id)
+            search = reply.text
+            results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
+            text = f'**⚠️ Warning: Urban Dictionary does not always provide accurate descriptions**:\n**• Result for**: `{text}`\n\n**• Result**:\n`{results["list"][0]["definition"]}`\n\n• **Example**:\n`{results["list"][0]["example"]}`'
+            await Nandha.send_message(message.chat.id,text=text,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define"+search),]]),reply_to_message_id=message.id)
          except Exception as e:
               await message.reply(e)
       elif not reply and len(message.text.split()) >1:
             try:
-              text = message.text.split(None,1)[1]
-              results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
-              text = f'**results: {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
-              await Nandha.send_message(message.chat.id,text=text, reply_to_message_id=message.id)
+              search = message.text.split(None,1)[1]
+              results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
+              text = f'**⚠️ Warning: Urban Dictionary does not always provide accurate descriptions**:\n**• Result for**: `{text}`\n\n**• Result**:\n`{results["list"][0]["definition"]}`\n\n• **Example**:\n`{results["list"][0]["example"]}`'
+              await Nandha.send_message(message.chat.id,text=text, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define"+search),]]),reply_to_message_id=message.id)
             except Exception as e:
                    await message.reply(e)  
 
