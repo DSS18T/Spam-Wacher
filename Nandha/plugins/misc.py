@@ -36,6 +36,7 @@ async def ud(_, message):
                        message.text.split(None,1)[1]
                    else:
                        message.text.split(None,1)[1].replace(" ","%20")
+              )
               results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
               text = f'**⚠️ Warning: Urban Dictionary does not always provide accurate descriptions**:\n\n**• Result for**: `[{search}]`\n\n**• Result**:\n`{results["list"][0]["definition"]}`\n\n• **Example**:\n`{results["list"][0]["example"]}`'
               await Nandha.send_message(message.chat.id,text=text, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define"+search),]]),reply_to_message_id=message.id)
