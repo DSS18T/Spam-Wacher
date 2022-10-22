@@ -9,6 +9,13 @@ def rules_chat():
          chats.append(chat_id["_id"])
     return chats
 
+def get_rules(chat_id: int):
+     if not rules_chat in chat_id:
+         return
+     x = rulesdb.find_one({"_id": chat_id})
+     return "x["rules"]"
+           
+
 def add_rules(chat_id: int, text: str):
     RULES = {"_id": chat_id, "rules": text}
     if chat_id in rules_chat():
