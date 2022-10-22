@@ -56,7 +56,7 @@ async def chatbot(_, message):
                 return
           elif not message.reply_to_message.from_user.id == config.BOT_ID:
                 return
-          elif message.reply_to_message.from_user.id == config.BOT_ID:
+          elif message.text and message.reply_to_message.from_user.id == config.BOT_ID:
                Message = message.text
                chat_log = session.get('chat_log')
                answer = ask(Message, chat_log)
