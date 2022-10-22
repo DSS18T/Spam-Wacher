@@ -16,3 +16,15 @@ async def baka(_, message):
        else:
            name = message.from_user.first_name
            await message.reply_animation(url,caption="**• {}**\n**Baka! {}**".format(anime, name))
+
+@Nandha.on_message(filters.regex("hug"))
+async def hug(_, message):
+       api = requests.get("https://nekos.best/api/v2/hug").json()
+       url = api["results"][0]['url']
+       anime = api["results"][0]["anime_name"]     
+       if reply:
+            name = reply.from_user.first_name
+            await reply.reply_animation(url,caption="**• {}**\n**Hugs! {}**".format(anime, name))
+       else:
+           name = message.from_user.first_name
+           await message.reply_animation(url,caption="**• {}**\n**Hugs! {}**".format(anime, name))
