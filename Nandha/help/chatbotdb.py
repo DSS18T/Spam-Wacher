@@ -5,8 +5,8 @@ chatbotdb = mongodb.CHATBOT
 
 def get_chat():
      chats = []
-     for chats in chatbotdb.find():
-          chats.append(chats["chat_id"])
+     for chat_ids in chatbotdb.find():
+          chats.append(chat_ids["chat_id"])
      return chats
 
 def addchat(chat_id: int):
