@@ -33,7 +33,7 @@ async def setrules(_, message):
               
 @Nandha.on_message(filters.command("rules",config.CMDS))
 async def rules(_, message):
-    chat_id = message.chat.id
+    chat_id = int(message.chat.id)
     if not chat_id in rules_chat():
         return await message.reply("`this group don't haven't any rules!`")
     else:
