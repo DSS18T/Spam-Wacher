@@ -40,3 +40,17 @@ async def rules(_, message):
         x = get_rules(chat_id)
         await message.reply(f"**Here The Group Rules**:-\n• **{message.chat.title}**\n\n• **Rules:-**\n"+x)  
             
+@Nandha.on_message(filters.command("removerules",config.CMDS))
+async def remove(_, message):
+     chat_id = message.chat.id
+     user_id = message.chat.id
+     if (await is_admin(chat_id,user_id)) == False:
+          return await message.reply("`Admins only!`")
+     else:
+         if not chat_id in rules_chat():
+              return await message.reply("`This Chat Don't haven't Any Rules!`")
+         else:
+             remove_rules(chat_id)
+             await message.reply("`Successfully Rules Removed!`")
+
+
