@@ -34,6 +34,6 @@ plugins=plugins)
      
 session = ClientSession()
 
-MONGO = "mongodb+srv://filter:pw8hd@cluster0.1peugmz.mongodb.net/?retryWrites=true&w=majority"
+MONGO = "mongodb://sereware:sereware132@cluster0.ap2lhkg.mongodb.net/?retryWrites=true&w=majority"
 mongo = MongoClient(MONGO)
 mongodb = mongo.NANDHA
