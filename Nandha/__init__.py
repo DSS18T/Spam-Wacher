@@ -1,7 +1,10 @@
 import logging
 
+from pymongo import MongoClient 
 from pyrogram import Client
 from aiohttp import ClientSession
+from pyrogram import 
+
 
 
 # enable logging
@@ -31,3 +34,7 @@ plugins=plugins)
 
      
 session = ClientSession()
+
+MONGO = "mongodb+srv://bikashhalder1234444:bikash890@cluster0.c7hlkrv.mongodb.net/?retryWrites=true&w=majority"
+mongo = MongoClient(MONGO)
+mongodb = mongo.NANDHA
