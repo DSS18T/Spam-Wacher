@@ -2,6 +2,7 @@
 import aiofiles
 import os
 import config
+import requests
 
 from Nandha import Nandha
 from pyrogram import filters
