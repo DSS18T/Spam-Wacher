@@ -1,4 +1,5 @@
 import config
+import asyncio
 import requests
 from Nandha import Nandha
 from pyrogram import filters
@@ -48,11 +49,13 @@ async def insult(_, message):
 @Nandha.on_message(filters.command("riddle"))
 async def riddle(_, message):
      riddle = requests.get("https://riddles-api.vercel.app/random").json()
+     question = riddle["riddle"]
+     answer = riddle["answer"]
      msg = await message.reply((
-              "**• riddle**:-\n"
-             f"`{riddle["riddle"]}`"))
+              "**• riddle**:\n"
+             f"`{question}`"))
      await asyncio.sleep(5)
-     await msg.edit(f"{msg.text}\n\n• **Answer**: [`{riddle["answer"]}`]")
+     await msg.edit(f"{msg.text}\n\n• **Answer**: [`{answer}`]")
      
 
 
