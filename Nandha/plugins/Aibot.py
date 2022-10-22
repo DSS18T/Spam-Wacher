@@ -60,5 +60,5 @@ async def chatbot(_, message):
                Message = message.text
                chat_log = session.get('chat_log')
                answer = ask(Message, chat_log)
-               session['chat_log'] = append_interaction_to_chat_log(update.message.text, answer,                                                  chat_log)
+               session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
                await message.reply(f"{str(answer)}")
