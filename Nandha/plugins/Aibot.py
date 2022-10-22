@@ -96,10 +96,7 @@ async def chatbot(_, message):
                   chat_log = session.get('chat_log')
                   answer = ask(Message, chat_log)
                   session['chat_log'] = append_interaction_to_chat_log(Message, answer,chat_log)
-                  if message.chat.type == enums.ChatType.PRIVATE:
-                          await message.reply(f"{str(answer)}",qoute=True)
-                  else:
-                      await message.reply(f"{str(answer)}")
+                  await message.reply(f"{str(answer)}",quote=True)
               except Exception as e:
                    await message.reply(f"{str(e)}")
 
