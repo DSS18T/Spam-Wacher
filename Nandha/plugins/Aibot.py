@@ -44,11 +44,11 @@ async def chatbot(_, message):
     chat_id = message.chat.id
     name = message.from_user.first_name
     if not chat_id in get_chat():
-             await message.reply(f"`hello **{name}** to enable a chatbot click the below following button!`",
+             await message.reply(f"hello **{name}** `to enable a chatbot click the below following button!`",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Enable", callback_data="enable_CB")]]))
              return
     else:
-        await message.reply(f"`hello **{name}** to enable a chatbot click the below following button!`",
+        await message.reply(f"hello **{name}** `to enable a chatbot click the below following button!`",
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Disable", callback_data="disable_CB")]]))
         return
 
@@ -76,7 +76,7 @@ async def chatbot(_, query):
     
 @Nandha.on_message(filters.text, group=200)
 async def chatbot(_, message):
-     if message.chat.id in ACTIVE_CHAT:
+     if message.chat.id in get_chat():
           if not message.reply_to_message:
                 return
           elif not message.reply_to_message.from_user.id == config.BOT_ID:
