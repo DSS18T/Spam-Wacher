@@ -15,6 +15,25 @@ async def ping(_, message):
       ping = (end - start).microseconds / 1000
       await message.reply(f"**PING**: `{ping}` ms")
 
+
+@Nandha.on_message(filters.command("ud",config.CMDS))
+async def ud(_, message):
+      reply = message.reply_to_message
+      if reply and reply.text:
+         try:
+            text = reply.text
+            results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
+            await Nandha.send_message(message.chat.id,text=results, reply_to_message=message.id)
+         except Exception as e:
+              await message.reply(e)
+       elif not reply and len(message.text.split()) >1:
+            try:
+              text = message.text.split(None,1)[1]
+              results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
+              await Nandha.send_message(message.chat.id,text=results, reply_to_message=message.id)
+            except Exception as e:
+                   await message.reply(e)  
+
 @Nandha.on_message(filters.command("paste",config.CMDS))
 async def paste(_, message):
     reply = message.reply_to_message
