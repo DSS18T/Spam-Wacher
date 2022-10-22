@@ -23,11 +23,10 @@ async def setrules(_, message):
             return await message.reply("`reply to text message or give text to set rules!`")
         elif not reply and len(message.text.split()) >1:
              RULES = message.text.replace(message.text.split()[0], "")
-        else:
-            if chat_id in rules_chat():
+        if chat_id in rules_chat():
                  update_rules(chat_id,RULES)
                  await message.reply("`Group Rules already set so I have updated the Rules Successfully!`")
-            else:
+        else:
                  add_rules(chat_id,RULES)
                  await message.reply("`Group Rules set Successfully!`")
              
