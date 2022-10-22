@@ -14,3 +14,10 @@ def is_chat(chat_id: int):
      if x:
         return True
      return False 
+
+def get_chat():
+     x = chatbotdb.find_one({"chat_id": chat_id}) 
+     chats = []
+     for chat_id in x:
+          chats.append(chat_id)
+     return chats
