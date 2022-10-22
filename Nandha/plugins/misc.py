@@ -24,8 +24,8 @@ async def ud(_, message):
       if reply and reply.text:
          try:
             query = reply.text
-            search = ( reply.text.split()[1]
-                       if len(reply.text.split()) <3
+            search = ( reply.text.split()[0]
+                       if len(reply.text.split()) <2
                        else reply.text.replace(" ","%20")
             )
             results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
