@@ -13,6 +13,7 @@ from pyrogram import filters
 async def setrules(_, message):
    chat_id = message.chat.id
    user_id = message.from_user.id
+   reply = message.reply_to_message
    if (await is_admin(chat_id,user_id)) == False:
         return await message.reply("`Admins Only!`")
    else:
