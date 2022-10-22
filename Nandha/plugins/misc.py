@@ -32,8 +32,8 @@ async def ud(_, message):
       elif not reply and len(message.text.split()) >1:
             try:
               search = (
-                   if len(message.text.split()) <3:
-                       message.text.split(None,1)[1]
+                   message.text.split(None,1)[1]
+                   if len(message.text.split()) <3
                    else:
                        message.text.split(None,1)[1].replace(" ","%20")
               )
