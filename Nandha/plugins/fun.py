@@ -19,6 +19,7 @@ async def baka(_, message):
 
 @Nandha.on_message(filters.regex("hug"))
 async def hug(_, message):
+       reply = message.reply_to_message
        api = requests.get("https://nekos.best/api/v2/hug").json()
        url = api["results"][0]['url']
        anime = api["results"][0]["anime_name"]     
