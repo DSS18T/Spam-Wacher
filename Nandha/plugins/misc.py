@@ -6,6 +6,7 @@ import requests
 
 from Nandha import Nandha
 from pyrogram import filters
+from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin
 
