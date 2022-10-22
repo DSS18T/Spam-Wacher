@@ -51,11 +51,9 @@ async def riddle(_, message):
      riddle = requests.get("https://riddles-api.vercel.app/random").json()
      question = riddle["riddle"]
      answer = riddle["answer"]
-     msg = await message.reply((
-              "**• riddle**:\n"
-             f"`{question}`"))
-     await asyncio.sleep(5)
-     await msg.edit(f"{msg.text}\n\n• **Answer**: [`{answer}`]")
+     msg = await message.reply(f"**• riddle**:\n[`{question}]`")
+     await asyncio.sleep(10)
+     await msg.edit(f"**• riddle**:\n[`{question}`]\n\n• **Answer**: [`{answer}`]")
      
 
 
