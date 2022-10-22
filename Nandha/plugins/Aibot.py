@@ -81,13 +81,13 @@ async def chatbot(_, message):
                 return
           elif not message.reply_to_message.from_user.id == config.BOT_ID:
                 return
-          try:
-            elif message.text and message.reply_to_message.from_user.id == config.BOT_ID:
-                 Message = message.text
-                 chat_log = session.get('chat_log')
-                 answer = ask(Message, chat_log)
-                 session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
-                 await message.reply(f"{str(answer)}")
-          except Exception as e:
-                await message.reply(f"{str(e)}")
+          elif message.text and message.reply_to_message.from_user.id == config.BOT_ID:
+              try: 
+                  Message = message.text
+                  chat_log = session.get('chat_log')
+                  answer = ask(Message, chat_log)
+                  session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
+                  await message.reply(f"{str(answer)}")
+              except Exception as e:
+                   await message.reply(f"{str(e)}")
 
