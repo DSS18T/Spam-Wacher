@@ -30,11 +30,11 @@ async def hug(_, message):
            name = message.from_user.first_name
            await message.reply_animation(url,caption="**• {}**\n**Hugs! {}**".format(anime, name))
 
-@Nandha.on_message(filters.command("insult"))
+@Nandha.on_message(filters.command("insult",config.CMDS))
 async def insult(_, message):
       reply = message.reply_to_message
       try:
-          insult = requests.get("https://insult.mattbas.org/api/insult").json()
+          insult = requests.get("https://insult.mattbas.org/api/insult").text
           if reply:
                string = insult.replace("You are",reply.from_user.firstname)
                await message.reply(string)
