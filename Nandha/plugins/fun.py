@@ -34,7 +34,7 @@ async def hug(_, message):
 async def insult(_, message):
       reply = message.reply_to_message
       try:
-          insult = requests.get(https://insult.mattbas.org/api/insult).json()
+          insult = requests.get("https://insult.mattbas.org/api/insult").json()
           if reply:
                string = insult.replace("You are",reply.from_user.firstname)
                await message.reply(string)
