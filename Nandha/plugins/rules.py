@@ -9,7 +9,7 @@ from Nandha.help.admin import is_admin
 from pyrogram import filters
 
 
-@Nandha.on_message(filters.command("setrules"))
+@Nandha.on_message(filters.command("setrules",config.CMDS))
 async def setrules(_, message):
    chat_id = message.chat.id
    user_id = message.from_user.id
@@ -31,5 +31,12 @@ async def setrules(_, message):
                  await message.reply("`Group Rules set Successfully!`")
              
               
-             
+@Nandha.on_message(filters.command("rules",config.CMDS))
+async def rules(_, message):
+    chat_id = message.chat.id
+    if not chat_id in rules_chat():
+        return await message.reply("`this group don't haven't any rules!`")
+    else:
+        x = get_rules(chat_id)
+        await message.reply(f"here the group rules for:-\n• **{message.chat.title}**\n\n• **Rules**\n:"+x)  
             
