@@ -60,7 +60,7 @@ async def chatbot(_, query):
           return await query.answer("Admins Only!", show_alert=True)
      else:
           addchat(chat_id)
-          await query.message.edit("`Successfully Connected ChatBot!`\nby **{query.from_user.first_name}**")
+          await query.message.edit(f"`Successfully Connected ChatBot!`\nby **{query.from_user.first_name}**")
      
 @Nandha.on_callback_query(filters.regex("disable_CB"))
 async def chatbot(_, query):
@@ -70,7 +70,7 @@ async def chatbot(_, query):
           return await query.answer("Admins Only!", show_alert=True)
      else:
           removechat(chat_id)
-          await query.message.edit("`Successfully Disconnected ChatBot!`\nby **{query.from_user.first_name}**")
+          await query.message.edit(f"`Successfully Disconnected ChatBot!`\nby **{query.from_user.first_name}**")
      
 
     
