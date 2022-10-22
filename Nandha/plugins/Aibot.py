@@ -7,6 +7,7 @@ from pyrogram import filters
 from Nandha.help.chatbotdb import *
 from pyrogram.types import *
 from Nandha.help.admin import *
+from pyrogram import enums
 
 openai.api_key = "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"
 completion = openai.Completion()
