@@ -38,5 +38,5 @@ async def rules(_, message):
         return await message.reply("`this group don't haven't any rules!`")
     else:
         x = get_rules(chat_id)
-        await message.reply(f"**Here The Group Rules:-\n• **{message.chat.title}**\n\n• **Rules:-**\n"+x)  
+        await message.reply(f"**Here The Group Rules**:-\n• **{message.chat.title}**\n\n• **Rules:-**\n"+x)  
             
