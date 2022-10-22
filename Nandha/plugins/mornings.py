@@ -64,7 +64,7 @@ GA_TEXT = [
 "There is nothing like coincidences or mistakes; everything that happens in our lives is a blessing. It is a stepping stone to a much longer journey. Enjoy your afternoon, my dear friend.",
 "How I wish you could spend the whole day with me, but your dreams are the priority for both of us. However, after you have completed it, I will always be waiting for you. Have a beautiful afternoon.",]
 
-@Nandha.on_message(group=200)
+@Nandha.on_message(filters.regex("morning|night|evening|afternoon"))
 async def mornings(_, message):
         if re.search("morning", message.text):
                  return await message.reply(text="**yee? {} good morning! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GM_TEXT)))
@@ -74,7 +74,7 @@ async def mornings(_, message):
                  return await message.reply(text="**yee? {} good evening! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GE_TEXT)))
         elif re.search("afternoon", message.text):
                  return await message.reply(text="**yee? {} good afternoon! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GA_TEXT)))
-           
+ 
 
 
 
