@@ -13,7 +13,7 @@ def get_rules(chat_id: int):
      if not rules_chat in chat_id:
          return
      x = rulesdb.find_one({"_id": chat_id})
-     return "x["rules"]"
+     return "fuck"
            
 
 def add_rules(chat_id: int, text: str):
