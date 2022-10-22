@@ -26,7 +26,7 @@ async def ud(_, message):
             await Nandha.send_message(message.chat.id,text=results, reply_to_message=message.id)
          except Exception as e:
               await message.reply(e)
-       elif not reply and len(message.text.split()) >1:
+      elif not reply and len(message.text.split()) >1:
             try:
               text = message.text.split(None,1)[1]
               results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
