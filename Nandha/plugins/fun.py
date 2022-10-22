@@ -37,10 +37,10 @@ async def insult(_, message):
       try:
           insult = requests.get("https://insult.mattbas.org/api/insult").text
           if reply:
-               string = insult.replace("You are",reply.from_user.firstname)
+               string = insult.replace("You are",reply.from_user.first_name)
                await message.reply(string)
           else:
-              string = insult.replace("You are",message.from_user.firstname)
+              string = insult.replace("You are",message.from_user.first_name)
               await message.reply(string)
       except Exception as e:
           await message.reply(e)
