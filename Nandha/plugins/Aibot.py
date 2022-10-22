@@ -52,7 +52,7 @@ async def chatbot(_, message):
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Disable", callback_data="disable_CB")]]))
         return
 
-@Nandha.on_message(filters.regex("enable_CB"))
+@Nandha.on_callback_query(filters.regex("enable_CB"))
 async def chatbot(_, query):
      chat_id = query.message.chat.id
      user_id = query.from_user.id
@@ -62,7 +62,7 @@ async def chatbot(_, query):
           addchat(chat_id)
           await query.message.edit("`Successfully Connected ChatBot!`\nby **{query.from_user.first_name}**")
      
-@Nandha.on_message(filters.regex("disable_CB"))
+@Nandha.on_callback_query(filters.regex("disable_CB"))
 async def chatbot(_, query):
      chat_id = query.message.chat.id
      user_id = query.from_user.id
