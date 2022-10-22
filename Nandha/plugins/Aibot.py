@@ -98,5 +98,5 @@ async def chatbot(_, message):
                   session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
                   await message.reply(f"{str(answer)}")
               except Exception as e:
-                   await message.reply(f"{str(e)}")
+                   await message.reply(f"{str(e)}", qoute=True)
 
