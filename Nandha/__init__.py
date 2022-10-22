@@ -18,7 +18,7 @@ LOGGER = logging.getLogger(__name__)
 
 APP_ID = 583311
 APP_HASH = "c67090d2c0a37d207385d04d9640045c"
-TOKEN = "5720769813:AAFWumamWPt-2TnK-ZJyJSy-R_i5ImSVXis"
+TOKEN = "5561055962:AAGfx5ln_s6PHjFEZ1w2SSc1Z4yIdk3JxZ4"
 
 
 plugins = dict(root="Nandha")
