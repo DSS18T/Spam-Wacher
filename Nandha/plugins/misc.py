@@ -24,14 +24,16 @@ async def ud(_, message):
          try:
             text = reply.text
             results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
-            await Nandha.send_message(message.chat.id,text=results, reply_to_message_id=message.id)
+            text = f'**results: {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
+            await Nandha.send_message(message.chat.id,text=text, reply_to_message_id=message.id)
          except Exception as e:
               await message.reply(e)
       elif not reply and len(message.text.split()) >1:
             try:
               text = message.text.split(None,1)[1]
               results = requests.get("https://api.urbandictionary.com/v0/define?term="+text).json()
-              await Nandha.send_message(message.chat.id,text=results, reply_to_message_id=message.id)
+              text = f'**results: {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
+              await Nandha.send_message(message.chat.id,text=text, reply_to_message_id=message.id)
             except Exception as e:
                    await message.reply(e)  
 
