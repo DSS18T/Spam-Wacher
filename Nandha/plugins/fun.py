@@ -29,3 +29,22 @@ async def hug(_, message):
        else:
            name = message.from_user.first_name
            await message.reply_animation(url,caption="**• {}**\n**Hugs! {}**".format(anime, name))
+
+@Nandha.on_message(filters.command("insult"))
+async def insult(_, message):
+      reply = message.reply_to_message
+      try:
+          insult = requests.get(https://insult.mattbas.org/api/insult).json()
+          if reply:
+               string = insult.replace("You are",reply.from_user.firstname)
+               await message.reply(string)
+          else:
+              string = insult.replace("You are",message.from_user.firstname)
+              await message.reply(string)
+      except Exception as e:
+          await message.reply(e)
+
+
+
+
+    
