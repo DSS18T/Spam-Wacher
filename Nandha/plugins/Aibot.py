@@ -95,8 +95,11 @@ async def chatbot(_, message):
                   Message = message.text
                   chat_log = session.get('chat_log')
                   answer = ask(Message, chat_log)
-                  session['chat_log'] = append_interaction_to_chat_log(Message, answer,                                                  chat_log)
-                  await message.reply(f"{str(answer)}")
+                  session['chat_log'] = append_interaction_to_chat_log(Message, answer,chat_log)
+                  if message.chat.type == enums.ChatType.PRIVATE:
+                          await message.reply(f"{str(answer)}",qoute=True)
+                  else:
+                      await message.reply(f"{str(answer)}")
               except Exception as e:
-                   await message.reply(f"{str(e)}", qoute=True)
+                   await message.reply(f"{str(e)}")
 
