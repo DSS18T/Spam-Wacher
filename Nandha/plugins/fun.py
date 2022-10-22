@@ -45,7 +45,15 @@ async def insult(_, message):
       except Exception as e:
           await message.reply(e)
 
-
+@Nandha.on_message(filters.command("riddle"))
+async def riddle(_, message):
+     riddle = requests.get("https://riddles-api.vercel.app/random").json()
+     msg = await message.reply((
+              "**• riddle**:-\n"
+             f"`{riddle["riddle"]}`"))
+     await asyncio.sleep(5)
+     await msg.edit(f"{msg.text}\n\n• **Answer**: [`{riddle["answer"]}`]")
+     
 
 
     
