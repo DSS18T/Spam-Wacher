@@ -1,9 +1,11 @@
 openai
 pyrogram
+pyromod
+pymongo 
+pymongo[srv]
 tgcrypto
 requests 
 asyncio
 aiohttp
 aiofiles
-pymongo 
-pymongo[srv]
+
