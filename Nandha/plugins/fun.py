@@ -57,11 +57,11 @@ async def riddle(_, message):
        reply_to_message_id=message.id, filters= filters.text)
      ASK_TEXT = ASK.text
      if ASK_TEXT == "/cancel"
-            await Nandha.send_message(message.chat.id,f"`oh! sed but the riddle answer is {answer}`, reply_to_message_id=message.id"
+            await Nandha.send_message(message.chat.id,f"`oh! sed but the riddle answer is {answer}`", reply_to_message_id=message.id)
      elif re.search(ASK_TEXT, answer)
             await Nandha.send_message(message.chat.id,"`wow! you guess is correct ✅`",reply_to_message_id=message.id)
      else:
-         await Nandha.send_message(message.chat.id, "`sorry but answer is wrong ❎`")
+         await Nandha.send_message(message.chat.id, "`sorry but answer is wrong ❎`",reply_to_message_id=message.id)
      
 
 
