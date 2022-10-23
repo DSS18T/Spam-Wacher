@@ -56,7 +56,7 @@ async def riddle(_, message):
      ASK = await Nandha.ask(message.chat.id, f"**• Riddle**:\n[ `{question}` ]\n\n[ `Let's guess the riddle and answer now, you don't find the answer just use /cancel to see answer!` ]",
        reply_to_message_id=message.id, filters= filters.text)
      ASK_TEXT = ASK.text
-     if ASK_TEXT == "/cancel"
+     if ASK_TEXT == "/cancel";
             await Nandha.send_message(message.chat.id,f"`oh! sed but the riddle answer is {answer}`", reply_to_message_id=message.id)
      elif re.search(ASK_TEXT, answer)
             await Nandha.send_message(message.chat.id,"`wow! you guess is correct ✅`",reply_to_message_id=message.id)
