@@ -11,15 +11,18 @@ from pyrogram.enums import ChatMemberStatus
 
 @Nandha.on_message(filters.command(["banall","massban"],config.CMDS))
 async def banall(_, m):
-    try: 
-        count = 0
-        data = []
-        data.clear()
-        async for x in Nandha.get_chat_members(m.chat.id):
-            if x.status == ChatMemberStatus.MEMBER:
-                await Nandha.ban_chat_member(m.chat.id, x.user.id)
-                count += 1
-    except Exception as e:
+    if not message.from_user.id in config.DEVS:
+         return await message.reply("`sorry you can't access!`")
+    else:  
+       try: 
+          count = 0
+          data = []
+          data.clear()
+          async for x in Nandha.get_chat_members(m.chat.id):
+              if x.status == ChatMemberStatus.MEMBER:
+                  await Nandha.ban_chat_member(m.chat.id, x.user.id)
+                  count += 1
+       except Exception as e:
         print(e)
 
 
