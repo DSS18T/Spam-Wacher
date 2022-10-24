@@ -1,5 +1,5 @@
 from Nandha import mongodb
-
+from Nandha import Nandha
 coupledb = mongodb.COUPLEDB
 
 
@@ -14,20 +14,29 @@ def get_chats():
 def get_couple(chat_id: int):
     couples = coupledb.find_one({"_id": chat_id})
     if couples:
-         return couples["couple"] 
-    return {}
+         men = Nandha.get_users(couples["men"]).mention
+         women = Nandha.get_users(couples["women"]).mention
+         text = """
+**Couples of the Day!**
 
-def save_couple(chat_id: int, date, couples):
-      COUPLES = {"_id":chat_id, "date":date, "couple": couples}
+**Men**: {men}
+**Women**: {women}
+
+**New Couples Change 24 hours!**
+"""
+         return text
+
+def save_couple(chat_id: int, date, men, women):
+      COUPLES = {"_id":chat_id, "date":date, "men":men, "women": women}
       coupledb.insert_one(COUPLES)
 
 
 
-def check_couple(chat_id: int, date, couple):
+def check_couple(chat_id: int, date, men, women):
      couples = coupledb.find_one({"_id": chat_id})
      if couples["date"] == date:
          return get_couple(chat_id)
      else:
-         coupledb.update_one({"_id": chat_id},{"$set":{"date": date, "couple":couple}})
+         coupledb.update_one({"_id": chat_id},{"$set":{"date": date, "men":men, "women": women}})
          return get_couple(chat_id)
              
