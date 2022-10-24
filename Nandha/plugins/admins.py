@@ -50,7 +50,7 @@ async def admins(_, message):
     user_id = message.from_user.id
     admin = "**Admins in this Group**!\n\n"
     async for admins in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-           admin += f"• `{admins.user.first_name} - (`{admin.user.id}`)`\n"
+           admin += f"• `{admins.user.first_name} - (`{admins.user.id}`)`\n"
     await message.reply(text=(admin))
               
 
