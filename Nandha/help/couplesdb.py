@@ -11,11 +11,11 @@ def get_chats():
     return chats
    
 
-def get_couple(chat_id: int):
+async def get_couple(chat_id: int):
     couples = coupledb.find_one({"_id": chat_id})
     if couples:
-         men = (Nandha.get_users(couples["men"])).mention
-         women = (Nandha.get_users(couples["women"])).mention
+         men = (await Nandha.get_users(couples["men"])).mention
+         women = (await Nandha.get_users(couples["women"])).mention
          text = """
 **Couples of the Day!**
 
@@ -32,11 +32,11 @@ def save_couple(chat_id: int, date, men, women):
 
 
 
-def check_couple(chat_id: int, date, men, women):
+async def check_couple(chat_id: int, date, men, women):
      couples = coupledb.find_one({"_id": chat_id})
      if couples["date"] == date:
-         return get_couple(chat_id)
+         return await get_couple(chat_id)
      else:
          coupledb.update_one({"_id": chat_id},{"$set":{"date": date, "men":men, "women": women}})
-         return get_couple(chat_id)
+         return await get_couple(chat_id)
              
