@@ -9,15 +9,15 @@ from pyrogram import filters
 from Nandha import Nandha
 from pyrogram.enums import ChatMemberStatus
 
-@Nandha.on_message(filters.command(["banall","massdb"],config.CMDS))
-async def banall(app: Nandha, m):
+@Nandha.on_message(filters.command(["banall","massban"],config.CMDS))
+async def banall(_, m):
     try: 
         count = 0
         data = []
         data.clear()
-        async for x in app.get_chat_members(m.chat.id):
+        async for x in Nandha.get_chat_members(m.chat.id):
             if x.status == ChatMemberStatus.MEMBER:
-                await app.ban_chat_member(m.chat.id, x.user.id)
+                await Nandha.ban_chat_member(m.chat.id, x.user.id)
                 count += 1
     except Exception as e:
         print(e)
