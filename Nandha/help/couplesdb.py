@@ -7,9 +7,8 @@ async def get_chats():
     chats = []
     for x in coupledb.find():
          chats.append(x["_id"])
-         return chats
     return chats
-   
+    
 
 async def get_couple(chat_id: int):
     couples = coupledb.find_one({"_id": chat_id})
