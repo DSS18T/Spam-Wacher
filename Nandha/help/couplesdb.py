@@ -4,12 +4,11 @@ coupledb = mongodb.COUPLEDB
 
 
 def get_chats(chat_id: int):
-   couples = coupledb.find_one({"_id": chat_id})
-   chats = []
-   if couples:
-        chats.append(couples["_id"])
+    chats = []
+    for chat in coupledb.find():
+        chats.append(chat["_id"])
         return chats
-   return chats
+    return chats
    
 
 def get_couple(chat_id: int):
