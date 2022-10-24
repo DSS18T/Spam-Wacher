@@ -19,7 +19,7 @@ def today():
     return date()
 
 def tomorrow():
-     tom = (date +1)
+     tom = (date() +1)
      return tom
 
 @Nandha.on_message(filters.command("couples",config.CMDS))
