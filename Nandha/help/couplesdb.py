@@ -3,7 +3,7 @@ from Nandha import mongodb
 coupledb = mongodb.COUPLEDB
 
 
-def get_chats(chat_id: int):
+def get_chats():
     chats = []
     for chat in coupledb.find():
         chats.append(chat["_id"])
