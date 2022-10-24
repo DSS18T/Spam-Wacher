@@ -3,6 +3,15 @@ from Nandha import mongodb
 coupledb = mongodb.COUPLEDB
 
 
+def get_chats(chat_id: int):
+   couples = coupledb.find_one({"_id": chat_id})
+   chats = []
+   if couples:
+        chats.append(couples["_id"])
+        return chats
+   return chats
+   
+
 def get_couple(chat_id: int):
     couples = coupledb.find_one({"_id": chat_id})
     if couples:
