@@ -20,6 +20,6 @@ def check_couple(chat_id: int, date, couple):
      if couples["date"] == date:
          return get_couple(chat_id)
      else:
-         coupledb.update_one({"_id": chat_id},{"$set":{"couple":couple}})
+         coupledb.update_one({"_id": chat_id},{"$set":{"date": date, "couple":couple}})
          return get_couple(chat_id)
              
