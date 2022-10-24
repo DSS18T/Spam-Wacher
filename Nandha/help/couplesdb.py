@@ -27,7 +27,7 @@ async def get_couple(chat_id: int):
          return text
 
 def save_couple(chat_id: int, date, men, women):
-      COUPLES = {"_id":chat_id, "date":date, "men":men, "women": women}
+      COUPLES = {"_id":chat_id,"date":date,"men":men,"women":women}
       coupledb.insert_one(COUPLES)
 
 
@@ -37,6 +37,6 @@ async def check_couple(chat_id: int, date, men, women):
      if couples["date"] == date:
          return await get_couple(chat_id)
      else:
-         coupledb.update_one({"_id": chat_id},{"$set":{"date": date, "men":men, "women": women}})
+         coupledb.update_one({"_id": chat_id},{"$set":{"date": date, "men":men, "women":women}})
          return await get_couple(chat_id)
              
