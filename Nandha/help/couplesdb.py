@@ -16,7 +16,7 @@ def save_couple(chat_id: int, date, couples):
 
 
 def check_couple(chat_id: int, date, couple):
-     couples = couple db.find_one({"_id": chat_id})
+     couples = coupledb.find_one({"_id": chat_id})
      if couples["date"] == date:
          return get_couple(chat_id)
      else:
