@@ -44,7 +44,7 @@ async def purge(_, message):
                 await message.reply(f"**Success Purged {y}s!**")
 
 
-@Nandha.on_message(filters.command("admins",config.CMDS))
+@Nandha.on_message(filters.command(["admins","adminlist"],config.CMDS))
 async def admins(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
@@ -55,7 +55,7 @@ async def admins(_, message):
               
 
 
-@Nandha.on_message(filters.command("setphoto",config.CMDS))
+@Nandha.on_message(filters.command("setgphoto",config.CMDS))
 async def setchatphoto(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
@@ -82,7 +82,7 @@ async def setchatphoto(_, message):
 
 
 
-@Nandha.on_message(filters.command("settitle",config.CMDS))
+@Nandha.on_message(filters.command("setgtitle",config.CMDS))
 async def setchattitle(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
