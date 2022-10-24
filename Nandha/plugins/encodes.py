@@ -1,7 +1,7 @@
 import config
-import base64
 import re
 from Nandha import Nandha
+from Nandha.help.encodes import *
 from pyrogram import filters
 
 
@@ -20,10 +20,7 @@ async def encodes(_, message):
       elif not reply and len(message.text.split()) >1:
             data = message.text.split(None,1)[1]
       if re.search("en", message.text.split()[0]):
-           encodedBytes = base64.b64encode(data.encode("utf-8"))
-           encode = str(encodedBytes, "utf-8")
-           await Nandha.send_message(chat_id, text=encode, reply_to_message_id=message.id)
+           await Nandha.send_message(chat_id, text=encode(data), reply_to_message_id=message.id)
       elif re.search("de", message.text.split()[0]):
-           decode = base64.b64decode(data).decode("utf-8", "ignore")
-           await Nandha.send_message(chat_id, text=decode, reply_to_message_id=message.id)
+           await Nandha.send_message(chat_id, text=decode(data), reply_to_message_id=message.id)
 
