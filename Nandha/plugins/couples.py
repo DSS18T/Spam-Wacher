@@ -8,29 +8,19 @@ from datetime import datetime
 
 from Nandha import Nandha
 
-def dt():
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M")
-    dt_list = dt_string.split(" ")
-    return dt_list
 
-
-def dt_tom():
-    a = (
-            str(int(dt()[0].split("/")[0]) + 1)
-            + "/"
-            + dt()[0].split("/")[1]
-            + "/"
-            + dt()[0].split("/")[2]
-    )
-    return a
+def date():
+   now = datetime.now()
+   dt = int(now.strftime("%d/%m/%Y"))
+   return dt
+      
 
 def today():
-    return str(dt()[0])
-
+    return date()
 
 def tomorrow():
-    return str(dt_tom())
+     tom = (date +1)
+     return tom
 
 @Nandha.on_message(filters.command("couples",config.CMDS))
 async def couples(_, message):
