@@ -21,8 +21,8 @@ def today():
 def tomorrow():
      today = date()
      tom_d = int(today.split("/")[0]) +1
-     tom = today.split("/")[1]
-     return str(tom_d+tom)
+     tom = str(tom_d) + today.split("/")[1]
+     return tom
 
 @Nandha.on_message(filters.command("couples",config.CMDS))
 async def couples(_, message):
