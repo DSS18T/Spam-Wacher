@@ -7,6 +7,7 @@ from pyrogram import enums
 from datetime import datetime
 
 from Nandha import Nandha
+from Nandha.help.couplesdb import *
 
 
 def date():
@@ -42,13 +43,13 @@ async def couples(_, message):
         women = random.choice(couples)
         while men == women:
             men = random.choice(couples)
-        men_m = (await Nandha.get_users(men)).mention
-        women_m = (await Nandha.get_users(women)).mention
-        await message.reply(f"""**New Couples Arrived!**
-
-**Men**: **{men_m}**
-**women**: **{women_m}**
-
-**we all wish you happy marrie life 🤭🤭😂❤️!**
-""")
+        couple = {"men":men,"women":women}
+        if not chat_id in get_chat():
+              save_couple(chat_id,today(),couple)
+              x = check_couple(chat_id,today(),couple)
+              await message.reply(x)
+        else:
+             x = check_couple(chat_id,today(),couple)
+             await message.reply(x)
+             
                
