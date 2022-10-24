@@ -9,6 +9,32 @@ from pyrogram.errors import AdminRankInvalid
 from datetime import datetime as time
 
 
+@Nandha.on_message(filters.command("del"))
+async def delete(_, message):
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    reply = message.reply_to_message
+    if message.chat.type == enums.ChatType.PRIVATE:
+          if not reply:
+              return await message.reply("`reply to message to delete!" quote=True)
+          else:
+             await reply.delete()
+             await message.delete()
+    else:
+        if (await is_admin(chat_id,user_id)) == False:
+             return await message.reply("`Admins Only!`")
+        elif (await can_delete_messages(chat_id,user_id)) == False:
+             return await message.reply("`you don't have enough rights to do this!`")
+        else:
+            if (await is_admin(chat_id,user_id)) == False:
+                 return await message.reply("`Im not Admin!`")
+            elif (await can_delete_messages(chat_id,user_id)) == False:
+               return await message.reply("`I don't have enough rights to do this!`")
+            else:
+               await reply.delete()
+               await message.delete()
+    
+
 @Nandha.on_message(filters.command("purge",config.CMDS))
 async def purge(_, message):
     user_id = message.from_user.id
