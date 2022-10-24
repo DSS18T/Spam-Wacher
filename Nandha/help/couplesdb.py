@@ -14,8 +14,8 @@ def get_chats():
 def get_couple(chat_id: int):
     couples = coupledb.find_one({"_id": chat_id})
     if couples:
-         men = Nandha.get_users(couples["men"]).mention
-         women = Nandha.get_users(couples["women"]).mention
+         men = (Nandha.get_users(couples["men"])).mention
+         women = (Nandha.get_users(couples["women"])).mention
          text = """
 **Couples of the Day!**
 
