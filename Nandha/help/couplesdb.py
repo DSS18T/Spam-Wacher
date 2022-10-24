@@ -3,7 +3,7 @@ from Nandha import mongodb
 coupledb = mongodb.COUPLEDB
 
 
-def get_couple(chat_id: int, date):
+def get_couple(chat_id: int):
     couples = coupledb.find_one({"_id": chat_id})
     if couples:
          couples["couple"] 
