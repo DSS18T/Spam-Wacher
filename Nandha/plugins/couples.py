@@ -45,11 +45,11 @@ async def couples(_, message):
             men = random.choice(couples)
         couple = {"men":men,"women":women}
         if not chat_id in get_chats():
-              save_couple(chat_id,today(),couple)
+              save_couple(chat_id,today(),men,women)
               x = check_couple(chat_id,today(),couple)
               await message.reply(x)
         else:
-             x = check_couple(chat_id,today(),couple)
+             x = check_couple(chat_id,today(),men,women)
              await message.reply(x)
              
                
