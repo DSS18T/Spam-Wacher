@@ -16,7 +16,7 @@ async def get_couple(chat_id: int):
     if couples:
          men = (await Nandha.get_users(couples["men"])).mention
          women = (await Nandha.get_users(couples["women"])).mention
-         text = """
+         text = f"""
 **Couples of the Day!**
 
 **Men**: {men}
