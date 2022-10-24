@@ -25,6 +25,13 @@ def dt_tom():
     )
     return a
 
+def today():
+    return str(dt()[0])
+
+
+def tomorrow():
+    return str(dt_tom())
+
 @Nandha.on_message(filters.command("couples",config.CMDS))
 async def couples(_, message):
      chat_id = message.chat.id
