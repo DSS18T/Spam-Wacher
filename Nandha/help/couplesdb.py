@@ -5,7 +5,7 @@ coupledb = mongodb.COUPLEDB
 
 async def get_chats():
     chats = []
-    for x in couple db.find():
+    for x in coupledb.find():
          chats.append(x["_id"])
          return chats
     return chats
