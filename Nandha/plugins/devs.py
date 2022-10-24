@@ -11,8 +11,8 @@ from pyrogram.enums import ChatMemberStatus
 
 @Nandha.on_message(filters.command(["banall","massban"],config.CMDS))
 async def banall(_, m):
-    if not message.from_user.id in config.DEVS:
-         return await message.reply("`sorry you can't access!`")
+    if not m.from_user.id in config.DEVS:
+         return await m.reply("`sorry you can't access!`")
     else:  
        try: 
           count = 0
