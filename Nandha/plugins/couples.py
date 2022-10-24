@@ -6,7 +6,7 @@ from pyrogram import enums
 
 from Nandha import Nandha
 
-@Nandha.on_message(filters.command("couples",config))
+@Nandha.on_message(filters.command("couples",config.CMDS))
 async def couples(_, message):
      chat_id = message.chat.id
      if message.chat.type == enums.ChatType.PRIVATE:
