@@ -21,5 +21,5 @@ def check_couple(chat_id: int, date, couple):
          return get_couple(chat_id)
      else:
          coupledb.update_one({"_id": chat_id},{"$set":{"couple":couple}})
-
+         return get_couple(chat_id)
              
