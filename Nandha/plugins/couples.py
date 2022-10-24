@@ -4,8 +4,26 @@ import random
 from pyrogram import filters
 from pyrogram.types import *
 from pyrogram import enums
+from datetime import datetime
 
 from Nandha import Nandha
+
+def dt():
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M")
+    dt_list = dt_string.split(" ")
+    return dt_list
+
+
+def dt_tom():
+    a = (
+            str(int(dt()[0].split("/")[0]) + 1)
+            + "/"
+            + dt()[0].split("/")[1]
+            + "/"
+            + dt()[0].split("/")[2]
+    )
+    return a
 
 @Nandha.on_message(filters.command("couples",config.CMDS))
 async def couples(_, message):
