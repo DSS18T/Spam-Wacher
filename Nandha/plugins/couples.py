@@ -11,7 +11,7 @@ from Nandha import Nandha
 
 def date():
    now = datetime.now()
-   dt = int(now.strftime("%d/%m/%Y"))
+   dt = now.strftime("%d/%m/%Y")
    return dt
       
 
@@ -19,7 +19,8 @@ def today():
     return date()
 
 def tomorrow():
-     tom = (date() +1)
+     today = date()
+     tom = int(today.split("/")[0]) +1
      return tom
 
 @Nandha.on_message(filters.command("couples",config.CMDS))
