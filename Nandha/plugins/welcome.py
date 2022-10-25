@@ -23,7 +23,7 @@ async def new_member(_, m):
 
     nandha[0] = nandha[0]
 
-    text = [f"{m.from_user.first_name} Welcome (◔‿◔)"]
+    text = [f"{m.from_user.first_name} Welcome your are!"]
 
     s1 = nandha[0].size[0] // 2
     s2 = 250
