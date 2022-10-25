@@ -35,7 +35,7 @@ async def new_member(_, m):
         s4 = (s1 - len(text[i // s3]) * 5, s2)
         draw.text(s4, text[i // s3], font=font, anchor=None)
 
-    cyber[0].save(
+    nandha[0].save(
         "welcome.gif",
         save_all=True,
         append_images=nandha[1:],
