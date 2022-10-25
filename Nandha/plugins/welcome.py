@@ -43,4 +43,4 @@ async def new_member(_, m):
         duration=150,
         loop=0,
     )
-    await message.reply_animation(animation="welcome.gif")
+    await m.reply_animation(animation="welcome.gif")
