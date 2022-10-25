@@ -31,4 +31,4 @@ async def repo(_, m):
 {list_of_users}
 
 **total Contributors {total}**"""
-    await m.reply(text=text)
+    await m.reply(text=text, disable_webpage_preview=True)
