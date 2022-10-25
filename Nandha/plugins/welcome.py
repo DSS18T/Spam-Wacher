@@ -27,7 +27,7 @@ async def new_member(_, m):
 
     s1 = nandha[0].size[0] // 2
     s2 = 250
-    font = ImageFont.truetype("SuisseIntl-Regular.ttf", 20)
+    font = ImageFont.truetype("font.ttf", 20)
     s3 = math.ceil(len(nandha) / len(text))
 
     for i in range(len(nandha)):
