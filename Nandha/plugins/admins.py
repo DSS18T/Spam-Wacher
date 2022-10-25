@@ -17,9 +17,8 @@ async def delete(_, message):
     if message.chat.type == enums.ChatType.PRIVATE:
           if not reply:
               return await message.reply("`reply to message to delete!`", quote=True)
-          else:
-              await reply.delete()
-              await message.delete()
+          await reply.delete()
+          await message.delete()
     else:
         if (await is_admin(chat_id,user_id)) == False:
              return await message.reply("`Admins Only!`")
