@@ -64,7 +64,7 @@ async def quote(_, m):
     string = api["text"]
     author = api["author"]
     await m.reply(
-        f"**Quotes**: `{string}`\n\n"
-        f"**Author**: `{author}`")
+        f"**Quotes**:\n`{string}`\n\n"
+        f"   ~ **{author}**")
         
 
