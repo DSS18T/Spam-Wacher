@@ -25,4 +25,4 @@ async def repo(_, m):
 | Contributors |
 ----------------```
 {list_of_users}"""
-    await message.reply(text=text)
+    await m.reply(text=text)
