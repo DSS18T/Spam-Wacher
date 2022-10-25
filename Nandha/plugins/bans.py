@@ -18,17 +18,17 @@ async def bans(_, message):
       try:
           if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
                 if not reply and len(message.command) >2:
-                    ban_id = int(message.text.split(" ")[1])
+                    ban_id = (await Nandha.get_users(message.text.split(" ")[1])).id
                     reason = message.text.split(None, 2)[2]
                 elif not reply and len(message.command) == 2:
-                    ban_id = int(message.text.split(" ")[1])
-                    reason = None
+                    ban_id = (await Nandha.get_users(message.text.split(" ")[1])).id
+                    reason = "No Reason Provide!"
                 elif reply and len(message.command) >1:
                     ban_id = reply.from_user.id
                     reason = message.text.split(None, 1)[1]        
                 elif reply and len(message.command) <2:
                      ban_id = reply.from_user.id
-                     reason = None
+                     reason = "No Reason Provide!"
                 if (await is_admin(chat_id, config.BOT_ID)) == False:
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif ban_id == config.BOT_ID:
@@ -41,6 +41,7 @@ async def bans(_, message):
                       msg = await Nandha.ban_chat_member(chat_id, ban_id)
                       await msg.delete()
                       await message.delete()
+                      pass
                 else:
                     await Nandha.ban_chat_member(chat_id, ban_id)
                     await message.reply_animation(url,caption=f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
