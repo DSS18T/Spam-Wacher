@@ -9,7 +9,7 @@ from Nandha import Nandha
 
 @Nandha.on_message(filters.new_chat_members)
 async def new_member(_, m):
-    welcome = Image.open("download.gif")
+    welcome = Image.open("Nandha/help/utils/download.gif")
     nandha = [welcome.copy()]
 
     try:
@@ -23,11 +23,11 @@ async def new_member(_, m):
 
     nandha[0] = nandha[0]
 
-    text = [f"Hey {m.from_user.first_name} Welcome To The {m.chat.title}!"]
+    text = [f"{m.from_user.first_name} Welcome (◔‿◔)"]
 
     s1 = nandha[0].size[0] // 2
     s2 = 250
-    font = ImageFont.truetype("font.ttf", 20)
+    font = ImageFont.truetype("Nandha/help/utils/SuisseIntl-Regular.ttf", 20)
     s3 = math.ceil(len(nandha) / len(text))
 
     for i in range(len(nandha)):
