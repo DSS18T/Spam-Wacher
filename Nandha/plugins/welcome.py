@@ -9,6 +9,8 @@ from Nandha import Nandha
 
 @Nandha.on_message(filters.new_chat_members)
 async def new_member(_, m):
+    for member in m.new_chat_members:
+           first_name = member.first_name
     welcome = Image.open("Nandha/help/utils/download.gif")
     nandha = [welcome.copy()]
 
@@ -23,7 +25,7 @@ async def new_member(_, m):
 
     nandha[0] = nandha[0]
 
-    text = [f"{m.from_user.first_name} Welcome your are!"]
+    text = [f"{first_name} Welcome your are!"]
 
     s1 = nandha[0].size[0] // 2
     s2 = 250
