@@ -1,5 +1,6 @@
 import config
 import random
+import re
 import requests
 import asyncio
 from Nandha import Nandha
@@ -7,7 +8,7 @@ from Nandha.help.admin import *
 from pyrogram.types import *
 from pyrogram import filters
 
-@Nandha.on_message(filters.command("ban",config.CMDS))
+@Nandha.on_message(filters.command(["sban","ban"],config.CMDS))
 async def bans(_, message):
       user_id = int(message.from_user.id)
       chat_id = int(message.chat.id)
@@ -36,6 +37,10 @@ async def bans(_, message):
                        return await message.reply_text("`I can't do against my owner!`")
                 elif (await is_admin(chat_id, ban_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
+                if re.search("s", message.text.split()[0])
+                      await Nandha.ban_chat_member(chat_id, ban_id)
+                      if message.service:
+                             await message.delete()
                 else:
                     await Nandha.ban_chat_member(chat_id, ban_id)
                     await message.reply_animation(url,caption=f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
