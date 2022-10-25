@@ -9,7 +9,7 @@ from pyrogram.errors import AdminRankInvalid
 from datetime import datetime as time
 
 
-@Nandha.on_message(filters.command("del"))
+@Nandha.on_message(filters.command("del",config.CMDS))
 async def delete(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
