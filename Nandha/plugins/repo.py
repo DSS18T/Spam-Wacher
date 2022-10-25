@@ -20,14 +20,16 @@ async def repo(_, m):
     for user in users:
         list_of_users += (f"**{count}.** [{user['login']}]({user['html_url']})\n")
         count += 1
-        total = count+1
+        total = user+1
     text = f"""
 **Here The [Repository](https://github.com/NandhaxD/VegetaRobot)**
-**Here The [SupportGroup](t.me/VegetaSupport)**
 
-```----------------
+**Here The [SupportGroup](t.me/VegetaSupport)**
+```
+----------------
 | Contributors in Vegeta |
-----------------```
+----------------
+```
 {list_of_users}
 
 **total Contributors {total}**"""
