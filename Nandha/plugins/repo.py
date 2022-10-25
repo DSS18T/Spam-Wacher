@@ -25,7 +25,7 @@ async def repo(_, m):
 [ `Contributors in Vegeta` ]
 
 {list_of_users}
-[**Contributors**: `{total}`]"""
+[`Contributors: {total}`]"""
     await m.reply(text=text,
     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Repo",url="https://gitHub.com/NandhaxD/VegetaRobot"),
 InlineKeyboardButton("Group",url="t.me/VegetaSupport"),]]) ,disable_web_page_preview=True)
