@@ -56,3 +56,14 @@ async def riddle(_, message):
      await asyncio.sleep(20)
      await msg.edit(f"**• Riddle**:\n[ `{question}` ]\n\n• **Answer**: [ `{answer}` ]")
      
+
+@Nandha.on_message(filters.command("quote",config.CMDS))
+async def quote(_, m):
+    api = random.choice(requests.get("https://type.fit/api/quotes").json())
+    string = api["text"]
+    author = api["author"]
+    await message.reply(
+        "**Quotes**: `{string}`\n\n"
+        "**Author**: `{author}`")
+        
+
