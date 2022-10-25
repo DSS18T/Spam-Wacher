@@ -38,9 +38,9 @@ async def bans(_, message):
                 elif (await is_admin(chat_id, ban_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 if re.search("s", message.text.split()[0]):
-                      await Nandha.ban_chat_member(chat_id, ban_id)
-                      if message.service:
-                             await message.delete()
+                      msg = await Nandha.ban_chat_member(chat_id, ban_id)
+                      await msg.delete()
+                      await message.delete()
                 else:
                     await Nandha.ban_chat_member(chat_id, ban_id)
                     await message.reply_animation(url,caption=f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
