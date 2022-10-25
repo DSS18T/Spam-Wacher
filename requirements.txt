@@ -1,6 +1,7 @@
 openai
 pyrogram
 pyromod
+pillow
 pymongo 
 pymongo[srv]
 tgcrypto
