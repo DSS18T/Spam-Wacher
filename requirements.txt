@@ -9,4 +9,5 @@ requests
 asyncio
 aiohttp
 aiofiles
+gpytranslate
 
