@@ -77,7 +77,7 @@ async def kicks(_, message):
                        return await message.reply_text("`I can't ban myself!`")
                 elif kick_id in config.DEVS:
                        return await message.reply_text("`I can't do against my owner!`")
-                elif (await is_admin(chat_id, ban_id)) == True:
+                elif (await is_admin(chat_id, kick_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 if re.search("s", message.text.split()[0]):
                       msg = await Nandha.ban_chat_member(chat_id, kick_id)
