@@ -3,7 +3,7 @@ import config
 from pyrogram import filters
 from pyrogram.types import *
 
-from NandhaBot import Nandha
+from Nandha import Nandha
 from gpytranslate import Translator
 
 trans = Translator()
