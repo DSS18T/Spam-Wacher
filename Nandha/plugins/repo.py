@@ -1,7 +1,7 @@
 import config
 from pyrogram import filters
 from Nandha import Nandha, session
-
+from pyrogram.types import *
 
 
 async def get(url: str, *args, **kwargs):
@@ -20,17 +20,13 @@ async def repo(_, m):
     for user in users:
         list_of_users += (f"**{count}.** [{user['login']}]({user['html_url']})\n")
         count += 1
-    total = count-1
+        total = len(user)
     text = f"""
-**Here The [Repository](https://github.com/NandhaxD/VegetaRobot)**
+[ `Contributors in Vegeta` ]
 
-**Here The [SupportGroup](t.me/VegetaSupport)**
-```
-----------------
-| Contributors Vegeta |
-----------------
-```
 {list_of_users}
 
 **Contributors: {total}**"""
-    await m.reply(text=text, disable_web_page_preview=True)
+    await m.reply(text=text,
+    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Repo",url="https://gitHub.com/NandhaxD/VegetaRobot"),
+InlineKeyboardButton("Group",url="t.me/VegetaSupport"),]]) ,disable_web_page_preview=True)
