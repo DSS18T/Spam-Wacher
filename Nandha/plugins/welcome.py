@@ -12,7 +12,9 @@ async def new_member(_, m):
     for member in m.new_chat_members:
            first_name = member.first_name
            if member.is_bot:
-               is_bot = True                
+               is_bot = True
+           else:
+               is_bot = False                
     welcome = Image.open("Nandha/help/utils/download.gif")
     nandha = [welcome.copy()]
 
@@ -48,6 +50,6 @@ async def new_member(_, m):
         loop=0,
     )
     if is_bot == True:
-         await m.reply("The New Challenger Arrived But No Matters I'm The Best And I'm SpamWatcher!")
-    else:
-         await m.reply_animation(animation="welcome.gif",caption="**Welcome to My Our {m.chat.title} Group!**")
+          await m.reply("The New Challenger Arrived But No Matters I'm The Best And I'm SpamWatcher!")
+    elif is_bot == Flase:
+          await m.reply_animation(animation="welcome.gif",caption="**Welcome to My Our {m.chat.title} Group!**")
