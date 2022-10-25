@@ -50,6 +50,6 @@ async def new_member(_, m):
         loop=0,
     )
     if is_bot == True:
-          await m.reply("The New Challenger Arrived But No Matters I'm The Best And I'm SpamWatcher!")
+          await m.reply("**The New Challenger Arrived But No Matters I'm The Best And I'm SpamWatcher!**")
     elif is_bot == False:
-          await m.reply_animation(animation="welcome.gif",caption="**Welcome to My Our {m.chat.title} Group!**")
+          await m.reply_animation(animation="welcome.gif",caption=f"**Welcome to My Our {m.chat.title} Group!**")
