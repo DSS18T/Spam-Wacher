@@ -20,7 +20,7 @@ async def repo(_, m):
     for user in users:
         list_of_users += (f"**{count}.** [{user['login']}]({user['html_url']})\n")
         count += 1
-        total = len(user)
+        total = count-1
     text = f"""
 [ `Contributors in Vegeta` ]
 
