@@ -7,7 +7,7 @@ from pyrogram.types import *
 from Nandha import Nandha
 
 
-@bot.on_message(filters.new_chat_members)
+@Nandha.on_message(filters.new_chat_members)
 async def new_member(_, m):
     welcome = Image.open("download.gif")
     nandha = [welcome.copy()]
