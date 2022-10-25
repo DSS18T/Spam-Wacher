@@ -1,0 +1,46 @@
+import math
+
+from PIL import Image, ImageDraw, ImageFont
+
+from pyrogram import filters
+from pyrogram.types import *
+from Nandha import Nandha
+
+
+@bot.on_message(filters.new_chat_members)
+async def new_member(_, m):
+    welcome = Image.open("download.gif")
+    nandha = [welcome.copy()]
+
+    try:
+        while 1:
+            welcome.seek(welcome.tell() + 4)
+            owo = welcome.copy()
+            nandha.append(owo)
+
+    except EOFError:
+        pass
+
+    nandha[0] = nandha[0]
+
+    text = [f"Hey {m.from_user.first_name} Welcome To The {m.chat.title}!"]
+
+    s1 = nandha[0].size[0] // 2
+    s2 = 250
+    font = ImageFont.truetype("SuisseIntl-Regular.ttf", 20)
+    s3 = math.ceil(len(nandha) / len(text))
+
+    for i in range(len(nandha)):
+        draw = ImageDraw.Draw(nandha[i])
+        s4 = (s1 - len(text[i // s3]) * 5, s2)
+        draw.text(s4, text[i // s3], font=font, anchor=None)
+
+    cyber[0].save(
+        "welcome.gif",
+        save_all=True,
+        append_images=nandha[1:],
+        optimize=False,
+        duration=150,
+        loop=0,
+    )
+    await message.reply_animation(animation="welcome.gif")
