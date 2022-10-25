@@ -50,5 +50,7 @@ async def new_member(_, m):
         duration=150,
         loop=0,
     )
-    
-    await m.reply_animation(animation="welcome.gif")
+    if is_bot == True:
+         await message.reply("yes is bot")
+    else:
+         await m.reply_animation(animation="welcome.gif")
