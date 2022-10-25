@@ -11,6 +11,11 @@ from Nandha import Nandha
 async def new_member(_, m):
     for member in m.new_chat_members:
            first_name = member.first_name
+           if member.is_bot:
+               is_bot = True
+           else:
+               is_bot = False
+                
     welcome = Image.open("Nandha/help/utils/download.gif")
     nandha = [welcome.copy()]
 
@@ -45,4 +50,5 @@ async def new_member(_, m):
         duration=150,
         loop=0,
     )
+    
     await m.reply_animation(animation="welcome.gif")
