@@ -31,6 +31,8 @@ async def delete(_, message):
             elif (await can_delete_messages(chat_id,config.BOT_ID)) == False:
                return await message.reply("`I don't have enough rights to do this!`")
             else:
+               if not reply:
+                     return await message.reply("`reply to message to delete!`")
                await reply.delete()
                await message.delete()
     
