@@ -89,7 +89,7 @@ async def kicks(_, message):
                 else:
                     await Nandha.ban_chat_member(chat_id, kick_id)
                     await Nandha.unban_chat_member(chat_id, kick_id)
-                    await message.reply_animation(url,caption=f"KickOut As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`")          
+                    await message.reply_animation(url,caption=f"KickOut As Dust!\n • `{kick_id}`\n\nFollowing Reason:\n`{reason}`")          
       except Exception as e:
          await message.reply_text(e)
        
