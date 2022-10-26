@@ -12,15 +12,16 @@ from datetime import datetime as time
 from Nandha.help.paste import spacebin
 from bing_image_downloader import downloader
 
-BingChats = []
+is_downloading = False
 
 @Nandha.on_message(filters.command("img",config.CMDS))
 async def image(_, message):
+    global is_downloading
     if len(message.text.split()) <2:
           return await message.reply("Provide A Query!`")
-    elif len(BingChats) >1:
-          return await message.reply("Already Meany Process On-going!")
-    BingChats.append(message.chat.id)
+    elif is_downloading:
+          return await message.reply("Another Process Downloading Our Server Please Wait!")
+    is_downloading = True
     query = message.text.split(None, 1)[1]
     jit = f'"{query}"'
     msg = await message.reply("Downloading please wait!")
@@ -44,11 +45,11 @@ async def image(_, message):
                InputMediaPhoto(f"{files_grabbed[4]}"),
                InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id) 
         await msg.delete()
-        BingChats.remove(message.chat.id)
+        is_downloading = False
         return
     except Exception as e:
          await msg.edit(e)
-         BingChats.remove(message.chat.id)
+         is_downloading = False
     os.chdir("/app")
     os.system("rm -rf store")
 
