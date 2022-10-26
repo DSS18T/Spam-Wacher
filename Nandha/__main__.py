@@ -38,7 +38,7 @@ async def help_parser(name, keyboard=None):
     keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return ("**Konnichiwa {},** `I Am Hottie, The Hottest And Coolest Robot Available On Telegram`\n\n• `I Have Lot's Of Hot And Smexy Commands`\n•`To Get Known About These Commands Checkout The Buttons Given Bellow`\n\n**×× Want To Vibe With Me ? Join @CityOfCreations ^_^**".format(name), keyboard)
 
-@bot.on_message(filters.command("help",config.CMDS))
+@Nandha.on_message(filters.command("help",config.CMDS))
 async def _help(_, message):
   text, keyboard = await help_parser(message.from_user.first_name)
   return await message.reply_video(
@@ -57,7 +57,7 @@ async def commands_callbacc(_, query):
     ),
     reply_markup=keyboard
   )
-  return await bot.answer_callback_query(query.id)
+  return await Nandha.answer_callback_query(query.id)
 
 @Nandha.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(client, query):
