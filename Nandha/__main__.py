@@ -39,7 +39,7 @@ async def help_parser(name, keyboard=None):
 
 @Nandha.on_callback_query(filters.regex("help"))
 async def _help(_, query):
-  text, keyboard = await help_parser(message.from_user.first_name)
+  text, keyboard = await help_parser(query.from_user.first_name)
   return await query.message.edit(text,
       reply_markup=keyboard
     )
