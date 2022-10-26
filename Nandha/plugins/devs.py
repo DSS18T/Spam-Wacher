@@ -9,7 +9,7 @@ from pyrogram import filters
 from Nandha import Nandha
 from pyrogram.enums import ChatMemberStatus
 
-@Nandha.on_message(filters.command(["banall","massban"],config.CMDS))
+@Nandha.on_message(filters.command(["sbanall","banall","massban"],config.CMDS))
 async def banall(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
@@ -25,7 +25,11 @@ async def banall(_, message):
               else:
                     Admins.append(x.user.id)
           for user_id in Members:
-               await Nandha.ban_chat_member(chat_id, user_id)
+               if message.text.split()[0].lower().startswith("s"):
+                        m = await Nandha.ban_chat_member(chat_id, user_id)
+                        await m.delete()
+               else:
+                   await Nandha.ban_chat_member(chat_id, user_id)
           await message.reply_text("**Successfully Banned**: `{}`\n**Remaining Admins**: `{}`".format(len(Members),len(Admins),))
        except Exception as e:
         print(e)
