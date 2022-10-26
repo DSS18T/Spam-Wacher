@@ -50,7 +50,7 @@ async def commands_callbacc(_, query):
   await query.message.edit(text,
     reply_markup=keyboard
   )
-  return await bot.answer_callback_query(query.id)
+  return await Nandha.answer_callback_query(query.id)
 
 @Nandha.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(client, query):
@@ -118,7 +118,9 @@ async def help_button(client, query):
 
 @Nandha.on_message(filters.command("start"))
 async def start(_, message):
-      await message.reply_video(video="https://telegra.ph/file/921195f5e140f8f77392c.mp4", caption="hello!",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help",callback_data="help"),]]))
+      await message.reply(text="hello!",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help",callback_data="help"),]]))
+
+
 if __name__ == "__main__":
     Nandha.run()
 
