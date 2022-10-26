@@ -123,7 +123,9 @@ async def help_button(client, query):
   return await Nandha.answer_callback_query(query.id)
 
 
-
+@Nandha.on_message(filters.command("start"))
+async def start(_, message):
+      await message.reply("hello!",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help",callback_data="help"),]]))
 if __name__ == "__main__":
     Nandha.run()
 
