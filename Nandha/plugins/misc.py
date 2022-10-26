@@ -42,7 +42,7 @@ async def image(_, message):
         await msg.delete()
         return
     except Exception as e:
-         await msg.reply(e)
+         await msg.edit(e)
     os.chdir("/app")
     os.system("rm -rf store")
 
