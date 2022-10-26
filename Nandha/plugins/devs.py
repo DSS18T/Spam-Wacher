@@ -21,7 +21,7 @@ async def unbanall(_, message):
        try:
           users = 0
           async for m in Nandha.get_chat_members(chat_id, filter=ChatMembersFilter.BANNED):
-                 await Nandha.unban_chat_member(m.user.id)
+                 await Nandha.unban_chat_member(chat_id,m.user.id)
                  users += 1
           await message.reply(f"**Successfully Unbanned**: `{users}`")
        except Exception as e:
