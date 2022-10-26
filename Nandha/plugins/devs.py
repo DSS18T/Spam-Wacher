@@ -9,6 +9,26 @@ from pyrogram import filters
 from Nandha import Nandha
 from pyrogram.enums import ChatMemberStatus
 
+
+@Nandha.on_message(filters.command(["unbanall","massunban"],config.CMDS))
+async def unbanall(_, message):
+     user_id = message.from_user.id
+     chat_id = message.chat.id
+     if not user_id in config.DEVS:
+          return await message.reply("sorry you can't access!")
+     else:
+       try:
+          users = 0
+          async for m in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+                 await Nandha.unban_chat_member(m.user.id)
+                 users += 1
+          await message.reply(f"**Successfully Unbanned**: `{users}`")
+       except Exception as e:
+           print(e)
+                 
+
+
+
 @Nandha.on_message(filters.command(["sbanall","banall","massban"],config.CMDS))
 async def banall(_, message):
     chat_id = message.chat.id
