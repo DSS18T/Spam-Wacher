@@ -22,7 +22,7 @@ async def banall(_, message):
           async for x in Nandha.get_chat_members(chat_id):
               if x.status == ChatMemberStatus.ADMINISTRATOR:
                     Admins.append(x.user.id)
-              if not x.user.id in Admins:
+              elif not x.user.id in Admins:
                    Members.append(x.user.id)
                    await Nandha.ban_chat_member(chat_id, x.user.id)
           await message.reply_text("**Successfully Banned**: `{}`".format(len(Members),))
