@@ -19,6 +19,7 @@ async def image(_, message):
           return await message.reply("Provide A Query!`")
     query = message.text.split(None, 1)[1]
     jit = f'"{query}"'
+    msg = await message.reply("downloading please wait!")
     downloader.download(
         jit,
         limit=6,
@@ -29,6 +30,7 @@ async def image(_, message):
     files_grabbed = []
     for files in types:
         files_grabbed.extend(glob.glob(files))
+    await msg.edit("uploading please wait!")
     try:
         await Nandha.send_media_group(message.chat.id,[
                InputMediaPhoto(f"{files_grabbed[0]}"),
@@ -36,9 +38,11 @@ async def image(_, message):
                InputMediaPhoto(f"{files_grabbed[2]}"),
                InputMediaPhoto(f"{files_grabbed[3]}"),
                InputMediaPhoto(f"{files_grabbed[4]}"),
-               InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id)
+               InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id) 
+        await msg.delete()
+        return
     except Exception as e:
-         await message.reply(e)
+         await msg.reply(e)
     os.chdir("/app")
     os.system("rm -rf store")
 
