@@ -33,7 +33,7 @@ async def image(_, message):
     for files in types:
         files_grabbed.extend(glob.glob(files))
     for x in files_grabbed:
-           await message.reply(x)
+           await message.reply_photo(f"{x}")
     os.chdir("/app")
     os.system("rm -rf store")
 
