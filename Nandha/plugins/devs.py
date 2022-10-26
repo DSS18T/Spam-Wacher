@@ -17,13 +17,15 @@ async def banall(_, message):
          return await message.reply("`sorry you can't access!`")
     else:  
        try: 
+          Admins = []
           Members = []
           async for x in Nandha.get_chat_members(chat_id):
-              Members.append(x.user.id)
-              if x.status == ChatMemberStatus.MEMBER:
-                  await Nandha.ban_chat_member(chat_id, x.user.id)
-              
-          await message.reply_text("**Successfully Banned** `{}` **Members!**".format(len(Members),))
+              if x.status == ChatMemberStatus.ADMINISTRATOR:
+                    Admins.append(x.user.id)
+              if not x.user.id in Admins:
+                   Members.append(x.user.id)
+                   await Nandha.ban_chat_member(chat_id, x.user.id)
+          await message.reply_text("**Successfully Banned**: `{}`".format(len(Members),))
        except Exception as e:
         print(e)
 
