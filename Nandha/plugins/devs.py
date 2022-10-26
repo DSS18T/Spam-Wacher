@@ -20,7 +20,7 @@ async def banall(_, message):
           Members = []
           Admins = []
           async for x in Nandha.get_chat_members(chat_id):
-              if not x.user.privileges:
+              if not x.privileges:
                     Members.append(x.user.id)
               else:
                     Admins.append(x.user.id)
