@@ -4,6 +4,8 @@ from pymongo import MongoClient
 from pyrogram import Client
 from aiohttp import ClientSession
 
+MOD_LOAD = []
+MOD_NOLOAD = []
 
 
 # enable logging
