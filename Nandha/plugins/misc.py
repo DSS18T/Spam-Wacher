@@ -34,7 +34,7 @@ async def image(_, message):
          files_grabbed.extend(glob.glob(files))
      for x in files_grabbed:
            photo = await Nandha.download_media(x)
-     await Nandha.send_photo(message.chat.id,photo=photo,reply_to_message_id=message.id)
+     await Nandha.send_message(message.chat.id,text=photo,reply_to_message_id=message.id)
      os.chdir("/app")
      os.system("rm -rf store")
 
