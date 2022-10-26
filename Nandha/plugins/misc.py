@@ -24,7 +24,6 @@ async def image(_, message):
     query = message.text.split(None, 1)[1]
     jit = f'"{query}"'
     msg = await message.reply("Downloading please wait!")
-
     downloader.download(
         jit,
         limit=6,
@@ -49,6 +48,7 @@ async def image(_, message):
         return
     except Exception as e:
          await msg.edit(e)
+         BingChats.remove(message.chat.id)
     os.chdir("/app")
     os.system("rm -rf store")
 
