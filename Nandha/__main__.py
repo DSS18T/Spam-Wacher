@@ -67,7 +67,7 @@ async def help_button(client, query):
   next_match = re.match(r"help_next\((.+?)\)", query.data)
   back_match = re.match(r"help_back", query.data)
   create_match = re.match(r"help_create", query.data)
-  top_text = "**Konnichiwa {},** `I Am Hottie, The Hottest And Coolest Robot Available On Telegram`\n\n• `I Have Lot's Of Hot And Smexy Commands`\n•`To Get Known About These Commands Checkout The Buttons Given Bellow`\n\n**×× Want To Vibe With Me ? Join @CityOfCreations ^_^**".format(query.from_user.first_name)
+  top_text = strings.HELP_TEXT
   if mod_match:
     module = (mod_match.group(1)).replace(" ", "_")
     text = (
