@@ -9,5 +9,6 @@ requests
 asyncio
 aiohttp
 aiofiles
+bing_image_downloader
 gpytranslate
 
