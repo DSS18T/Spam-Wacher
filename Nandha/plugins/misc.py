@@ -33,7 +33,11 @@ async def image(_, message):
     for files in types:
         files_grabbed.extend(glob.glob(files))
     for x in files_grabbed:
-           await message.reply_photo(f"{x}")
+         await Nandha.send_media_group(message.chat.id,[
+             InputMediaPhoto(f"{Image_1.jpg}"),
+             InputMediaPhoto(f"{Image_2.jpg}"),
+             InputMediaPhoto(f"{Image_3.jpg}"),
+             InputMediaPhoto(f"{Image_4.jpg}"),])
     os.chdir("/app")
     os.system("rm -rf store")
 
