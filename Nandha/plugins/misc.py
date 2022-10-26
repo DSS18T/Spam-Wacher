@@ -68,7 +68,7 @@ async def ud(_, message):
       if reply and reply.text:
          try:
             query = reply.text.lower()
-            if len(message.text.split()) == 1:
+            if len(reply.text.split()) == 1:
                  search = reply.text.split()[1]
             else:
                  search = reply.text.replace(" ", "%20")
@@ -77,7 +77,7 @@ async def ud(_, message):
             await Nandha.send_message(message.chat.id,text=text,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define%20"+search),]]),reply_to_message_id=message.id)
          except Exception as e:
               await message.reply(e)
-      elif not reply and len(message.text.split()) >1:
+      elif not reply and len(message.text.split()) >0:
             try:
               query = message.text.split(None,1)[1].lower()
               if len(message.text.split()) == 1:
