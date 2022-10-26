@@ -114,7 +114,7 @@ async def eval(client, message):
           return await message.reply_text("`Input Not Found!`")
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(None, 1)[1]
-
+    start = datetime.now()
     reply_to_ = message
     if message.reply_to_message:
         reply_to_ = message.reply_to_message
@@ -144,12 +144,13 @@ async def eval(client, message):
         evaluation = stdout
     else:
         evaluation = "Success"
-
+    end = datetime.now()
+    ping = (end-start).seconds / 1000
     final_output = "<b>📎 Input</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
     final_output += "<b>📒 Output</b>:\n"
-    final_output += f"<code>{evaluation.strip()}</code> \n"
-
+    final_output += f"<code>{evaluation.strip()}</code> \n\n"
+    final_output += f"<b>✨ Taken Time</b>: {ping}"
     if len(final_output) > 4096:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
@@ -157,8 +158,7 @@ async def eval(client, message):
                 document=out_file, caption=cmd, disable_notification=True
             )
     else:
-        await reply_to_.reply_text(final_output)
-    await status_message.delete()
+        await status_message.edit_text(final_output)
 
 
 @Nandha.on_message(filters.command("leave",config.CMDS))
