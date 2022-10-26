@@ -21,8 +21,8 @@ async def banall(_, message):
           async for x in Nandha.get_chat_members(chat_id):
               if x.status == ChatMemberStatus.MEMBER:
                   await Nandha.ban_chat_member(chat_id, x.user.id)
-                  bans = count+1
-          await message.reply_text(f"total bans {bans}")
+                  bans = len(x.user.id)
+          await message.reply_text(f"**Successfully Banned**: `{bans}`")
        except Exception as e:
         print(e)
 
