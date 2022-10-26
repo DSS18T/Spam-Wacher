@@ -35,21 +35,17 @@ get_helps()
 async def help_parser(name, keyboard=None):
   if not keyboard:
     keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-    return ("**Konnichiwa {},** `I Am Hottie, The Hottest And Coolest Robot Available On Telegram`\n\n• `I Have Lot's Of Hot And Smexy Commands`\n•`To Get Known About These Commands Checkout The Buttons Given Bellow`\n\n**×× Want To Vibe With Me ? Join @CityOfCreations ^_^**".format(name), keyboard)
+    return ("**Hello! {}**,\n\n `I Am Spamwatcher, The Hottest And Coolest Robot Available On Telegram`\n\n• `I Have Lot's Of Hot And Smexy Commands`\n•`To Get Known About These Commands Checkout The Buttons Given Bellow`\n\n**×× Want To Vibe With Me ? Join @NandhaSupport ^_^**".format(name), keyboard)
 
 @Nandha.on_callback_query(filters.regex("help"))
 async def _help(_, query):
   text, keyboard = await help_parser(query.from_user.first_name)
-  return await query.message.edit(text,
-      reply_markup=keyboard
-    )
+  return await query.message.edit(text=text,reply_markup=keyboard)
 
 @Nandha.on_callback_query(filters.regex("bot_commands"))
 async def commands_callbacc(_, query):
   text, keyboard = await help_parser(query.from_user.first_name)
-  await query.message.edit(text,
-    reply_markup=keyboard
-  )
+  await query.message.edit(text=text,reply_markup=keyboard)
   return await Nandha.answer_callback_query(query.id)
 
 @Nandha.on_callback_query(filters.regex(r"help_(.*?)"))
@@ -70,20 +66,17 @@ async def help_button(client, query):
         + HELPABLE[module].__HELP__
     )
 
-    await query.message.edit(
-      text,
+    await query.message.edit(text=text,
       reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("Back Home", callback_data="help_back")]]
-      )
-    )
+      ))
   elif home_match:
     await query.message.edit(text="hi {}".format(query.from_user.mention),
-      reply_markup=START_KEYBOARD
-    )
+      reply_markup=START_KEYBOARD)
   elif prev_match:
     curr_page = int(prev_match.group(1))
     await query.message.edit(
-      top_text,
+      text=top_text,
       reply_markup=InlineKeyboardMarkup(
         paginate_modules(curr_page - 1, HELPABLE, "help")
       )
@@ -92,7 +85,7 @@ async def help_button(client, query):
   elif next_match:
     next_page = int(next_match.group(1))
     await query.message.edit(
-      top_text,
+      text=top_text,
       reply_markup=InlineKeyboardMarkup(
         paginate_modules(next_page + 1, HELPABLE, "help")
       )
@@ -100,7 +93,7 @@ async def help_button(client, query):
 
   elif back_match:
     await query.message.edit(
-      top_text,
+      text=top_text,
       reply_markup=InlineKeyboardMarkup(
         paginate_modules(0, HELPABLE, "help")
       )
@@ -109,10 +102,9 @@ async def help_button(client, query):
   elif create_match:
     text, keyboard = await help_parser(query.from_user.first_name)
     await query.message.edit(
-      text,
+      text=text,
       reply_markup=keyboard
     )
-
   return await Nandha.answer_callback_query(query.id)
 
 
