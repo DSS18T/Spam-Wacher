@@ -36,14 +36,14 @@ get_helps()
 async def help_parser(name, keyboard=None):
   if not keyboard:
     keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-    return ("**Konnichiwa {},** `I Am Hottie, The Hottest And Coolest Robot Available On Telegram`\n\n• `I Have Lot's Of Hot And Smexy Commands`\n•`To Get Known About These Commands Checkout The Buttons Given Bellow`\n\n**×× Want To Vibe With Me ? Join @CityOfCreations ^_^**".format(name), keyboard)
+    return (strings.HELP_TEXT, keyboard)
 
 @Nandha.on_message(filters.command("help",config.CMDS))
 async def _help(_, message):
   text, keyboard = await help_parser(message.from_user.first_name)
   return await message.reply_video(
       config.profile,
-      caption=text,
+      caption=strings.HELP_TEXT,
       reply_markup=keyboard
     )
 
@@ -80,7 +80,7 @@ async def help_button(client, query):
     await query.message.edit_caption(
       caption=text,
       reply_markup=InlineKeyboardMarkup(
-        [[InlineKeyboardButton("[► Back ◄]", callback_data="help_back")]]
+        [[InlineKeyboardButton("Back 🔄", callback_data="help_back")]]
       )
     )
   elif home_match:
@@ -123,9 +123,9 @@ async def help_button(client, query):
 
   return await Nandha.answer_callback_query(query.id)
 
-@Nandha.on_message(filters.command("start"))
+@Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
-      await message.reply_video(config.profile,caption="hello!",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help",callback_data="help_back"),]]))
+      await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
 
 
 if __name__ == "__main__":
