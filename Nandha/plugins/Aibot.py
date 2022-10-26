@@ -100,3 +100,14 @@ async def chatbot(_, message):
               except Exception as e:
                    await message.reply(f"{str(e)}")
 
+
+__MODULE__ = "chatBot"
+
+__HELP__ = """
+AI that can connect you with group 
+and if you feel alone don't waste your time just 
+add your group spamwatcher and do like this:
+
+/chabot: send this to your group then click enable
+button and start a conversation with bot.
+"""
