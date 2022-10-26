@@ -81,7 +81,7 @@ async def ud(_, message):
            elif not reply and len(message.text.split()) >1:
                  await Nandha.send_message(message.chat.id,text=text, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define%20{}".format(search)),]]),reply_to_message_id=message.id)
       except Exception as e:
-            return await message.reply("No Results in > `{query}` <")
+            return await message.reply(f"No Results in > `{query}` <")
 
 
 @Nandha.on_message(filters.command("paste",config.CMDS))
