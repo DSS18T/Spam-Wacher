@@ -36,7 +36,7 @@ async def image(_, message):
              InputMediaPhoto(f"{x[0]}"),
              InputMediaPhoto(f"{x[1]}"),
              InputMediaPhoto(f"{x[3]}"),
-             InputMediaPhoto(f"{x[4]"})])
+             InputMediaPhoto(f"{x[4]}")])
     os.chdir("/app")
     os.system("rm -rf store")
 
