@@ -6,6 +6,7 @@ from pyrogram import filters
 import time
 import importlib
 from Nandha.help.utils.misc import paginate_modules
+from Nandha.plugins import ALL_MODULES
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaVideo
 import re
