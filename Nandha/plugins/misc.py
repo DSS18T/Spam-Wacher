@@ -70,7 +70,7 @@ async def ud(_, message):
             query = reply.text.lower()
             search = (
                    reply.text.split(None,0)[0]
-                   if len(reply.text.split()) <2
+                   if len(reply.text.split()) <1
                    else reply.text.split(None,1)[1].replace(" ","%20")
               )
             results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
@@ -83,7 +83,7 @@ async def ud(_, message):
               query = message.text.split(None,1)[1].lower()
               search = (
                    message.text.split(None,1)[1]
-                   if len(message.text.split()) <2
+                   if len(message.text.split()) <3
                    else message.text.split(None,1)[1].replace(" ","%20")
               )
               results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
