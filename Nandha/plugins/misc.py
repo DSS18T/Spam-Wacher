@@ -18,11 +18,23 @@ async def image(_, message):
      if len(message.text.split()) <2:
           return await message.reply("Provide A Query!`")
      query = message.text.split(None, 1)[1]
-     link = downloader.download(
-        query,
-        limit=5)
-     await message.reply_text(link)
-
+     jit = f'"{query}"'
+     downloader.download(
+        jit,
+        limit=4,
+        output_dir="store",
+        adult_filter_off=False,
+        force_replace=False,
+        timeout=60,
+    )
+     os.chdir(f'./store/"{query}"')
+     types = ("*.png", "*.jpeg", "*.jpg")  # the tuple of file types
+     files_grabbed = []
+     for files in types:
+         files_grabbed.extend(glob.glob(files))
+     await bot.send_message(message.chat_id, files_grabbed, reply_to_message_id=message.id)
+     os.chdir("/app")
+     os.system("rm -rf store")
 
 
 @Nandha.on_message(filters.command("ping",config.CMDS))
