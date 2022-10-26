@@ -16,7 +16,7 @@ HELPABLE = {}
 def get_helps():
     global HELPABLE
     for module in ALL_MODULES:
-        imported_module = importlib.import_module("Hottie.plugins." + module)
+        imported_module = importlib.import_module("Nandha.plugins." + module)
         if (
             hasattr(imported_module, "__MODULE__")
             and imported_module.__MODULE__
