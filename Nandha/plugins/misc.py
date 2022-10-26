@@ -68,10 +68,10 @@ async def ud(_, message):
       if reply and reply.text:
          try:
             query = reply.text.lower()
-            if len(query.split()) == 0:
-                 search = query[0]
+            if len(message.text.split()) == 0:
+                 search = message.text.split()[0]
             else:
-                 search = query.replace(" ", "%20")
+                 search = message.text.replace(" ", "%20")
             results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
             text = f'**⚠️ Warning: Urban Dictionary does not always provide accurate descriptions**:\n\n**• Result for**: `[{query}]`\n\n**• Result**:\n`{results["list"][0]["definition"]}`\n\n• **Example**:\n`{results["list"][0]["example"]}`'
             await Nandha.send_message(message.chat.id,text=text,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define%20"+search),]]),reply_to_message_id=message.id)
@@ -80,10 +80,10 @@ async def ud(_, message):
       elif not reply and len(message.text.split()) >1:
             try:
               query = message.text.split(None,1)[1].lower()
-              if len(query.split()) == 1:
-                   search = query[1]
+              if len(message.text.split()) == 1:
+                   search = message.text.split()[1]
               else:
-                   search = query.replace(" ", "%20")
+                   search = message.text.replace(" ", "%20")
               results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
               text = f'**⚠️ Warning: Urban Dictionary does not always provide accurate descriptions**:\n\n**• Result for**: `[{query}]`\n\n**• Result**:\n`{results["list"][0]["definition"]}`\n\n• **Example**:\n`{results["list"][0]["example"]}`'
               await Nandha.send_message(message.chat.id,text=text, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🧠 Google it",url="https://www.google.com/search?q=define%20"+search),]]),reply_to_message_id=message.id)
