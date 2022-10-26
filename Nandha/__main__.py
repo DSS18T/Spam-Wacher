@@ -42,7 +42,7 @@ async def help_parser(name, keyboard=None):
 async def _help(_, message):
   text, keyboard = await help_parser(message.from_user.first_name)
   return await message.reply_video(
-      "https://telegra.ph/file/921195f5e140f8f77392c.mp4",
+      config.profile,
       caption=text,
       reply_markup=keyboard
     )
@@ -52,7 +52,7 @@ async def commands_callbacc(_, query):
   text, keyboard = await help_parser(query.from_user.first_name)
   await query.message.edit_media(
     media=InputMediaVideo(
-      "https://telegra.ph/file/921195f5e140f8f77392c.mp4",
+      config.profile,
       caption=text
     ),
     reply_markup=keyboard
@@ -85,7 +85,7 @@ async def help_button(client, query):
     )
   elif home_match:
     await query.message.edit_media(
-      media=InputMediaVideo(PM_HOTTIE_VID, caption=PM_HOTTIE_TEXT.format(query.from_user.mention)),
+      media=InputMediaVideo(config.profile, caption="hi {}".format(query.from_user.mention)),
       reply_markup=START_KEYBOARD
     )
   elif prev_match:
@@ -125,7 +125,7 @@ async def help_button(client, query):
 
 @Nandha.on_message(filters.command("start"))
 async def start(_, message):
-      await message.reply_video("https://telegra.ph/file/921195f5e140f8f77392c.mp4",caption="hello!",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help",callback_data="help_back"),]]))
+      await message.reply_video(config.profile,caption="hello!",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help",callback_data="help_back"),]]))
 
 
 if __name__ == "__main__":
