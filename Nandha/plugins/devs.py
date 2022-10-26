@@ -14,15 +14,15 @@ async def banall(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     if not user_id in config.DEVS:
-         return await m.reply("`sorry you can't access!`")
+         return await message.reply("`sorry you can't access!`")
     else:  
        try: 
-          count = int(0)
+          count = 0
           async for x in Nandha.get_chat_members(chat_id):
               if x.status == ChatMemberStatus.MEMBER:
                   await Nandha.ban_chat_member(chat_id, x.user.id)
-                  bans = (count+1)
-          await message.reply(f"total bans {bans}")
+                  bans = count+1
+          await message.reply_text(f"total bans {bans}")
        except Exception as e:
         print(e)
 
