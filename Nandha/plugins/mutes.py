@@ -20,13 +20,15 @@ async def muted(_, message):
                     reason = message.text.split(None, 2)[2]
                 elif not reply and len(message.command) == 2:
                     mute_id = int(message.text.split(" ")[1])
-                    reason = None
+                    reason = "No Reason Provide"
                 elif reply and len(message.command) >1:
                     mute_id = reply.from_user.id
                     reason = message.text.split(None, 1)[1]        
                 elif reply and len(message.command) <2:
                      mute_id = reply.from_user.id
-                     reason = None
+                     reason = "No Reason Provide"
+                else:
+                    return await message.reply("I can't find the user.")
                 if (await is_admin(chat_id, config.BOT_ID)) == False:
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif mute_id == config.BOT_ID:
