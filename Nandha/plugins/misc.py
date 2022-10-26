@@ -68,7 +68,7 @@ async def ud(_, message):
       if reply and reply.text:
          try:
             query = reply.text.lower()
-            if len(reply.text.split()) == 0:
+            if len(reply.text.split()) <2:
                  search = reply.text.split()[0]
             else:
                  search = reply.text.replace(" ", "%20")
@@ -80,7 +80,7 @@ async def ud(_, message):
       elif not reply and len(message.text.split()) >1:
             try:
               query = message.text.split(None,1)[1].lower()
-              if len(message.text.split()) == 1:
+              if len(message.text.split()) < 3:
                    search = message.text.split()[1]
               else:
                    search = message.text.replace(" ", "%20")
