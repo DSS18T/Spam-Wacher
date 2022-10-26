@@ -1,8 +1,7 @@
 
 START_TEXT = """
 read the help menu as well 
-then you get (how to use the commands!) 
-And I'm SpamWatcher (i well promise i can protect your group) scam and pornography contents.
+then you know. how to use the commands! And I'm SpamWatcher (I well promise i can protect your group) scam and pornography contents.
 """
 
 HELP_TEXT = """
