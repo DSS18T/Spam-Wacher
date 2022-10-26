@@ -1,6 +1,7 @@
 
 import aiofiles
 import os
+import glob
 import config
 import requests
 
@@ -9,6 +10,30 @@ from pyrogram import filters
 from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin
+from bing_image_downloader import downloader
+
+
+@Nandha.on_message(filters.command("img",config.CMDS))
+async def image(_, message):
+     if len(message.text.split()) <2:
+          return await message.reply("Provide A Query!`")
+     query = message.text.split(None, 1)[1]
+     downloader.download(
+        query,
+        limit=4,
+        output_dir="store",
+        adult_filter_off=False,
+        force_replace=False,
+        timeout=60,
+    )
+     os.chdir(f'./store/"{query}"')
+     types = ("*.png", "*.jpeg", "*.jpg")  # the tuple of file types
+     files_grabbed = []
+     for files in types:
+         files_grabbed.extend(glob.glob(files))
+     await message.reply_text(files_grabbed)
+
+
 
 @Nandha.on_message(filters.command("ping",config.CMDS))
 async def ping(_, message):
@@ -65,6 +90,6 @@ async def paste(_, message):
     elif not reply and len(message.text.split()) >1:
            text = message.text.split(None, 1)[1]
     link = await spacebin(text)
-    await Nandha.send_message(chat_id,f"here paste:\n`{link}`",reply_to_message_id=message.id)
+    await Nandha.send_message(chat_id,f"**Here Paste**:\n{link}",reply_to_message_id=message.id)
     
         
