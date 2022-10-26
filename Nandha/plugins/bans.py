@@ -29,6 +29,8 @@ async def bans(_, message):
                 elif reply and len(message.command) <2:
                      ban_id = reply.from_user.id
                      reason = "No Reason Provide!"
+                else:
+                    await message.reply("What The Fuck? (Reply/Give) user to Ban!")
                 if (await is_admin(chat_id, config.BOT_ID)) == False:
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif ban_id == config.BOT_ID:
@@ -71,6 +73,8 @@ async def kicks(_, message):
                 elif reply and len(message.command) <2:
                      kick_id = reply.from_user.id
                      reason = "No Reason Provide!"
+                else:
+                    await message.reply("What The Fuck? (Reply/Give) user to Ban!")
                 if (await is_admin(chat_id, config.BOT_ID)) == False:
                       return await message.reply_text("`Make you sure I'm Admin!`")
                 elif kick_id == config.BOT_ID:
