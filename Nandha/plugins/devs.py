@@ -7,7 +7,8 @@ from contextlib import redirect_stdout
 from subprocess import getoutput as run
 from pyrogram import filters
 from Nandha import Nandha
-from pyrogram.enums import ChatMemberStatus
+from pyrogram.enums import (
+ChatMemberStatus, ChatMembersFilter)
 
 
 @Nandha.on_message(filters.command(["unbanall","massunban"],config.CMDS))
@@ -19,7 +20,7 @@ async def unbanall(_, message):
      else:
        try:
           users = 0
-          async for m in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+          async for m in Nandha.get_chat_members(chat_id, filter=ChatMembersFilter.BANNED):
                  await Nandha.unban_chat_member(m.user.id)
                  users += 1
           await message.reply(f"**Successfully Unbanned**: `{users}`")
