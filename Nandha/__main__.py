@@ -73,11 +73,11 @@ async def help_button(client, query):
     await query.message.edit(
       text,
       reply_markup=InlineKeyboardMarkup(
-        [[InlineKeyboardButton("[► Back ◄]", callback_data="help_back")]]
+        [[InlineKeyboardButton("Back Home", callback_data="help_back")]]
       )
     )
   elif home_match:
-    await query.message.edit(text="hi {}".format(query.from_user.mention)),
+    await query.message.edit(text="hi {}".format(query.from_user.mention),
       reply_markup=START_KEYBOARD
     )
   elif prev_match:
