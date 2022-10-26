@@ -26,7 +26,6 @@ async def image(_, message):
         force_replace=False,
         timeout=60,
     )
-     os.chdir(f'./store/"{query}"')
      types = ("*.png", "*.jpeg", "*.jpg")  # the tuple of file types
      files_grabbed = []
      for files in types:
