@@ -70,8 +70,8 @@ async def ud(_, message):
             query = reply.text.lower()
             search = (
                    message.text.split(None,0)[0]
-                   if len(message.text.split()) <2
-                   else message.text.split(None,1)[1].replace(" ","%20")
+                   if len(reply.text.split()) <2
+                   else reply.text.split(None,1)[1].replace(" ","%20")
               )
             results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
             text = f'**⚠️ Warning: Urban Dictionary does not always provide accurate descriptions**:\n\n**• Result for**: `[{query}]`\n\n**• Result**:\n`{results["list"][0]["definition"]}`\n\n• **Example**:\n`{results["list"][0]["example"]}`'
@@ -79,11 +79,11 @@ async def ud(_, message):
          except Exception as e:
               await message.reply(e)
       elif not reply and len(message.text.split()) >1:
-            try:
+            try: 
               query = message.text.split(None,1)[1].lower()
               search = (
                    message.text.split(None,1)[1]
-                   if len(message.text.split()) <3
+                   if len(message.text.split()) <2
                    else message.text.split(None,1)[1].replace(" ","%20")
               )
               results = requests.get("https://api.urbandictionary.com/v0/define?term="+search).json()
