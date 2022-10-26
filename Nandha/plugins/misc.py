@@ -21,11 +21,8 @@ async def image(_, message):
     jit = f'"{query}"'
     downloader.download(
         jit,
-        limit=4,
+        limit=6,
         output_dir="store",
-        adult_filter_off=False,
-        force_replace=False,
-        timeout=60,
     )
     os.chdir(f'./store/"{query}"')
     types = ("*.png", "*.jpeg", "*.jpg")  # the tuple of file types
@@ -37,7 +34,9 @@ async def image(_, message):
                InputMediaPhoto(f"{files_grabbed[0]}"),
                InputMediaPhoto(f"{files_grabbed[1]}"),
                InputMediaPhoto(f"{files_grabbed[2]}"),
-               InputMediaPhoto(f"{files_grabbed[3]}")],reply_to_message_id=message.id)
+               InputMediaPhoto(f"{files_grabbed[3]}"),
+               InputMediaPhoto(f"{files_grabbed[4]}"),
+               InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id)
     except Exception as e:
          await message.reply(e)
     os.chdir("/app")
