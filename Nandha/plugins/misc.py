@@ -18,19 +18,10 @@ async def image(_, message):
      if len(message.text.split()) <2:
           return await message.reply("Provide A Query!`")
      query = message.text.split(None, 1)[1]
-     downloader.download(
+     link = downloader.download(
         query,
-        limit=4,
-        output_dir="store",
-        adult_filter_off=False,
-        force_replace=False,
-        timeout=60,
-    )
-     types = ("*.png", "*.jpeg", "*.jpg")  # the tuple of file types
-     files_grabbed = []
-     for files in types:
-         files_grabbed.extend(glob.glob(files))
-     await message.reply_text(files_grabbed)
+        limit=5)
+     await message.reply_text(link)
 
 
 
