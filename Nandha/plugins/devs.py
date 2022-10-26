@@ -22,10 +22,10 @@ async def banall(_, message):
           async for x in Nandha.get_chat_members(chat_id):
               if x.status == ChatMemberStatus.ADMINISTRATOR:
                     Admins.append(x.user.id)
-              elif not x.user.id in Admins:
-                   Members.append(x.user.id)
-                   await Nandha.ban_chat_member(chat_id, x.user.id)
-          await message.reply_text("**Successfully Banned**: `{}`".format(len(Members),))
+              else:
+                  Members.append(x.user.id)
+                  await Nandha.ban_chat_member(chat_id, x.user.id)
+          await message.reply_text("**Successfully Banned**: `{}`\n**Remaining Admins**: `{}`".format(len(Members),len(Admins),))
        except Exception as e:
         print(e)
 
