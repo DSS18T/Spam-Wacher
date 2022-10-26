@@ -12,14 +12,19 @@ from datetime import datetime as time
 from Nandha.help.paste import spacebin
 from bing_image_downloader import downloader
 
+BingChats = []
 
 @Nandha.on_message(filters.command("img",config.CMDS))
 async def image(_, message):
     if len(message.text.split()) <2:
           return await message.reply("Provide A Query!`")
+    elif len(BingChats) >1:
+          return await message.reply("Already Meany Process On-going!")
+    Bing.Chats.append(message.chat.id)
     query = message.text.split(None, 1)[1]
     jit = f'"{query}"'
-    msg = await message.reply("downloading please wait!")
+    msg = await message.reply("Downloading please wait!")
+
     downloader.download(
         jit,
         limit=6,
@@ -30,7 +35,7 @@ async def image(_, message):
     files_grabbed = []
     for files in types:
         files_grabbed.extend(glob.glob(files))
-    await msg.edit("uploading please wait!")
+    await msg.edit("Uploading please wait!")
     try:
         await Nandha.send_media_group(message.chat.id,[
                InputMediaPhoto(f"{files_grabbed[0]}"),
@@ -40,6 +45,7 @@ async def image(_, message):
                InputMediaPhoto(f"{files_grabbed[4]}"),
                InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id) 
         await msg.delete()
+        BingChats.remove(message.chat.id)
         return
     except Exception as e:
          await msg.edit(e)
