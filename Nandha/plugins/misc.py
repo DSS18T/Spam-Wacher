@@ -20,7 +20,7 @@ async def image(_, message):
           return await message.reply("Provide A Query!`")
     elif len(BingChats) >1:
           return await message.reply("Already Meany Process On-going!")
-    Bing.Chats.append(message.chat.id)
+    BingChats.append(message.chat.id)
     query = message.text.split(None, 1)[1]
     jit = f'"{query}"'
     msg = await message.reply("Downloading please wait!")
