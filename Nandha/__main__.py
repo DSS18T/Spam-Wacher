@@ -37,7 +37,7 @@ async def help_parser(name, keyboard=None):
     keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return ("**Konnichiwa {},** `I Am Hottie, The Hottest And Coolest Robot Available On Telegram`\n\n• `I Have Lot's Of Hot And Smexy Commands`\n•`To Get Known About These Commands Checkout The Buttons Given Bellow`\n\n**×× Want To Vibe With Me ? Join @CityOfCreations ^_^**".format(name), keyboard)
 
-@Nandha.on_message(get_command("help"))
+@Nandha.on_message(filters.regex("help"))
 async def _help(_, message):
   text, keyboard = await help_parser(message.from_user.first_name)
   return await message.reply_video(
