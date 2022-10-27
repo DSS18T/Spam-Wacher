@@ -42,7 +42,7 @@ async def translate(_, message) -> None:
 __MODULE__ = "Trans"
 
 __HELP__ = """
-**translate** is change something written or spoken from one language to another. list of available code wards for translation:
+**translate** is change something written or spoken from one language to another.
 
-Here: [language codes](https://telegra.ph/Lang-Codes-03-19-3)
+list of available code wards for translation: [language codes](https://telegra.ph/Lang-Codes-03-19-3)
 """
