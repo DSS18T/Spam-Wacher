@@ -32,20 +32,20 @@ async def info(_, message):
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: {user_mention}\n"
-                f"**User DC**: {user_dc}")
+                f"**User DC**: `{user_dc}`")
             await msg.delete()           
         except Exception as e:
            await msg.edit(e)
      else:
         try:
             msg = await message.reply("**dealing**.")
-            user = await message.chat.get_member(user_id)
-            user_id = user.id
-            user_name = user.first_name
-            user_mention = user.mention
-            user_username = user.username
-            user_dc = user.dc_id
-            user_photo = await Nandha.download_media(user.photo.big_file_id)
+            m = await message.chat.get_member(user_id)
+            user_id = m.user.id
+            user_name = m.user.first_name
+            user_mention = m.user.mention
+            user_username = m.user.username
+            user_dc = m.user.dc_id
+            user_photo = await Nandha.download_media(m.user.photo.big_file_id)
             if user.privileges:
                 status = "👮 Admin"
             else:
@@ -56,7 +56,7 @@ async def info(_, message):
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: {user_mention}\n"
-                f"**User DC**: {user_dc}\n\n"
+                f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}")
             await msg.delete()
         except Exception as e:
