@@ -7,6 +7,7 @@ from Nandha.help.rulesdb import *
 from Nandha.help.admin import is_admin
 
 from pyrogram import filters
+from pyrogram import enums
 
 
 @Nandha.on_message(filters.command("setrules",config.CMDS))
@@ -38,7 +39,7 @@ async def rules(_, message):
         return await message.reply("`this group don't haven't any rules!`")
     else:
         x = get_rules(chat_id)
-        await message.reply(f"**Here The Group Rules**:-\n• **{message.chat.title}**\n\n• **Rules:-**\n"+x)  
+        await message.reply(f"**Here The Group Rules**:-\n• **{message.chat.title}**\n\n• **Rules:-**\n{x}",parse_mode=enums.ParseMode.DEFAULT)  
             
 @Nandha.on_message(filters.command("removerules",config.CMDS))
 async def remove(_, message):
