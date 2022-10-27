@@ -196,7 +196,7 @@ __MODULE__ = "Dev"
 
 __HELP__ = """
 developer can access this commnds!
-
+- `/logs`: get bot logs.
 - `/leave` or give id : request to leave chat.
 - `/run`: run the code.
 - `/sh`: shell
