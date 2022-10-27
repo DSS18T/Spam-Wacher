@@ -55,10 +55,8 @@ __MODULE__ = "Couples"
 
 __HELP__ = """
 **couples**:
-the bot we'll get randomly users from a
-group and match them as `[man/woman]`
-next day we'll change new couples.
+the bot we'll get randomly users from a group and match them as `[man/woman]` next day we'll change new couples.
 
 **for example**:
-`/couples:` do in your group and you see the magic!
+`/couples`: do in your group and you see the magic!
 """               
