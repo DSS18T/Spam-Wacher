@@ -24,3 +24,16 @@ async def encodes(_, message):
       elif re.search("de", message.text.split()[0]):
            await Nandha.send_message(chat_id, text=decode(data), reply_to_message_id=message.id)
 
+
+__MODULE__ = "(En/De) Codes"
+
+
+
+__HELP__ = """
+you can encode a message
+or decode a message with base64 (utf)
+
+**for example**:
+`/encode`: reply to text or give text
+`/decode`: reply to encode text or give encode text
+"""
