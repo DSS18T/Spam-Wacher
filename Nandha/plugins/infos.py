@@ -46,7 +46,7 @@ async def info(_, message):
             user_username = m.user.username
             user_dc = m.user.dc_id
             user_photo = await Nandha.download_media(m.user.photo.big_file_id)
-            if user.privileges:
+            if m.privileges:
                 status = "👮 Admin"
             else:
                 status = "🧑‍🤝‍🧑 Member"
