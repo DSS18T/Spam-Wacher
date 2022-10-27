@@ -106,3 +106,11 @@ async def paste(_, message):
     await Nandha.send_message(chat_id,f"**Here Paste**:\n{link}",reply_to_message_id=message.id)
     
         
+__MODULE__ = "Misc"
+
+__HELP__ = """
+- `/paste`: paste a text or text document.
+- `/ud`: definition the ward
+- `/ping`: see ping server.
+- `/img`: upload images from google.
+"""
