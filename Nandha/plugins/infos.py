@@ -26,8 +26,8 @@ async def info(_, message):
             user_username = user.username
             user_dc = user.dc_id
             user_photo = await Nandha.download_media(user.photo.big_file_id)
-            await message.reply_photo(photo,caption=
-                "**UserProfile**:\n\n"
+            await message.reply_photo(user_photo,caption=
+                "**Profile**:\n\n"
                 f"**ID**: {user_id}\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
