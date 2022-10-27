@@ -18,9 +18,9 @@ async def logs(_, message):
      if message.from_user.id in config.DEVS:
           try:
             logs = run("tail logs.txt")
-            link = await spacebin(logs)
+            paste = await spacebin(logs)
             msg = await message.reply("uploading...")
-            await message.reply_document("logs.txt")
+            await message.reply_document("logs.txt",caption="**Paste**: {}".format(paste))
             await msg.delete()
           except Exception as e:
               await msg.edit(e)
