@@ -15,7 +15,7 @@ async def info(_, message):
      elif not reply and len(message.command) == 2:
          user_id = message.text.split()[1]
      else:
-         return await message.reply("`wrong formatting method read help menu!`")
+         return await message.reply("`Wrong formatting method read help menu!`")
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
             msg = await message.reply("**dealings**.")
@@ -26,7 +26,7 @@ async def info(_, message):
             user_username = user.username
             user_dc = user.dc_id
             user_photo = await Nandha.download_media(user.photo.big_file_id)
-            await message.reply_photo(user_photo,caption=
+            await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
@@ -50,7 +50,7 @@ async def info(_, message):
                 status = "👮 Admin"
             else:
                 status = "🧑‍🤝‍🧑 Member"
-            await message.reply_photo(user_photo,caption=
+            await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
