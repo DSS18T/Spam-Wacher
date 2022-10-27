@@ -151,7 +151,7 @@ async def eval(client, message):
     final_output += f"<code>{cmd}</code>\n\n"
     final_output += "<b>📒 Output</b>:\n"
     final_output += f"<code>{evaluation.strip()}</code> \n\n"
-    final_output += f"<b>✨ Taken Time</b>: {ping}"
+    final_output += f"<b>✨ Taken Time</b>: {ping}<b>ms</b>"
     if len(final_output) > 4096:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
