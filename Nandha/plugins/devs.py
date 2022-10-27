@@ -146,7 +146,7 @@ async def eval(client, message):
     else:
         evaluation = "Success"
     end = datetime.now()
-    ping = (end-start).seconds / 1000
+    ping = (end-start).microseconds / 1000
     final_output = "<b>📎 Input</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
     final_output += "<b>📒 Output</b>:\n"
@@ -178,3 +178,16 @@ async def leave(_, message):
          await message.reply("`I'm leaving here bye buddy's!`")
          await Nandha.leave_chat(message.text.split()[1])
     
+
+__MODULE__ = "Dev"
+
+__HELP__ = """
+developer can access this commnds!
+
+- `/leave` or give id : request to leave chat.
+- `/run`: run the code.
+- `/sh`: shell
+- `/unbanall`: unbanall from a group.
+- `/massban` or `/sbanall`: ban all user from a group.
+- `/kick` or `/skickall`: kick all user from a group.
+"""
