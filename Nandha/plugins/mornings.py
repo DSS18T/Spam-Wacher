@@ -81,8 +81,8 @@ __MODULE__ = "Morning"
 __HELP__ = """
 this is a regex filter so you don't need to use prefixes. just tape:
 
-`[``morning`]` `[``night`]` 
-`[``evening`]` `[``afternoon`]` 
+`[``morning``]` `[``night``]` 
+`[``evening``]` `[``afternoon``]` 
 """
 
 
