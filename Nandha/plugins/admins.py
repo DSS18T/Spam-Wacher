@@ -9,6 +9,26 @@ from pyrogram.errors import AdminRankInvalid
 from datetime import datetime as time
 
 
+
+@Nandha.on_message(filters.command(["setgdesc","setgdesc"],config.CMDS))
+async def chat_description(_, message):
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    reply = message.reply_to_message
+    if (await is_admin(chat_id,user_id)) == False:
+         return await message.reply_text("`Only Admins!`")
+    elif (await can_change_info(chat_id,user_id)) == False:
+         return await message.reply_text("`You Don't have Enough Rights to Do This!`")
+    else:
+         if not reply or reply and not reply.text:
+               return await message.reply("reply to message text to set chat description!")
+         desc = reply.text
+         if len(desc) >250:
+               return await message.reply("description is to much text please remove some wards and try again!")
+         else:
+             await await Nandha.set_chat_description(chat_id, description=desc)
+    
+
 @Nandha.on_message(filters.command("del",config.CMDS))
 async def delete(_, message):
     user_id = message.from_user.id
