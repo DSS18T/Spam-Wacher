@@ -76,6 +76,13 @@ async def mornings(_, message):
                  return await message.reply(text="**yee? {} good afternoon! and for you my quote 🥰**\n`{}`".format(message.from_user.first_name, random.choice(GA_TEXT)))
  
 
+__MODULE__ = "Morning"
 
+__HELP__ = """
+this is a regex filter so you don't need to use prefixes. just tape:
+
+`[``morning`]` `[``night`]` 
+`[``evening`]` `[``afternoon`]` 
+"""
 
 
