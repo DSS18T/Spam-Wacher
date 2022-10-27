@@ -12,7 +12,7 @@ async def info(_, message):
      reply = message.reply_to_message
      if reply:
          user_id = message.from_user.id
-     elif not reply and len(message.command) == 1:
+     elif not reply and len(message.command) == 2:
          user_id = message.text.split()[1]
      else:
          return await message.reply("`wrong formatting method read help menu!`")
