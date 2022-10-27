@@ -110,3 +110,10 @@ async def ids(_, message):
               except UsernameInvalid:
                    await message.reply("`please check the given input. no user found!`")
            
+__MODULE__ = "Infos"
+
+__HELP__ = """
+**to know the user details!**
+- `/info`: reply to user or give username to get info.
+- `/id`: reply to user or give username to get id.
+"""
