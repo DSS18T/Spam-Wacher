@@ -3,7 +3,7 @@ import logging
 from pymongo import MongoClient 
 from pyrogram import Client
 from aiohttp import ClientSession
-from pyrogram.enums import 
+from pyrogram.enums import ParseMode
 
 MOD_LOAD = []
 MOD_NOLOAD = []
@@ -31,7 +31,7 @@ api_id=APP_ID,
 api_hash=APP_HASH,
 bot_token=TOKEN,
 plugins=plugins,
-parse_mode==ParseMode.DEFAULT)
+parse_mode=ParseMode.DEFAULT)
 
 
 
