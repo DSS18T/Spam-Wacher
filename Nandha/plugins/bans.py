@@ -114,3 +114,27 @@ async def unban_btn(_, query):
             msg = await query.message.reply_text(e)
             await asyncio.sleep(10)
             await msg.delete()
+
+
+__MODULE__ = "Bans"
+
+__HELP__ = """
+Some people need to be publicly banned; spammers, annoyances, or just trolls.
+
+This module allows you to do that easily, by exposing some common actions, so everyone will see!
+
+`!kick`: **kick the user.**
+example:
+`/kick id + reason`
+`/kick reply to user + reason`.
+
+`!ban`: **ban the user.**
+example:
+`/ban id + reason`
+`/ban reply to user + reason`.
+
+`!mute`: **mute the user.**
+example:
+`/mute id + reason`
+`/mute reply to user + reason`.
+"""
