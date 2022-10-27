@@ -5,6 +5,36 @@ from Nandha import Nandha
 from pyrogram.errors import (
 PeerIdInvalid,UsernameInvalid )
 
+
+@Nandha.on_message(filters.command("info",config.CMDS))
+async def info(_, message):
+     reply = message.reply_to_message
+     if reply:
+        user_id = message.from_user.id
+     elif not reply:
+        user_id = message.text.split()[1]
+     else:
+         return await message.reply("wrong formatting method read help menu!")
+     if message.chat.type == enums.ChatType.PRIVATE:
+        try:
+            msg = await message.reply("**dealings the user**.")
+            user = await Nandha.get_users(user_id)
+            user_id = user.id
+            user_name = user.first_name
+            user_mention = user.mention
+            user_username = user.username
+            user_dc = user.dc_id
+            await message.reply(
+                "**UserProfile**:\n\n"
+                f"**ID**: {user_id}\n"
+                f"**Name**: {user_name}\n"
+                f"**Username**: @{user_username}\n"
+                f"**Mention**: {user_mention}\n"
+                f"**DC**: {user_dc}")
+            await msg.delete()         
+        except Exception as e:
+           await msg.edit(e)
+ 
 @Nandha.on_message(filters.command("id",config.CMDS))
 async def ids(_, message):
       reply = message.reply_to_message
