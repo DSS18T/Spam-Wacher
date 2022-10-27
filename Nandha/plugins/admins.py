@@ -248,4 +248,5 @@ __HELP__ = """
 - `/demote`: demote a admin to member.
 - `/setgpic`: set group profile photo.
 - `/setgtitle`: set group title.
+- `/setgdesc`: set group description.
 """
