@@ -26,13 +26,13 @@ async def info(_, message):
             user_username = user.username
             user_dc = user.dc_id
             user_photo = await Nandha.download_media(user.photo.big_file_id)
-            await message.reply(
+            await message.reply_photo(photo,caption=
                 "**UserProfile**:\n\n"
                 f"**ID**: {user_id}\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: {user_mention}\n"
-                f"**DC**: {user_dc}")
+                f"**User DC**: {user_dc}")
             await msg.delete()         
         except Exception as e:
            await msg.edit(e)
