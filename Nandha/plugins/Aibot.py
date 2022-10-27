@@ -101,13 +101,13 @@ async def chatbot(_, message):
                    await message.reply(f"{str(e)}")
 
 
-__MODULE__ = "chatBot"
+__MODULE__ = "ChatBot"
 
 __HELP__ = """
-AI that can connect you with group 
-and if you feel alone don't waste your time just 
-add your group spamwatcher and do like this:
+chatbot we calls that as a (AI)
+you can speak with bot or ask to ask somthing 
+example to add chatbot on your group:
 
-/chabot: send this to your group then click enable
-button and start a conversation with bot.
+`/chatbot`: this well shows you enable button
+and on that only admins can enable!
 """
