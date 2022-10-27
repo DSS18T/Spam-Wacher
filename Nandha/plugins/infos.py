@@ -11,9 +11,11 @@ PeerIdInvalid,UsernameInvalid )
 async def info(_, message):
      reply = message.reply_to_message
      if reply:
-         user_id = message.from_user.id
+          user_id = reply.from_user.id
      elif not reply and len(message.command) == 2:
-         user_id = message.text.split()[1]
+          user_id = message.text.split()[1]
+     elif not reply and len(message.command) == 1:
+          user_id = message.from_user.id
      else:
          return await message.reply("`Wrong formatting method read help menu!`")
      if message.chat.type == enums.ChatType.PRIVATE:
