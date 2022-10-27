@@ -25,7 +25,7 @@ async def encodes(_, message):
            await Nandha.send_message(chat_id, text=decode(data), reply_to_message_id=message.id)
 
 
-__MODULE__ = "(En/De) Codes"
+__MODULE__ = "Encodes"
 
 
 
