@@ -26,7 +26,7 @@ async def chat_description(_, message):
          if len(desc) >250:
                return await message.reply("description is to much text please remove some wards and try again!")
          else:
-             await await Nandha.set_chat_description(chat_id, description=desc)
+             await Nandha.set_chat_description(chat_id, description=desc)
     
 
 @Nandha.on_message(filters.command("del",config.CMDS))
