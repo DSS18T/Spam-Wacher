@@ -10,7 +10,7 @@ from datetime import datetime as time
 
 
 
-@Nandha.on_message(filters.command(["setgdesc","setgdesc"],config.CMDS))
+@Nandha.on_message(filters.command(["setgdes","setgdesc"],config.CMDS))
 async def chat_description(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
@@ -26,8 +26,11 @@ async def chat_description(_, message):
          if len(desc) >250:
                return await message.reply("description is to much text please remove some wards and try again!")
          else:
-             await Nandha.set_chat_description(chat_id, description=desc)
-    
+             try:
+                await Nandha.set_chat_description(chat_id, description=desc)
+                await message.reply("Successfully Description Added!")
+             except Exception as e:
+                await message.reply(e)
 
 @Nandha.on_message(filters.command("del",config.CMDS))
 async def delete(_, message):
