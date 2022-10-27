@@ -27,7 +27,7 @@ def tomorrow():
      tomorrow = str(day)+"/"+month+"/"+year
      return tomorrow
 
-@Nandha.on_message(filters.command("couples",config.CMDS))
+@Nandha.on_message(filters.command(["couples","shipping"],config.CMDS))
 async def couples(_, message):
      chat_id = message.chat.id
      if message.chat.type == enums.ChatType.PRIVATE:
@@ -51,4 +51,14 @@ async def couples(_, message):
              x = await check_couple(chat_id,today(),men,women)
              await message.reply(x)
              
-               
+__MODULE__ = "Couples"
+
+__HELP__ = """
+**couples**:
+the bot we'll get randomly users from a
+group and match them as `[man/woman]`
+next day we'll change new couples.
+
+**for example**:
+`/couples:` do in your group and you see the magic!
+"""               
