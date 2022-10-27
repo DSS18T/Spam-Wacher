@@ -15,7 +15,9 @@ async def setrules(_, message):
    chat_id = message.chat.id
    user_id = message.from_user.id
    reply = message.reply_to_message
-   if (await is_admin(chat_id,user_id)) == False:
+   if message.chat.type == enums.ChatType.PRIVATE:
+        return message.reply("try on groups not in dms",qoute=True)
+   elif (await is_admin(chat_id,user_id)) == False:
         return await message.reply("`Admins Only!`")
    else:
         if reply and (reply.text or reply.caption):
@@ -35,18 +37,22 @@ async def setrules(_, message):
 @Nandha.on_message(filters.command("rules",config.CMDS))
 async def rules(_, message):
     chat_id = int(message.chat.id)
-    if not chat_id in rules_chat():
+    if message.chat.type == enums.ChatType.PRIVATE:
+        return message.reply("try on groups not in dms",qoute=True)
+    elif not chat_id in rules_chat():
         return await message.reply("`this group don't haven't any rules!`")
     else:
         x = get_rules(chat_id)
         await message.reply(f"**Here The Group Rules**:-\n• **{message.chat.title}**\n\n• **Rules:-**\n{x}",parse_mode=enums.ParseMode.DEFAULT)  
             
-@Nandha.on_message(filters.command("removerules",config.CMDS))
+@Nandha.on_message(filters.command(["removerules","clearrules"],config.CMDS))
 async def remove(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
-     if (await is_admin(chat_id,user_id)) == False:
-          return await message.reply("`Admins only!`")
+     if message.chat.type == enums.ChatType.PRIVATE:
+         return message.reply("try on groups not in dms",qoute=True)
+     elif (await is_admin(chat_id,user_id)) == False:
+           return await message.reply("`Admins only!`")
      else:
          if not chat_id in rules_chat():
               return await message.reply("`This Chat Don't haven't Any Rules!`")
