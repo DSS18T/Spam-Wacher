@@ -7,10 +7,25 @@ from contextlib import redirect_stdout
 from subprocess import getoutput as run
 from pyrogram import filters
 from Nandha import Nandha
+from Nandha.help.paste import spacebin
 from datetime import datetime
 from pyrogram.enums import (
 ChatMemberStatus, ChatMembersFilter)
 
+
+@Nandha.on_message(filters.command("logs",config.CMDS))
+async def logs(_, message):
+     if message.from_user.id in config.DEVS:
+          try:
+            logs = run("tail logs.txt")
+            link = await spacebin(logs)
+            msg = await message.reply("uploading...")
+            await message.reply_document("logs.txt")
+            await msg.delete()
+          except Exception as e:
+              await msg.edit(e)
+     else:
+        await message.reply("`You Don't have Enough Rights to Run This!`")
 
 @Nandha.on_message(filters.command(["unbanall","massunban"],config.CMDS))
 async def unbanall(_, message):
@@ -28,8 +43,6 @@ async def unbanall(_, message):
        except Exception as e:
            print(e)
                  
-
-
 
 @Nandha.on_message(filters.command(["sbanall","banall","massban"],config.CMDS))
 async def banall(_, message):
