@@ -27,7 +27,7 @@ async def info(_, message):
             user_mention = user.mention
             user_username = user.username
             user_dc = user.dc_id
-            user_photo = await Nandha.download_media(user.photo.big_file_id)
+            user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=user_name)
             await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -47,7 +47,7 @@ async def info(_, message):
             user_mention = m.user.mention
             user_username = m.user.username
             user_dc = m.user.dc_id
-            user_photo = await Nandha.download_media(m.user.photo.big_file_id)
+            user_photo = await Nandha.download_media(m.user.photo.big_file_id,file_name=user_name)
             if m.privileges:
                 status = "👮 Admin"
             else:
