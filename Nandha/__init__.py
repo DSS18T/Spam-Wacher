@@ -3,6 +3,7 @@ import logging
 from pymongo import MongoClient 
 from pyrogram import Client
 from aiohttp import ClientSession
+from pyrogram.enums import 
 
 MOD_LOAD = []
 MOD_NOLOAD = []
@@ -29,7 +30,8 @@ Nandha = Client("Nandha",
 api_id=APP_ID, 
 api_hash=APP_HASH,
 bot_token=TOKEN,
-plugins=plugins)
+plugins=plugins,
+parse_mode==ParseMode.DEFAULT)
 
 
 
