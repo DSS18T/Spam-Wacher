@@ -46,6 +46,7 @@ async def image(_, message):
                InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id) 
         await msg.delete()
         is_downloading = False
+        os.system("rm -rf store")
         return
     except Exception as e:
          await msg.edit(e)
