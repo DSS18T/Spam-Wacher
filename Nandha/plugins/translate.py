@@ -39,7 +39,7 @@ async def translate(_, message) -> None:
     await message.reply_text(reply)
 
 
-__MODULE__ = "Trans"
+__MODULE__ = "Translate"
 
 __HELP__ = """
 **translate** is change something written or spoken from one language to another.
