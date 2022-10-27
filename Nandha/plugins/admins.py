@@ -211,3 +211,18 @@ async def demoting(_, message):
                        await message.reply(f"**Successfully Demoted!**!") 
                    except Exception as e:
                       return await message.reply(e)
+
+
+__MODULE__ = "Admin"
+
+__HELP__ = """
+**admins only**:
+
+- `/admins`: to know group admins.
+- `/purge`: reply to message and bot delete your msg to reply message and also instead all msgs. 
+- `/del`: delete a message.
+- `/promote`: promote a member to admin.
+- `/demote`: demote a admin to member.
+- `/setgpic`: set group profile photo.
+- `/setgtitle`: set group title.
+"""
