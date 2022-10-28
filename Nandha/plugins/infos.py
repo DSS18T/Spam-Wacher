@@ -20,7 +20,7 @@ async def info(_, message):
          return await message.reply("`Wrong formatting method read help menu!`")
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
-            msg = await message.reply("**dealings**.")
+            msg = await message.reply("**Getting Results.**.")
             user = await Nandha.get_users(user_id)
             user_id = user.id
             user_name = user.first_name
@@ -40,7 +40,7 @@ async def info(_, message):
            await msg.edit(e)
      else:
         try:
-            msg = await message.reply("**dealing**.")
+            msg = await message.reply("**Getting Results.**.")
             m = await message.chat.get_member(user_id)
             user_id = m.user.id
             user_name = m.user.first_name
