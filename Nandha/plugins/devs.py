@@ -21,14 +21,14 @@ async def stats(_, message):
      user_id = message.from_user.id
      if not user_id in config.DEVS:
          return await message.reply("`You Don't Have Enough Rights to Do This!`")
-     else: couples_chats = len(await couples_chats())
-     rules_chats = len(rules_chats())
-     chatbot_chats = len(chatbot_chats())
+     else: couples = len(await couples_chats())
+     rules = len(rules_chats())
+     chatbots = len(chatbot_chats())
      stats = (
          "**Stats Info:**\n"
-         f"**Rules Chats**: `{rules_chats}`\n"
-         f"**Couples chats**: `{couples_chats}`\n"
-         f"**Chatbot Chats**: `{chatbot_chats}`\n")
+         f"**Rules Chats**: `{rules}`\n"
+         f"**Couples chats**: `{couples}`\n"
+         f"**Chatbot Chats**: `{chatbots}`\n")
      await message.reply(stats)
      
 
