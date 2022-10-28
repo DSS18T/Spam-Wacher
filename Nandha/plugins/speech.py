@@ -18,7 +18,7 @@ async def text_to_speech(_, message):
      elif not reply and len(message.command) >1:
           audio = message.text.split(":")[1]
           lang_code = message.text.split()[1].replace(":","")
-     else: return await message.reply("Wrong Method!")
+     else: return await message.reply("`Wrong Method!`")
      msg = await message.reply("processing...")
      try:
          response = requests.get(api_url + "?key=" + api_key + f"&hl={lang_code}&c=MP3&src=" + audio)
@@ -36,3 +36,41 @@ async def text_to_speech(_, message):
          os.remove(thumb)
      except Exception as e:
        await msg.edit(e)
+
+__MODULE__ = "Tts"
+
+__HELP__ = """
+
+**Text to speech**:
+
+following languages:
+ar-eg Arabic (Egypt)
+ar-sa Arabic (Saudi Arabia)
+bg-bg  Bulgarian
+ca-es Catalan
+zh-cn Chinese (Hong Kong)
+zh-tw Chinese (Taiwan)
+hr-hr Croatian
+cs-cz Czech
+da-dk Danish
+nl-be Dutch (Belgium)
+nl-nl Dutch (Netherlands)
+en-au English (Australia)
+en-ca English (Canada)
+en-gb English (Great Britain)
+en-in English (India)
+en-ie English (Ireland)
+en-us English (United States)
+fi-fi Finnish
+hi-in hu-hu
+id-id Indonesian
+ja-jp Japanese
+ko-kr Korean
+ru-ru Russian
+es-mx Spanish (Mexico)
+ta-in Tamil
+tr-tr Turkish
+vi-vn Vietnamese
+ro-ro Romanian
+pt-pt Portuguese (Portugal)
+"""
