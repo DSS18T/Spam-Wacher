@@ -25,7 +25,7 @@ async def stats(_, message):
      rules_chats = len(rules_chats())
      chatbot_chats = len(chatbot_chats())
      stats = (
-         "**Stats Info**\n:
+         "**Stats Info:**\n"
          f"**Rules Chats**: `{rules_chats}`\n"
          f"**Couples chats**: `{couples_chats}`\n"
          f"**Chatbot Chats**: `{chatbot_chats}`\n")
