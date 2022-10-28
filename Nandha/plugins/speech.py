@@ -15,13 +15,13 @@ async def text_to_speech(_, message):
      if reply:
          audio = reply.text
          lang_code = message.text.split()[1]
-     elif not reply:
+     elif not reply and len(message.command) == 2:
           audio = message.text.split(":")[1]
           lang_code = message.text.split()[1].replace(":","")
      else: await message.reply("Wrong Method!")
      msg = await message.reply("processing...")
      try:
-         response = requests.get(api_url + "?key=" + api_key + f"&hl={lang_code}&c=MP3&src=" + audiotext)
+         response = requests.get(api_url + "?key=" + api_key + f"&hl={lang_code}&c=MP3&src=" + audio)
          with open(f"{audio}.mp3", "wb") as audio_file:
               audio_file.write(response.content)
          thumb = wget.download("https://c.top4top.io/s_24730ldbx1.jpg")
