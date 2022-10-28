@@ -17,17 +17,17 @@ async def info(_, message):
      elif not reply and len(message.command) == 1:
           user_id = message.from_user.id
      else:
-         return await message.reply("`Wrong formatting method read help menu!`")
+         return await message.reply("`Wrong formatting Method Read help Menu!`")
+     msg = await message.reply("**Getting Results.**.")
+     user = await Nandha.get_users(user_id)
+     user_id = user.id
+     user_name = user.first_name
+     user_mention = user.mention
+     user_username = user.username
+     user_dc = user.dc_id
+     user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
-            msg = await message.reply("**Getting Results.**.")
-            user = await Nandha.get_users(user_id)
-            user_id = user.id
-            user_name = user.first_name
-            user_mention = user.mention
-            user_username = user.username
-            user_dc = user.dc_id
-            user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
             await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -40,18 +40,14 @@ async def info(_, message):
            await msg.edit(e)
      else:
         try:
-            msg = await message.reply("**Getting Results.**.")
             m = await message.chat.get_member(user_id)
-            user_id = m.user.id
-            user_name = m.user.first_name
-            user_mention = m.user.mention
-            user_username = m.user.username
-            user_dc = m.user.dc_id
-            user_photo = await Nandha.download_media(m.user.photo.big_file_id,file_name=f"{user_name}.jpg")
             if m.privileges:
                 status = "👮 Admin"
             else:
                 status = "🧑‍🤝‍🧑 Member"
+        except UserNotParticipant:
+                status = "🙉 Not Member"
+         try:        
             await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -61,8 +57,8 @@ async def info(_, message):
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}")
             await msg.delete()
-        except Exception as e:
-            await msg.edit(e)
+         except Exception as e:
+           await msg.edit(e)
 
 
 @Nandha.on_message(filters.command("id",config.CMDS))
