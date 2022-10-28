@@ -8,10 +8,29 @@ from subprocess import getoutput as run
 from pyrogram import filters
 from Nandha import Nandha
 from Nandha.help.paste import spacebin
+from Nandha.help.couplesdb import get_chats as couples_chats
+from Nandha.help.rulesdb import rules_chat as rules_chats
+from Nandha.help.chatbotdb import get_chat ad chatbot_chats
 from datetime import datetime
 from pyrogram.enums import (
 ChatMemberStatus, ChatMembersFilter)
 
+
+@Nandha.on_message(filters.command("stats",config.CMDS))
+async def stats(_, message):
+     user_id = message.from_user.id
+     if not user_id in config.DEVS:
+         return await message.reply("`You Don't Have Enough Rights to Do This!`")
+     else: couples_chats = len(await couples_chats())
+     rules_chats = len(rules_chats())
+     chatbot_chats = len(chatbot_chats())
+     stats = (
+         "**Stats Info**\n:
+         f"**Rules Chats**: `{rules_chats}`\n"
+         f"**Couples chats**: `{couples_chats}`\n"
+         f"**Chatbot Chats**: `{chatbot_chats}`\n")
+     await message.reply(stats)
+     
 
 @Nandha.on_message(filters.command("logs",config.CMDS))
 async def logs(_, message):
