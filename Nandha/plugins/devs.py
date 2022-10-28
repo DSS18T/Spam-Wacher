@@ -10,7 +10,7 @@ from Nandha import Nandha
 from Nandha.help.paste import spacebin
 from Nandha.help.couplesdb import get_chats as couples_chats
 from Nandha.help.rulesdb import rules_chat as rules_chats
-from Nandha.help.chatbotdb import get_chat ad chatbot_chats
+from Nandha.help.chatbotdb import get_chat as chatbot_chats
 from datetime import datetime
 from pyrogram.enums import (
 ChatMemberStatus, ChatMembersFilter)
