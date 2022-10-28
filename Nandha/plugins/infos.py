@@ -42,11 +42,11 @@ async def info(_, message):
         try:
             m = await message.chat.get_member(user_id)
             if m.privileges:
-                status = "👮 Admin"
+                status = "Admin"
             else:
-                status = "🧑‍🤝‍🧑 Member"
+                status = "Member"
         except UserNotParticipant:
-                status = "🙉 Not Member"
+                status = "Not Member"
         try:        
             await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
