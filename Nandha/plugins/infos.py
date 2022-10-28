@@ -19,13 +19,16 @@ async def info(_, message):
      else:
          return await message.reply("`Wrong formatting Method Read help Menu!`")
      msg = await message.reply("**Getting Results.**.")
-     user = await Nandha.get_users(user_id)
-     user_id = user.id
-     user_name = user.first_name
-     user_mention = user.mention
-     user_username = user.username
-     user_dc = user.dc_id
-     user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
+     try:
+        user = await Nandha.get_users(user_id)
+        user_id = user.id
+        user_name = user.first_name
+        user_mention = user.mention
+        user_username = user.username
+        user_dc = user.dc_id
+        user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
+     except Exception as e:
+          await msg.edit(e)
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
             await message.reply_document(user_photo,caption=
