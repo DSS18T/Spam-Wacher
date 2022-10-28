@@ -15,7 +15,7 @@ async def text_to_speech(_, message):
      if reply:
          audio = reply.text
          lang_code = message.text.split()[1]
-     elif not reply and len(message.command) == 2:
+     elif not reply and len(message.command) >1:
           audio = message.text.split(":")[1]
           lang_code = message.text.split()[1].replace(":","")
      else: return await message.reply("Wrong Method!")
