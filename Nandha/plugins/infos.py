@@ -33,7 +33,7 @@ async def info(_, message):
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
-                f"**Mention**: {user_mention}\n"
+                f"**Mention**: [user_name](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`")
             await msg.delete()           
         except Exception as e:
