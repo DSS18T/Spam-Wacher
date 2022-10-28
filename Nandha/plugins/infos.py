@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram import enums
 from Nandha import Nandha
 from pyrogram.errors import (
-PeerIdInvalid,UsernameInvalid )
+PeerIdInvalid,UsernameInvalid, UserNotParticipant)
 
 
 @Nandha.on_message(filters.command("info",config.CMDS))
