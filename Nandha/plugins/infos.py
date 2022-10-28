@@ -47,8 +47,8 @@ async def info(_, message):
                 status = "🧑‍🤝‍🧑 Member"
         except UserNotParticipant:
                 status = "🙉 Not Member"
-         try:        
-            await message.reply_document(user_photo,caption=
+            try:        
+               await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
@@ -56,8 +56,8 @@ async def info(_, message):
                 f"**Mention**: {user_mention}\n"
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}")
-            await msg.delete()
-         except Exception as e:
+               await msg.delete()
+            except Exception as e:
            await msg.edit(e)
 
 
