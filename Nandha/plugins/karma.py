@@ -30,7 +30,7 @@ async def unKarma(_, message):
      user_id = reply.from_user.id
      if message.from_user.id == user_id:
           return 
-     elif not message.from_user.id in get_trust_users():
+     elif not message.from_user.id in get_karma_users():
           return
      else: remove_karma(user_id)
      trust = get_karma(user_id)
