@@ -47,5 +47,5 @@ async def karma(_, message):
       else: user_id = message.from_user.id
       mention = message.from_user.mention
       karma = get_karma(user_id)
-      await message.reply("**{}'s Karma**: `{}`".format(mention, karma))
+      await message.reply("**{}'s Karma**: `[``{}``]`".format(mention, karma))
 
