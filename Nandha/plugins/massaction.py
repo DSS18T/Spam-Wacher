@@ -34,8 +34,11 @@ async def unbanall_btn(_, query):
              msg = await query.message.edit("`processing....`")
              unbanned = 0
              for user_id in USERS:
-                  await Nandha.unban_chat_member(chat_id,user_id)
-                  s_unban += +1
+                  try:
+                    await Nandha.unban_chat_member(chat_id,user_id)
+                    s_unban +=1
+                  except:
+                       pass
              await msg.edit("Successfully UNBanned: {}".format(unbanned))         
          else: return await query.answer("You Can't Access This!", show_alert=True)
                  
