@@ -20,7 +20,7 @@ def get_trust_users():
 def get_trust(user_id: int):
     if is_trust_user == True:
         x = db.find_one({"_id": user_id})
-        trust = int(x["_id"]["trust"])
+        trust = x["_id"]["trust"]
         return trust
     else: return 0
 
