@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram import enums
 from Nandha.help.trustdb import *
 
-TRUST = "+|trust|thanks|pro"
+TRUST = "+|trust|thanks|pro|"
 
 @Nandha.on_message(filters.regex(TRUST))
 async def trust(_, message):
