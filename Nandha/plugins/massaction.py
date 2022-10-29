@@ -37,7 +37,7 @@ async def unbanall_btn(_, query):
                   await query.message.chat.unban_member(user_id)
                   s_unban += +1
              await msg.edit("Successfully UNBanned: {}".format(unbanned))         
-         else:  await query.answer("You Can't Access This!", show_alert=True)
+         else: return await query.answer("You Can't Access This!", show_alert=True)
                  
 
 
