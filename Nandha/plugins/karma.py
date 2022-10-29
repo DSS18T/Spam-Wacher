@@ -1,10 +1,11 @@
+import config
 
 from Nandha import Nandha
 from pyrogram import filters
 from pyrogram import enums
 from Nandha.help.karmadb import *
 
-KARMA = "thx|thank|pro|xd|sigma|wah"
+KARMA = "thx|thank|pro|xd|sigma|wah|good|cool"
 
 @Nandha.on_message(filters.regex(KARMA))
 async def karma(_, message):
@@ -21,7 +22,7 @@ async def karma(_, message):
         f"**Karma increased**: `{karma}`")
 
 
-KARMA = "bot|fuck|bish|wtf|kid"
+KARMA = "noob|bot|fuck|bish|wtf|kid|bad|sad"
 
 @Nandha.on_message(filters.regex(KARMA))
 async def unkarma(_, message):
@@ -36,3 +37,9 @@ async def unkarma(_, message):
      await reply.reply(
         f"**Karma for {reply.from_user.first_name}**:\n\n"
         f"**Karma Decreased**: `{karma}`")
+
+@Nandha.on_message(filters.command("karma",config.CMDS))
+async def karma(_, message):
+      karma = get_karma(message.from_user.id)
+      await message.reply("{}'s Karma {}".format(message.from_user.mention, karma))
+
