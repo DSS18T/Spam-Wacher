@@ -158,7 +158,7 @@ async def setchattitle(_, message):
 
 
 
-@Nandha.on_message(filters.command(["promote","fpromote"],config.CMDS))
+@Nandha.on_message(filters.command(["promote","fpromote","mpromote"],config.CMDS))
 async def promoting(_, message):
        reply = message.reply_to_message
        chat_id = message.chat.id
@@ -193,6 +193,13 @@ async def promoting(_, message):
                            await message.chat.promote_member(user_id=user_id,privileges=bot.privileges)
                            await Nandha.set_administrator_title(chat_id, user_id, title=admin_title)
                            await message.reply(f"**Successfully Full Promoted**!\n**Following Admin Title**:\n`{admin_title}`")
+                       elif message.text[1] == "m":
+                           await message.chat.promote_member(user_id=user_id,privileges=ChatPrivileges(
+               can_invite_users=True,
+               can_pin_messages=True,
+               can_manage_video_chats=True))
+                           await Nandha.set_administrator_title(chat_id, user_id, title=admin_title)
+                           await message.reply(f"**Successfully Medium Promoted**!\n**Following Admin Title**:\n`{admin_title}`")
                        else:  
                            await message.chat.promote_member(user_id=user_id,privileges=ChatPrivileges(
                can_invite_users=True,
