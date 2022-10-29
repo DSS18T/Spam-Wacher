@@ -16,6 +16,6 @@ async def trust(_, message):
           return 
      else: add_trust(user_id)
      trust = get_trust(user_id)
-     await reply.message.reply(
+     await reply.reply(
         "**TRUST for {reply.from_user.first_name}**:\n\n"
         f"**increased**: `{trust}`")
