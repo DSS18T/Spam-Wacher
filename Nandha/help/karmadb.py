@@ -33,7 +33,7 @@ def add_karma(user_id: int):
           db.insert_one(x)
      else:
         x = db.find_one({"_id": user_id})
-        trust = int(x["karma"])+1
+        karma = int(x["karma"])+1
         db.update_one({"_id": user_id},{"$set":{"karma":karma}})
      
        
