@@ -19,7 +19,7 @@ def get_trust_users():
 
 def get_trust(user_id: int):
     if is_trust_user == True:
-        x = db.find_one({"user_id": user_id})
+        x = db.find_one({"_id": user_id})
         trust = int(x["_id"]["trust"])
         return trust
     else: return 0
@@ -27,8 +27,8 @@ def get_trust(user_id: int):
 
 def add_trust(user_id: int):
      if is_trust_user == True:
-          x = db.find_one({"user_id": user_id})
-          trust = int(x["_id"]["trust"]) +1
-          db.update_one({"user_id": user_id}, {"$set":{"trust":trust}})
+          x = db.find_one({"_id": user_id})
+          trust = int(x["_id"]["trust"])+1
+          db.update_one({"_id": user_id},{"$set":{"trust":trust}})
      else:  db.insert_one({"_id": user_id,"user_id": user_id,"trust": 1})
        
