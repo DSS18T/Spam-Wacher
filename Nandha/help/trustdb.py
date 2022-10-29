@@ -20,6 +20,12 @@ def get_trust(user_id: int):
         return trust
     return None
 
+def remove_trust(user_id: int):
+     if not user_id in get_trust_users():
+          return
+     x = db.find_one({"_id": user_id})
+     trust = int(x["trust"])-1
+     db.update_one({"_id": user_id},{"$set":{"trust":trust}})
 
 def add_trust(user_id: int):
      if not user_id in get_trust_users():
