@@ -10,7 +10,6 @@ def get_trust_users():
     TRUST_USERS = []
     for x in db.find():
        TRUST_USERS.append(x["_id"])
-       return TRUST_USERS
     return TRUST_USERS
      
 
