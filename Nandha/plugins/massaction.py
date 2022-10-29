@@ -29,7 +29,6 @@ async def unbanall_btn(_, query):
       user_id = query.from_user.id
       chat_id = query.message.chat.id
       async for m in Nandha.get_chat_members(chat_id):
-      try:
          if m.status == enums.ChatMemberStatus.OWNER or user_id in config.DEVS:
              USERS = query.data.split(":")[1]
              msg = await query.message.edit("`processing....`")
@@ -37,12 +36,9 @@ async def unbanall_btn(_, query):
              for user_id in USERS:
                   await query.message.chat.unban_member(user_id)
                   s_unban += +1
-             await msg.edit("Successfully UNBanned: {}".format(unbanned))
-           
+             await msg.edit("Successfully UNBanned: {}".format(unbanned))         
          else:  await query.answer("You Can't Access This!", show_alert=True)
                  
-      except Exception as e:
-         print(e)
 
 
 @Nandha.on_message(filters.command(["sbanall","banall","massban"],config.CMDS))
