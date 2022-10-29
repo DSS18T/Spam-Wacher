@@ -22,7 +22,7 @@ async def karma(_, message):
 
 UNKARMA = "wtf|kid"
 
-@Nandha.on_message(filters.regex(UNKARMA))
+@Nandha.on_message(filters.regex("kid"))
 async def unKarma(_, message):
      reply = message.reply_to_message
      if not reply:
