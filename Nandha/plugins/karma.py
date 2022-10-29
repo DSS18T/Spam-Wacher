@@ -33,7 +33,7 @@ async def unKarma(_, message):
      elif not message.from_user.id in get_karma_users():
           return
      else: remove_karma(user_id)
-     trust = get_karma(user_id)
+     karma = get_karma(user_id)
      await reply.reply(
         f"**Karma for {reply.from_user.first_name}**:\n\n"
-        f"**Karma Decreased**: `{trust}`")
+        f"**Karma Decreased**: `{karma}`")
