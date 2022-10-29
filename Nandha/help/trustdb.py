@@ -9,9 +9,9 @@ db = mongodb.TRUST
 def get_trust_users():
     TRUST_USERS = []
     for x in db.find():
-       TRUST_USERS.append(x["_id"]["user_id"])
+       TRUST_USERS.append(x["_id"])
        return TRUST_USERS
-    return TRUST_USERS
+    return []
      
 
 def get_trust(user_id: int):
