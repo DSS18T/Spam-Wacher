@@ -11,7 +11,7 @@ from Nandha.help.paste import spacebin
 from Nandha.help.couplesdb import get_chats as couples_chats
 from Nandha.help.rulesdb import rules_chat as rules_chats
 from Nandha.help.chatbotdb import get_chat as chatbot_chats
-from Nandha.help.trustdb import get_trust_users
+from Nandha.help.karmadb import get_karma_users
 from datetime import datetime
 from pyrogram.enums import (
 ChatMemberStatus, ChatMembersFilter)
@@ -25,13 +25,13 @@ async def stats(_, message):
      else: couples = len(await couples_chats())
      rules = len(rules_chats())
      chatbots = len(chatbot_chats())
-     trusts = len(get_trust_users())
+     karmas = len(get_karma_users())
      stats = (
          "**Stats Info:**\n"
          f"**Rules Chats**: `{rules}`\n"
          f"**Couples chats**: `{couples}`\n"
          f"**Chatbot Chats**: `{chatbots}`\n"
-         f"**Trust Users**: `{trusts}`\n")
+         f"**Karma Users**: `{karmas}`\n")
      await message.reply(stats)
      
 
