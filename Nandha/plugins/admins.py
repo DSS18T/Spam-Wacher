@@ -15,7 +15,9 @@ async def chat_description(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
     reply = message.reply_to_message
-    if (await is_admin(chat_id,user_id)) == False:
+    if message.chat.type == enums.ChatType.PRIVATE:
+          return await message.reply("`This Command work Only In Groups!`")
+    elif (await is_admin(chat_id,user_id)) == False:
          return await message.reply_text("`Only Admins!`")
     elif (await can_change_info(chat_id,user_id)) == False:
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
@@ -98,6 +100,8 @@ async def purge(_, message):
 async def admins(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
+    if message.chat.type == enums.ChatType.PRIVATE:
+         return await message.reply("`This Command work Only In Groups!`")
     admin = "**Admins in this Group**!\n\n"
     async for admins in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
            admin += f"• **{admins.user.first_name}** - (`{admins.user.id}`)\n"
@@ -110,9 +114,11 @@ async def setchatphoto(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
      reply = message.reply_to_message
-     if (await is_admin(chat_id,user_id)) == False:
+     if message.chat.type == enums.ChatType.PRIVATE:
+         return await message.reply("`This Command work Only In Groups!`")
+     elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
             return await message.reply_text("`Only Admins!`")
-     elif (await can_change_info(chat_id,user_id)) == False:
+     elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEV:
             return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
          if reply and not reply.media:
@@ -137,9 +143,11 @@ async def setchattitle(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
      reply = message.reply_to_message
-     if (await is_admin(chat_id,user_id)) == False:
+     if message.chat.type == enums.ChatType.PRIVATE:
+         return await message.reply("`This Command work Only In Groups!`")
+     elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
          return await message.reply_text("`Only Admins!`")
-     elif (await can_change_info(chat_id,user_id)) == False:
+     elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEV:
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
          if reply:
@@ -163,9 +171,11 @@ async def promoting(_, message):
        reply = message.reply_to_message
        chat_id = message.chat.id
        user_id = message.from_user.id
-       if (await is_admin(chat_id,user_id)) == False:
+       if message.chat.type == enums.ChatType.PRIVATE:
+         return await message.reply("`This Command work Only In Groups!`")
+       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
             return await message.reply("`Admins Only!`")
-       elif (await can_promote_members(chat_id,user_id)) == False:
+       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEV:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
@@ -219,9 +229,11 @@ async def demoting(_, message):
        reply = message.reply_to_message
        chat_id = message.chat.id
        user_id = message.from_user.id
-       if (await is_admin(chat_id,user_id)) == False:
+       if message.chat.type == enums.ChatType.PRIVATE:
+         return await message.reply("`This Command work Only In Groups!`")
+       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
             return await message.reply("`Admins Only!`")
-       elif (await can_promote_members(chat_id,user_id)) == False:
+       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEV:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
