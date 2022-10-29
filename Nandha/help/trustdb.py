@@ -3,10 +3,7 @@ from Nandha import mongodb
 db = mongodb.TRUST
 
 
-def is_trust_user(user_id: int):
-    if user_id in get_trust_users():
-       return True
-    return False
+
 
 
 def get_trust_users():
@@ -18,7 +15,7 @@ def get_trust_users():
      
 
 def get_trust(user_id: int):
-    if is_trust_user == True:
+    if user_id in get_trust_users():
         x = db.find_one({"_id": user_id})
         trust = x["trust"]
         return trust
@@ -26,7 +23,7 @@ def get_trust(user_id: int):
 
 
 def add_trust(user_id: int):
-     if is_trust_user == True:
+     if user_id in get_trust_users():
           x = db.find_one({"_id": user_id})
           trust = int(x["trust"])+1
           db.update_one({"_id": user_id},{"$set":{"trust":trust}})
