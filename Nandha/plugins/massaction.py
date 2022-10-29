@@ -16,11 +16,13 @@ async def unbanall(_, message):
           return await message.reply("`This Command Only work in Groups!`")
      else:
        try:
+          BANNED = []
           unban = 0
           async for m in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+                 BANNED.append(m.user.id)
                  await Nandha.unban_chat_member(chat_id,m.user.id)
                  unban +=1
-          await message.reply("**Found Banned Members**: `{}`\n**Unbanned Successfully**: `{}`".format(len(m.user.id), unban))
+          await message.reply("**Found Banned Members**: `{}`\n**Unbanned Successfully**: `{}`".format(len(BANNED), unban))
        except Exception as e:
            print(e)
 
