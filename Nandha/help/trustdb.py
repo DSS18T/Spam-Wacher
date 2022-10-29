@@ -27,5 +27,7 @@ def add_trust(user_id: int):
           x = db.find_one({"_id": user_id})
           trust = int(x["trust"])+1
           db.update_one({"_id": user_id},{"$set":{"trust":trust}})
-     else:  db.insert_one({"_id": user_id,"user_id": user_id,"trust": "1"})
+     else:  
+        x = {"_id": user_id,"user_id": user_id,"trust": 1}
+        db.insert_one(x)
        
