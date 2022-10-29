@@ -19,7 +19,7 @@ async def unbanall(_, message):
           USERS = []
           async for m in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
                  USERS.append(m.user.id)
-          await message.reply(f"**Found Banned Members**: `{}`\n**Do you want to process this Confirm your a owner**!".format(len(USERS)),
+          await message.reply("**Found Banned Members**: `{}`\n**Do you want to Process this Confirm your a Owner**!".format(len(USERS)),
               reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Confirm ✅",callback_data=f"unbanall:{USERS}")]]))
        except Exception as e:
            print(e)
