@@ -20,7 +20,7 @@ async def karma(_, message):
         f"**Karma for {reply.from_user.first_name}**:\n\n"
         f"**Karma increased**: `{karma}`")
 
-UNKARMA = "wtf|noob|bitch|kid|fuck"
+UNKARMA = "wtf|kid"
 
 @Nandha.on_message(filters.regex(UNKARMA))
 async def unKarma(_, message):
