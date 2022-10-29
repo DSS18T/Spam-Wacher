@@ -14,7 +14,7 @@ async def karma(_, message):
      user_id = reply.from_user.id
      if message.from_user.id == user_id:
           return 
-     else: add_karma_(user_id)
+     else: add_karma(user_id)
      karma = get_karma(user_id)
      await reply.reply(
         f"**Karma for {reply.from_user.first_name}**:\n\n"
