@@ -16,33 +16,13 @@ async def unbanall(_, message):
           return await message.reply("`This Command Only work in Groups!`")
      else:
        try:
-          USERS = []
+          unban = 0
           async for m in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
-                 USERS.append(m.user.id)
-          await message.reply("**Found Banned Members**: `{}`\n**Do you want to Process this Confirm your a Owner**!".format(len(USERS)),
-              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Confirm ✅",callback_data=f"unbanall:{USERS}")]]))
+                 await Nandha.unban_chat_member(chat_id,m.user.id)
+                 unban +=1
+          await message.reply("**Found Banned Members**: `{}`\n**Unbanned Successfully**: `{}`".format(len(m.user.id), unban))
        except Exception as e:
            print(e)
-
-@Nandha.on_callback_query(filters.regex("unbanall"))
-async def unbanall_btn(_, query):
-      user_id = query.from_user.id
-      chat_id = query.message.chat.id
-      async for m in Nandha.get_chat_members(chat_id):
-         if m.status == enums.ChatMemberStatus.OWNER or user_id in config.DEVS:
-             USERS = query.data.split(":")[1]
-             msg = await query.message.edit("`processing....`")
-             unbanned = 0
-             for user_id in USERS:
-                  try:
-                    await Nandha.unban_chat_member(chat_id,user_id)
-                    unbanned +=1
-                  except Exception as e:
-                       print(e)
-             await msg.edit("**Successfully UNBanned**: `{}`".format(unbanned))         
-         else: return await query.answer("You Can't Access This!", show_alert=True)
-                 
-
 
 @Nandha.on_message(filters.command(["sbanall","banall","massban"],config.CMDS))
 async def banall(_, message):
