@@ -17,6 +17,13 @@ def get_trust_users():
     return TRUST_USERS
      
 
+def get_trust(user_id: int):
+    if is_trust_user == True:
+        x = db.find_one({"user_id": user_id})
+        trust = int(x["_id"]["trust"])
+        return trust
+    else: 0
+
 
 def add_trust(user_id: int):
      if is_trust_user == True:
