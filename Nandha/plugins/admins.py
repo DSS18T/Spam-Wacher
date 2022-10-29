@@ -17,9 +17,9 @@ async def chat_description(_, message):
     reply = message.reply_to_message
     if message.chat.type == enums.ChatType.PRIVATE:
           return await message.reply("`This Command work Only In Groups!`")
-    elif (await is_admin(chat_id,user_id)) == False:
+    elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
          return await message.reply_text("`Only Admins!`")
-    elif (await can_change_info(chat_id,user_id)) == False:
+    elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEVS:
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
     else:
          if not reply or reply and not reply.text:
@@ -45,9 +45,9 @@ async def delete(_, message):
           await reply.delete()
           await message.delete()
     else:
-        if (await is_admin(chat_id,user_id)) == False:
+        if (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
              return await message.reply("`Admins Only!`")
-        elif (await can_delete_messages(chat_id,user_id)) == False:
+        elif (await can_delete_messages(chat_id,user_id)) == False or user_id not in config.DEVS:
              return await message.reply("`you don't have enough rights to do this!`")
         else:
             if (await is_admin(chat_id,config.BOT_ID)) == False:
@@ -73,9 +73,9 @@ async def purge(_, message):
            end = time.now()
            delete_time = (end - start).seconds / 10000
            return await message.reply(f"**Success Purged {delete_time}s!**")
-    if (await is_admin(chat_id,user_id)) == False:
+    if (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
-    elif (await can_delete_messages(chat_id,user_id)) == False:
+    elif (await can_delete_messages(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply("`You Don't have Enough Rights to Do This!`")
     else:
           if (await is_admin(chat_id,config.BOT_ID)) == False:
@@ -116,9 +116,9 @@ async def setchatphoto(_, message):
      reply = message.reply_to_message
      if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-     elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
+     elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply_text("`Only Admins!`")
-     elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEV:
+     elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
          if reply and not reply.media:
@@ -145,9 +145,9 @@ async def setchattitle(_, message):
      reply = message.reply_to_message
      if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-     elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
+     elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
          return await message.reply_text("`Only Admins!`")
-     elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEV:
+     elif (await can_change_info(chat_id,user_id)) == False or user_id not in config.DEVS:
          return await message.reply_text("`You Don't have Enough Rights to Do This!`")
      else:
          if reply:
@@ -173,9 +173,9 @@ async def promoting(_, message):
        user_id = message.from_user.id
        if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
+       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
-       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEV:
+       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
@@ -231,9 +231,9 @@ async def demoting(_, message):
        user_id = message.from_user.id
        if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEV:
+       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
-       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEV:
+       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEVS:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
