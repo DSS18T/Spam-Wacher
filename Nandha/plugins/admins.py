@@ -70,7 +70,7 @@ async def purge(_, message):
               await Nandha.delete_messages(chat_id, ids, revoke=True)
            end = time.now()
            delete_time = (end - start).seconds / 10000
-           return await message.reply("**Success Purged {delete_time}s!**")
+           return await message.reply(f"**Success Purged {delete_time}s!**")
     if (await is_admin(chat_id,user_id)) == False:
             return await message.reply("`Admins Only!`")
     elif (await can_delete_messages(chat_id,user_id)) == False:
@@ -262,6 +262,8 @@ __HELP__ = """
 - `/purge`: reply to message and bot delete your msg to reply message and also instead all msgs. 
 - `/del`: delete a message.
 - `/promote`: promote a member to admin.
+- `/mpromote`: medium promote a member to admin.
+- `/fpromote`: full promote a member to admin.
 - `/demote`: demote a admin to member.
 - `/setgpic`: set group profile photo.
 - `/setgtitle`: set group title.
