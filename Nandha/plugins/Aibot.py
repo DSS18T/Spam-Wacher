@@ -110,4 +110,6 @@ example to add chatbot on your group:
 
 `/chatbot`: this well shows you enable button
 and on that only admins can enable!
+
+Note: if you want chat with bot you mostly atfer enabled chatbot reply to bot with message text.
 """
