@@ -2,6 +2,7 @@ import config
 
 from pyrogram import filters
 from pyrogram import enums
+from pyrogram.types import *
 from Nandha.help.admin import *
 from Nandha import Nandha
 
@@ -11,18 +12,38 @@ from Nandha import Nandha
 async def unbanall(_, message):
      user_id = message.from_user.id
      chat_id = message.chat.id
-     if not user_id in config.DEVS:
-          return await message.reply("sorry you can't access!")
+     if message.chat.type == enums.ChatType.PRIVATE:
+          return await message.reply("`This Command Only work in Groups!`")
      else:
        try:
-          users = 0
+          USERS = []
           async for m in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
-                 await Nandha.unban_chat_member(chat_id,m.user.id)
-                 users += 1
-          await message.reply(f"**Successfully Unbanned**: `{users}`")
+                 USERS.append(m.user.id)
+          await message.reply(f"**Found Banned Members**: `{}`\n**Do you want to process this Confirm your a owner**!".format(len(USERS)),
+              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Confirm ✅",callback_data=f"unbanall:{USERS}")]]))
        except Exception as e:
            print(e)
+
+@Nandha.on_callback_query(filters.regex("unbanall"))
+async def unbanall_btn(_, query):
+      user_id = query.from_user.id
+      chat_id = query.message.chat.id
+      async for m in Nandha.get_chat_members(chat_id):
+      try:
+         if m.status == enums.ChatMemberStatus.OWNER or user_id in config.DEVS:
+             USERS = query.data.split(":")[1]
+             msg = await query.message.edit("`processing....`")
+             unbanned = 0
+             for user_id in USERS:
+                  await query.message.chat.unban_member(user_id)
+                  s_unban += +1
+             await msg.edit("Successfully UNBanned: {}".format(unbanned))
+           
+         else:  await query.answer("You Can't Access This!", show_alert=True)
                  
+      except Exception as e:
+         print(e)
+
 
 @Nandha.on_message(filters.command(["sbanall","banall","massban"],config.CMDS))
 async def banall(_, message):
