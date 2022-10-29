@@ -41,5 +41,5 @@ async def unkarma(_, message):
 @Nandha.on_message(filters.command("karma",config.CMDS))
 async def karma(_, message):
       karma = get_karma(message.from_user.id)
-      await message.reply("{}'s Karma {}".format(message.from_user.mention, karma))
+      await message.reply("**{}'s Karma**: `{}`".format(message.from_user.mention, karma))
 
