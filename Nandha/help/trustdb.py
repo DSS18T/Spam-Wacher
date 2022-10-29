@@ -23,10 +23,12 @@ def get_trust(user_id: int):
 
 
 def add_trust(user_id: int):
-     if user_id in get_trust_users():
-          x = db.find_one({"_id": user_id})
-          trust = int(x["trust"])+1
-          db.update_one({"_id": user_id},{"$set":{"trust":trust}})
-     x = {"_id":user_id,"trust":1}
-     db.insert_one(x)
+     if not user_id in get_trust_users():
+          x = {"_id":user_id,"trust":1}
+          db.insert_one(x)
+     else:
+        x = db.find_one({"_id": user_id})
+        trust = int(x["trust"])+1
+        db.update_one({"_id": user_id},{"$set":{"trust":trust}})
+     
        
