@@ -9,7 +9,7 @@ async def is_owner(chat_id: int, user_id: int):
         if x.status == enums.ChatMemberStatus.OWNER:
              if x.user.id == user_id:
                  return True
-             else: return Flase
+             else: return False
 
 async def is_admin(chat_id: int, user_id: int):
      admin = await Nandha.get_chat_member(chat_id, user_id)
