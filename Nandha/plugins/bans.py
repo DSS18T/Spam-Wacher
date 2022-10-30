@@ -107,6 +107,8 @@ async def unban_btn(_, query):
       try:
          if (await is_admin(chat_id, user_id)) == False:
                return await query.answer("Admins Only!", show_alert=True)
+         elif (await can_ban_members(chat_id,user_id)) == False:
+               return await query.answer("`You Don't Have Ban Rights`")
          else:
             await Nandha.unban_chat_member(chat_id, ban_id)
             await query.message.edit_media(media=InputMediaAnimation(url,caption=f"`fine they can join again now!`\nID: `{ban_id}`"))
@@ -114,6 +116,29 @@ async def unban_btn(_, query):
             msg = await query.message.reply_text(e)
             await asyncio.sleep(10)
             await msg.delete()
+
+@Nandha.on_message(filters.command("unban",config.CMDS))
+async def unban(_, message):
+     chat_id = message.chat.id
+     user_id = message.from_user.id
+     reply = message.reply_to_message
+     if (await is_admin(chat_id,user_id)) == False:
+           return await message.reply("`Admins Only`")
+     elif (await can_ban_members(chat_id,user_id)) == False:
+           return await message.reply("`You Don't Have Ban Rights!`")
+     else:
+         if reply:
+             user_id = reply.from_user.id
+         elif not reply:
+             user_id = message.text.split()[1]
+         else:  return await message.reply("`Wrong method!`")
+         if user_id == config.BOT_ID:
+            return await message.reply("How Can I UnBan My Self?")
+         else:
+          try:
+              await Nandha.unban_member(chat_id,user_id)
+              await message.reply("**Unbanned**! {}".format(f"[{user_id}](tg://user?id={user_id})))
+          except Exception as e: return await message.reply(e)
 
 
 __MODULE__ = "Bans"
@@ -132,7 +157,7 @@ example:
 example:
 `/ban id + reason`
 `/ban reply to user + reason`.
-
+`/unban`: reply to user or give id to unban!.
 `!mute`: **mute the user.**
 example:
 `/mute id + reason`
