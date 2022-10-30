@@ -20,7 +20,7 @@ def on_karma(chat_id: int):
 
 def off_karma(chat_id: int):
      if chat_id in get_karma_chats():
-         db.update_one({"chat_id": chat_id},{"$set"{"karma": "off"}})
+         db.update_one({"chat_id": chat_id},{"$set":{"karma": "off"}})
     
      
 
