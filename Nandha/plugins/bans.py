@@ -138,7 +138,8 @@ async def unban(_, message):
           try:
               await Nandha.unban_chat_member(chat_id,user_id)
               await message.reply("**Unbanned**! {}".format(f"[{user_id}](tg://user?id={user_id})))
-          except Exception as e: return await message.reply(e)
+          except Exception as e: 
+              return await message.reply(e)
 
 
 __MODULE__ = "Bans"
