@@ -85,8 +85,7 @@ async def help_button(client, query):
     )
   elif home_match:
     await query.message.edit_media(
-      media=InputMediaVideo(config.profile, caption="hi {}".format(query.from_user.mention)),
-      reply_markup=START_KEYBOARD
+      media=InputMediaVideo(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]])
     )
   elif prev_match:
     curr_page = int(prev_match.group(1))
