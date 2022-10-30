@@ -19,11 +19,8 @@ async def karma_chat(_, message):
                      on_karma(chat_id)
                      await message.reply("`Karma Successfully Enabled!`")
                   elif x == "off":
-                     if is_karma_chat(chat_id) == None:
-                         await message.reply("`Karma Not Enabled Here!`")
-                     elif is_karma_chat(chat_id) == True:
-                           off_karma(chat_id)
-                           await message.reply("`Karma Successfully Disabled!`")
+                        off_karma(chat_id)
+                        await message.reply("`Karma Successfully Disabled!`")
           else: return await message.reply("`Wrong Method!`")
                       
       else: return await message.reply("`Admins Only!`")
@@ -31,12 +28,12 @@ async def karma_chat(_, message):
 @Nandha.on_message(filters.regex(KARMA))
 async def karma(_, message):
      reply = message.reply_to_message
-     if is_karma_chat(message.chat.id) == True:
+     if is_karma_chat(message.chat.id) == "on":
          if not reply:
-              return
+               return
          user_id = reply.from_user.id
          if message.from_user.id == user_id:
-              return 
+               return 
          else: add_karma(user_id)
          karma = get_karma(user_id)
          await reply.reply(
@@ -48,13 +45,13 @@ KARMA = "👎|\-|noob|bot|fuck|bish|wtf|kid|bad|Sad"
 
 @Nandha.on_message(filters.regex(KARMA))
 async def unkarma(_, message):
-     if is_karma_chat(message.chat.id) == True:
+     if is_karma_chat(message.chat.id) == "on":
          reply = message.reply_to_message
          if not reply:
-             return
+               return
          user_id = reply.from_user.id
          if message.from_user.id == user_id:
-             return 
+                return 
          else: remove_karma(user_id)
          karma = get_karma(user_id)
          await reply.reply(
