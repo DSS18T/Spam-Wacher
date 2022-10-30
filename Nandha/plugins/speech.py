@@ -6,7 +6,7 @@ import config
 from pyrogram import filters
 from Nandha import Nandha
 
-api_key = "abe3d449e4024b978438f0a0b10f1859"
+api_key = "0092e744f67a4d94b73d27876da06940"
 api_url = "http://api.voicerss.org/"
 
 @Nandha.on_message(filters.command("tts",config.CMDS))
