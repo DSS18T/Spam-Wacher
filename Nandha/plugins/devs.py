@@ -29,7 +29,7 @@ async def stats(_, message):
          f"**Rules Chats**: `{rules}`\n"
          f"**Couples chats**: `{couples}`\n"
          f"**Chatbot Chats**: `{chatbots}`\n"
-         f"**Karma Users**: `{karmas}`\n")
+         f"**Karma Chats**: `{karmas}`\n")
      await message.reply(stats)
      
 
