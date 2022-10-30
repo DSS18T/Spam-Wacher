@@ -132,7 +132,9 @@ async def unban(_, message):
          elif not reply:
              user_id = message.text.split()[1]
          else:  return await message.reply("`Wrong method!`")
-         if user_id == config.BOT_ID:
+         if (await is_admin(chat_id,config.BOT_ID)) == False:
+             return await message.reply("`I Don't Ban Rights To Unban Him!`")
+         elif user_id == config.BOT_ID:
             return await message.reply("How Can I UnBan My Self?")
          else:
           try:
