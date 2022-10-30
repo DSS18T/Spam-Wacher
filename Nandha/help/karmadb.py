@@ -9,12 +9,14 @@ def get_karma_chats():
     return KARMA_CHATS
 
 def is_karma_chat(chat_id: int):
-     if
-         x = db.find_one({"chat_id": chat_id})
+     x = db.find_one({"chat_id": chat_id})
+     if x:
          y = x["karma"]
          if y == "on": 
              return True
-     else: return False
+         elif y == "off"
+             return False
+         else: return None
 
 def on_karma(chat_id: int):
     if not chat_id in get_karma_chats():
