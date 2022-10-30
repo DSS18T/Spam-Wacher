@@ -53,8 +53,8 @@ async def karma(_, message):
 __MODULE__ = "Karma"
 
 __HELP__ = """
-*Upvote* - Use upvote keywords like "+", "+1", "thanks", etc. to upvote a message.
-*Downvote* - Use downvote keywords like "-", "-1", etc. to downvote a message.
-*Commands*
-➛ /karma*:* reply to a user to check that user's karma points.
+**Upvote** - Use upvote keywords like "+", "cool", "thanks", etc. to upvote a message.
+**Downvote** - Use downvote keywords like "-", "Sad", etc. to downvote a message.
+**Commands**
+➛ /karma**:** reply to a user to check that user's karma points.
 """
