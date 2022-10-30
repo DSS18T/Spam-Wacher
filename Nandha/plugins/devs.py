@@ -11,7 +11,7 @@ from Nandha.help.paste import spacebin
 from Nandha.help.couplesdb import get_chats as couples_chats
 from Nandha.help.rulesdb import rules_chat as rules_chats
 from Nandha.help.chatbotdb import get_chat as chatbot_chats
-from Nandha.help.karmadb import get_karma_users
+from Nandha.help.karmadb import get_chat as get_karma_chats
 from datetime import datetime
 
 
@@ -23,7 +23,7 @@ async def stats(_, message):
      else: couples = len(await couples_chats())
      rules = len(rules_chats())
      chatbots = len(chatbot_chats())
-     karmas = len(get_karma_users())
+     karmas = len(get_karma_chats())
      stats = (
          "**Stats Info:**\n"
          f"**Rules Chats**: `{rules}`\n"
