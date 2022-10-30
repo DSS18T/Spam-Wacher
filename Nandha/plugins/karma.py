@@ -8,7 +8,7 @@ from Nandha.help.admin import *
 
 KARMA = "👍|\+|thx|thank|pro|xd|sigma|wah|good|cool"
 
-@Nandha.on_message(filters.command("karmas",config.CMDS))
+@Nandha.on_message(filters.command("karma",config.CMDS))
 async def karma_chat(_, message):
       chat_id = message.chat.id
       user_id = message.from_user.id
@@ -61,8 +61,8 @@ async def unkarma(_, message):
            f"**Karma for {reply.from_user.first_name}**:\n\n"
           f"**Karma Decreased**: `{karma}`")
 
-@Nandha.on_message(filters.command("karma",config.CMDS))
-async def karma(_, message):
+@Nandha.on_message(filters.command("ckarma",config.CMDS))
+async def check_karma(_, message):
       reply = message.reply_to_message
       if not reply:
            user_id = message.from_user.id
@@ -79,5 +79,6 @@ __HELP__ = """
 **Upvote** - Use upvote keywords like "+", "cool", "thanks", etc. to upvote a message.
 **Downvote** - Use downvote keywords like "-", "Sad", etc. to downvote a message.
 **Commands**
-➛ /karma**:** reply to a user to check that user's karma points.
+- /karma (on/off): to enable or disable karma in your chats!
+- /ckarma: check karma reply or self!
 """
