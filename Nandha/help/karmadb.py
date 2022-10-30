@@ -14,7 +14,7 @@ def is_karma_chat(chat_id: int):
          y = x["karma"]
          if y == "on": 
              return True
-         elif y == "off"
+         elif y == "off":
              return False
          else: return None
 
