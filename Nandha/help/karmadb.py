@@ -2,8 +2,28 @@ from Nandha import mongodb
 
 db = mongodb.KARMA
 
+def get_karma_chats():
+    KARMA_CHATS = []
+    for x in db.find():
+       KARMA_CHATS.append(x["_id"]["chat_id"])
+    return KARMA_CHATS
 
+def is_on_karma(chat_id: int):
+     x = db.find_one({"chat_id": chat_id})
+     y = x["_id"]["karma"]
+     if y == "on"
+        return True
+     return False
 
+def on_karma(chat_id: int):
+    if not chat_id in get_karma_chats():
+        db.insert_one({"chat_id": chat_id, "karma": "on"})
+
+def off_karma(chat_id: int):
+     if chat_id in get_karma_chats():
+         db.update_one({"chat_id": chat_id},{"$set"{"karma": "off"}})
+    
+     
 
 
 def get_karma_users():
