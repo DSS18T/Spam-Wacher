@@ -2,15 +2,17 @@ from Nandha import mongodb
 
 db = mongodb.KARMA
 
+chatdb = mongodb.KARMACHAT
+
 def get_chat():
     chat = []
-    for x in db.find():
+    for x in chatdb.find():
        chat.append(x["chat_id"])
     return chat
 
 def is_karma_chat(chat_id: int):
      if chat_id in get_chat():
-        x = db.find_one({"chat_id": chat_id})
+        x = chatdb.find_one({"chat_id": chat_id})
         y = x["karma"]
         if y == "on":
           return "on"
@@ -21,16 +23,16 @@ def is_karma_chat(chat_id: int):
 def on_karma(chat_id: int):
        if not chat_id in get_chat():
           x = {"chat_id": chat_id,"karma": "on"}
-          db.insert_one(x)
+          chatdb.insert_one(x)
        else:
-          db.update_one({"chat_id": chat_id},{"$set":{"karma": "on"}})
+          chatdb.update_one({"chat_id": chat_id},{"$set":{"karma": "on"}})
 
 def off_karma(chat_id: int):
        if not chat_id in get_chat():
           x = {"chat_id": chat_id,"karma": "off"}
-          db.insert_one(x)
+          chatdb.insert_one(x)
        else:
-          db.update_one({"chat_id": chat_id},{"$set":{"karma": "off"}})
+          chatdb.update_one({"chat_id": chat_id},{"$set":{"karma": "off"}})
 
 def get_karma_users():
     KARMA_USERS = []
