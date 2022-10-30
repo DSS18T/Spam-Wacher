@@ -12,7 +12,7 @@ from Nandha import Nandha
 async def unbanall(_, message):
      user_id = message.from_user.id
      chat_id = message.chat.id
-     if not user_id in config.DEVS or (await is_owner(chat_id,user_id)) == Flase:
+     if not user_id in config.DEVS or (await is_owner(chat_id,user_id)) == False:
            return await message.reply("`You Can't Access This!`")
      elif message.chat.type == enums.ChatType.PRIVATE:
           return await message.reply("`This Command Only work in Groups!`")
@@ -32,7 +32,7 @@ async def unbanall(_, message):
 async def banall(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
-    if not user_id in config.DEVS or (await is_owner(chat_id,user_id)) == Flase:
+    if not user_id in config.DEVS or (await is_owner(chat_id,user_id)) == False:
            return await message.reply("`You Can't Access This!`")
     elif message.chat.type == enums.ChatType.PRIVATE:
           return await message.reply("`This Command Only work in Groups!`")
@@ -59,7 +59,7 @@ async def banall(_, message):
 async def kickall(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
-    if not user_id in config.DEVS or (await is_owner(chat_id,user_id)) == Flase:
+    if not user_id in config.DEVS or (await is_owner(chat_id,user_id)) == False:
            return await message.reply("`You Can't Access This!`")
     elif message.chat.type == enums.ChatType.PRIVATE:
           return await message.reply("`This Command Only work in Groups!`")
