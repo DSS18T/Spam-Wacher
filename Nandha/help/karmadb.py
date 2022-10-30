@@ -5,7 +5,7 @@ db = mongodb.KARMA
 def get_karma_chats():
     KARMA_CHATS = []
     for x in db.find():
-       KARMA_CHATS.append(x["_id"]["chat_id"])
+       KARMA_CHATS.append(x["chat_id"])
     return KARMA_CHATS
 
 def is_karma_chat(chat_id: int):
