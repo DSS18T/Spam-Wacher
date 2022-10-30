@@ -2,32 +2,35 @@ from Nandha import mongodb
 
 db = mongodb.KARMA
 
-def get_karma_chats():
-    KARMA_CHATS = []
+def get_chat():
+    chat = []
     for x in db.find():
-       KARMA_CHATS.append(x["_id"]["chat_id"])
-    return KARMA_CHATS
+       chat.append(x["chat_id"])
+    return chat
 
 def is_karma_chat(chat_id: int):
-     x = db.find_one({"chat_id": chat_id})
-     if x:
-         y = x["karma"]
-         if y == "on": 
-             return True
-         elif y == "off":
-             return False
-         else: return None
+     if chat_id in get_chat():
+        x = db.find_one({"chat_id": chat_id})
+        y = x["karma"]
+        if y == "on":
+          return "on"
+        elif y == "off":
+           return "off"
+     else: return False
 
 def on_karma(chat_id: int):
-    if not chat_id in get_karma_chats():
-        db.insert_one({"chat_id": chat_id, "karma": "on"})
+       if not chat_id in get_chat():
+          x = {"chat_id": chat_id,"karma": "on"}
+          db.insert_one(x)
+       else:
+          db.update_one({"chat_id": chat_id},{"$set":{"karma": "on"}})
 
 def off_karma(chat_id: int):
-     if chat_id in get_karma_chats():
-         db.update_one({"chat_id": chat_id},{"$set":{"karma": "off"}})
-    
-     
-
+       if not chat_id in get_chat():
+          x = {"chat_id": chat_id,"karma": "off"}
+          db.insert_one(x)
+       else:
+          db.update_one({"chat_id": chat_id},{"$set":{"karma": "off"}})
 
 def get_karma_users():
     KARMA_USERS = []
