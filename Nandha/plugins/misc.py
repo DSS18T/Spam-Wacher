@@ -54,7 +54,7 @@ async def image(_, message):
     os.chdir("/app")
     os.system("rm -rf store")
 
-@Nandha.on_message(filters.command(["doge,"doge"],config.CMDS))
+@Nandha.on_message(filters.command(["doge","doge"],config.CMDS))
 async def doge(_, message):
       api = requests.get("https://random.dog/3d5eb70c-7a6e-41ad-a890-33ca06ce19b9.mp4").json()
       url = api["url"]
