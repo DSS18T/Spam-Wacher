@@ -56,7 +56,7 @@ async def image(_, message):
 
 @Nandha.on_message(filters.command(["doge","doge"],config.CMDS))
 async def doge(_, message):
-      api = requests.get("https://random.dog/3d5eb70c-7a6e-41ad-a890-33ca06ce19b9.mp4").json()
+      api = requests.get("https://random.dog/woof.json").json()
       url = api["url"]
       msg = await message.reply("Uploading Please Wait!")
       await Nandha.send_video(message.chat.id,url,reply_to_message_id=message.id)
