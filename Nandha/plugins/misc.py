@@ -54,12 +54,17 @@ async def image(_, message):
     os.chdir("/app")
     os.system("rm -rf store")
 
-@Nandha.on_message(filters.command(["doge","doge"],config.CMDS))
+@Nandha.on_message(filters.command(["dog","doge"],config.CMDS))
 async def doge(_, message):
       api = requests.get("https://random.dog/woof.json").json()
       url = api["url"]
       msg = await message.reply("Uploading Please Wait!")
-      await Nandha.send_video(message.chat.id,url,reply_to_message_id=message.id)
+      FileType = url.split(".")[2]
+      await Nandha.send_video(
+       message.chat.id,
+       file_name=f"Doge.{FileType}",
+       video=url,
+       reply_to_message_id=message.id)
       await msg.delete()
 
 @Nandha.on_message(filters.command("ping",config.CMDS))
