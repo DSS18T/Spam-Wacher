@@ -9,7 +9,7 @@ from pyrogram.errors import AdminRankInvalid
 from datetime import datetime as time
 
 
-@Nandha.on_message(filters.command("settitle",config.CMDS))
+@Nandha.on_message(filters.command("title",config.CMDS))
 async def set_admin_title(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
@@ -140,10 +140,12 @@ async def admins(_, message):
     user_id = message.from_user.id
     if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-    admin = "**Admins in this Group**!\n\n"
-    async for admins in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-           admin += f"• **{admins.user.first_name}** - (`{admins.user.id}`)\n"
-    await message.reply(text=(admin))
+    admin_msg = "**👮 Admins in this Group**!\n\n👮 **Users:\n**{} 👮 **Bots**:\n{}"
+    async for admin in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+           if not admin.user.is_bot:
+               admin_user = "• **{admin.user.first_name}** - (`{admins.user.id}`)\n"
+           admin_bot = "• **{admin.user.first_name}** - (`{admins.user.id}`)\n"
+    await message.reply(text=(admin_msg.format(admin_user,admin_bot)))
               
 
 
