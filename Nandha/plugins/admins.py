@@ -140,12 +140,12 @@ async def admins(_, message):
     user_id = message.from_user.id
     if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-    admin_msg = "**👮 Admins in this Group**!\n\n👮 **Users:\n**{} 👮 **Bots**:\n{}"
+    admin_msg = "**👮 Admins in this Group**!\n\n"
     async for admin in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-           if admin.user.is_bot == True:
-               admin_bot = f"• **{admin.user.first_name}** - (`{admin.user.id}`)\n"
-           admin_user = f"• **{admin.user.first_name}** - (`{admin.user.id}`)\n"
-    await message.reply(text=(admin_msg.format(admin_user,admin_bot)))
+           if admin.user.is_bot == False:
+               admin_msg += f"👮 **Users**:\n• **{admin.user.first_name}** - (`{admin.user.id}`)\n"
+           admin_msg += f"👮 **Bots**:\n• **{admin.user.first_name}** - (`{admin.user.id}`)\n"
+    await message.reply(text=(admin_msg))
               
 
 
