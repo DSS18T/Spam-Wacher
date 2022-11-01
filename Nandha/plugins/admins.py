@@ -29,6 +29,7 @@ async def set_admin_title(_, message):
                   user_id = int(message.text.split()[1])
                   title = message.text.split(None,2)[2]
            await Nandha.set_administrator_title(chat_id, user_id, title=title)
+           await message.reply("**Successfully Admin**\n**Title Changed To: {}**".format(title))
         except Exception as e: return await message.reply(e)
 
 
