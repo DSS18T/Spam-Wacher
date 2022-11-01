@@ -24,9 +24,11 @@ async def set_admin_title(_, message):
                return await message.reply("`Input New Admin Title!`")
            elif reply:
                   user_id = reply.from_user.id
+                  title = message.text.split(None,1)[1]
            elif not reply:
                   user_id = int(message.text.split()[1])
-           await Nandha.set_administrator_title(chat_id, user_id, title=admin)
+                  title = message.text.split(None,2)[2]
+           await Nandha.set_administrator_title(chat_id, user_id, title=title)
         except Exception as e: return await message.reply(e)
 
 
