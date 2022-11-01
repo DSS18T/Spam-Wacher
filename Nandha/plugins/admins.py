@@ -143,8 +143,8 @@ async def admins(_, message):
     admin_msg = "**👮 Admins in this Group**!\n\n👮 **Users:\n**{} 👮 **Bots**:\n{}"
     async for admin in Nandha.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
            if not admin.user.is_bot:
-               admin_user = "• **{admin.user.first_name}** - (`{admins.user.id}`)\n"
-           admin_bot = "• **{admin.user.first_name}** - (`{admins.user.id}`)\n"
+               admin_user = f"• **{admin.user.first_name}** - (`{admins.user.id}`)\n"
+           admin_bot = f"• **{admin.user.first_name}** - (`{admins.user.id}`)\n"
     await message.reply(text=(admin_msg.format(admin_user,admin_bot)))
               
 
