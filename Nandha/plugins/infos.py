@@ -5,8 +5,7 @@ from pyrogram import enums
 from Nandha import Nandha
 from pyrogram.errors import (
 PeerIdInvalid,UsernameInvalid, UserNotParticipant)
-from pyrogram.raw.functions.users import GetFullUser
-from pyrogram.file_id import FileId, FileType, ThumbnailSource
+
 
 @Nandha.on_message(filters.command("info",config.CMDS))
 async def info(_, message):
@@ -22,7 +21,6 @@ async def info(_, message):
      msg = await message.reply("**Getting Results.**.")
      try:
         user = await Nandha.get_users(user_id)
-        info_user = await Nandha.invoke(GetFullUser(id=(await Nandha.resolve_peer(user.id))))
         user_id = user.id
         user_name = user.first_name
         user_mention = user.mention
@@ -34,43 +32,15 @@ async def info(_, message):
           await msg.edit(e)
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
-            if info_user[0].photo.has_video == True:
-               file_obj = BytesIO()
-               profile_vid = info_user.video_sizes[0] if info_user.video_sizes else None
-               async for chunk in Nandha.stream_media(
-                    message=FileId(
-                     file_type=FileType.PHOTO,
-                     dc_id=info_user.dc_id,
-                     media_id=info_user.id,
-                     access_hash=info_user.access_hash,
-                     file_reference=info_user.file_reference,
-                     thumbnail_source=ThumbnailSource.THUMBNAIL,
-                     thumbnail_file_type=FileType.PHOTO,
-                     thumbnail_size=profile_vid.type,
-                     volume_id=0,
-                     local_id=0,
-                     ).encode(),
-                 ):
-                   file_obj.write(chunk)
-                   file_obj.name = "profile_vid_.mp4"
-                   await message.reply_video(
-                   video=file_obj,
-                   caption="**Profile Info**:\n"
-                f"**ID**: `{user_id}`\n"
-                f"**Name**: {user_name}\n"
-                f"**Username**: @{user_username}\n"
-                f"**Mention**: [user_name](tg://user?id={user_id})\n"
-                f"**User DC**: `{user_dc}`")
-
-            elif info_user[0].photo.has_video == False:
-                await message.reply_photo(user_photo,caption=
+            if user.photo:
+                await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: [user_name](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`")
-            elif not info_user[0].photo:
+            elif not user.photo:
                 await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -95,7 +65,7 @@ async def info(_, message):
                 status = "Not Member"
         try:        
             if user.photo:
-               await message.reply_photo(user_photo,caption=
+               await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
@@ -123,7 +93,7 @@ async def info(_, message):
 async def ids(_, message):
       reply = message.reply_to_message
       if reply:
-         id = "**Here The IDs**:\n\n"
+         id = ""
          id += f"**Chat ID**: `{message.chat.id}`\n"
          id += f"**Replied ID**: `{reply.from_user.id}`\n"
          id += f"**Your ID**: `{message.from_user.id}`\n"
@@ -145,7 +115,7 @@ async def ids(_, message):
          await message.reply(text=(id))
       elif not reply:
               if len(message.text.split()) <2:
-                  id = "**Here The IDs**:\n\n"
+                  id = ""
                   id += f"**Chat ID**: `{message.chat.id}`\n"
                   id += f"**Your ID**: `{message.from_user.id}`\n"
                   return await message.reply(text=(id))
