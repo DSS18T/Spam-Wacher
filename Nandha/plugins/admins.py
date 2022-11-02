@@ -331,8 +331,8 @@ __HELP__ = """
 - `/title`: (query) custom admin title.
 - `/purge`: reply to message and bot delete your msg to reply message and also instead all msgs. 
 - `/del`: delete a message.
-- `glink`: get group private link.
-- `cglink`: creat group new link.
+- `/glink`: get group private link.
+- `/cglink`: creat group new link.
 - `/promote`: promote a member to admin.
 - `/mpromote`: medium promote a member to admin.
 - `/fpromote`: full promote a member to admin.
