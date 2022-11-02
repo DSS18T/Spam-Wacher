@@ -44,6 +44,9 @@ async def info(_, message):
      else:
         try:
             m = await message.chat.get_member(user_id)
+            if m.custom_title:
+               title = m.custom_title
+            else: title = "No"
             if m.privileges:
                 status = "Admin"
             else:
@@ -58,7 +61,8 @@ async def info(_, message):
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: {user_mention}\n"
                 f"**User DC**: `{user_dc}`\n\n"
-                f"**Status**: {status}")
+                f"**Status**: {status}\n"
+                f"**Custom title**: {title}")
             await msg.delete()
         except Exception as e:
            await msg.edit(e)
