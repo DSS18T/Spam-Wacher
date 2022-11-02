@@ -21,6 +21,7 @@ async def info(_, message):
      msg = await message.reply("**Getting Results.**.")
      try:
         user = await Nandha.get_users(user_id)
+        info_user = await Nandha.invoke(GetFullUser(id=(await client.resolve_peer(user.id))))
         user_id = user.id
         user_name = user.first_name
         user_mention = user.mention
@@ -31,7 +32,15 @@ async def info(_, message):
           await msg.edit(e)
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
-            await message.reply_document(user_photo,caption=
+            if user.photo == True:
+                await message.reply_document(user_photo,caption=
+                "**Profile Info**:\n"
+                f"**ID**: `{user_id}`\n"
+                f"**Name**: {user_name}\n"
+                f"**Username**: @{user_username}\n"
+                f"**Mention**: [user_name](tg://user?id={user_id})\n"
+                f"**User DC**: `{user_dc}`")
+            else: await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
@@ -54,7 +63,17 @@ async def info(_, message):
         except UserNotParticipant:
                 status = "Not Member"
         try:        
-            await message.reply_document(user_photo,caption=
+            if user.photo == True:
+               await message.reply_document(user_photo,caption=
+                "**Profile Info**:\n"
+                f"**ID**: `{user_id}`\n"
+                f"**Name**: {user_name}\n"
+                f"**Username**: @{user_username}\n"
+                f"**Mention**: {user_mention}\n"
+                f"**User DC**: `{user_dc}`\n\n"
+                f"**Status**: {status}\n"
+                f"**Nick title**: {title}") 
+            else: await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
