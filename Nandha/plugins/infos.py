@@ -51,7 +51,7 @@ async def info(_, message):
                      local_id=0,
                      ).encode(),
                  ):
-                      file_obj.write(chunk)
+                   file_obj.write(chunk)
                    file_obj.name = "profile_vid_.mp4"
                    await message.reply_video(
                    video=file_obj,
