@@ -47,6 +47,20 @@ async def group_link(_, message):
             await message.reply(link)
          except Exception as e: return await message.reply(e)
 
+@Nandha.on_message(filters.command(["cglink","cgrouplink"],config.CMDS))
+async def group_link(_, message):
+     chat_id = message.chat.id
+     user_id = message.from_user.id
+     if (await is_admin(chat_id,user_id)) == False:
+         return await message.reply("`Admins Only`")
+     elif (await is_admin(chat_id,config.BOT_ID)) == False:
+         return await message.reply("`I Don't Have Rights!`")
+     else:
+         try:
+            link = await Nandha.export_chat_invite_link(chat_id)
+            await message.reply(link)
+         except Exception as e: return await message.reply(e)
+
 
 @Nandha.on_message(filters.command(["setgdes","setgdesc"],config.CMDS))
 async def chat_description(_, message):
@@ -317,6 +331,8 @@ __HELP__ = """
 - `/title`: (query) custom admin title.
 - `/purge`: reply to message and bot delete your msg to reply message and also instead all msgs. 
 - `/del`: delete a message.
+- `glink`: get group private link.
+- `cglink`: creat group new link.
 - `/promote`: promote a member to admin.
 - `/mpromote`: medium promote a member to admin.
 - `/fpromote`: full promote a member to admin.
