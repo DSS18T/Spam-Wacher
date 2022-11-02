@@ -314,6 +314,7 @@ __HELP__ = """
 **admins only**:
 
 - `/admins`: to know group admins.
+- `/title`: (query) custom admin title.
 - `/purge`: reply to message and bot delete your msg to reply message and also instead all msgs. 
 - `/del`: delete a message.
 - `/promote`: promote a member to admin.
