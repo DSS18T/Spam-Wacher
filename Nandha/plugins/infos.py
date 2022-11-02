@@ -46,7 +46,7 @@ async def info(_, message):
             m = await message.chat.get_member(user_id)
             if m.custom_title:
                title = m.custom_title
-            else: title = "No"
+            else: title = None
             if m.privileges:
                 status = "Admin"
             else:
