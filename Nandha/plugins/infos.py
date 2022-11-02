@@ -62,7 +62,7 @@ async def info(_, message):
                 f"**Mention**: {user_mention}\n"
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}\n"
-                f"**Custom title**: {title}")
+                f"**Nick title**: {title}")
             await msg.delete()
         except Exception as e:
            await msg.edit(e)
