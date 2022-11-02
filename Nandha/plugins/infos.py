@@ -21,7 +21,6 @@ async def info(_, message):
      msg = await message.reply("**Getting Results.**.")
      try:
         user = await Nandha.get_users(user_id)
-        info_user = await Nandha.invoke(GetFullUser(id=(await client.resolve_peer(user.id))))
         user_id = user.id
         user_name = user.first_name
         user_mention = user.mention
