@@ -40,7 +40,8 @@ async def info(_, message):
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: [user_name](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`")
-            else: await message.reply_text(text=
+            elif user.photo == False:
+                await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
@@ -73,7 +74,8 @@ async def info(_, message):
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}") 
-            else: await message.reply_text(text=
+            elif user.photo == False:
+                 await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
