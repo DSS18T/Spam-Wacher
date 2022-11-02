@@ -112,13 +112,13 @@ async def ids(_, message):
              id += f"**Sent Audio ID**:\n`{reply.audio.file_id}`"
          elif reply.sticker:
              id += f"**Sent Sticker ID**:\n`{reply.sticker.file_id}`"
-         await message.reply(text=(id))
+         await message.reply(text=(id),disable_web_page_preview=True)
       elif not reply:
               if len(message.text.split()) <2:
                   id = ""
                   id += f"**[Chat ID]({message.link})**: `{message.chat.id}`\n"
                   id += f"**[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
-                  return await message.reply(text=(id))
+                  return await message.reply(text=(id),disable_web_page_preview=True)
               elif len(message.text.split()) >2:
                   return await message.reply("`wrong input!`")
               username = message.text.split()[1]
@@ -128,7 +128,7 @@ async def ids(_, message):
                  id += f"**[They ID](tg://user?id={they.id})**: `{they.id}`\n"
                  id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
                  id += f"**[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
-                 await message.reply(text=(id))
+                 await message.reply(text=(id), disable_web_page_preview=True)
               except PeerIdInvalid:
                     await message.reply("`forward user msg and reply or direct reply user to get id I can't find the user so!`")
               except UsernameInvalid:
