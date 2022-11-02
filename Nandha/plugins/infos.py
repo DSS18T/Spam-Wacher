@@ -27,7 +27,8 @@ async def info(_, message):
         user_mention = user.mention
         user_username = user.username
         user_dc = user.dc_id
-        user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
+        if user.photo == True:
+            user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
      except Exception as e:
           await msg.edit(e)
      if message.chat.type == enums.ChatType.PRIVATE:
