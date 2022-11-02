@@ -94,9 +94,9 @@ async def ids(_, message):
       reply = message.reply_to_message
       if reply:
          id = ""
-         id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
-         id += f"****[Replied ID](tg://user?id={reply.from_user.id})**: `{reply.from_user.id}`\n"
-         id += f"****[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
+         id += f"**[Chat ID]({message.link})**: `{message.chat.id}`\n"
+         id += f"**[Replied ID](tg://user?id={reply.from_user.id})**: `{reply.from_user.id}`\n"
+         id += f"**[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
          if reply.forward_from:
              id += f"**Forward From ID**:\n`{reply.forward_from.id}`\n"
          elif reply.left_chat_member:
@@ -116,8 +116,8 @@ async def ids(_, message):
       elif not reply:
               if len(message.text.split()) <2:
                   id = ""
-                  id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
-                  id += f"****[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
+                  id += f"**[Chat ID]({message.link})**: `{message.chat.id}`\n"
+                  id += f"**[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
                   return await message.reply(text=(id))
               elif len(message.text.split()) >2:
                   return await message.reply("`wrong input!`")
