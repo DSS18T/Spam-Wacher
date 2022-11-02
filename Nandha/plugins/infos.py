@@ -26,13 +26,13 @@ async def info(_, message):
         user_mention = user.mention
         user_username = user.username
         user_dc = user.dc_id
-        if user.photo == True:
+        if user.photo:
             user_photo = await Nandha.download_media(user.photo.big_file_id,file_name=f"{user_name}.jpg")
      except Exception as e:
           await msg.edit(e)
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
-            if user.photo == True:
+            if user.photo:
                 await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -40,7 +40,7 @@ async def info(_, message):
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: [user_name](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`")
-            elif user.photo == False:
+            elif not user.photo:
                 await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -64,7 +64,7 @@ async def info(_, message):
         except UserNotParticipant:
                 status = "Not Member"
         try:        
-            if user.photo == True:
+            if user.photo:
                await message.reply_document(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
@@ -74,7 +74,7 @@ async def info(_, message):
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}") 
-            elif user.photo == False:
+            elif not user.photo:
                  await message.reply_text(text=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
