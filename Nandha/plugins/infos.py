@@ -94,9 +94,9 @@ async def ids(_, message):
       reply = message.reply_to_message
       if reply:
          id = ""
-         id += f"**Chat ID**: `{message.chat.id}`\n"
-         id += f"**Replied ID**: `{reply.from_user.id}`\n"
-         id += f"**Your ID**: `{message.from_user.id}`\n"
+         id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
+         id += f"****[Replied ID](tg://user?id={reply.from_user.id})**: `{reply.from_user.id}`\n"
+         id += f"****[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
          if reply.forward_from:
              id += f"**Forward From ID**:\n`{reply.forward_from.id}`\n"
          elif reply.left_chat_member:
@@ -116,18 +116,18 @@ async def ids(_, message):
       elif not reply:
               if len(message.text.split()) <2:
                   id = ""
-                  id += f"**Chat ID**: `{message.chat.id}`\n"
-                  id += f"**Your ID**: `{message.from_user.id}`\n"
+                  id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
+                  id += f"****[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
                   return await message.reply(text=(id))
               elif len(message.text.split()) >2:
                   return await message.reply("`wrong input!`")
               username = message.text.split()[1]
-              id = "**Here The IDs**:\n\n"
+              id = ""
               try:
                  they = await Nandha.get_chat(username)
-                 id += f"**They ID**: `{they.id}`\n"
-                 id += f"**Chat ID**: `{message.chat.id}`\n"
-                 id += f"**Your ID**: `{message.from_user.id}`\n"
+                 id += f"**[They ID](tg://user?id={they.id})**: `{they.id}`\n"
+                 id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
+                 id += f"**[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
                  await message.reply(text=(id))
               except PeerIdInvalid:
                     await message.reply("`forward user msg and reply or direct reply user to get id I can't find the user so!`")
