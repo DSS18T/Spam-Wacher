@@ -41,8 +41,8 @@ async def bans(_, message):
                 if re.search("s", message.text.split()[0]):
                    try:
                       msg = await Nandha.ban_chat_member(chat_id, ban_id)
-                          await msg.delete()
-                          await message.delete()
+                      await msg.delete()
+                      await message.delete()
                    except: pass
                 else:
                    try:
