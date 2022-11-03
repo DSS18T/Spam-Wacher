@@ -143,7 +143,7 @@ async def start(_, message):
                 await Nandha.send_message("Spamwatcher", text=(
                      "**#NEWUSER**:\n"
                      f"**UserID**: {user_id}\n"
-                     f"**profile link**: {mention}"))
+                     f"**Profile link**: {mention}"))
                 return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
           else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
       else:
