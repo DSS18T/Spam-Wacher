@@ -128,8 +128,19 @@ async def help_button(client, query):
 @Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
       user_id = message.from_user.id
-      await check_sub(message, user_id)
-      await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
+      mention = message.from_user.mention
+      if message.chat.type == enums.ChatType.PRIVATE:
+          if not user_id in (await get_users()):
+                await add_user(user_id)
+                await Nandha.send_message("Spamwatcher", text=(
+                     "**#NEWUSER**:\n"
+                     f"**UserID**: {user_id}\n"
+                     f"**profile link**: {mention}"))
+                return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
+          else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
+      else:
+         await check_sub(message, user_id)
+         return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
 
 
 if __name__ == "__main__":
