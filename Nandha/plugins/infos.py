@@ -146,7 +146,8 @@ async def ids(_, message):
 @Nandha.on_callback_query(filters.regex("userinfo"))
 async def userinfo_query(_, query):
        user_id = query.data.split(":")[1]
-       try: user = await Nandha.get_users(user_id) else: return await message.reply(e)
+       try: user = await Nandha.get_users(user_id) 
+       except Exception as e: return await message.reply(e)
        is_deleted = user.is_deleted
        is_bot = user.is_bot
        is_verified = user.is_verified
