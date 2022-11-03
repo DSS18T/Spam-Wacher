@@ -12,3 +12,4 @@ aiofiles
 bing_image_downloader
 gpytranslate
 wget
+gTTS
