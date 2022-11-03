@@ -190,7 +190,9 @@ async def info_query(_, query):
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: [{user_name}](tg://user?id={user_id})\n"
-                f"**User DC**: `{user_dc}`")
+                f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
      else: 
         try:
             m = await query.message.chat.get_member(user_id)
@@ -219,9 +221,12 @@ InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
 @Nandha.on_callback_query(filters.regex("delete"))
 async def delete(_, query):
      user_id = query.data.split(":")[1]
-     if (await is_admin(query.message.chat.id,query.from_user.id)) == True and user_id == query.from_user.id:
-           await query.message.delete()
-     else: return await query.answer("You Can't Delete!", show_alert=True)
+     if query.message.chat.type == enums.ChatType.PRIVATE:
+          await query.message.delete()
+     else: 
+        if (await is_admin(query.message.chat.id,query.from_user.id)) == True or user_id == query.from_user.id:
+              await query.message.delete()
+        else: return await query.answer("You Can't Delete!", show_alert=True)
 
 
  
