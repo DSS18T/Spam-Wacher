@@ -38,7 +38,7 @@ async def bans(_, message):
                        return await message.reply_text("`I can't do against my owner!`")
                 elif (await is_admin(chat_id, ban_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
-                if re.search("s", message.text.split()[0]):
+                if message.text[1].lower() == "s":
                    try:
                       msg = await Nandha.ban_chat_member(chat_id, ban_id)
                       await msg.delete()
@@ -58,8 +58,7 @@ async def kicks(_, message):
       reply = message.reply_to_message
       api = requests.get("https://api.waifu.pics/sfw/kick").json()
       url = api["url"]
-      try:
-          if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
+      if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
                 if not reply and len(message.command) >2:
                     kick_id = (await Nandha.get_users(message.text.split(" ")[1])).id
                     reason = message.text.split(None, 2)[2]
@@ -82,19 +81,19 @@ async def kicks(_, message):
                        return await message.reply_text("`I can't do against my owner!`")
                 elif (await is_admin(chat_id, kick_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
-                if re.search("s", message.text.split()[0]):
-                      msg = await Nandha.ban_chat_member(chat_id, kick_id)
-                      await Nandha.unban_chat_member(chat_id, kick_id)
-                      if msg.service:
-                          await msg.delete()
-                          await message.delete()
-                      await message.delete()
+                if message.text[1].lower() == "s":
+                   try:
+                       msg = await Nandha.ban_chat_member(chat_id, kick_id)
+                       await Nandha.unban_chat_member(chat_id, kick_id)
+                       await msg.delete()
+                       await message.delete()
+                   except: pass
                 else:
-                    await Nandha.ban_chat_member(chat_id, kick_id)
-                    await Nandha.unban_chat_member(chat_id, kick_id)
-                    await message.reply_animation(url,caption=f"KickOut As Dust!\n • `{kick_id}`\n\nFollowing Reason:\n`{reason}`")          
-      except Exception as e:
-         await message.reply_text(e)
+                  try:
+                     await Nandha.ban_chat_member(chat_id, kick_id)
+                     await Nandha.unban_chat_member(chat_id, kick_id)
+                     await message.reply_animation(url,caption=f"KickOut As Dust!\n • `{kick_id}`\n\nFollowing Reason:\n`{reason}`")          
+                  except Exception as e: return await message.reply(e)
        
 @Nandha.on_callback_query(filters.regex("unban_btn"))
 async def unban_btn(_, query):
