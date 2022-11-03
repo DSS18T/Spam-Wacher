@@ -32,9 +32,7 @@ async def cssworker_url(target_url: str):
 
 @Nandha.on_message(filters.command("webss",config.CMDS))
 async def take_short(_, message):
-      if len(message.text.split()) <2:
-          url = message.text.split(None,1)[1]
-      else: return await message.reply("`Give Url to Take Screenshot!`")
+      url = message.text.split(None,1)[1]
       res_json = await cssworker_url(url)
       if res_json:
             image_url = res_json["url"]
