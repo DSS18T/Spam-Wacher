@@ -8,6 +8,8 @@ import importlib
 from Nandha.help.utils.misc import paginate_modules
 from Nandha.plugins import ALL_MODULES
 from Nandha.help.subs import check_sub
+from Nandha.help.usersdb import (
+add_user, get_users)
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaVideo
 import re
@@ -130,8 +132,8 @@ async def start(_, message):
       user_id = message.from_user.id
       mention = message.from_user.mention
       if message.chat.type == enums.ChatType.PRIVATE:
-          if not user_id in (await get_users()):
-                await add_user(user_id)
+          if not user_id in get_users():
+                add_user(user_id)
                 await Nandha.send_message("Spamwatcher", text=(
                      "**#NEWUSER**:\n"
                      f"**UserID**: {user_id}\n"
