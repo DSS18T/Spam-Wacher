@@ -167,7 +167,7 @@ async def userinfo_query(_, query):
           f"**is_premium**: {is_premium}\n"
           f"**language_code**: {language_code}\n",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("Return ◀️", callback_data=f"info:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]])))
+InlineKeyboardButton("❌", callback_data="delete")]]))
 
 
    
