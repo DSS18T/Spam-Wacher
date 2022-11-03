@@ -128,6 +128,11 @@ async def help_button(client, query):
 
   return await Nandha.answer_callback_query(query.id)
 
+sub_txt = "`Oh man Please Dm Me And Start I don't know How are You?`"
+
+sub_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Pm to Access", user_id=config.BOT_ID)]])
+
+
 @Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
       user_id = message.from_user.id
@@ -142,7 +147,8 @@ async def start(_, message):
                 return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
           else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
       else:
-         await check_sub(message, user_id)
+         if not user_id in get_users():
+                return await message.reply_text(text=sub_txt, reply_markup=sub_keyboard)
          return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
 
 
