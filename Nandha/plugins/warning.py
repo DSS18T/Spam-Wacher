@@ -34,7 +34,7 @@ async def warn(_, message):
            except Exception as e: return await message.reply(e)
         elif not user_id in warn_users():
               add_warn(user_id,reason)
-              return await message.reply("Warn Increased {}".format(is_warn(user_id)))
+              return await message.reply("Warn Increased {}".format(is_warns(user_id)))
         else: return await message.reply("Somthing went Wrong!")
 
         
