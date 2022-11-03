@@ -1,7 +1,7 @@
 from Nandha import mongodb
 
 
-db = mongodb.WARNNING
+db = mongodb.WARNING
 
 def warn_users():
     warn_users = []
