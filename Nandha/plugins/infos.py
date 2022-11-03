@@ -143,8 +143,35 @@ async def ids(_, message):
               except UsernameInvalid:
                    await message.reply("`please check the given input. no user found!`")
 
+@Nandha.on_callback_query(filters.regex("userinfo"))
+async def userinfo_query(_, query):
+       user_id = query.data.split(":")[1]
+       try: user = await Nandha.get_users(user_id)
+       else: return await message.reply(e)
+       is_deleted = user.is_deleted
+       is_bot = user.is_bot
+       is_verified = user.is_verified
+       is_restricted = user.is_restricted
+       is_scam = user.is_scam
+       is_fake = user.is_fake
+       is_support = user.is_support
+       is_premium = user.is_premium
+       language_code = user.language_code
+       await query.message.edit(text=
+          f"**is_deleted**: {is_deleted}\n"
+          f"**is_bot**: {is_bot}\n"
+          f"**is_verified**: {is_verified}\n"
+          f"**is_restricted**: {is_restricted}\n"
+          f"**is_scam**: {is_scam}\n"
+          f"**is_fake**: {is_fake}\n"
+          f"**is_support**: {is_support}\n"
+          f"**is_premium**: {is_premium}\n"
+          f"**language_code**: {language_code}\n",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("Return ◀️", callback_data=f"info:{user_id}"),
+InlineKeyboardButton("❌", callback_data="delete")]])))
 
-           
+
+   
 __MODULE__ = "Infos"
 
 __HELP__ = """
