@@ -52,7 +52,7 @@ InlineKeyboardButton("❌", callback_data="delete")]]))
                 f"**Mention**: [user_name](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]])))
+InlineKeyboardButton("❌", callback_data="delete")]]))
             await msg.delete()           
         except Exception as e:
            await msg.edit(e)
@@ -80,7 +80,7 @@ InlineKeyboardButton("❌", callback_data="delete")]])))
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))) 
+InlineKeyboardButton("❌", callback_data="delete")]]))
             elif not user.photo:
                  await message.reply_text(text=
                 "**Profile Info**:\n"
@@ -92,7 +92,7 @@ InlineKeyboardButton("❌", callback_data="delete")]])))
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]])))
+InlineKeyboardButton("❌", callback_data="delete")]]))
             await msg.delete()
         except Exception as e:
            await msg.edit(e)
