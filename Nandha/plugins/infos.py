@@ -3,6 +3,7 @@ import config
 from pyrogram import filters
 from pyrogram import enums
 from Nandha import Nandha
+from pyrogram.tyoes import *
 from pyrogram.errors import (
 PeerIdInvalid,UsernameInvalid, UserNotParticipant)
 
@@ -33,13 +34,15 @@ async def info(_, message):
      if message.chat.type == enums.ChatType.PRIVATE:
         try:
             if user.photo:
-                await message.reply_document(user_photo,caption=
+                await message.reply_photo(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: [user_name](tg://user?id={user_id})\n"
-                f"**User DC**: `{user_dc}`")
+                f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
+InlineKeyboardButton("❌", callback_data="delete")]]))
             elif not user.photo:
                 await message.reply_text(text=
                 "**Profile Info**:\n"
@@ -47,7 +50,9 @@ async def info(_, message):
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
                 f"**Mention**: [user_name](tg://user?id={user_id})\n"
-                f"**User DC**: `{user_dc}`")
+                f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
+InlineKeyboardButton("❌", callback_data="delete")]])))
             await msg.delete()           
         except Exception as e:
            await msg.edit(e)
@@ -65,7 +70,7 @@ async def info(_, message):
                 status = "Not Member"
         try:        
             if user.photo:
-               await message.reply_document(user_photo,caption=
+               await message.reply_photo(user_photo,caption=
                 "**Profile Info**:\n"
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
@@ -73,7 +78,9 @@ async def info(_, message):
                 f"**Mention**: {user_mention}\n"
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}\n"
-                f"**Nick title**: {title}") 
+                f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
+InlineKeyboardButton("❌", callback_data="delete")]]))) 
             elif not user.photo:
                  await message.reply_text(text=
                 "**Profile Info**:\n"
@@ -83,7 +90,9 @@ async def info(_, message):
                 f"**Mention**: {user_mention}\n"
                 f"**User DC**: `{user_dc}`\n\n"
                 f"**Status**: {status}\n"
-                f"**Nick title**: {title}")
+                f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
+InlineKeyboardButton("❌", callback_data="delete")]])))
             await msg.delete()
         except Exception as e:
            await msg.edit(e)
@@ -133,6 +142,8 @@ async def ids(_, message):
                     await message.reply("`forward user msg and reply or direct reply user to get id I can't find the user so!`")
               except UsernameInvalid:
                    await message.reply("`please check the given input. no user found!`")
+
+
            
 __MODULE__ = "Infos"
 
