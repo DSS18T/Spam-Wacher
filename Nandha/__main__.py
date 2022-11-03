@@ -7,7 +7,6 @@ import time
 import importlib
 from Nandha.help.utils.misc import paginate_modules
 from Nandha.plugins import ALL_MODULES
-from Nandha.help.subs import check_sub
 from Nandha.help.usersdb import (
 add_user, get_users)
 from pyrogram import filters
