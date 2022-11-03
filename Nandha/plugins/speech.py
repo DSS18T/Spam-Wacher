@@ -21,7 +21,7 @@ def convert(text):
 
 
 
-@Nandha.on_message(filters.me & filters.command(["tts"], config.CMDS))
+@Nandha.on_message(filters.command(["tts"], config.CMDS))
 async def text_to_speech(_, message):
     if not message.reply_to_message:
         return await message.reply_text("REPLY TO SOME TEXT !")
