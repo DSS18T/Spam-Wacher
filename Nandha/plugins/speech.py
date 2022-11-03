@@ -2,75 +2,40 @@ import os
 import wget
 import requests
 import config
-
-from pyrogram import filters
+import traceback
+from asyncio import get_running_loop
+from io import BytesIO
 from Nandha import Nandha
+from gpytranslate import Translator
+from gtts import gTTS
 
-api_key = "0092e744f67a4d94b73d27876da06940"
-api_url = "http://api.voicerss.org/"
 
-@Nandha.on_message(filters.command("tts",config.CMDS))
+def convert(text):
+    audio = BytesIO()
+    i = Translator().translate(text, dest="en")
+    lang = i.src
+    tts = gTTS(text, lang=lang)
+    audio.name = lang + ".mp3"
+    tts.write_to_fp(audio)
+    return audio
+
+
+
+@Nandha.on_message(filters.me & filters.command(["tts"], config.CMDS))
 async def text_to_speech(_, message):
-     reply = message.reply_to_message
-     if reply:
-         audio = reply.text
-         lang_code = message.text.split()[1]
-     elif not reply and len(message.command) >1:
-          audio = message.text.split(":")[1]
-          lang_code = message.text.split()[1].replace(":","")
-     else: return await message.reply("`Wrong Method!`")
-     msg = await message.reply("processing...")
-     try:
-         response = requests.get(api_url + "?key=" + api_key + f"&hl={lang_code}&c=MP3&src=" + audio)
-         with open(f"{audio}.mp3", "wb") as audio_file:
-              audio_file.write(response.content)
-         thumb = wget.download("https://c.top4top.io/s_24730ldbx1.jpg")
-         await message.reply_audio(
-             f"{audio}.mp3",
-             title=audio,
-             caption=audio,
-             thumb=thumb,
-              )
-         await msg.delete()
-         os.remove(f"{audio}.mp3")
-         os.remove(thumb)
-     except Exception as e:
-       await msg.edit(e)
-
-__MODULE__ = "Tts"
-
-__HELP__ = """
-
-**Text to speech**:
-
-following languages:
-ar-eg Arabic (Egypt)
-ar-sa Arabic (Saudi Arabia)
-bg-bg  Bulgarian
-ca-es Catalan
-zh-cn Chinese (Hong Kong)
-zh-tw Chinese (Taiwan)
-hr-hr Croatian
-cs-cz Czech
-da-dk Danish
-nl-be Dutch (Belgium)
-nl-nl Dutch (Netherlands)
-en-au English (Australia)
-en-ca English (Canada)
-en-gb English (Great Britain)
-en-in English (India)
-en-ie English (Ireland)
-en-us English (United States)
-fi-fi Finnish
-hi-in hu-hu
-id-id Indonesian
-ja-jp Japanese
-ko-kr Korean
-ru-ru Russian
-es-mx Spanish (Mexico)
-ta-in Tamil
-tr-tr Turkish
-vi-vn Vietnamese
-ro-ro Romanian
-pt-pt Portuguese (Portugal)
-"""
+    if not message.reply_to_message:
+        return await message.reply_text("REPLY TO SOME TEXT !")
+    if not message.reply_to_message.text:
+        return await message.reply_text("REPLY TO SOME TEXT !")
+    m = await message.reply_text("🔁 PROCESSING...")
+    text = message.reply_to_message.text
+    try:
+        loop = get_running_loop()
+        audio = await loop.run_in_executor(None, convert, text)
+        await message.reply_audio(audio)
+        await m.delete()
+        audio.close()
+    except Exception as e:
+        await m.edit(str(e))
+        es = traceback.format_exc()
+        print(es)
