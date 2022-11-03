@@ -3,6 +3,8 @@ import config
 from pyrogram import filters
 from pyrogram import enums
 from Nandha import Nandha
+from Nandha.help.admin import *
+
 from pyrogram.types import *
 from pyrogram.errors import (
 PeerIdInvalid,UsernameInvalid, UserNotParticipant)
