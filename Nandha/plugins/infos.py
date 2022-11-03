@@ -217,7 +217,7 @@ InlineKeyboardButton("❌", callback_data="delete")]]))
 @Nandha.on_callback_query(filters.regex("delete"))
 async def delete(_, message):
      user_id = query.data.split(":")[1]
-     if (await is_admin(message.chat.id,query.from_user.id)) == True and user_id == query.from_user.is:
+     if (await is_admin(message.chat.id,query.from_user.id)) == True and user_id == query.from_user.id:
            await query.message.delete()
      else: return await query.answer("You Can't Delete!", show_alert=True)
 
