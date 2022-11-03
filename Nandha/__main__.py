@@ -127,7 +127,7 @@ async def help_button(client, query):
 
   return await Nandha.answer_callback_query(query.id)
 
-sub_txt = "`Oh man Please Dm Me And Start I don't know How are You?`"
+sub_txt = "`Oh man Please Dm Me And Start I don't know Who are You?`"
 
 sub_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Pm to Access", user_id=config.BOT_ID)]])
 
