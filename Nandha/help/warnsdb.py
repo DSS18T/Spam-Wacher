@@ -6,7 +6,7 @@ db = mongodb.WARNNING
 def warn_users():
     warn_users = []
     for x in db.find():
-       append(x["user_id"])
+       warn_users.append(x["user_id"])
     return warn_users
 
 def add_warn(user_id: int, reason):
