@@ -39,7 +39,7 @@ async def info(_, message):
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
-                f"**Mention**: [user_name](tg://user?id={user_id})\n"
+                f"**Mention**: [{user_name}](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
 InlineKeyboardButton("❌", callback_data="delete")]]))
@@ -49,7 +49,7 @@ InlineKeyboardButton("❌", callback_data="delete")]]))
                 f"**ID**: `{user_id}`\n"
                 f"**Name**: {user_name}\n"
                 f"**Username**: @{user_username}\n"
-                f"**Mention**: [user_name](tg://user?id={user_id})\n"
+                f"**Mention**: [{user_name}](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
 InlineKeyboardButton("❌", callback_data="delete")]]))
