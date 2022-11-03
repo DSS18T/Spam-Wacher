@@ -32,10 +32,10 @@ async def warn(_, message):
              await message.chat.ban_member(user_id)
              await message.reply("`The User Reached Maximum Warns Now Banned!`")
            except Exception as e: return await message.reply(e)
-        elif not user_id in warn_users():
+        elif user_id in warn_users():
               add_warn(user_id,reason)
               return await message.reply("**Warn Increased**: `{}`".format(is_warns(user_id)))
-        elif user_id in warn_users():
+        elif not user_id in warn_users():
               add_warn(user_id,reason)
               return await message.reply("**Warn Increased**: `{}`".format(is_warns(user_id)))
         else: return await message.reply("`Somthing went Wrong!`")
