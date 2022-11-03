@@ -8,7 +8,7 @@ from io import BytesIO
 from Nandha import Nandha
 from gpytranslate import Translator
 from gtts import gTTS
-
+from pyrogram import filters
 
 def convert(text):
     audio = BytesIO()
