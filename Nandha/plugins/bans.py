@@ -15,7 +15,6 @@ async def bans(_, message):
       reply = message.reply_to_message
       api = requests.get("https://api.waifu.pics/sfw/kick").json()
       url = api["url"]
-      try:
           if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
                 if not reply and len(message.command) >2:
                     ban_id = (await Nandha.get_users(message.text.split(" ")[1])).id
@@ -40,17 +39,17 @@ async def bans(_, message):
                 elif (await is_admin(chat_id, ban_id)) == True:
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 if re.search("s", message.text.split()[0]):
+                   try:
                       msg = await Nandha.ban_chat_member(chat_id, ban_id)
-                      if msg.service:
                           await msg.delete()
                           await message.delete()
-                      await message.delete()
+                   except: pass
                 else:
-                    await Nandha.ban_chat_member(chat_id, ban_id)
-                    await message.reply_animation(url,caption=f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))          
-      except Exception as e:
-         await message.reply_text(e)
+                   try:
+                     await Nandha.ban_chat_member(chat_id, ban_id)
+                     await message.reply_animation(url,caption=f"The Bitch As Dust!\n • `{ban_id}`\n\nFollowing Reason:\n`{reason}`",
+                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unban", callback_data=f"unban_btn:{ban_id}")]]))          
+                   except Exception as e: return await message.reply(e)
 
 @Nandha.on_message(filters.command(["skick","kick"],config.CMDS))
 async def kicks(_, message):
