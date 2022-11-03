@@ -137,7 +137,7 @@ async def ids(_, message):
               try:
                  they = await Nandha.get_chat(username)
                  id += f"**[They ID](tg://user?id={they.id})**: `{they.id}`\n"
-                 id += f"**[Chat ID](message.link)**: `{message.chat.id}`\n"
+                 id += f"**[Chat ID]({message.link})**: `{message.chat.id}`\n"
                  id += f"**[Your ID](tg://user?id={message.from_user.id})**: `{message.from_user.id}`\n"
                  await message.reply(text=(id), disable_web_page_preview=True)
               except PeerIdInvalid:
