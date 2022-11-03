@@ -27,7 +27,7 @@ async def warn(_, message):
              user_id = message.text.split()[1]
              reason = message.text.split(None,2)[2]
         else: return await message.reply("Invalid Method!")
-        if is_warna(user_id) == 3:
+        if is_warns(user_id) == 3:
            try:
              await message.chat.ban_member(user_id)
              await message.reply("The User Reached Maximum Warns Now Banned!")
