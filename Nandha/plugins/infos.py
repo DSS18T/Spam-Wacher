@@ -158,18 +158,60 @@ async def userinfo_query(_, query):
        is_premium = user.is_premium
        language_code = user.language_code
        await query.message.edit(text=
-          f"**is_deleted**: {is_deleted}\n"
-          f"**is_bot**: {is_bot}\n"
-          f"**is_verified**: {is_verified}\n"
-          f"**is_restricted**: {is_restricted}\n"
-          f"**is_scam**: {is_scam}\n"
-          f"**is_fake**: {is_fake}\n"
-          f"**is_support**: {is_support}\n"
-          f"**is_premium**: {is_premium}\n"
-          f"**language_code**: {language_code}\n",reply_markup=InlineKeyboardMarkup([[
+          f"**is_deleted**: `{is_deleted}`\n"
+          f"**is_bot**: `{is_bot}`\n"
+          f"**is_verified**: `{is_verified}`\n"
+          f"**is_restricted**: `{is_restricted}`\n"
+          f"**is_scam**: `{is_scam}`\n"
+          f"**is_fake**: `{is_fake}`\n"
+          f"**is_support**: `{is_support}`\n"
+          f"**is_premium**: `{is_premium}`\n"
+          f"**language_code**: `{language_code}`\n",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("Return ◀️", callback_data=f"info:{user_id}"),
 InlineKeyboardButton("❌", callback_data="delete")]]))
 
+
+@Nandha.on_callback_query(filters.regex("info"))
+async def info_query(_, query):
+     user_id = query.data.split(":")[1]
+     try: user = await Nandha.get_users(user_id) 
+     except Exception as e: return await message.reply(e) 
+     user_id = user.id
+     user_name = user.first_name
+     user_mention = user.mention
+     user_username = user.username
+     user_dc = user.dc_id
+     if query.message.chat.type == enums.ChatType.PRIVATE:
+        await query.message.edit(text=
+                "**Profile Info**:\n"
+                f"**ID**: `{user_id}`\n"
+                f"**Name**: {user_name}\n"
+                f"**Username**: @{user_username}\n"
+                f"**Mention**: [{user_name}](tg://user?id={user_id})\n"
+                f"**User DC**: `{user_dc}`")
+     else: 
+        try:
+            m = await query.message.chat.get_member(user_id)
+            if m.custom_title:
+               title = m.custom_title
+            else: title = None
+            if m.privileges:
+                status = "Admin"
+            else:
+                status = "Member"
+        except UserNotParticipant:
+                status = "Not Member"
+        await query.message.edit(text=
+                "**Profile Info**:\n"
+                f"**ID**: `{user_id}`\n"
+                f"**Name**: {user_name}\n"
+                f"**Username**: @{user_username}\n"
+                f"**Mention**: {user_mention}\n"
+                f"**User DC**: `{user_dc}`\n\n"
+                f"**Status**: {status}\n"
+                f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
+InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
+InlineKeyboardButton("❌", callback_data="delete")]]))
 
    
 __MODULE__ = "Infos"
