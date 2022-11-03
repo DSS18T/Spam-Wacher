@@ -15,7 +15,7 @@ async def bans(_, message):
       reply = message.reply_to_message
       api = requests.get("https://api.waifu.pics/sfw/kick").json()
       url = api["url"]
-          if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
+      if (await can_ban_members(chat_id,user_id)) == True or message.from_user.id in config.DEVS:   
                 if not reply and len(message.command) >2:
                     ban_id = (await Nandha.get_users(message.text.split(" ")[1])).id
                     reason = message.text.split(None, 2)[2]
