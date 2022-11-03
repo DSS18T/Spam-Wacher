@@ -7,6 +7,31 @@ from Nandha import Nandha
 from pyrogram import filters
 
 
+@Nandha.on_message(filters.command(["dog","doge"],config.CMDS))
+async def doge(_, message):
+      api = requests.get("https://random.dog/woof.json").json()
+      url = api["url"]
+      msg = await message.reply("Uploading Please Wait!")
+      FileType = url.split(".")[2]
+      await Nandha.send_video(
+       message.chat.id,
+       file_name=f"Doge.{FileType}",
+       video=url,
+       reply_to_message_id=message.id)
+      await msg.delete()
+
+@Nandha.on_message(filters.command(["cat","kitty"],config.CMDS))
+async def cate(_, message):
+      api = requests.get("https://api.thecatapi.com/v1/images/search").json()
+      url = api[0]["url"]
+      msg = await message.reply("Uploading Please Wait!")
+      FileType = url.split(".")[3]
+      await Nandha.send_video(
+       message.chat.id,
+       file_name=f"Kitty.{FileType}",
+       video=url,
+       reply_to_message_id=message.id)
+      await msg.delete()
 
 @Nandha.on_message(filters.regex("baka"))
 async def baka(_, message):
@@ -68,3 +93,16 @@ async def quote(_, m):
         f"   ~ **{author}**")
         
 
+__MODULE__ = "Fun"
+
+__HELP__ = """
+- `/quote`: get random quotes.
+- `/riddle`: get random riddle question.
+- `/insult`: reply to user or self for insult.
+- `/cat`: cute cat random images 
+- `/dog`: dog random funny video and images .
+
+**Regex**:
+baka - hug
+reply to or it slef.
+"""
