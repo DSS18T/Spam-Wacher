@@ -7,9 +7,13 @@ import time
 import importlib
 from Nandha.help.utils.misc import paginate_modules
 from Nandha.plugins import ALL_MODULES
+from Nandha.help.subs import check_sub
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaVideo
 import re
+
+
+
 
 HELPABLE = {}
 
@@ -123,6 +127,8 @@ async def help_button(client, query):
 
 @Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
+      user_id = message.from_user.id
+      await check_sub(message, user_id)
       await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
 
 
