@@ -135,7 +135,7 @@ sub_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Pm to Access", user_
 @Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
       user_id = message.from_user.id
-      mention = message.from_user.mention
+      mention = "[{0}](tg://user?id={0})".format(user_id)
       if message.chat.type == enums.ChatType.PRIVATE:
           if not user_id in get_users():
                 add_user(user_id)
