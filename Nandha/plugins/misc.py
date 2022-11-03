@@ -54,31 +54,7 @@ async def image(_, message):
     os.chdir("/app")
     os.system("rm -rf store")
 
-@Nandha.on_message(filters.command(["dog","doge"],config.CMDS))
-async def doge(_, message):
-      api = requests.get("https://random.dog/woof.json").json()
-      url = api["url"]
-      msg = await message.reply("Uploading Please Wait!")
-      FileType = url.split(".")[2]
-      await Nandha.send_video(
-       message.chat.id,
-       file_name=f"Doge.{FileType}",
-       video=url,
-       reply_to_message_id=message.id)
-      await msg.delete()
 
-@Nandha.on_message(filters.command(["cat","kitty"],config.CMDS))
-async def cate(_, message):
-      api = requests.get("https://api.thecatapi.com/v1/images/search").json()
-      url = api[0]["url"]
-      msg = await message.reply("Uploading Please Wait!")
-      FileType = url.split(".")[3]
-      await Nandha.send_video(
-       message.chat.id,
-       file_name=f"Kitty.{FileType}",
-       video=url,
-       reply_to_message_id=message.id)
-      await msg.delete()
 
 @Nandha.on_message(filters.command("ping",config.CMDS))
 async def ping(_, message):
