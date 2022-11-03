@@ -8,5 +8,5 @@ def add_warn(user_id: int, reason):
         db.insert_one({"user_id":user_id, "warn":1, "reason": reason})
     x = db.find_one({"user_id":user_id})
     warns = int(x["warn"])+1
-    x = {"user_id":user_id,{"$set":{"warn":warns,f"reason {warns}":reason}}
+    x = {"user_id":user_id,{"$set":{"warn":warns,f"reason {warns}":reason}}}
     db.update_one(x)
