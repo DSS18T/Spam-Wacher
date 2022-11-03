@@ -42,7 +42,7 @@ async def info(_, message):
                 f"**Mention**: [{user_name}](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
             elif not user.photo:
                 await message.reply_text(text=
                 "**Profile Info**:\n"
@@ -52,7 +52,7 @@ InlineKeyboardButton("❌", callback_data="delete")]]))
                 f"**Mention**: [{user_name}](tg://user?id={user_id})\n"
                 f"**User DC**: `{user_dc}`",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
             await msg.delete()           
         except Exception as e:
            await msg.edit(e)
@@ -80,7 +80,7 @@ InlineKeyboardButton("❌", callback_data="delete")]]))
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
             elif not user.photo:
                  await message.reply_text(text=
                 "**Profile Info**:\n"
@@ -92,7 +92,7 @@ InlineKeyboardButton("❌", callback_data="delete")]]))
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
             await msg.delete()
         except Exception as e:
            await msg.edit(e)
@@ -168,7 +168,7 @@ async def userinfo_query(_, query):
           f"**is_premium**: `{is_premium}`\n"
           f"**language_code**: `{language_code}`\n",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("Return ◀️", callback_data=f"info:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
 
 
 @Nandha.on_callback_query(filters.regex("info"))
@@ -211,7 +211,7 @@ async def info_query(_, query):
                 f"**Status**: {status}\n"
                 f"**Nick title**: {title}",reply_markup=InlineKeyboardMarkup([[
 InlineKeyboardButton("More 📒", callback_data=f"userinfo:{user_id}"),
-InlineKeyboardButton("❌", callback_data="delete")]]))
+InlineKeyboardButton("❌", callback_data=f"delete:{user_id}")]]))
 
 
 @Nandha.on_callback_query(filters.regex("delete"))
