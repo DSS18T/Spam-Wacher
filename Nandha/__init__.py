@@ -38,6 +38,6 @@ parse_mode=ParseMode.DEFAULT)
      
 session = ClientSession()
 
-MONGO = "mongodb+srv://nandhaxd:nandhagopal@cluster0.80igexg.mongodb.net/"
+MONGO = "mongodb+srv://nandhaxd:nandhaxd@cluster0.80igexg.mongodb.net/"
 mongo = MongoClient(MONGO)
 mongodb = mongo.NANDHA
