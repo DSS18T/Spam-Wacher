@@ -18,8 +18,11 @@ async def make_carbon(code):
 async def make_carbon_image(_, message):
       reply = message.reply_to_message
       if reply:
+           msg = await message.reply("`please wait making a carbon!`")
            carbon = await make_carbon(reply.text)
       elif not reply and len(message.text.split()) >1:
+           msg = await message.reply("`please wait making a carbon!`")
            carbon = await make_carbon(message.text.split(None,1)[1])
       else: return await message.reply("`Reply to text or give a text to make carbon!`")
       await message.reply_photo(carbon)
+      await msg.delete()
