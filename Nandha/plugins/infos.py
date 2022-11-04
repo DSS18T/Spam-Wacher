@@ -30,7 +30,7 @@ async def user_info(_, message):
            try:
               if x.photo:
                  profile = await Nandha.download_media(x.photo.big_file_id,file_name=f"{x.first_name}.jpg")
-                 await message.reply_document(profile, caption=text)
+                 await message.reply_photo(profile, caption=text)
               else: await message.reply(text)
               await msg.delete()
            except Exception as e: return await message.reply(e)
@@ -57,7 +57,7 @@ async def user_info(_, message):
            try:
                 if x.user.photo: 
                     profile = await Nandha.download_media(x.user.photo.big_file_id,file_name=f"{x.user.first_name}.jpg")
-                    await message.reply_document(profile,caption=text)
+                    await message.reply_photo(profile,caption=text)
                 else: await message.reply(text)
                 await msg.delete() 
            except Exception as e: return await message.reply(e) 
