@@ -22,7 +22,7 @@ async def user_info(_, message):
       else: 
            try: x = await message.chat.get_member(user_id)
            except Exception as e: return await message.reply(e)
-       await message.reply(x)
+      await message.reply(x)
 
 
 
