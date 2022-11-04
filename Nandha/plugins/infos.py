@@ -18,9 +18,21 @@ async def user_info(_, message):
       elif not reply and len(message.text.split()) == 1: user_id = message.from_user.id
       else: return await message.reply("`somthing wrong reply a user or give me id to find user details!`")
       if message.chat.type == enums.ChatType.PRIVATE:
+           msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await Nandha.get_chat(user_id)
            except Exception as e: return await message.reply(e)
-           await message.reply(x)
+           text = "<b>Profile Info</b>:\n"
+           text += "<b>Name</b>: {}\n".format(x.first_name)
+           text += "<b>ID</b>: {}\n".format(x.id)
+           text += "<b>Username</b>: @{}\n".format(x.username)
+           text += "<b>Mention</b>: {}\n".format(f"[{x.first_name}](tg://user?id={x.first_name})")
+           text += "<b>DC ID</b>: <code>{}</code>\n".format(x.dc_id)
+           try:
+              if x.photo:
+                 profile = await Nandha.download_media(profile,caption=text)
+              else: await message.reply(text)
+              await msg.delete()
+           except Exception as e: return await message.reply(e)
       else: 
            msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await message.chat.get_member(user_id)
