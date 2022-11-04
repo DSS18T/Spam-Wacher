@@ -28,15 +28,15 @@ async def user_info(_, message):
            text += "<b>ID</b>: {}\n".format(x.user.id)
            text += "<b>Username</b>: @{}\n".format(x.user.username)
            text += "<b>Mention</b>: {}\n".format(f"[{x.user.first_name}](tg://user?id={x.user.first_name})")
-           text += "<b>DC ID</b>: `{}`\n".format(x.user.dc_id)
+           text += "<b>DC ID</b>: <code>{}</code>\n".format(x.user.dc_id)
            if x.joined_date:
-                text += "<b>Join Date</b>: `{}`\n".format(x.joined_date)
+                text += "<b>Join Date</b>: <code>{}</code>\n".format(x.joined_date)
            if x.custom_title:
-                 text += "<b>Admin title</b>: `{}`\n".format(x.custom_title)
+                 text += "<b>Admin title</b>: <code>{}</code>\n".format(x.custom_title)
            if x.promoted_by:
-                 text += "<b>Promote by</b>: {}\n".format(x.promoted_by.first_name)
+                 text += "<b>Promote by</b>: <code>{}</code>\n".format(x.promoted_by.first_name)
            if x.privileges:
-                 text += "<b>Status</b>: `{}`\n".format("Admin")
+                 text += "<b>Status</b>: <code>{}</code>\n".format("Admin")
            await message.reply(text)
       
 
