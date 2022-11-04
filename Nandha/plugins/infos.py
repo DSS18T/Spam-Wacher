@@ -9,6 +9,22 @@ from pyrogram.types import *
 from pyrogram.errors import (
 PeerIdInvalid,UsernameInvalid, UserNotParticipant)
 
+@Nandha.on_message(filters.command("info",config.CMDS))
+async def user_info(_, message):
+      " information about users "
+      reply = message.reply_to_message
+      if reply: user_id = reply.from_user.id
+      elif not reply: user_id = message.text.split()[1]
+      else: return await message.reply("`somthing wrong reply a user or give me id to find user details!`")
+      if message.chat.type == enums.PRIVATE:
+           try: x = await Nandha.get_chat(user_id)
+           except Exception as e: return await message.reply(e)
+       else: 
+           try: x = await message.chat.get_member(user_id)
+           except Exception as e: return await message.reply(e)
+       await message.reply(x)
+
+
 
 @Nandha.on_message(filters.command("id",config.CMDS))
 async def ids(_, message):
