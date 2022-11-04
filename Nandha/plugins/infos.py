@@ -19,7 +19,7 @@ async def user_info(_, message):
       if message.chat.type == enums.PRIVATE:
            try: x = await Nandha.get_chat(user_id)
            except Exception as e: return await message.reply(e)
-       else: 
+      else: 
            try: x = await message.chat.get_member(user_id)
            except Exception as e: return await message.reply(e)
        await message.reply(x)
