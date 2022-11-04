@@ -83,3 +83,18 @@ async def kickall(_, message):
           await message.reply_text("**Successfully Kicked**: `{}`\n**Remaining Admins**: `{}`".format(len(Members),len(Admins),))
        except Exception as e:
         print(e)
+
+__MODULE__ = "Mass-A"
+
+__HELP__ = """
+**Mass Action**:
+
+Only work for group owners!
+
+- `/banall`: ban all members from group.
+- `/kickall`: kick all members from group.
+- `/unbanall`: unban all members from group.
+
+to avoid service messages use instead "s"
+for example: /skickall /sbanall.
+"""
