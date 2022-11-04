@@ -233,8 +233,7 @@ async def delete(_, query):
   
 __MODULE__ = "Infos"
 
-__HELP__ = """
-**to know the user details!**
-- `/info`: reply to user or give username to get info.
-- `/id`: reply to user or give username to get id.
+__HELP__ = """ **to know the user details!**
+\n• `/info`: reply to user or give username to get info.
+•`/id`: reply to user or give username to get id.
 """
