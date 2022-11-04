@@ -30,7 +30,7 @@ async def user_info(_, message):
            text += "<b>Mention</b>: {}\n".format(f"[{x.user.id}](tg://user?id={x.user.id})")
            text += "<b>DC ID</b>: {}\n".format(x.user.dc_id)
            if x.joined_date:
-                text += "<b>Join Date</b>: {}\n".format(x.join_date)
+                text += "<b>Join Date</b>: {}\n".format(x.joined_date)
            if x.custom_title:
                  text += "<b>Admin title</b>: {}\n".format(x.custom_title)
            if x.promoted_by:
