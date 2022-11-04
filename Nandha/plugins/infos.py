@@ -45,7 +45,8 @@ async def user_info(_, message):
                 if x.user.photo: 
                     profile = await Nandha.download_media(x.user.photo.big_file_id,file_name=f"{x.user.first_name}.jpg")
                     await message.reply_document(profile,caption=text)
-                else: await message.reply(text) 
+                else: await message.reply(text)
+                await msg.delete() 
            except Exception as e: return await message.reply(e) 
       
 
