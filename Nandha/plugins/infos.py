@@ -27,7 +27,7 @@ async def user_info(_, message):
            text += "<b>Name</b>: {}\n".format(x.first_name)
            text += "<b>ID</b>: {}\n".format(x.id)
            text += "<b>Username</b>: @{}\n".format(x.username)
-           text += "<b>Mention</b>: {}\n".format(f"[{x.first_name}](tg://user?id={x.first_name})")
+           text += "<b>Mention</b>: {}\n".format(f"[{x.first_name}](tg://user?id={x.id})")
            text += "<b>DC ID</b>: <code>{}</code>\n".format(x.dc_id)
            text += "<b>Profile Count</b>: <code>{}</code>\n".format(pfp_count)
            try:
@@ -46,7 +46,7 @@ async def user_info(_, message):
            text += "<b>Name</b>: {}\n".format(x.user.first_name)
            text += "<b>ID</b>: {}\n".format(x.user.id)
            text += "<b>Username</b>: @{}\n".format(x.user.username)
-           text += "<b>Mention</b>: {}\n".format(f"[{x.user.first_name}](tg://user?id={x.user.first_name})")
+           text += "<b>Mention</b>: {}\n".format(f"[{x.user.first_name}](tg://user?id={x.user.id})")
            text += "<b>DC ID</b>: <code>{}</code>\n".format(x.user.dc_id)
            text += "<b>Profile Count</b>: <code>{}</code>\n".format(pfp_count)
            if x.joined_date:
