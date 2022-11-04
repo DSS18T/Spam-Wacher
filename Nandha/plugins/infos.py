@@ -40,7 +40,7 @@ async def user_info(_, message):
            else: text += "<b>Status</b>: <code>{}</code>\n".format("Group Member")
            try:
                 if x.user.photo: 
-                    profile = await Nandha.download_media(x.user.photo.big_file_id)
+                    profile = await Nandha.download_media(x.user.photo.big_file_id,file_name=f"{x.user.first_name}.jpg")
                     await message.reply_document(profile,caption=text)
                 else: await message.reply(text) 
            except Exception as e: return await message.reply(e) 
