@@ -24,11 +24,11 @@ async def user_info(_, message):
            try: x = await message.chat.get_member(user_id)
            except Exception as e: return await message.reply(e)
            text = "<b>Profile Info</b>:\n"
-           text += "<b>Name</b>: {}\n".format(x.first_name)
-           text += "<b>ID</b>: {}\n".format(x.id)
-           text += "<b>Username</b>: {}\n".format(x.username)
-           text += "<b>Mention</b>: {}\n".format(f"[{x.id}](tg://user?id={x.id})")
-           text += "<b>DC ID</b>: {}\n".format(x.dc_id)
+           text += "<b>Name</b>: {}\n".format(x.user.first_name)
+           text += "<b>ID</b>: {}\n".format(x.user.id)
+           text += "<b>Username</b>: {}\n".format(x.user.username)
+           text += "<b>Mention</b>: {}\n".format(f"[{x.user.id}](tg://user?id={x.user.id})")
+           text += "<b>DC ID</b>: {}\n".format(x.user.dc_id)
            if x.joined_date:
                 text += "<b>Join Date</b>: {}\n".format(x.join_date)
            if x.custom_title:
