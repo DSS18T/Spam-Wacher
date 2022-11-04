@@ -21,6 +21,7 @@ async def user_info(_, message):
            except Exception as e: return await message.reply(e)
            await message.reply(x)
       else: 
+           msg = await message.reply("`Getting results Please Wait!`")
            try: x = await message.chat.get_member(user_id)
            except Exception as e: return await message.reply(e)
            text = "<b>Profile Info</b>:\n"
