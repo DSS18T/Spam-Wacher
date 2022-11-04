@@ -17,6 +17,7 @@ async def user_info(_, message):
       elif not reply and len(message.text.split()) == 2: user_id = message.text.split()[1]
       elif not reply and len(message.text.split()) == 1: user_id = message.from_user.id
       else: return await message.reply("`somthing wrong reply a user or give me id to find user details!`")
+      button = InlineKeyboardMarkup([[InlineKeyboardButton("[ ❌ ]",callback_data=f"delete:{user_id}")]])
       if message.chat.type == enums.ChatType.PRIVATE:
            msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await Nandha.get_chat(user_id)
@@ -30,8 +31,8 @@ async def user_info(_, message):
            try:
               if x.photo:
                  profile = await Nandha.download_media(x.photo.big_file_id,file_name=f"{x.first_name}.jpg")
-                 await message.reply_photo(profile, caption=text)
-              else: await message.reply(text)
+                 await message.reply_photo(profile, caption=text,reply_markup=button)
+              else: await message.reply(text,reply_markup=button)
               await msg.delete()
            except Exception as e: return await message.reply(e)
       else: 
@@ -57,8 +58,8 @@ async def user_info(_, message):
            try:
                 if x.user.photo: 
                     profile = await Nandha.download_media(x.user.photo.big_file_id,file_name=f"{x.user.first_name}.jpg")
-                    await message.reply_photo(profile,caption=text)
-                else: await message.reply(text)
+                    await message.reply_photo(profile,caption=text,reply_markup=button)
+                else: await message.reply(text,reply_markup=button)
                 await msg.delete() 
            except Exception as e: return await message.reply(e) 
       
