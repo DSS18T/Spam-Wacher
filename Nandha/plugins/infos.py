@@ -39,7 +39,7 @@ async def user_info(_, message):
                  text += "<b>Status</b>: <code>{}</code>\n".format("Admin")
            if x.user.photo: 
                 profile = await Nandha.download_media(x.user.photo.big_file_id)
-                await message.reply_document(photo,caption=text)
+                await message.reply_document(profile,caption=text)
            else: await message.reply(text) 
            
       
