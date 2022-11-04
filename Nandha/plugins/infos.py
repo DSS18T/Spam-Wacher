@@ -19,6 +19,10 @@ async def user_info(_, message):
       if message.chat.type == enums.ChatType.PRIVATE:
            try: x = await Nandha.get_chat(user_id)
            except Exception as e: return await message.reply(e)
+           await message.reply(x)
+      else: 
+           try: x = await message.chat.get_member(user_id)
+           except Exception as e: return await message.reply(e)
            text = "<b>Profile Info</b>:\n"
            text += "<b>Name</b>: {}\n".format(x.first_name)
            text += "<b>ID</b>: {}\n".format(x.id)
@@ -34,10 +38,6 @@ async def user_info(_, message):
            if x.privileges:
                  text += "\n<b>Status</b>: {}\n".format("Admin")
            await message.reply(text)
-      else: 
-           try: x = await message.chat.get_member(user_id)
-           except Exception as e: return await message.reply(e)
-           await message.reply(x)
       
 
 
