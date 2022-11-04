@@ -14,15 +14,17 @@ async def user_info(_, message):
       " information about users "
       reply = message.reply_to_message
       if reply: user_id = reply.from_user.id
-      elif not reply: user_id = message.text.split()[1]
+      elif not reply and len(message.text.split()) == 2: user_id = message.text.split()[1]
+      elif not reply and len(message.text.split()) == 1: user_id = message.from_user.id
       else: return await message.reply("`somthing wrong reply a user or give me id to find user details!`")
       if message.chat.type == enums.ChatType.PRIVATE:
            try: x = await Nandha.get_chat(user_id)
            except Exception as e: return await message.reply(e)
            await message.reply(x)
       else: 
-           msg = await message.reply("`Getting results Please Wait!`")
+           msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await message.chat.get_member(user_id)
+           except UserNotParticipant: return await message.reply("This User Is Not Member Here To Give You Info You Can Dm Me To Find His/She Info!")
            except Exception as e: return await message.reply(e)
            text = "<b>Profile Info</b>:\n"
            text += "<b>Name</b>: {}\n".format(x.user.first_name)
