@@ -154,7 +154,4 @@ developer can access this commnds!
 - `/leave` or give id : request to leave chat.
 - `/run`: run the code.
 - `/sh`: shell
-- `/unbanall`: unbanall from a group.
-- `/massban` or `/sbanall`: ban all user from a group.
-- `/kick` or `/skickall`: kick all user from a group.
 """
