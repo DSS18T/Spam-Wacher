@@ -36,12 +36,14 @@ async def user_info(_, message):
            if x.promoted_by:
                  text += "<b>Promote by</b>: <code>{}</code>\n".format(x.promoted_by.first_name)
            if x.privileges:
-                 text += "<b>Status</b>: <code>{}</code>\n".format("Admin")
-           if x.user.photo: 
-                profile = await Nandha.download_media(x.user.photo.big_file_id)
-                await message.reply_document(profile,caption=text)
-           else: await message.reply(text) 
-           
+                 text += "<b>Status</b>: <code>{}</code>\n".format("Group Stuff")
+           else: text += "<b>Status</b>: <code>{}</code>\n".format("Group Member")
+           try:
+                if x.user.photo: 
+                    profile = await Nandha.download_media(x.user.photo.big_file_id)
+                    await message.reply_document(profile,caption=text)
+                else: await message.reply(text) 
+           except Exception as e: return await message.reply(e) 
       
 
 
