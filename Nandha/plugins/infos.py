@@ -17,6 +17,7 @@ async def user_info(_, message):
       elif not reply and len(message.text.split()) == 2: user_id = message.text.split()[1]
       elif not reply and len(message.text.split()) == 1: user_id = message.from_user.id
       else: return await message.reply("`somthing wrong reply a user or give me id to find user details!`")
+      pfp_count = await Nandha.get_chat_photos_count(message.from_user.id)
       button = InlineKeyboardMarkup([[InlineKeyboardButton("[ ❌ ]",callback_data=f"delete:{user_id}")]])
       if message.chat.type == enums.ChatType.PRIVATE:
            msg = await message.reply("`Getting results\nPlease Wait!`")
@@ -28,6 +29,7 @@ async def user_info(_, message):
            text += "<b>Username</b>: @{}\n".format(x.username)
            text += "<b>Mention</b>: {}\n".format(f"[{x.first_name}](tg://user?id={x.first_name})")
            text += "<b>DC ID</b>: <code>{}</code>\n".format(x.dc_id)
+           text += "<b>Profile Count</b>: <code>{}</code>\n".format(pfp_count)
            try:
               if x.photo:
                  profile = await Nandha.download_media(x.photo.big_file_id,file_name=f"{x.first_name}.jpg")
@@ -46,6 +48,7 @@ async def user_info(_, message):
            text += "<b>Username</b>: @{}\n".format(x.user.username)
            text += "<b>Mention</b>: {}\n".format(f"[{x.user.first_name}](tg://user?id={x.user.first_name})")
            text += "<b>DC ID</b>: <code>{}</code>\n".format(x.user.dc_id)
+           text += "<b>Profile Count</b>: <code>{}</code>\n".format(pfp_count)
            if x.joined_date:
                 text += "<b>Join Date</b>: <code>{}</code>\n".format(x.joined_date)
            if x.custom_title:
