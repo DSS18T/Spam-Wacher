@@ -17,7 +17,7 @@ async def make_carbon(code):
 @Nandha.on_message(filters.command(["cb","carbon"],config.CMDS))
 async def make_carbon_image(_, message):
       reply = message.reply_to_message
-      if reply and reply.text or reply.caption:
+      if reply and reply.text or reply and reply.caption:
            text = reply.text or reply.caption
       elif not reply and len(message.text.split()) >1:
            text = message.text.split(None,1)[1]
