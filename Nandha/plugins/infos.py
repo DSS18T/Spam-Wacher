@@ -33,10 +33,12 @@ async def user_info(_, message):
                  text += "<b>Promote by</b>: {}\n".format(x.promoted_by.first_name)
            if x.privileges:
                  text += "\n<b>Status</b>: {}\n".format("Admin")
+           await message.reply(text)
       else: 
            try: x = await message.chat.get_member(user_id)
            except Exception as e: return await message.reply(e)
-      await message.reply(text)
+           await message.reply(x)
+      
 
 
 @Nandha.on_message(filters.command("id",config.CMDS))
