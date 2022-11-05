@@ -9,6 +9,26 @@ from pyrogram.errors import AdminRankInvalid
 from datetime import datetime as time
 
 
+@Nandha.on_message(filters.command(["rdacc","removezombies"],config.CMDS))
+async def remove_delete_acc(_, message):
+     user_id = message.from_user.id
+     chat_id = message.chat.id
+     if await is_admin(chat_id,user_id) == False: return await message.reply("`Admins Only!`")
+     elif await can_ban_members(chat_id,user_id) == False: return await message.reply("`You Don't Have Ban Rights!`") 
+     elif message.chat.type == enums.ChatType.PRIVATE: return await message.reply("`This Command Only work in Groups!`")
+     else:
+       try:
+          done = 0
+          async for m in Nandha.get_chat_members(chat_id):
+              if m.user.is_deleted == True:
+                  await Nandha.ban_chat_member(chat_id,m.user.id)
+                  done +=+1
+          await message.reply("**Successfully Removed Deleted Accounts**: `{}`".format(done))
+       except Exception as e:
+           print(e)
+
+
+
 @Nandha.on_message(filters.command("title",config.CMDS))
 async def set_admin_title(_, message):
      chat_id = message.chat.id
