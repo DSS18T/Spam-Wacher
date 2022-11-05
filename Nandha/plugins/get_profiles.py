@@ -13,6 +13,6 @@ async def user_profiles(_, message):
        for x in file:
           if x == x:
               continue
-          await Nandha.send_media_group(message.chat.id,[
+       await Nandha.send_media_group(message.chat.id,[
                  InputMediaPhoto(pfp),
                  InputMediaPhoto(pfp)])
