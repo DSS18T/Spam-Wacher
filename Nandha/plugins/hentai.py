@@ -4,7 +4,7 @@ from Nandha import Nandha
 from pyrogram import filters
 
 
-@Nandha.on_message(filters.command("boobs",config.CMDS))
+@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command("boobs",config.CMDS))
 async def boobs(_, message):
     file_id = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
     url = "http://media.oboobs.ru/{}"
