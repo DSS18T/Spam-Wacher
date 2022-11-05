@@ -139,7 +139,7 @@ async def start(_, message):
       if len(message.text.split()) >1:
            name = message.text.split(None,1)[1]
            if name[0:4] == "help":
-                await message.reply("I help you with my cock!")
+                return await message.reply("I help you with my cock!")
       if message.chat.type == enums.ChatType.PRIVATE:
           if not user_id in get_users():
                 add_user(user_id)
