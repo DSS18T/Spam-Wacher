@@ -44,14 +44,16 @@ async def help_parser(name, keyboard=None):
     keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (strings.HELP_TEXT, keyboard)
 
+Button = InlineKeyboardMarkup([[InlineKeyboardButton("Help",url=f"https://t.me/{config.USERNAME}?start=help")]])
+
 @Nandha.on_message(filters.command("help",config.CMDS))
 async def _help(_, message):
-  text, keyboard = await help_parser(message.from_user.first_name)
-  return await message.reply_video(
-      config.profile,
-      caption=strings.HELP_TEXT,
-      reply_markup=keyboard
-    )
+       if message.reply_to_message:
+          await message.reply_to_message.reply_text("Click The Below Button to Know How to Use Commands!",
+           reply_markup=Button)
+       else:
+          await message.reply_text("Click The Below Button to Know How to Use Commands!",
+           reply_markup=Button)
 
 @Nandha.on_callback_query(filters.regex("bot_commands"))
 async def commands_callbacc(_, query):
@@ -139,7 +141,8 @@ async def start(_, message):
       if len(message.text.split()) >1:
            name = message.text.split(None,1)[1]
            if name[0:4] == "help":
-                return await message.reply("I help you with my cock!")
+                text, keyboard = await help_parser(message.from_user.first_name)
+                return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
       if message.chat.type == enums.ChatType.PRIVATE:
           if not user_id in get_users():
                 add_user(user_id)
