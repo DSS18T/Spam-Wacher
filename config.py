@@ -8,6 +8,6 @@ OWNER_ID = 5696053228
 DEVS = [5696053228,5446911]
 
 BOT_ID = 5561055962
-CMDS = ["/","!","?"]
+CMDS = ["/","sw!"]
 
 profile = "http://telegra.ph/file/622ab6e6cc673a7a26266.mp4"
