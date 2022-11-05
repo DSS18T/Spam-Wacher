@@ -19,11 +19,12 @@ async def remove_delete_acc(_, message):
      else:
        try:
           done = 0
+          msg = await message.reply("**deleteing accounts!**")
           async for m in Nandha.get_chat_members(chat_id):
-              if m.user.is_deleted == True:
+              if m.user.is_deleted == True: 
                   await Nandha.ban_chat_member(chat_id,m.user.id)
                   done +=+1
-          await message.reply("**Successfully Removed Deleted Accounts**: `{}`".format(done))
+          await msg.edit("**Successfully Removed Deleted Accounts**: `{}`".format(done))
        except Exception as e:
            print(e)
 
