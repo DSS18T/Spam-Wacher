@@ -16,6 +16,5 @@ async def user_profiles(_, message):
                x += +1
                msg = await Nandha.send_photo(user_id, photo.file_id)
                await asyncio.sleep(3)
-          await Nandha.send_message(user_id, f"**total profiles I have sent**: `{x}`",reply_to_message_id=msg.id)
-       except Exception as e:
-             return await message.reply(e)
+          await Nandha.send_message(user_id, f"**Total Profiles I Have Sent**: `{x}`",reply_to_message_id=msg.id)
+       except Exception as e: return await message.reply(e)
