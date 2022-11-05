@@ -11,6 +11,6 @@ async def user_profiles(_, message):
        async for photo in Nandha.get_chat_photos(user_id):
               file = photo.file_id
        await Nandha.send_media_group(message.chat.id,[
-            InputMediaPhoto(file_id)
+            InputMediaPhoto(file_id),
             InputMediaPhoto(file_id)
         ])
