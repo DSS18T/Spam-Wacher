@@ -10,9 +10,9 @@ async def user_profiles(_, message):
        file = []
        async for photo in Nandha.get_chat_photos(user_id):
               file.append(photo.file_id)
-       for x in file:
-          if x == x:
-              continue
-       await Nandha.send_media_group(message.chat.id,[
+       for pfp in file:
+          if pfp == pfp:
+               continue
+          await Nandha.send_media_group(message.chat.id,[
                  InputMediaPhoto(pfp),
                  InputMediaPhoto(pfp)])
