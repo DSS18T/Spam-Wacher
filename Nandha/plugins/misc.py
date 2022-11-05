@@ -19,7 +19,7 @@ is_downloading = False
 async def google_it(_, message):
        file_id = "CAACAgUAAx0CXss_8QABB0iVY2ZDrB4YHzW6u1xRqKLuUX7b6sEAAhUAA-VDzTc4Ts7oOpk4nx4E"
        if message.reply_to_message:
-            await message.reply_to_message.message.reply_sticker(sticker=file_id,
+            await message.reply_to_message.reply_sticker(sticker=file_id,
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔎 Google",url="https://www.google.com/search?")]]))
        else: await message.reply_sticker(sticker=file_id,
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔎 Google",url="https://www.google.com/search?")]]))
