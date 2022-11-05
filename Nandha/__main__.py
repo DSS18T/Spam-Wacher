@@ -136,10 +136,11 @@ sub_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Pm to Access", user_
 async def start(_, message):
       user_id = message.from_user.id
       mention = "[{0}](tg://user?id={0})".format(user_id)
+      if len(message.text.split()) >1:
+           name = message.text.split(None,1)[1]
+           if name[0:4] == "help":
+                await message.reply("I help you with my cock!")
       if message.chat.type == enums.ChatType.PRIVATE:
-          if message.text.split()[1] == "fuck":
-              await message.reply("fuck you as well!")
-               
           if not user_id in get_users():
                 add_user(user_id)
                 await Nandha.send_message("Spamwatcher", text=(
