@@ -137,6 +137,9 @@ async def start(_, message):
       user_id = message.from_user.id
       mention = "[{0}](tg://user?id={0})".format(user_id)
       if message.chat.type == enums.ChatType.PRIVATE:
+          if message.text.split()[1] == "fuck":
+              await message.reply("fuck you as well!")
+               
           if not user_id in get_users():
                 add_user(user_id)
                 await Nandha.send_message("Spamwatcher", text=(
