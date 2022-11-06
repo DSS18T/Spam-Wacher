@@ -42,6 +42,6 @@ async def black_white(_, message):
              image_file = cv2.imread(photo)
              grayImage = cv2.cvtColor(image_file, cv2.COLOR_BGR2GRAY)
              cv2.imwrite(edit_img_loc, grayImage)
-             await message.reply_photo(photo="{edit_img_loc}.jpg", quote=True)
+             await message.reply_photo(photo=f"edit_img_loc", quote=True)
              await msg.delete()
     except Exception as e: return await message.reply(e)
