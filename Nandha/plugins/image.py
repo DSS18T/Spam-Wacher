@@ -19,7 +19,7 @@ async def make_bw(path):
    grayImage = cv2.cvtColor(image_file, cv2.COLOR_BGR2GRAY)
    cv2.imwrite("brightness.jpg", grayImage)
    return "brightness.jpg"
-   os.remove("brightness.jpg")
+   
 
 @Nandha.on_message(filters.command(["cb","carbon"],config.CMDS))
 async def make_carbon_image(_, message):
@@ -43,9 +43,28 @@ async def black_white(_, message):
        elif reply.media:
              msg = await message.reply("downloading...")
              path = await Nandha.download_media(reply)
-             await msg.edit("scanning image...")
+             await msg.edit("scanning image.....")
              image = await make_bw(path)
-             await msg.edit("uploading...")
+             await msg.edit("uploading....")
              await message.reply_photo(photo=image, quote=True)
              await msg.delete()
+             os.remove("brightness.jpg")
     except Exception as e: return await message.reply(e)
+    os.remove("brightness.jpg")
+
+@Nandha.on_message(filters.command("sticker"))
+async def sticker(_, message):
+      reply = message.reply_to_message
+    try:
+       if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
+       elif reply.media:
+            path = await Nandha.download_media(reply)
+            sticker = "./image" + "/" + "stickersticker.webp"
+            os.rename(path, sticker)
+            await message.reply_sticker(sticker=sticker)
+            os.remove(sticker)
+    except Exception as e: return await message.reply(e)
+            
+
+
+
