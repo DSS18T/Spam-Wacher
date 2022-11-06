@@ -71,8 +71,8 @@ async def sticker(_, message):
             
 
 
-@Nandha.on_message(filters.command("glitch",config.CMDS))
-async def glitch(_, message):
+@Nandha.on_message(filters.command("rotate",config.CMDS))
+async def rotate(_, message):
     reply = message.reply_to_message
     try:
        if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
@@ -80,11 +80,11 @@ async def glitch(_, message):
             msg = await message.reply("downloading...")
             path = await Nandha.download_media(reply)
             await msg.edit("scanning image.....")
-            ok = "/app/glitch.jpg"
-            cd = ["glitch_this", "-c", "-o", ok, path, "3"]
-            process = await asyncio.create_subprocess_exec(
-                *cd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
-            await process.communicate()
+            ok = "/app/rotate.jpg"
+            src = cv2.imread(path)
+            image = cv2.rotate(src, cv2.cv2.ROTATE_90_CLOCKWISE)
+            cv2.imwrite(ok, image)
             await message.reply_photo(photo=ok)
             await msg.delete()
+            os.remove(ok)
     except Exception as e: return await message.reply(e)
