@@ -4,7 +4,7 @@ import config
 from Nandha import (
 Nandha, session )
 from io import BytesIO
-from pyrogram import filters
+from pyrogram import filters 
 
 
 async def make_carbon(code):
@@ -30,7 +30,7 @@ async def make_carbon_image(_, message):
       await msg.delete()
 
 @Nandha.on_message(filters.command("bw",config.CMDS))
-async def black_white(Nandha: client, message):
+async def black_white(client: Nandha, message):
     try:
         userid = str(message.chat.id)
         if not os.path.isdir(f"./DOWNLOADS/{userid}"):
