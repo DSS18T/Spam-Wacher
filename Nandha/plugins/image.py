@@ -43,7 +43,9 @@ async def black_white(_, message):
        elif reply.media:
              msg = await message.reply("downloading...")
              path = await Nandha.download_media(reply)
+             await msg.edit("scanning image...")
              image = await make_bw(path)
+             await msg.edit("uploading...")
              await message.reply_photo(photo=image, quote=True)
              await msg.delete()
     except Exception as e: return await message.reply(e)
