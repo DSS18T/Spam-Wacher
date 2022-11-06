@@ -52,7 +52,7 @@ async def black_white(_, message):
     except Exception as e: return await message.reply(e)
     os.remove("brightness.jpg")
 
-@Nandha.on_message(filters.command("sticker"))
+@Nandha.on_message(filters.command("sk",config.CMDS))
 async def sticker(_, message):
     reply = message.reply_to_message
     try:
@@ -62,6 +62,7 @@ async def sticker(_, message):
             sticker = "/app/sticker.webp"
             os.rename(path,sticker)
             await message.reply_sticker(sticker=sticker)
+            os.remove(sticker)
     except Exception as e: return await message.reply(e)
             
 
