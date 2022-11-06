@@ -20,6 +20,9 @@ async def make_bw(path):
    grayImage = cv2.cvtColor(image_file, cv2.COLOR_BGR2GRAY)
    cv2.imwrite("brightness.jpg", grayImage)
    return "brightness.jpg"
+
+def dodgeV2(x, y):
+    return cv2.divide(x, 255 - y, scale=256)
    
 
 @Nandha.on_message(filters.command(["cb","carbon"],config.CMDS))
@@ -84,6 +87,27 @@ async def rotate(_, message):
             src = cv2.imread(path)
             image = cv2.rotate(src, cv2.ROTATE_90_CLOCKWISE)
             cv2.imwrite(ok, image)
+            await message.reply_photo(photo=ok)
+            await msg.delete()
+            os.remove(ok)
+    except Exception as e: return await message.reply(e)
+
+@Nandha.on_message(filters.command("pencil",config.CMDS))
+async def rotate(_, message):
+    reply = message.reply_to_message
+    try:
+       if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
+       elif reply.media:
+            msg = await message.reply("downloading...")
+            path = await Nandha.download_media(reply)
+            await msg.edit("scanning image.....")
+            ok = "/app/pencil.jpg"
+            img = cv2.imread(path)
+            img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img_invert = cv2.bitwise_not(img_gray)
+            img_smoothing = cv2.GaussianBlur(img_invert, (21, 21), sigmaX=0, sigmaY=0)
+            final_img = dodgeV2(img_gray, img_smoothing)
+            cv2.imwrite(ok, final_img)
             await message.reply_photo(photo=ok)
             await msg.delete()
             os.remove(ok)
