@@ -25,14 +25,14 @@ async def google_it(_, message):
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔎 Google",url="https://www.google.com/search?")]]))
 
 @Nandha.on_message(filters.command("tm",config.CMDS))
-async def graph(_, message):
+async def telegraph(_, message):
    reply = message.reply_to_message
    if not reply or reply and not reply.media:
           return await message.reply("Reply A Media Upload File Graph.org")
    else:
       telegraph = upload_file(await message.reply_to_message.download())
       for file_id in telegraph:
-          url = "https://graph.org" + file_id
+          url = "https://telegra.ph" + file_id
       await message.reply(url)
 
 @Nandha.on_message(filters.command("img",config.CMDS))
