@@ -32,18 +32,16 @@ async def make_carbon_image(_, message):
 
 @Nandha.on_message(filters.command("bw",config.CMDS))
 async def black_white(_, message):
-    id = str(message.chat.id)
     reply = message.reply_to_message
     try:
        if not reply or reply and not reply.media: return await message.reply("Reply to media")
        elif reply.media:
-             image = "./DOWNLOADS" + "/" + id + "/" + "brightness.jpg"
              msg = await message.reply("downloading...")
              photo = await Nandha.download_media(reply)
              await msg.edit("Processing Image.")
              image_file = cv2.imread(photo)
              grayImage = cv2.cvtColor(image_file, cv2.COLOR_BGR2GRAY)
-             cv2.imwrite(image, grayImage)
-             await message.reply_photo(photo=image, quote=True)
+             cv2.imwrite("brightness.jpg", grayImage)
+             await message.reply_photo(photo="brightness.jpg", quote=True)
              await msg.delete()
     except Exception as e: return await message.reply(e)
