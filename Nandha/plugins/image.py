@@ -59,8 +59,8 @@ async def sticker(_, message):
        if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
        elif reply.media:
             path = await Nandha.download_media(reply)
-            sticker = "/app/image/sticker.webp"
-            os.rename(path, sticker)
+            sticker = "/app/sticker.webp"
+            os.rename(path,sticker)
             await message.reply_sticker(sticker=sticker)
     except Exception as e: return await message.reply(e)
             
