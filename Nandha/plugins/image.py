@@ -54,7 +54,7 @@ async def black_white(_, message):
 
 @Nandha.on_message(filters.command("sticker"))
 async def sticker(_, message):
-      reply = message.reply_to_message
+    reply = message.reply_to_message
     try:
        if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
        elif reply.media:
