@@ -36,12 +36,13 @@ async def black_white(_, message):
        reply = message.reply_to_message
        if not reply or reply and not reply.media: return await message.reply("Reply to media")
        elif reply.media:
+             image = "./downloads" + "/" + userid + "/" + "brightness.jpg"
              msg = await message.reply("downloading...")
              photo = await reply.download()
              await msg.edit("Processing Image.")
              image_file = cv2.imread(photo)
              grayImage = cv2.cvtColor(image_file, cv2.COLOR_BGR2GRAY)
-             cv2.imwrite(edit_img_loc, grayImage)
-             await message.reply_photo(photo=f"edit_img_loc", quote=True)
+             cv2.imwrite(image, grayImage)
+             await message.reply_photo(photo=image, quote=True)
              await msg.delete()
     except Exception as e: return await message.reply(e)
