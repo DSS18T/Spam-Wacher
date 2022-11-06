@@ -32,7 +32,7 @@ async def make_carbon_image(_, message):
 
 @Nandha.on_message(filters.command("bw",config.CMDS))
 async def black_white(_, message):
-    user_id = message.from_user.id
+    user_id = str(message.from_user.id)
     reply = message.reply_to_message
     try:
        if not reply or reply and not reply.media: return await message.reply("Reply to media")
