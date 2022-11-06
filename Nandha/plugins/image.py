@@ -82,7 +82,7 @@ async def rotate(_, message):
             await msg.edit("scanning image.....")
             ok = "/app/rotate.jpg"
             src = cv2.imread(path)
-            image = cv2.rotate(src, cv2.cv2.ROTATE_90_CLOCKWISE)
+            image = cv2.rotate(src, cv2.ROTATE_90_CLOCKWISE)
             cv2.imwrite(ok, image)
             await message.reply_photo(photo=ok)
             await msg.delete()
