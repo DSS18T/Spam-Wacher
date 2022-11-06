@@ -5,6 +5,7 @@ pillow
 pymongo 
 pymongo[srv]
 tgcrypto
+telegraph
 requests 
 asyncio
 aiohttp
