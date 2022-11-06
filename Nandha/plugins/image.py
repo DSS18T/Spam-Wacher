@@ -1,6 +1,7 @@
 import os
 import cv2
 import config
+import asyncio
 from Nandha import (
 Nandha, session )
 from io import BytesIO
@@ -58,13 +59,32 @@ async def sticker(_, message):
     try:
        if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
        elif reply.media:
+            msg = await message.reply("downloading...")
             path = await Nandha.download_media(reply)
+            await msg.edit("scanning image.....")
             sticker = "/app/sticker.webp"
             os.rename(path,sticker)
             await message.reply_sticker(sticker=sticker)
+            await msg.delete()
             os.remove(sticker)
     except Exception as e: return await message.reply(e)
             
 
 
-
+@Nandha.on_message(filters.command("glitch",config.CMDS))
+async def glitch(_, message):
+    reply = message.reply_to_message
+    try:
+       if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
+       elif reply.media:
+            msg = await message.reply("downloading...")
+            path = await Nandha.download_media(reply)
+            await msg.edit("scanning image.....")
+            ok = "/app/glitch.jpg"
+            cd = ["glitch_this", "-c", "-o", ok, path, "3"]
+            process = await asyncio.create_subprocess_exec(
+                *cd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+            await process.communicate()
+            await message.reply_photo(photo=ok)
+            await msg.delete()
+    except Exception as e: return await message.reply(e)
