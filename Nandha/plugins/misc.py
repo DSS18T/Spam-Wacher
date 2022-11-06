@@ -32,7 +32,7 @@ async def telegraph(_, message):
    else:
       telegraph = upload_file(await message.reply_to_message.download())
       for file_id in telegraph:
-          url = "https://telegra.ph" + file_id
+          url = "https://graph.org" + file_id
       await message.reply(url)
 
 @Nandha.on_message(filters.command("img",config.CMDS))
