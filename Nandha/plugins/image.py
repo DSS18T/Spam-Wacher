@@ -6,8 +6,26 @@ from Nandha import (
 Nandha, session )
 from io import BytesIO
 from pyrogram import filters 
+from pyrogram.types import InputMediaPhoto
+from icrawler.builtin import GoogleImageCrawler
 
-
+@Nandha.on_message(filters.command("gi",config.CMDS))
+async def google_image(_, message):
+     if len(message.text.split()) <2: return await message.reply("Any query for search image?")
+     google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'gg_images'})
+     google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 10)
+     mm = "/app/gg_images"
+     kk = []
+     kk.append(mm)
+     image = []
+     msg = await message.reply("`Processing....`")
+     for x in kk:
+         z = "/app/gg_images/{}".format(x)
+         ss.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
+     await Nandha.send_group_media(message.chat.id, media=image)    
+     await msg.delete()
+     os.remove(mm)
+   
 async def make_carbon(code):
     url = "https://carbonara.vercel.app/api/cook"
     async with session.post(url, json={"code": code}) as resp:
