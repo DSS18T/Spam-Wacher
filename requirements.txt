@@ -11,6 +11,7 @@ asyncio
 aiohttp
 aiofiles
 bing_image_downloader
+icrawler
 opencv-python-headless
 gpytranslate
 wget
