@@ -24,8 +24,8 @@ async def google_image(_, message):
      try:
        for x in kk:
            image.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
-        await Nandha.send_media_group(message.chat.id, media=image)    
-        await msg.delete()
+       await Nandha.send_media_group(message.chat.id, media=image)    
+       await msg.delete()
      except Exception as e: return await message.reply(e)
      await msg.delete()
      os.remove(mm)
