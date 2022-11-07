@@ -5,6 +5,7 @@ import asyncio
 from Nandha import (
 Nandha, session )
 from io import BytesIO
+from subprocess import getoutput as run
 from pyrogram import filters 
 from pyrogram.types import InputMediaPhoto
 from icrawler.builtin import GoogleImageCrawler
@@ -16,12 +17,12 @@ async def google_image(_, message):
      google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 10)
      mm = "/app/gg_images"
      kk = []
-     kk.append(mm)
+     c = run(mm)
+     kk.append(c)
      image = []
      msg = await message.reply("`Processing....`")
      for x in kk:
-         z = "/app/gg_images/{}".format(x)
-         ss.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
+         image.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
      await Nandha.send_group_media(message.chat.id, media=image)    
      await msg.delete()
      os.remove(mm)
