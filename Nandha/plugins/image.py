@@ -29,8 +29,11 @@ async def google_image(_, message):
            kk.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
        await Nandha.send_media_group(message.chat.id, media=kk)    
        await msg.delete()
+       is_downloading = False
+       os.system("rm -rf gg_images")
      except Exception as e: return await message.reply(e)
      await msg.delete()
+     is_downloading = False
      os.system("rm -rf gg_images")
      
    
