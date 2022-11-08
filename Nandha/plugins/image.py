@@ -27,7 +27,7 @@ async def google_image(_, message):
      try:
        for x in image:
            kk.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
-       await Nandha.send_media_group(message.chat.id, media=kk)    
+       await Nandha.send_media_group(message.chat.id, media=kk, reply_to_message_id=message.id)    
        await msg.delete()
        is_downloading = False
        os.system("rm -rf gg_images")
