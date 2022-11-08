@@ -14,6 +14,7 @@ from Nandha.plugins.misc import is_downloading
 
 @Nandha.on_message(filters.command("gi",config.CMDS))
 async def google_image(_, message):
+     global is_downloading
      if len(message.text.split()) <2: return await message.reply("Any query for search image?")
      elif is_downloading: return await message.reply("Another Process On-going Please Wait!")
      is_downloading = True
