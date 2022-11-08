@@ -16,6 +16,7 @@ from Nandha.plugins.misc import is_downloading
 async def google_image(_, message):
      if len(message.text.split()) <2: return await message.reply("Any query for search image?")
      elif is_downloading: return await message.reply("Another Process On-going Please Wait!")
+     is_downloading = True
      msg = await message.reply("`Downloading Images From Google.`")
      google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'gg_images'})
      google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 4)
