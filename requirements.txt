@@ -10,9 +10,7 @@ requests
 asyncio
 aiohttp
 aiofiles
-bing_image_downloader
 icrawler
-opencv-python-headless
+opencv-python-headless # image edit
 gpytranslate
-wget
-gTTS
+glitch_this
