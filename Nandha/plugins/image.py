@@ -16,7 +16,6 @@ async def google_image(_, message):
      msg = await message.reply("`Downloading...`")
      google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'gg_images'})
      google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 10)
-     mm = "gg_images"
      image = run("ls gg_images").split()
      kk = []
      await msg.edit("`Uploading....`")
@@ -27,9 +26,7 @@ async def google_image(_, message):
        await msg.delete()
      except Exception as e: return await message.reply(e)
      await msg.delete()
-     try: 
-       for w in images: os.remove("{}/{}".format(w,m))
-     except Exception as e: print(e)
+     os.system("rm -rf gg_images")
      
    
 async def make_carbon(code):
