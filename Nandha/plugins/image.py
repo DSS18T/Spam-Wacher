@@ -122,7 +122,7 @@ async def rotate(_, message):
     except Exception as e: return await message.reply(e)
 
 @Nandha.on_message(filters.command("pencil",config.CMDS))
-async def rotate(_, message):
+async def pencil(_, message):
     reply = message.reply_to_message
     try:
        if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
@@ -141,3 +141,27 @@ async def rotate(_, message):
             await msg.delete()
             os.remove(ok)
     except Exception as e: return await message.reply(e)
+
+
+@Nandha.on_message(filters.command("glitch",config.CMDS))
+async def glitch(_, message):
+    reply = message.reply_to_message
+    try:
+       if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
+       elif reply.media:
+            msg = await message.reply("downloading...")
+            path = await Nandha.download_media(reply)
+            await msg.edit("scanning image.....")
+            ok = "/app/glitch.png"            
+            cd = ["glitch_this", "-c", "-o", ok, path, "4"]
+            process = await asyncio.create_subprocess_exec(
+                *cd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+            await process.communicate()
+            await message.reply_photo(photo=ok,quote=True)
+            await msg.delete()
+            os.remove(ok)
+    except Exception as e: return await message.reply(e)
+    await msg.delete()
+    os.remove(ok)
+
+
