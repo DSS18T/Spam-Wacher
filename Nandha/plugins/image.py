@@ -16,15 +16,13 @@ async def google_image(_, message):
      google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'gg_images'})
      google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 10)
      mm = "/app/gg_images"
+     image = run("ls gg_images").split()
      kk = []
-     c = run(mm)
-     kk.append(c)
-     image = []
      msg = await message.reply("`Processing....`")
      try:
-       for x in kk:
-           image.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
-       await Nandha.send_media_group(message.chat.id, media=image)    
+       for x in image:
+           kk.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
+       await Nandha.send_media_group(message.chat.id, media=kk)    
        await msg.delete()
      except Exception as e: return await message.reply(e)
      await msg.delete()
