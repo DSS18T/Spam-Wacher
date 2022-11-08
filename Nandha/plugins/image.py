@@ -13,12 +13,13 @@ from icrawler.builtin import GoogleImageCrawler
 @Nandha.on_message(filters.command("gi",config.CMDS))
 async def google_image(_, message):
      if len(message.text.split()) <2: return await message.reply("Any query for search image?")
+     msg = await message.reply("`Downloading...`")
      google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'gg_images'})
      google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 10)
      mm = "gg_images"
      image = run("ls gg_images").split()
      kk = []
-     msg = await message.reply("`Processing....`")
+     await msg.edit("`Uploading....`")
      try:
        for x in image:
            kk.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
