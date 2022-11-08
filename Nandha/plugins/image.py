@@ -9,16 +9,19 @@ from subprocess import getoutput as run
 from pyrogram import filters 
 from pyrogram.types import InputMediaPhoto
 from icrawler.builtin import GoogleImageCrawler
+from Nandha.plugins.misc import is_downloading
+
 
 @Nandha.on_message(filters.command("gi",config.CMDS))
 async def google_image(_, message):
      if len(message.text.split()) <2: return await message.reply("Any query for search image?")
-     msg = await message.reply("`Downloading...`")
+     elif is_downloading: return await message.reply("Another Process On-going Please Wait!")
+     msg = await message.reply("`Downloading Images From Google.`")
      google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'gg_images'})
-     google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 10)
+     google_Crawler.crawl(keyword = message.text.split(None,1)[1], max_num = 4)
      image = run("ls gg_images").split()
      kk = []
-     await msg.edit("`Uploading....`")
+     await msg.edit("`Successfully image downloaded now uploading via media group!`")
      try:
        for x in image:
            kk.append(InputMediaPhoto(media=f"/app/gg_images/{x}"))
