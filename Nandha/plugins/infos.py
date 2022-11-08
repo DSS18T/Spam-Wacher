@@ -37,6 +37,7 @@ async def user_info(_, message):
               else: await message.reply(text,reply_markup=button)
               await msg.delete()
            except Exception as e: return await message.reply(e)
+           await msg.delete()
       else: 
            msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await message.chat.get_member(user_id)
@@ -65,7 +66,7 @@ async def user_info(_, message):
                 else: await message.reply(text,reply_markup=button)
                 await msg.delete() 
            except Exception as e: return await message.reply(e) 
-      
+           await msg.delete()
 
 
 @Nandha.on_message(filters.command("id",config.CMDS))
