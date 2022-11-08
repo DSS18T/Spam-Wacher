@@ -152,7 +152,7 @@ async def glitch(_, message):
             msg = await message.reply("downloading...")
             path = await Nandha.download_media(reply)
             await msg.edit("scanning image.....")
-            ok = "/app/glitch.png"            
+            ok = "glitch.png"            
             cd = ["glitch_this", "-c", "-o", ok, path, "4"]
             process = await asyncio.create_subprocess_exec(
                 *cd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
