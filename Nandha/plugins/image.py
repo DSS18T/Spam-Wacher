@@ -26,7 +26,8 @@ async def google_image(_, message):
        await msg.delete()
      except Exception as e: return await message.reply(e)
      await msg.delete()
-     try: for w in images: os.remove("{}/{}".format(w,m))
+     try: 
+       for w in images: os.remove("{}/{}".format(w,m))
      except Exception as e: return await message.reply(e)
      
    
