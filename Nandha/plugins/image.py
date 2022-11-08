@@ -28,7 +28,7 @@ async def google_image(_, message):
      await msg.delete()
      try: 
        for w in images: os.remove("{}/{}".format(w,m))
-     except Exception as e: return await message.reply(e)
+     except Exception as e: print(e)
      
    
 async def make_carbon(code):
