@@ -82,7 +82,7 @@ async def black_white(_, message):
              await message.reply_photo(photo=image, quote=True)
              await msg.delete()
              os.remove("brightness.jpg")
-    except Exception as e: return await message.reply(e)
+    except Exception as e: return await message.reply("something wrong!")
     os.remove("brightness.jpg")
 
 @Nandha.on_message(filters.command("sk",config.CMDS))
@@ -99,7 +99,7 @@ async def sticker(_, message):
             await message.reply_sticker(sticker=sticker)
             await msg.delete()
             os.remove(sticker)
-    except Exception as e: return await message.reply(e)
+    except Exception as e: return await message.reply("something wrong!")
             
 
 
@@ -119,7 +119,7 @@ async def rotate(_, message):
             await message.reply_photo(photo=ok)
             await msg.delete()
             os.remove(ok)
-    except Exception as e: return await message.reply(e)
+    except Exception as e: return await message.reply("something wrong!")
 
 @Nandha.on_message(filters.command("pencil",config.CMDS))
 async def pencil(_, message):
@@ -140,7 +140,7 @@ async def pencil(_, message):
             await message.reply_photo(photo=ok)
             await msg.delete()
             os.remove(ok)
-    except Exception as e: return await message.reply(e)
+    except Exception as e: return await message.reply("something wrong!")
 
 
 @Nandha.on_message(filters.command("glitch",config.CMDS))
@@ -160,7 +160,7 @@ async def glitch(_, message):
             await message.reply_photo(photo=ok,quote=True)
             await msg.delete()
             os.remove(ok)
-    except Exception as e: return await message.reply(e)
+    except Exception as e: return await message.reply("something wrong!")
     await msg.delete()
     os.remove(ok)
 
