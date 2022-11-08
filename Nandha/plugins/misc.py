@@ -10,7 +10,6 @@ from pyrogram import filters
 from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin
-from bing_image_downloader import downloader
 
 is_downloading = False
 
@@ -34,46 +33,6 @@ async def telegraph(_, message):
       for file_id in telegraph:
           url = "https://graph.org" + file_id
       await message.reply(url)
-
-@Nandha.on_message(filters.command("img",config.CMDS))
-async def image(_, message):
-    global is_downloading
-    if len(message.text.split()) <2:
-          return await message.reply("Provide A Query!`")
-    elif is_downloading:
-          return await message.reply("Another Process Downloading Our Server Please Wait!")
-    is_downloading = True
-    query = message.text.split(None, 1)[1]
-    jit = f'"{query}"'
-    msg = await message.reply("Downloading please wait!")
-    downloader.download(
-        jit,
-        limit=6,
-        output_dir="store",
-    )
-    os.chdir(f'./store/"{query}"')
-    types = ("*.png", "*.jpeg", "*.jpg")  # the tuple of file types
-    files_grabbed = []
-    for files in types:
-        files_grabbed.extend(glob.glob(files))
-    await msg.edit("Uploading please wait!")
-    try:
-        await Nandha.send_media_group(message.chat.id,[
-               InputMediaPhoto(f"{files_grabbed[0]}"),
-               InputMediaPhoto(f"{files_grabbed[1]}"),
-               InputMediaPhoto(f"{files_grabbed[2]}"),
-               InputMediaPhoto(f"{files_grabbed[3]}"),
-               InputMediaPhoto(f"{files_grabbed[4]}"),
-               InputMediaPhoto(f"{files_grabbed[5]}")],reply_to_message_id=message.id) 
-        await msg.delete()
-        is_downloading = False
-        os.system("rm -rf store")
-        return
-    except Exception as e:
-         await msg.edit(e)
-         is_downloading = False
-    os.chdir("/app")
-    os.system("rm -rf store")
 
 
 
