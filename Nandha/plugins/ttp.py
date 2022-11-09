@@ -8,7 +8,7 @@ pdf = FPDF()
 @Nandha.on_message(filters.command("ttp",config.CMDS))
 async def text_to_pdf(_, message):
   reply = message.reply_to_message
-  if not reply.text: return await message.reply("Give Text Or Reply to Text!")
+  if reply and not reply.text or not reply: return await message.reply("Give Text Or Reply to Text!")
   name = "ttp.pdf"
   m = await message.reply("Processing....")
   pdf.add_page()
