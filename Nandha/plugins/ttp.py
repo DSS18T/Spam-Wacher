@@ -13,7 +13,7 @@ async def text_to_pdf(_, message):
   name = "ttp.pdf"
   m = await message.reply("Processing....")
   try: 
-    pdf = FPDF(); pdf.add_page(); pdf.set_font("Arial", size = 15)
+    pdf = FPDF(); pdf.add_page(); pdf.set_font("Arial", size = 30)
     pdf.cell(200, 10, txt = reply.text,
        ln = 1, align = 'C'); pdf.output(name)
     await m.edit("done now uploading..."); await message.reply_document(name); os.remove(name); await m.delete()
