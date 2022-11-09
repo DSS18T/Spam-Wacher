@@ -13,7 +13,8 @@ async def text_to_pdf(_, message):
   pdf = FPDF()
   pdf.add_page()
   pdf.set_font("Arial", size = 15)
-  pdf.cell(200, 10, txt = text, 
+  pdf.cell(200, 10, txt = text,
+       ln = 1, align = 'C')
   pdf.output(name)
   await message.reply_document(name)
   os.remove(name)
