@@ -11,12 +11,9 @@ async def text_to_pdf(_, message):
   if reply and not reply.text or not reply: return await message.reply("Give Text Or Reply to Text!")
   name = "ttp.pdf"
   m = await message.reply("Processing....")
-  pdf.add_page()
-  pdf.set_font("Arial", size = 15)
-  pdf.cell(200, 10, txt = reply.text,
-       ln = 1, align = 'C')
-  pdf.output(name)
-  await m.edit("done now uploading...")
-  await message.reply_document(name)
-  os.remove(name)
-  await m.delete()
+  try: 
+    pdf.add_page(); pdf.set_font("Arial", size = 15)
+    pdf.cell(200, 10, txt = reply.text,
+       ln = 1, align = 'C'); pdf.output(name)
+    await m.edit("done now uploading..."); await message.reply_document(name); os.remove(name); await m.delete()
+  except Exception as e: await m.delete(); os.remove(name)
