@@ -28,8 +28,13 @@ async def bw_to_cl(_, message):
           'image': open(path, 'rb'),},
         headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
         url = r.json()["output_url"]
-        await message.reply_photo(url, quote=True); await x.delete(); os.remove(path)
-     except Exception as e: return await message.reply(e); await x.delete(); os.remove(path)
+        await message.reply_photo(url, quote=True)
+        await x.delete()
+        os.remove(path)
+     except Exception as e: 
+           return await message.reply(e)
+           await x.delete()
+           os.remove(path)
 
 @Nandha.on_message(filters.command("art",config.CMDS))
 async def make_art(_, message):
