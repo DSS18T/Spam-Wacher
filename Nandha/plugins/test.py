@@ -14,6 +14,6 @@ async def color(_, m):
       img = cv2.imread(img_path)
       scaled = img.astype("float32") / 255.0
       lab_img = cv2.cvtColor(scaled, cv2.COLOR_BGR2LAB)
-      await m.reply(result)
+      await m.reply(lab_img)
 
 
