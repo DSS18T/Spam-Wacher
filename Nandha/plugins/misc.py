@@ -11,6 +11,19 @@ from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin
 
+
+
+@Nandha.on_message(filters.command("art",config.CMDS))
+async def make_art(_, message):
+     if len(message.text.split()) <2: return await message.reply("Give your Art Name!")
+     query = message.text.split(None,1)[1]
+     x = await message.reply("`Processing...`")
+     r = requests.post("https://api.deepai.org/api/text2img",
+     data={'text': query},
+     headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
+     await x.edit("`Processing Complete Now Uploading...`")
+     await message.reply_photo(r.json()["output_url"])
+
 is_downloading = False
 
 @Nandha.on_message(filters.regex("google"))
