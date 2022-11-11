@@ -23,7 +23,7 @@ async def bw_to_cl(_, message):
      await x.edit("`downloaded! Now Processing...`")
      try:
         r = requests.post( "https://api.deepai.org/api/colorizer", 
-            data={ 'image': path}, 
+            data={ 'image': open(path, 'rb')}, 
             headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'} ) 
         await x.edit("`Processing Complete Now Uploading...`")
         url = r.json()
