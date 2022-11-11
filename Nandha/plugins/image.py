@@ -12,6 +12,38 @@ from icrawler.builtin import GoogleImageCrawler
 from Nandha.plugins.misc import is_downloading
 
 
+
+@Nandha.on_message(filters.command("cl",config.CMDS))
+async def bw_to_cl(_, message):
+     reply = message.reply_to_message
+     if not reply or reply and not reply.media: return await message.reply("Reply to Black and White Image!")
+     x = await message.reply("`downloading...`")
+     path = await Nandha.download_media(reply)
+     await x.edit("`downloaded! Now Processing...`")
+     try:
+        r = requests.post("https://api.deepai.org/api/colorizer",
+        data={'image': path},
+        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
+        await x.edit("`Processing Complete Now Uploading...`")
+        url = r.json()["output_url"]
+        await message.reply_photo(url); await x.delete(); os.remove(path)
+     except Exception as e: return await message.reply(e); await x.delete(); os.remove(path)
+
+@Nandha.on_message(filters.command("art",config.CMDS))
+async def make_art(_, message):
+     if len(message.text.split()) <2: return await message.reply("Give your Art Name!")
+     query = message.text.split(None,1)[1]
+     x = await message.reply("`Processing...`")
+     try:
+        r = requests.post("https://api.deepai.org/api/text2img",
+        data={'text': query},
+        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
+        await x.edit("`Processing Complete Now Uploading...`")
+        url = r.json()["output_url"]
+        await message.reply_photo(url); await x.delete()
+     except Exception as e: return await message.reply(e); await x.delete()
+
+
 @Nandha.on_message(filters.command("gi",config.CMDS))
 async def google_image(_, message):
      global is_downloading
