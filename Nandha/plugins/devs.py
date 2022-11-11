@@ -23,7 +23,6 @@ async def stats(_, message):
      else: couples = len(await couples_chats())
      rules = len(rules_chats())
      chatbots = len(chatbot_chats())
-     karmas = len(get_karma_chats())
      users = len(get_users())
      stats = (
          "**Stats Info:**\n"
