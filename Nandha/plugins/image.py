@@ -22,23 +22,21 @@ async def bw_to_cl(_, message):
      x = await message.reply("`downloading...`")
      path = await Nandha.download_media(reply)
      user_id = message.from_user.id
-     image = f"/app/downloads/{user_id}/art.jpg"
-     os.rename(path, image)
      await x.edit("`downloaded! Now Processing...`")
      try:        
         r = requests.post(
           "https://api.deepai.org/api/colorizer",
         files={
-          'image': open(image, 'rb'),},
+          'image': open(path, 'rb'),},
         headers={'api-key': DEEPAI_KEY})
         url = r.json()["output_url"]
         await message.reply_photo(url, quote=True)
         await x.delete()
-        os.remove(image)
+        os.remove(path)
      except Exception as e: 
            return await message.reply(e)
            await x.delete()
-           os.remove(image)
+           os.remove(path)
 
 @Nandha.on_message(filters.command("art",config.CMDS))
 async def make_art(_, message):
