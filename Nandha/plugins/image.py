@@ -13,6 +13,7 @@ from icrawler.builtin import GoogleImageCrawler
 from Nandha.plugins.misc import is_downloading
 
 
+DEEPAI_KEY = "42a1355e-eac4-42e6-b40d-c77a5f52803d"
 
 @Nandha.on_message(filters.command("cl",config.CMDS))
 async def bw_to_cl(_, message):
@@ -29,7 +30,7 @@ async def bw_to_cl(_, message):
           "https://api.deepai.org/api/colorizer",
         files={
           'image': open(image, 'rb'),},
-        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
+        headers={'api-key': DEEPAI_KEY})
         url = r.json()["output_url"]
         await message.reply_photo(url, quote=True)
         await x.delete()
@@ -47,7 +48,7 @@ async def make_art(_, message):
      try:
         r = requests.post("https://api.deepai.org/api/text2img",
         data={'text': query},
-        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
+        headers={'api-key': DEEPAI_KEY})
         await x.edit("`Processing Complete Now Uploading...`")
         url = r.json()["output_url"]
         await message.reply_photo(url, quote=True); await x.delete()
