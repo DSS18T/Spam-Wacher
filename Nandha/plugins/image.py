@@ -27,7 +27,8 @@ async def bw_to_cl(_, message):
         files={
           'image': open(path, 'rb'),},
         headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
-        await message.reply_text(url); await x.delete(); os.remove(path)
+        url = r.json()["output_url"]
+        await message.reply_photo(url); await x.delete(); os.remove(path)
      except Exception as e: return await message.reply(e); await x.delete(); os.remove(path)
 
 @Nandha.on_message(filters.command("art",config.CMDS))
