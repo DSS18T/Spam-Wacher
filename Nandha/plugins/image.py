@@ -13,7 +13,7 @@ from icrawler.builtin import GoogleImageCrawler
 from Nandha.plugins.misc import is_downloading
 
 
-DEEPAI_KEY = "42a1355e-eac4-42e6-b40d-c77a5f52803d"
+DEEPAI_KEY = "a84e6c17-093f-4a63-872f-dc08f74d305a"
 
 @Nandha.on_message(filters.command("cl",config.CMDS))
 async def bw_to_cl(_, message):
