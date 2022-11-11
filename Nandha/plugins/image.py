@@ -21,12 +21,12 @@ async def bw_to_cl(_, message):
      x = await message.reply("`downloading...`")
      path = await Nandha.download_media(reply)
      await x.edit("`downloaded! Now Processing...`")
-     try:
-        r = requests.post( "https://api.deepai.org/api/colorizer", 
-            data={ 'image': open(path, 'rb')}, 
-            headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'} ) 
-        await x.edit("`Processing Complete Now Uploading...`")
-        url = r.json()
+     try:        
+        r = requests.post(
+          "https://api.deepai.org/api/colorizer",
+        files={
+          'image': open(path, 'rb'),},
+        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
         await message.reply_text(url); await x.delete(); os.remove(path)
      except Exception as e: return await message.reply(e); await x.delete(); os.remove(path)
 
