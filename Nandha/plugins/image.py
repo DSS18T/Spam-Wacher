@@ -20,7 +20,8 @@ async def bw_to_cl(_, message):
      if not reply or reply and not reply.media: return await message.reply("Reply to Black and White Image!")
      x = await message.reply("`downloading...`")
      path = await Nandha.download_media(reply)
-     image = "art.jpg"
+     user_id = message.from_user.id
+     image = f"/app/downloads/{user_id}/art.jpg"
      os.rename(path, image)
      await x.edit("`downloaded! Now Processing...`")
      try:        
