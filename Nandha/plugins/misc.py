@@ -23,8 +23,8 @@ async def make_art(_, message):
         data={'text': query},
         headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
         await x.edit("`Processing Complete Now Uploading...`")
-        await message.reply_photo(r.json()["output_url"])
-     except Exception as e: return await message.reply(e)
+        await message.reply_photo(r.json()["output_url"]); await x.delete()
+     except Exception as e: return await message.reply(e); await x.delete()
 
 is_downloading = False
 
