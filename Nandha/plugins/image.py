@@ -22,9 +22,9 @@ async def bw_to_cl(_, message):
      path = await Nandha.download_media(reply)
      await x.edit("`downloaded! Now Processing...`")
      try:
-        r = requests.post("https://api.deepai.org/api/colorizer",
-        data={'image': path},
-        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
+        r = requests.post( "https://api.deepai.org/api/colorizer", 
+            data={ 'image': path}, 
+            headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'} ) 
         await x.edit("`Processing Complete Now Uploading...`")
         url = r.json()["output_url"]
         await message.reply_photo(url); await x.delete(); os.remove(path)
