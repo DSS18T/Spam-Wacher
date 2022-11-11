@@ -12,7 +12,7 @@ async def color(_, m):
       proto_file = 'Model\colorization_deploy_v2.prototxt'
       model_file = 'Model\colorization_release_v2.caffemodel'
       hull_pts = 'Model\pts_in_hull.npy'
-      if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
+      if not reply or reply and not reply.media: return await m.reply("Reply to Media!")
       img_path = await Nandha.download_media(reply)
       net = dnn.readNetFromCaffe(proto_file,model_file)
       kernel = np.load(hull_pts)
@@ -39,6 +39,6 @@ async def color(_, m):
       result = cv2.hconcat([img,colorized])
       cv2.imshow("Grayscale -> Colour", result)
       cv2.waitKey(0)
-      await message.reply(result)
+      await m.reply(result)
 
 
