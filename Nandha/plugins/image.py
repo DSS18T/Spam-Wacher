@@ -28,7 +28,7 @@ async def bw_to_cl(_, message):
           'image': open(path, 'rb'),},
         headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
         url = r.json()["output_url"]
-        await message.reply_photo(url); await x.delete(); os.remove(path)
+        await message.reply_photo(url, quote=True); await x.delete(); os.remove(path)
      except Exception as e: return await message.reply(e); await x.delete(); os.remove(path)
 
 @Nandha.on_message(filters.command("art",config.CMDS))
@@ -42,7 +42,7 @@ async def make_art(_, message):
         headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
         await x.edit("`Processing Complete Now Uploading...`")
         url = r.json()["output_url"]
-        await message.reply_photo(url); await x.delete()
+        await message.reply_photo(url, quote=True); await x.delete()
      except Exception as e: return await message.reply(e); await x.delete()
 
 
@@ -98,7 +98,7 @@ async def make_carbon_image(_, message):
       else: return await message.reply("`Reply to text or give a text to make carbon!`")
       msg = await message.reply("`Please Wait!`")
       carbon = await make_carbon(text)
-      await message.reply_photo(carbon)
+      await message.reply_photo(carbon, quote=True)
       await msg.delete()
 
 
@@ -129,11 +129,11 @@ async def sticker(_, message):
             path = await Nandha.download_media(reply)
             await msg.edit("scanning image.....")
             sticker = "/app/sticker.webp"
-            os.rename(path,sticker)
+            os.rename(path, sticker)
             await message.reply_sticker(sticker=sticker)
             await msg.delete()
             os.remove(sticker)
-    except Exception as e: return await message.reply("something wrong!")
+    except Exception as e: return await message.reply("Something wrong!")
             
 
 
@@ -150,7 +150,7 @@ async def rotate(_, message):
             src = cv2.imread(path)
             image = cv2.rotate(src, cv2.ROTATE_90_CLOCKWISE)
             cv2.imwrite(ok, image)
-            await message.reply_photo(photo=ok)
+            await message.reply_photo(photo=ok, quote=True)
             await msg.delete()
             os.remove(ok)
     except Exception as e: return await message.reply("something wrong!")
@@ -171,7 +171,7 @@ async def pencil(_, message):
             img_smoothing = cv2.GaussianBlur(img_invert, (21, 21), sigmaX=0, sigmaY=0)
             final_img = dodgeV2(img_gray, img_smoothing)
             cv2.imwrite(ok, final_img)
-            await message.reply_photo(photo=ok)
+            await message.reply_photo(photo=ok, quote=True)
             await msg.delete()
             os.remove(ok)
     except Exception as e: return await message.reply("something wrong!")
