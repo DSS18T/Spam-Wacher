@@ -20,21 +20,23 @@ async def bw_to_cl(_, message):
      if not reply or reply and not reply.media: return await message.reply("Reply to Black and White Image!")
      x = await message.reply("`downloading...`")
      path = await Nandha.download_media(reply)
+     image = "art.jpg"
+     os.rename(path, image)
      await x.edit("`downloaded! Now Processing...`")
      try:        
         r = requests.post(
           "https://api.deepai.org/api/colorizer",
         files={
-          'image': open(path, 'rb'),},
+          'image': open(image, 'rb'),},
         headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
         url = r.json()["output_url"]
         await message.reply_photo(url, quote=True)
         await x.delete()
-        os.remove(path)
+        os.remove(image)
      except Exception as e: 
            return await message.reply(e)
            await x.delete()
-           os.remove(path)
+           os.remove(image)
 
 @Nandha.on_message(filters.command("art",config.CMDS))
 async def make_art(_, message):
