@@ -198,4 +198,23 @@ async def glitch(_, message):
     await msg.delete()
     os.remove(ok)
 
+__MODULE__ = "Editor"
+
+__HELP__ = """
+- /glitch: glitch the image or sticker you want.
+- /bw: get black and white image.
+- /cl: add color in black or white images.
+- /pencil: get draw image.
+- /sk: image to sticker.
+- /rotate: rotate image.
+- /cb: make a carbon.
+- /art: art image by AI.
+- /gi: get images from google.
+"""
+
+
+
+
+
+
 
