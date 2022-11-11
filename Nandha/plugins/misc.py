@@ -13,19 +13,6 @@ from Nandha.help.paste import spacebin
 
 
 
-@Nandha.on_message(filters.command("art",config.CMDS))
-async def make_art(_, message):
-     if len(message.text.split()) <2: return await message.reply("Give your Art Name!")
-     query = message.text.split(None,1)[1]
-     x = await message.reply("`Processing...`")
-     try:
-        r = requests.post("https://api.deepai.org/api/text2img",
-        data={'text': query},
-        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'})
-        await x.edit("`Processing Complete Now Uploading...`")
-        url = r.json()["output_url"]
-        await message.reply_photo(url); await x.delete()
-     except Exception as e: return await message.reply(e); await x.delete()
 
 is_downloading = False
 
