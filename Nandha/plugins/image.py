@@ -11,6 +11,35 @@ from pyrogram import filters
 from pyrogram.types import InputMediaPhoto
 from icrawler.builtin import GoogleImageCrawler
 from Nandha.plugins.misc import is_downloading
+from PIL import Image
+
+@Nandha.on_message(filters.command("merge",config.CMDS))
+async def merge(_, message):
+     reply = message.reply_to_message
+     chat_id = message.chat.id
+     user_id = message.from_user.id
+     if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
+     path1 = await Nandha.download_media(reply)
+     ASK = await Nandha.ask(chat_id, "Now send Another Image to Marge!", reply_to_message_id=message.id)
+     if ASK.media:
+            m = await message.reply("`downloading path...`", quote=True)
+            path2 = await Nandha.download_media(ASK)
+     else: return await message.reply("Sorry You Did Wrong Try Again.", quote=True)
+     m.edit("`Processing...`")
+     image1 = path1; image1.show()
+     image2 = path2; image2.show()
+     image1 = image1.resize((426, 240))
+     image1_size = image1.size; image2_size = image2.size
+     new_image = Image.new('RGB',(2*image1_size[0], image1_size[1]), (250,250,250))
+     new_image.paste(image1,(0,0))
+     new_image.paste(image2,(image1_size[0],0))
+     new_image.save("images/merged_image.jpg","JPEG")
+     new_image.show()
+     m.edit("Process done now uploading..")
+     merge_path = "images/merged_image.jpg"
+     await Nandha.send_document(chat_id, merge_path, reply_to_message_id=ASK.id)
+     await m.delete()
+     os.remove(merge_path)
 
 
 DEEPAI_KEY = "a84e6c17-093f-4a63-872f-dc08f74d305a"
