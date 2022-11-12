@@ -11,8 +11,7 @@ from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin
 
-
-
+ 
 
 is_downloading = False
 
@@ -96,5 +95,6 @@ __HELP__ = """
 - `/paste`: paste a text or text document.
 - `/ud`: definition the ward
 - `/ping`: see ping server.
-- `/img`: upload images from google.
+- `/tm`: upload a image to telegraph.
+- `/gt`: google it reply.
 """
