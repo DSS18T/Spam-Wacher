@@ -19,7 +19,7 @@ async def remove_delete_acc(_, message):
      else:
        try:
           done = 0
-          msg = await message.reply("**deleteing accounts!**")
+          msg = await message.reply("**Removing Deleted Accounts!**")
           async for m in Nandha.get_chat_members(chat_id):
               if m.user.is_deleted == True: 
                   await Nandha.ban_chat_member(chat_id,m.user.id)
@@ -250,9 +250,9 @@ async def promoting(_, message):
        user_id = message.from_user.id
        if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
+       elif (await is_admin(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
-       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEVS:
+       elif (await can_promote_members(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
@@ -308,9 +308,9 @@ async def demoting(_, message):
        user_id = message.from_user.id
        if message.chat.type == enums.ChatType.PRIVATE:
          return await message.reply("`This Command work Only In Groups!`")
-       elif (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
+       elif (await is_admin(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
-       elif (await can_promote_members(chat_id,user_id)) == False or user_id not in config.DEVS:
+       elif (await can_promote_members(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`You Don't Have Enough Rights!`")
        else:
                 bot = await Nandha.get_chat_member(chat_id,config.BOT_ID)
