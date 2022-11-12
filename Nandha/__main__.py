@@ -134,28 +134,29 @@ sub_txt = "`Oh man Please Dm Me And Start I don't know Who are You?`"
 sub_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Pm to Access", user_id=config.BOT_ID)]])
 
 
+
+new_user_text = """
+#NEWUSER
+NAME: **{}**
+UID: `{}`
+"""
+
+
 @Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
-      user_id = message.from_user.id
-      mention = "[{0}](tg://user?id={0})".format(user_id)
-      if len(message.text.split()) >1:
-           name = message.text.split(None,1)[1]
-           if name[0:4] == "help":
-                text, keyboard = await help_parser(message.from_user.first_name)
-                return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
-      if message.chat.type == enums.ChatType.PRIVATE:
-          if not user_id in get_users():
-                add_user(user_id)
-                await Nandha.send_message("Spamwatcher", text=(
-                     "**#NEWUSER**:\n"
-                     f"**UserID**: {user_id}\n"
-                     f"**Profile link**: {mention}"))
-                return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
-          else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
-      else:
-         if not user_id in get_users():
-                return await message.reply_text(text=sub_txt, reply_markup=sub_keyboard)
-         return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
+     chat = message.chat
+     user = message.from_user
+     if len(message.text.split()) >1:
+          name = message.text.split(None, 1)[1]
+          if name[0:4] == "help":
+              text, keyboard = await help_parser(user.first_name)
+              return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
+     elif message.chat.type == enums.ChatType.PRIVATE:
+         if not user.id in get_users():
+             add_user(user_id)
+             await Nandha.send_message(config.LOG_CHANNEL_ID,new_user_text.format(user.first_name,user.id))
+         return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
+     else: return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
 
 
 if __name__ == "__main__":
