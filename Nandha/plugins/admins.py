@@ -146,9 +146,9 @@ async def purge(_, message):
            end = time.now()
            delete_time = (end - start).seconds / 10000
            return await message.reply(f"**Success Purged {delete_time}s!**")
-    if (await is_admin(chat_id,user_id)) == False or user_id not in config.DEVS:
+    if (await is_admin(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
-    elif (await can_delete_messages(chat_id,user_id)) == False or user_id not in config.DEVS:
+    elif (await can_delete_messages(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`You Don't have Enough Rights to Do This!`")
     else:
           if (await is_admin(chat_id,config.BOT_ID)) == False:
