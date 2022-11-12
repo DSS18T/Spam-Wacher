@@ -87,7 +87,7 @@ async def paste(_, message):
            text = message.text.split(None, 1)[1]
     link0 = await spacebin(text)
     link1 = await batbin(text)
-    await Nandha.send_message(chat_id,"\u2060",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("BatBin",url=link1), InlineKeyboardButton("SpaceBin",url=link0)]]),reply_to_message_id=message.id)
+    await Nandha.send_photo(chat_id,photo=link1,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("BatBin",url=link1), InlineKeyboardButton("SpaceBin",url=link0)]]),reply_to_message_id=message.id)
     
         
 __MODULE__ = "Misc"
