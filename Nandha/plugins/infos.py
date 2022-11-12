@@ -37,7 +37,6 @@ async def user_info(_, message):
                       profile.append(photo.file_id)
                  await message.reply_photo(profile[0],caption=text,reply_markup=button)
               else: await message.reply(text,reply_markup=button)
-              await msg.delete()
            except Exception as e: return await message.reply(e)
       else: 
            try: x = await message.chat.get_member(user_id)
@@ -66,7 +65,6 @@ async def user_info(_, message):
                        profile.append(photo.file_id)
                     await message.reply_photo(profile[0],caption=text,reply_markup=button)
                 else: await message.reply(text,reply_markup=button)
-                await msg.delete() 
            except Exception as e: return await message.reply(e) 
            
 
