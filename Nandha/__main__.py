@@ -151,7 +151,7 @@ async def start(_, message):
           if name[0:4] == "help":
               text, keyboard = await help_parser(user.first_name)
               return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
-     elif message.chat.type == enums.ChatType.PRIVATE:
+     if message.chat.type == enums.ChatType.PRIVATE:
          if not user.id in get_users():
              add_user(user_id)
              await Nandha.send_message(config.LOG_CHANNEL_ID,new_user_text.format(user.first_name,user.id))
