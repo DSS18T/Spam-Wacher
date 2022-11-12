@@ -20,7 +20,6 @@ async def user_info(_, message):
       pfp_count = await Nandha.get_chat_photos_count(message.from_user.id)
       button = InlineKeyboardMarkup([[InlineKeyboardButton("[ ❌ ]",callback_data=f"delete:{user_id}")]])
       if message.chat.type == enums.ChatType.PRIVATE:
-           msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await Nandha.get_chat(user_id)
            except Exception as e: return await message.reply(e)
            text = "<b>Profile Info</b>:\n"
@@ -29,6 +28,7 @@ async def user_info(_, message):
            text += "<b>Username</b>: @{}\n".format(x.username)
            text += "<b>Mention</b>: {}\n".format(f"[{x.first_name}](tg://user?id={x.id})")
            text += "<b>DC ID</b>: <code>{}</code>\n".format(x.dc_id)
+           text += "<b>BIO</b>: <code>{}</code>\n".format(x.bio)
            text += "<b>Profile Count</b>: <code>{}</code>\n".format(pfp_count)
            try:
               if x.photo:
@@ -39,9 +39,7 @@ async def user_info(_, message):
               else: await message.reply(text,reply_markup=button)
               await msg.delete()
            except Exception as e: return await message.reply(e)
-           await msg.delete()
       else: 
-           msg = await message.reply("`Getting results\nPlease Wait!`")
            try: x = await message.chat.get_member(user_id)
            except UserNotParticipant: return await message.reply("This User Is Not Member Here To Give You Info You Can Dm Me To Find His/She Info!")
            except Exception as e: return await message.reply(e)
@@ -70,7 +68,7 @@ async def user_info(_, message):
                 else: await message.reply(text,reply_markup=button)
                 await msg.delete() 
            except Exception as e: return await message.reply(e) 
-           await msg.delete()
+           
 
 
 @Nandha.on_message(filters.command("id",config.CMDS))
