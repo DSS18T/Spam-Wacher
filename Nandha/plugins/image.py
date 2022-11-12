@@ -8,10 +8,11 @@ Nandha, session )
 from io import BytesIO
 from subprocess import getoutput as run
 from pyrogram import filters 
-from pyrogram.types import InputMediaPhoto
+from pyrogram.types import InputMediaPhoto, ForceReply
 from icrawler.builtin import GoogleImageCrawler
 from Nandha.plugins.misc import is_downloading
 from PIL import Image
+
 
 @Nandha.on_message(filters.command("merge",config.CMDS))
 async def merge(_, message):
@@ -20,7 +21,7 @@ async def merge(_, message):
      user_id = message.from_user.id
      if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
      path1 = await Nandha.download_media(reply)
-     ASK = await Nandha.ask(chat_id, "Now send Another Image to Marge!", reply_to_message_id=message.id)
+     ASK = await Nandha.ask(chat_id, "`Now send another image to merge!`",reply_markup=ForceReply(selective=True, placeholder="Send Only Media!"))
      if ASK.from_user.id == user_id:
             if ASK.media: 
                   m = await message.reply("`Downloading Path...`", quote=True)
