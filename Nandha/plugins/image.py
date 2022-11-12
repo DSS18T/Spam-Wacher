@@ -21,7 +21,7 @@ async def merge(_, message):
      user_id = message.from_user.id
      if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
      path1 = await Nandha.download_media(reply)
-     ASK = await Nandha.ask(chat_id, "`Now send another image to merge!`",reply_markup=ForceReply(selective=True, placeholder="Send Only Media!"))
+     ASK = await Nandha.ask(chat_id, "`Now Send Another Images To Merge!`",reply_markup=ForceReply(selective=True, placeholder="Send Only Media!"),reply_to_message_id=message.id)
      if ASK.from_user.id == user_id:
             if ASK.media: 
                   m = await message.reply("`Downloading Path...`", quote=True)
@@ -248,6 +248,7 @@ __HELP__ = """
 - /cb: make a carbon.
 - /art: art image by AI.
 - /gi: get images from google.
+- /merge: merge two image as one image.
 """
 
 
