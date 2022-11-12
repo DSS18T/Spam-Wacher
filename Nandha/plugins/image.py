@@ -21,7 +21,7 @@ async def merge(_, message):
      if not reply or reply and not reply.media: return await message.reply("Reply to Media!")
      path1 = await Nandha.download_media(reply)
      ASK = await Nandha.ask(chat_id, "Now send Another Image to Marge!", reply_to_message_id=message.id)
-     if ASK.from_user.id:
+     if ASK.from_user.id == user_id:
             if ASK.media: 
                   m = await message.reply("`Downloading Path...`", quote=True)
                   path2 = await Nandha.download_media(ASK)
