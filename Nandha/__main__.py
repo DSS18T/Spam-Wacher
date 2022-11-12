@@ -146,10 +146,10 @@ UID: `{}`
 async def start(_, message):
      chat = message.chat
      user = message.from_user
+     text, keyboard = await help_parser(user.first_name)
      if len(message.text.split()) >1:
           name = message.text.split(None, 1)[1]
           if name[0:4] == "help":
-              text, keyboard = await help_parser(user.first_name)
               return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
      if message.chat.type == enums.ChatType.PRIVATE:
          if not user.id in get_users():
