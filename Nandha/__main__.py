@@ -155,7 +155,8 @@ async def start(_, message):
          if not user.id in get_users():
              add_user(user_id)
              await Nandha.send_message(config.LOG_CHANNEL_ID,new_user_text.format(user.first_name,user.id))
-         return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
+             return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
+         else: return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
      else: return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
 
 
