@@ -32,8 +32,10 @@ async def user_info(_, message):
            text += "<b>Profile Count</b>: <code>{}</code>\n".format(pfp_count)
            try:
               if x.photo:
-                 profile = await Nandha.download_media(x.photo.big_file_id,file_name=f"{x.first_name}.jpg")
-                 await message.reply_photo(profile, caption=text,reply_markup=button)
+                 profile = []
+                 async for photo in Nandha.get_chat_photos(user_id):
+                      profile.append(photo.file_id)
+                 await message.reply_photo(profile[0],caption=text,reply_markup=button)
               else: await message.reply(text,reply_markup=button)
               await msg.delete()
            except Exception as e: return await message.reply(e)
@@ -61,8 +63,10 @@ async def user_info(_, message):
            else: text += "<b>Status</b>: <code>{}</code>\n".format("Group Member")
            try:
                 if x.user.photo: 
-                    profile = await Nandha.download_media(x.user.photo.big_file_id,file_name=f"{x.user.first_name}.jpg")
-                    await message.reply_photo(profile,caption=text,reply_markup=button)
+                    profile = []
+                    async for photo in Nandha.get_chat_photos(user_id):
+                       profile.append(photo.file_id)
+                    await message.reply_photo(profile[0],caption=text,reply_markup=button)
                 else: await message.reply(text,reply_markup=button)
                 await msg.delete() 
            except Exception as e: return await message.reply(e) 
