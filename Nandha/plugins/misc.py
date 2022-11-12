@@ -9,7 +9,7 @@ from Nandha import Nandha
 from pyrogram import filters
 from pyrogram.types import *
 from datetime import datetime as time
-from Nandha.help.paste import spacebin
+from Nandha.help.paste import spacebin, batbin
 
  
 
@@ -85,8 +85,9 @@ async def paste(_, message):
            return await message.reply("`please reply to (text/file) or give text to paste!`")
     elif not reply and len(message.text.split()) >1:
            text = message.text.split(None, 1)[1]
-    link = await spacebin(text)
-    await Nandha.send_message(chat_id,f"**Here Paste**:\n{link}",reply_to_message_id=message.id)
+    link0 = await spacebin(text)
+    link1 = await batbin(text)
+    await Nandha.send_message(chat_id,"\u2060",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("BatBin",url=link1), InlineKeyboardButton("SpaceBin",url=link0)]]),reply_to_message_id=message.id)
     
         
 __MODULE__ = "Misc"
