@@ -1,6 +1,7 @@
 #group and channels
 GROUP_LINK = "t.me/NandhaSupport"
 CHANNEL_LINK = "t.me/nandhabots"
+LOG_CHANNEL_ID = -1001865726272
 GROUP_ID = -1001717881477
 CHANNEL = -1001566403901
 USERNAME = "SpamWatcherBot"
