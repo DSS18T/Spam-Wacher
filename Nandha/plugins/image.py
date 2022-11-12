@@ -25,9 +25,9 @@ async def merge(_, message):
             m = await message.reply("`downloading path...`", quote=True)
             path2 = await Nandha.download_media(ASK)
      else: return await message.reply("Sorry You Did Wrong Try Again.", quote=True)
-     m.edit("`Processing...`")
-     image1 = path1; image1.show()
-     image2 = path2; image2.show()
+     await m.edit("`Processing...`")
+     image1 = Image.open(path1); image1.show()
+     image2 = Image.open(path2); image2.show()
      image1 = image1.resize((426, 240))
      image1_size = image1.size; image2_size = image2.size
      new_image = Image.new('RGB',(2*image1_size[0], image1_size[1]), (250,250,250))
@@ -35,7 +35,7 @@ async def merge(_, message):
      new_image.paste(image2,(image1_size[0],0))
      new_image.save("images/merged_image.jpg","JPEG")
      new_image.show()
-     m.edit("Process done now uploading..")
+     await m.edit("Process done now uploading..")
      merge_path = "images/merged_image.jpg"
      await Nandha.send_document(chat_id, merge_path, reply_to_message_id=ASK.id)
      await m.delete()
