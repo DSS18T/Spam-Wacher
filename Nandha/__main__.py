@@ -154,7 +154,7 @@ async def start(_, message):
           if name[0:4] == "help":
               return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
           elif name[0:5] == "rules":
-            chat_id = name.split("s")[1]
+            chat_id = int(name.split("s")[1])
             if not chat_id in rules_chat():
                  return await message.reply(f"`{chat_id}` don't have rules!")
             else: 
