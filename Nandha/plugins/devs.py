@@ -159,7 +159,7 @@ developer can access this commnds!
 
 
 @UB.on_message(filters.me & filters.command("run",config.CMDS))
-async def eval(UB: client, message):
+async def eval(client: UB, message):
     if len(message.text.split()) <2:
           return await message.reply_text("`🤨 Please input a code to run!`")
     status_message = await message.edit("Running... 🏃")
