@@ -25,15 +25,17 @@ async def logo(_, message):
      user = message.from_user
      reply = message.reply_to_message
      if len(message.text.split()) <2: return await message.reply("`Gimme Any logo Name!`")
-     msg = await message.reply("`logo Processing...`")
-     text = message.text.split(None,1)[1]
+     msg = await message.reply("`logo Processing...`")   
      if "graph.org" in message.text:
          link = message.text.split("//")[1]
-         img = Image.open(io.BytesIO(requests.get(f"https://{link}").content))
+         text = message.text.split(message.text.split()[0])[1].split("https")[0]
+         img = Image.open(io.BytesIO(requests.get("".join(("https",link))).content))
      elif reply:
+         text = message.text.split(None,1)[1]
          path = await reply.download()
          img = Image.open(path)
      else:
+         text = message.text.split(None,1)[1]
          randc = random.choice(LOGO_LINKS)
          img = Image.open(io.BytesIO(requests.get(randc).content))
      draw = ImageDraw.Draw(img)
