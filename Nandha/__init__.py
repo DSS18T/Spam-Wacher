@@ -37,12 +37,7 @@ api_id=config.APP_ID,
 api_hash=config.APP_HASH,
 session_string=config.SESSION)
 
-async def main():
-    await UB.start()
-    await UB.stop()
-
-
-await UB.run(main())
+UB.start()
 
      
 session = ClientSession()
