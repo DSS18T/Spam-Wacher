@@ -9,6 +9,8 @@ from Nandha.help.utils.misc import paginate_modules
 from Nandha.plugins import ALL_MODULES
 from Nandha.help.usersdb import (
 add_user, get_users)
+from Nandha.help.rulesdb import (
+rules_chat, get_rules)
 from pyrogram import filters
 from pyrogram import enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaVideo
@@ -151,6 +153,12 @@ async def start(_, message):
           name = message.text.split(None, 1)[1]
           if name[0:4] == "help":
               return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
+          elif name[0:5] == "rules":
+            if not chat_id in rules_chat():
+                return await message.reply("This Chat Don't Have Set Any Rules!")
+            else: 
+                x = get_rules(chat_id)
+                return await message.reply(x)
      if message.chat.type == enums.ChatType.PRIVATE:
          if not user.id in get_users():
              add_user(user.id)
