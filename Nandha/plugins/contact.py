@@ -24,8 +24,8 @@ async def contact(_, query):
     success = "Successfully Message forward into my owner 🤖"
     if ASK.text:
        if ASK.text[1:7] == "cancel":
-            return await message.reply("Ok cancelled Process 🤖")
+            return await query.message.reply("Ok cancelled Process 🤖")
        else: await Nandha.forward_messages(config.OWNER_ID, chat.id, ASK.id)
-       await Nandha.edit_message_text(chat.id, ASK.id-1, success)
+       await Nandha.edit_message_text(chat.id, ASK.id-1, text=success)
     else: await Nandha.forward_messages(config.OWNER_ID, chat.id, ASK.id)
-    await Nandha.edit_message_text(chat.id, ASK.id-1, success)
+    await Nandha.edit_message_text(chat.id, ASK.id-1, text=success)
