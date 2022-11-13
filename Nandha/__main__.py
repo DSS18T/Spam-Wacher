@@ -153,7 +153,7 @@ async def start(_, message):
               return await message.reply_video(config.profile,caption=strings.HELP_TEXT,reply_markup=keyboard)
      if message.chat.type == enums.ChatType.PRIVATE:
          if not user.id in get_users():
-             add_user(user_id)
+             add_user(user.id)
              await Nandha.send_message(config.LOG_CHANNEL_ID,NUT.format(user.mention,user.id))
              return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
          else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
