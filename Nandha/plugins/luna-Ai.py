@@ -30,7 +30,7 @@ def is_chat(chat_id: int):
         return True
      return False 
 
-WRONG_FORMAT = "Required! (`on` or `off`)"
+WRONG_FORMAT = "Format: `/ai on/off`"
 
 @app.on_message(filters.command("ai",["!","/","."]))
 async def ai_on_or_off(_, message):
@@ -60,3 +60,10 @@ async def ai(_, message):
                 answer = requests.get(API_URL.format(API_KEY,question)).json()
                 return await message.reply(answer, quote=True)
           
+__MODULE__ = "AI"
+
+__HELP__ = """
+advance chat bot future based on Luna also called by Iseria
+to enable chatbot `/ai on` to disable chatbot into your chat `/ai off`
+thanks for having me!
+"""
