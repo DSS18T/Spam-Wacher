@@ -6,13 +6,14 @@ from Nandha.help.chatsdb import *
 from Nandha.help.usersdb import *
 
 
-@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command("gcast",config.CMDS))
+@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command("groupcast",config.CMDS))
 async def global_cast(_, message):
       list = get_chats()
       reply = message.reply_to_message
       chat = message.chat
       done = 0
       fail = 0
+      if not reply: return await message.reply("Reply to Message to Forward My all Groups")
       success = "**Globally Cast**:\n**Success**: `{}`\n**Failed**: `{}`"
       for chat_id in list:
           try:
