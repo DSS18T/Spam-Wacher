@@ -16,7 +16,7 @@ CID: `{}`
 
 @Nandha.on_message(filters.new_chat_members)
 async def new_member(_, m):
-    chat = message.chat
+    chat = m.chat
     if not chat.id in get_chats():
          add_chat(chat.id)
          await Nandha.send_message(config.LOG_CHANNEL_ID,NCT.format(chat.title,chat.id))
