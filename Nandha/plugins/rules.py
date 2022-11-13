@@ -44,10 +44,10 @@ async def rules(_, message):
     else: 
        if reply:
           return await message.reply_to_message.reply_text("click below button to get rules in this chat!",
-           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules")]]))
+           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules{chat_id}")]]))
        else: 
           return await message.reply_text("click below button to get rules in this chat!",
-           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules")]]))
+           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules{chat_id}")]]))
                    
 
     
