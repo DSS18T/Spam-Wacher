@@ -1,3 +1,4 @@
+import config
 import logging
 import pyromod.listen
 from pymongo import MongoClient 
@@ -19,24 +20,21 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
-APP_ID = 583311
-APP_HASH = "c67090d2c0a37d207385d04d9640045c"
-TOKEN = "5561055962:AAGfx5ln_s6PHjFEZ1w2SSc1Z4yIdk3JxZ4"
 
 
 plugins = dict(root="Nandha")
 
 Nandha = Client("Nandha", 
-api_id=APP_ID, 
-api_hash=APP_HASH,
-bot_token=TOKEN,
+api_id=config.APP_ID, 
+api_hash=config.APP_HASH,
+bot_token=config.TOKEN,
 plugins=plugins,
 parse_mode=ParseMode.DEFAULT)
 
 
 UB = Client("UB",
-api_id =APP_ID,
-api_hash=APP_HASH,
+api_id=config.APP_ID,
+api_hash=config.APP_HASH,
 session_string=config.SESSION)
 
 async def main():
