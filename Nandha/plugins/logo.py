@@ -15,6 +15,11 @@ LOGO_LINKS = [
 "https://graph.org/file/89951db9c7263288928ae.jpg",
 "https://graph.org/file/fccc52cb374de86634edf.jpg",
 "https://graph.org/file/ebf352d1346ce426fe505.jpg",
+"https://graph.org/file/6e6f24fab7012bd32226e.jpg",
+"https://graph.org/file/eb64ccd55035fb696518b.jpg",
+"https://graph.org/file/79b40047e184faaca9afe.jpg",
+"https://graph.org/file/4976f7a8c1d3faee7d3e9.jpg",
+"https://graph.org/file/a45181a5d3726c0744a3c.jpg",
 ]
 
 
