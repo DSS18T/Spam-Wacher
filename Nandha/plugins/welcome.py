@@ -1,5 +1,5 @@
 import math
-
+import config
 from PIL import Image, ImageDraw, ImageFont
 
 from pyrogram import filters
