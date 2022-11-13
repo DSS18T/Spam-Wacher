@@ -12,6 +12,7 @@ async def global_cast(_, message):
       chat = message.chat  
       if not reply: return await message.reply("Reply to Message to Forward My all Groups")
       success = "**Globally Cast**:\n**Success**: `{}`\n**Failed**: `{}`"
+      msg = await message.reply("`Please wait some minutes I'm broadcasting all my groups and users...`")
       list_1 = get_chats()
       list_2 = get_users()
       chat_id = []
@@ -25,7 +26,7 @@ async def global_cast(_, message):
              await Nandha.forward_messages(ids, chat.id, reply.id)
              done +=+1
              await asyncio.sleep(3)
-          except: len(chat_id)-done    
-      return await message.reply(success.format(done, fail))
+          except: fail = len(chat_id)-done    
+      return await msg.edit(success.format(done, fail))
          
        
