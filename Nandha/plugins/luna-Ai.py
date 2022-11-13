@@ -40,10 +40,10 @@ async def ai_on_or_off(_, message):
       t = message.text.split()[1]
       if t == "on":
            if is_chat(chat.id) == True: return await message.reply("AI is Already Enabled Here!")
-           else: add_chat(chat.id); return await message.reply("Successfully Enabled AI!")
+           else: addchat(chat.id); return await message.reply("Successfully Enabled AI!")
       elif t == "off":
            if is_chat(chat.id) == False: return await message.reply("AI is Already Disabled Here!")
-           else: remove_chat(chat.id); return await message.reply("Successfully Disabled AI!")
+           else: removechat(chat.id); return await message.reply("Successfully Disabled AI!")
       else: return await message.reply(WRONG_FORMAT)
       
 API_URL = "http://Iseria.up.railway.app/api={}/prompt={}"
