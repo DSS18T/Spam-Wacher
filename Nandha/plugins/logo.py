@@ -4,7 +4,7 @@ import os
 import config
 import random
 import requests
-from Nandha import Nandha
+from Nandha import Nandha, UB
 from pyrogram import filters
 
 from PIL import Image, ImageDraw, ImageFont
@@ -17,15 +17,25 @@ LOGO_LINKS = [
 "https://graph.org/file/ebf352d1346ce426fe505.jpg",
 ]
 
+
+@UB.on_message(filters.me & filters.command("logo",config.CMDS))
 @Nandha.on_message(filters.command("logo",config.CMDS))
 async def logo(_, message):
      chat = message.chat
      user = message.from_user
+     reply = message.reply_to_message
      if len(message.text.split()) <2: return await message.reply("`Gimme Any logo Name!`")
-     msg = await message.reply("Your logo is Generating...")
+     msg = await message.reply("`logo Processing...`")
      text = message.text.split(None,1)[1]
-     randc = random.choice(LOGO_LINKS)
-     img = Image.open(io.BytesIO(requests.get(randc).content))
+     if len(message.text.split()) == 2:
+         link = message.text.split()[1]
+         img = Image.open(io.BytesIO(requests.get(link).content))
+     elif reply:
+         path = await reply.download()
+         img = Image.open(path)
+     else:
+         randc = random.choice(LOGO_LINKS)
+         img = Image.open(io.BytesIO(requests.get(randc).content))
      draw = ImageDraw.Draw(img)
      image_widthz, image_heightz = img.size
      pointsize = 500
@@ -41,7 +51,7 @@ async def logo(_, message):
      draw.text((x, y), text, font=font, fill="white", stroke_width=1, stroke_fill="black")
      fname = "logo.png"
      img.save(fname, "png")
-     await msg.edit("logo done!")
+     await msg.edit("`logo done!`")
      return await message.reply_document(fname, caption=f"**Req by {user.mention}**")
      os.remove(fname)
      await msg.delete()
