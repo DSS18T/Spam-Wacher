@@ -21,7 +21,7 @@ async def contact(_, query):
     x = "Ok Send Me What Else You Want To Say to My Owner 🤖"
     format = "Send Media Text ect !"
     ASK = await Nandha.ask(chat.id, text=x, reply_markup=ForceReply(selective=True, placeholder=format))
-    success = "Successfully Message forward into my owner 🤖")
+    success = "Successfully Message forward into my owner 🤖"
     if ASK.text:
        if ASK.text[1:7] == "cancel":
             return await message.reply("Ok cancelled Process 🤖")
