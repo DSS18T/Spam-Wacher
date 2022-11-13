@@ -135,7 +135,7 @@ sub_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Pm to Access", user_
 
 
 
-new_user_text = """
+NUT = """
 #NEWUSER
 NAME: **{}**
 UID: `{}`
@@ -154,7 +154,7 @@ async def start(_, message):
      if message.chat.type == enums.ChatType.PRIVATE:
          if not user.id in get_users():
              add_user(user_id)
-             await Nandha.send_message(config.LOG_CHANNEL_ID,new_user_text.format(user.first_name,user.id))
+             await Nandha.send_message(config.LOG_CHANNEL_ID,NUT.format(user.mention,user.id))
              return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
          else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
      else: return await message.reply_video(caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
