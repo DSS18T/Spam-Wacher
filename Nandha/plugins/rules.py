@@ -38,7 +38,7 @@ async def setrules(_, message):
 async def rules(_, message):
     chat_id = int(message.chat.id)
     if message.chat.type == enums.ChatType.PRIVATE:
-        return message.reply("try on groups not in dms",quote=True)
+        return await message.reply("try on groups not in dms",quote=True)
     elif len(message.text.split()) >1:
        name = message.text.split(None,1)[1]
        if name[0:5] == "rules":
