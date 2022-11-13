@@ -29,7 +29,7 @@ async def logo(_, message):
      text = message.text.split(None,1)[1]
      if "graph.org" in message.text:
          link = message.text.split("//")[1]
-         img = Image.open(io.BytesIO(requests.get(link).content))
+         img = Image.open(io.BytesIO(requests.get(f"https://{link}").content))
      elif reply:
          path = await reply.download()
          img = Image.open(path)
