@@ -37,18 +37,17 @@ async def setrules(_, message):
 @Nandha.on_message(filters.command("rules",config.CMDS))
 async def rules(_, message):
     chat_id = int(message.chat.id)
+    reply = message.reply_to_message
     if message.chat.type == enums.ChatType.PRIVATE:
         return await message.reply("try on groups not in dms",quote=True)
-    elif len(message.text.split()) >1:
-       name = message.text.split(None,1)[1]
-       if name[0:5] == "rules":
-            if not chat_id in rules_chat():
-                return await message.reply("This Chat Don't Have Set Any Rules!")
-            else: 
-                x = get_rules(chat_id)
-                return await message.reply(x)
-    
-             
+    else: 
+       if reply:
+          return await message.reply_to_message.reply_text("click below button to get rules in this chat!",
+           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules")]]))
+       else: 
+          return await message.reply_text("click below button to get rules in this chat!",
+           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules")]]))
+                   
 
     
     
