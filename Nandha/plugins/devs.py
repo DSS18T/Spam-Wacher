@@ -12,6 +12,7 @@ from Nandha.help.couplesdb import get_chats as couples_chats
 from Nandha.help.rulesdb import rules_chat as rules_chats
 from Nandha.help.chatbotdb import get_chat as chatbot_chats
 from Nandha.help.usersdb import get_users 
+from Nandha.help.chatsdb import get_chats
 from datetime import datetime
 
 
@@ -24,12 +25,14 @@ async def stats(_, message):
      rules = len(rules_chats())
      chatbots = len(chatbot_chats())
      users = len(get_users())
+     chats = len(get_chats())
      stats = (
          "**Stats Info:**\n"
          f"**Rules Chats**: `{rules}`\n"
          f"**Couples chats**: `{couples}`\n"
          f"**Chatbot Chats**: `{chatbots}`\n"
-         f"**Total Users**: `{users}`")
+         f"**Total Users**: `{users}`\n"
+         f"**Total Chats**: `{chats}`")
      await message.reply(stats)
      
 
