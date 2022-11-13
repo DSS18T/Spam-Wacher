@@ -42,7 +42,7 @@ async def main():
     await UB.stop()
 
 
-UB.run(main())
+await UB.run(main())
 
      
 session = ClientSession()
