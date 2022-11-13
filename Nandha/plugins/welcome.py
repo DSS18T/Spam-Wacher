@@ -5,10 +5,21 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha
+from Nandha.help.chatsdb import *
+
+NCT = """
+#NEWCHAT
+NAME: **{}**
+CID: `{}`
+"""
 
 
 @Nandha.on_message(filters.new_chat_members)
 async def new_member(_, m):
+    chat = message.chat
+    if not chat.id in get_chats():
+         add_chat(chat.id)
+         await Nandha.send_message(config.LOG_CHANNEL_ID,NCT.format(chat.title,chat.id))
     for member in m.new_chat_members:
            first_name = member.first_name
            if member.is_bot:
@@ -49,7 +60,5 @@ async def new_member(_, m):
         duration=150,
         loop=0,
     )
-    if is_bot == True:
-          await m.reply("**The New Challenger Arrived But No Matters I'm The Best And I'm SpamWatcher!**")
-    elif is_bot == False:
-          await m.reply_animation(animation="welcome.gif",caption=f"**Welcome to {m.chat.title} Group!**")
+    if is_bot: return await m.reply("**Hi bro!**")
+    else: return await m.reply_animation(animation="welcome.gif",caption=f"**Welcome to {m.chat.title} Group!**")
