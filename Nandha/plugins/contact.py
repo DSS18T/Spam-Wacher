@@ -18,10 +18,14 @@ async def contact(_, message):
 async def contact(_, query):
     chat = query.message.chat
     await query.message.delete()
-    x = "Ok Send Me What Else You Want To Say to My Owner!"
+    x = "Ok Send Me What Else You Want To Say to My Owner 🤖"
     format = "Send Media Text ect !"
     ASK = await Nandha.ask(chat.id, text=x, reply_markup=ForceReply(selective=True, placeholder=format))
-    if ASK.text[1:7] == "cancel":
-          return await message.reply("Ok cancelled Process 🤖!")
+    success = "Successfully Message forward into my owner 🤖")
+    if ASK.text:
+       if ASK.text[1:7] == "cancel":
+            return await message.reply("Ok cancelled Process 🤖")
+       else: await Nandha.forward_messages(config.OWNER_ID, chat.id, ASK.id)
+       await Nandha.edit_message_text(chat.id, ASK.id-1, success)
     else: await Nandha.forward_messages(config.OWNER_ID, chat.id, ASK.id)
-    await ASK.edit("Your Message Successfully Send into my Owner 🤖!")
+    await Nandha.edit_message_text(chat.id, ASK.id-1, success)
