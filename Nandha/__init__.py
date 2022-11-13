@@ -34,6 +34,17 @@ plugins=plugins,
 parse_mode=ParseMode.DEFAULT)
 
 
+UB = Client("UB",
+api_id =APP_ID,
+api_hash=APP_HASH,
+session_string=config.SESSION)
+
+async def main():
+    await UB.start()
+    await UB.stop()
+
+
+UB.run(main())
 
      
 session = ClientSession()
