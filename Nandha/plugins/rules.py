@@ -39,12 +39,19 @@ async def rules(_, message):
     chat_id = int(message.chat.id)
     if message.chat.type == enums.ChatType.PRIVATE:
         return message.reply("try on groups not in dms",quote=True)
-    elif not chat_id in rules_chat():
-        return await message.reply("`this group don't haven't any rules!`")
-    else:
-        x = get_rules(chat_id)
-        await message.reply(f"**Here The Group Rules**:-\n• **{message.chat.title}**\n\n• **Rules:-**\n{x}",parse_mode=enums.ParseMode.DEFAULT)  
-            
+    elif len(message.text.split()) >1:
+       name = message.text.split(None,1)[1]
+       if name[0:5] == "rules":
+            if not chat_id in rules_chat():
+                return await message.reply("This Chat Don't Have Set Any Rules!")
+            else: 
+                x = get_rules(chat_id)
+                return await message.reply(x)
+    
+             
+
+    
+    
 @Nandha.on_message(filters.command(["removerules","clearrules"],config.CMDS))
 async def remove(_, message):
      chat_id = message.chat.id
