@@ -156,10 +156,10 @@ async def start(_, message):
           elif name[0:5] == "rules":
             chat_id = name.split("s")[1]
             if not chat_id in rules_chat():
-                return await message.reply(chat_id)
+                 return await message.reply(f"`{chat_id}` don't have rules!")
             else: 
-                x = get_rules(chat_id)
-                return await message.reply(x)
+                 x = get_rules(chat_id)
+                 return await message.reply_text(x)
      if message.chat.type == enums.ChatType.PRIVATE:
          if not user.id in get_users():
              add_user(user.id)
