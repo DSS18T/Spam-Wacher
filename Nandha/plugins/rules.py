@@ -16,7 +16,7 @@ async def setrules(_, message):
    user_id = message.from_user.id
    reply = message.reply_to_message
    if message.chat.type == enums.ChatType.PRIVATE:
-        return message.reply("try on groups not in dms",qoute=True)
+        return message.reply("try on groups not in dms",quote=True)
    elif (await is_admin(chat_id,user_id)) == False:
         return await message.reply("`Admins Only!`")
    else:
@@ -38,7 +38,7 @@ async def setrules(_, message):
 async def rules(_, message):
     chat_id = int(message.chat.id)
     if message.chat.type == enums.ChatType.PRIVATE:
-        return message.reply("try on groups not in dms",qoute=True)
+        return message.reply("try on groups not in dms",quote=True)
     elif not chat_id in rules_chat():
         return await message.reply("`this group don't haven't any rules!`")
     else:
@@ -50,7 +50,7 @@ async def remove(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
      if message.chat.type == enums.ChatType.PRIVATE:
-         return message.reply("try on groups not in dms",qoute=True)
+         return message.reply("try on groups not in dms",quote=True)
      elif (await is_admin(chat_id,user_id)) == False:
            return await message.reply("`Admins only!`")
      else:
