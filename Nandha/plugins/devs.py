@@ -6,7 +6,7 @@ import traceback
 from contextlib import redirect_stdout
 from subprocess import getoutput as run
 from pyrogram import filters
-from Nandha import Nandha
+from Nandha import Nandha, UB
 from Nandha.help.paste import spacebin
 from Nandha.help.couplesdb import get_chats as couples_chats
 from Nandha.help.rulesdb import rules_chat as rules_chats
@@ -74,6 +74,7 @@ async def aexec(code, client, message):
     )
     return await locals()["__aexec"](client, message)
 
+@UB.on_message(filters.me & filters.command("run",config.CMDS))
 @Nandha.on_message(filters.command(["run","eval"],config.CMDS))
 async def eval(client, message):
     if not message.from_user.id in config.DEVS:
@@ -155,3 +156,6 @@ developer can access this commnds!
 - `/run`: run the code.
 - `/sh`: shell
 """
+
+
+
