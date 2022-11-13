@@ -8,6 +8,7 @@ from Nandha.help.admin import is_admin
 
 from pyrogram import filters
 from pyrogram import enums
+from pyrogram.types import *
 
 
 @Nandha.on_message(filters.command("setrules",config.CMDS))
