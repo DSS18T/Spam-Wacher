@@ -58,5 +58,5 @@ async def ai(_, message):
           if reply.from_user.id == BOT_ID:
                 question = message.text
                 answer = requests.get(API_URL.format(API_KEY,question)).json()
-                return await message.reply(answer)
+                return await message.reply(answer, quote=True)
           
