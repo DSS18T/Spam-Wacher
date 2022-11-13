@@ -62,3 +62,17 @@ async def logo(_, message):
      return await message.reply_document(fname, caption=f"**Req by {user.mention}**")
      os.remove(fname)
      await msg.delete()
+
+
+__MODULE__ = "logo"
+
+__HELP__ = """
+make some awesome logos you want
+reply to any media to make logo.
+give graph link to logo or just use `/logo name`
+to get random logo follow below example!
+
+- `/logo Nandha`: get random logo
+- `/logo Nandha`: reply to media get logo.
+- `/logo Nandha link`: get logo via graph link.
+"""
