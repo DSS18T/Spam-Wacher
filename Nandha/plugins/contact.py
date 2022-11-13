@@ -18,7 +18,7 @@ async def contact(_, message):
 async def contact(_, query):
     chat = query.message.chat
     await query.message.delete()
-    x = "Ok Send Me What Else You Want To Say to My Owner!")
+    x = "Ok Send Me What Else You Want To Say to My Owner!"
     format = "Send Media Text ect !"
     ASK = await Nandha.ask(chat.id, text=x, reply_markup=ForceReply(selective=True, placeholder=format))
     if ASK.text[1:7] == "cancel":
