@@ -22,10 +22,11 @@ async def contact(_, query):
     format = "Send Media Text ect !"
     ASK = await Nandha.ask(chat.id, text=x, reply_markup=ForceReply(selective=True, placeholder=format))
     success = "Successfully Message forward into my owner 🤖"
+    ask_id = int(ASK.id)-1
     if ASK.text:
        if ASK.text[1:7] == "cancel":
             return await query.message.reply("Ok cancelled Process 🤖")
        else: await Nandha.forward_messages(config.OWNER_ID, chat.id, ASK.id)
-       await Nandha.edit_message_text(chat.id, ASK.id-1, text=success)
+       await Nandha.edit_message_text(chat.id, ask_id, text=success)
     else: await Nandha.forward_messages(config.OWNER_ID, chat.id, ASK.id)
-    await Nandha.edit_message_text(chat.id, ASK.id-1, text=success)
+    await Nandha.edit_message_text(chat.id, ask_id, text=success)
