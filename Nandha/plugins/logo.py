@@ -27,8 +27,8 @@ async def logo(_, message):
      if len(message.text.split()) <2: return await message.reply("`Gimme Any logo Name!`")
      msg = await message.reply("`logo Processing...`")
      text = message.text.split(None,1)[1]
-     if len(message.text.split()) == 2:
-         link = message.text.split()[1]
+     if "graph.org" in message.text:
+         link = message.text.split("//")[1]
          img = Image.open(io.BytesIO(requests.get(link).content))
      elif reply:
          path = await reply.download()
