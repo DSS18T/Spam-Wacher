@@ -38,8 +38,10 @@ api_hash=config.APP_HASH,
 session_string=config.SESSION)
 
 UB.start()
-
+idle()
+UB.stop()
      
+
 session = ClientSession()
 
 MONGO = "mongodb+srv://nandhaxd:rw5T7YJRjsE3fmk3@cluster0.80igexg.mongodb.net/?retryWrites=true&w=majority"
