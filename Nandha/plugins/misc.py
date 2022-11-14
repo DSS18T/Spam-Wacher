@@ -15,6 +15,17 @@ from Nandha.help.paste import spacebin, batbin
 
 is_downloading = False
 
+
+@Nandha.on_message(filters.command("echo",config.CMDS))
+async def echo(_, message):
+     reply = message.reply_to_message
+     chat_id = message.chat.id
+     if reply: return await reply.copy(chat_id, reply_to_message_id=reply.id)
+     elif len(message.text.split()) >1: return await message.reply_text(message.text.split(None,1)[1])
+     else: return await message.reply_text("What should I was echo?")
+
+
+
 @Nandha.on_message(filters.regex("google"))
 @Nandha.on_message(filters.command("gt",config.CMDS))
 async def google_it(_, message):
