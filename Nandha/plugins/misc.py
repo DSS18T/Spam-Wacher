@@ -26,6 +26,10 @@ async def echo(_, message):
      else: return await message.reply_text("What should I be echo?")
 
 
+@UB.on_message(filters.command("alive",config.CMDS))
+async def alive(_, message):
+        return await message.reply_text("Alive!", quote=True)
+     
 
 @Nandha.on_message(filters.regex("google"))
 @Nandha.on_message(filters.command("gt",config.CMDS))
