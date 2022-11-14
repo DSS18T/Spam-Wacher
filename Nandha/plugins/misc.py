@@ -21,8 +21,9 @@ async def echo(_, message):
      reply = message.reply_to_message
      chat_id = message.chat.id
      if reply: return await reply.copy(chat_id, reply_to_message_id=reply.id)
-     elif len(message.text.split()) >1: return await message.reply_text(message.text.split(None,1)[1])
-     else: return await message.reply_text("What should I echo?")
+     elif len(message.text.split()) >1 and reply: return await reply.reply_text(message.text.split(None,1)[1])
+     elif not reply and len(message.text.split()) >1: return await message.reply_text(message.text.split(None,1)[1])
+     else: return await message.reply_text("What should I be echo?")
 
 
 
