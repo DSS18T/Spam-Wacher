@@ -38,8 +38,7 @@ api_hash=config.APP_HASH,
 session_string=config.SESSION)
 
 UB.start()
-idle()
-UB.stop()
+
      
 
 session = ClientSession()
