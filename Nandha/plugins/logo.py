@@ -56,12 +56,12 @@ async def logo(_, message):
      x = (image_widthz-w)/2
      y = ((image_heightz-h)/2+6)
      draw.text((x, y), text, font=font, fill="white", stroke_width=1, stroke_fill="black")
-     fname = "logo.png"
+     fname = "images/logo.png"
      img.save(fname, "png")
      await msg.edit("`logo done!`")
-     return await message.reply_document(fname, caption=f"**Req by {user.mention}**")
+     await message.reply_document(fname, caption=f"**Req by {user.mention}**")
      os.remove(fname)
-     await msg.delete()
+     return await msg.delete()
 
 
 __MODULE__ = "logo"
