@@ -11,8 +11,8 @@ async def global_cast(_, message):
       reply = message.reply_to_message
       chat = message.chat  
       if not reply: return await message.reply("Reply to Message to Forward My all Groups")
-      success = "**Globally Cast**:\n**Success**: `{}`\n**Failed**: `{}`"
-      msg = await message.reply("`Please wait some minutes I'm broadcasting all my groups and users...`")
+      success = "**Global Brodcast**:\n**Success**: `{}`\n**Failed**: `{}`"
+      msg = await message.reply("`Broadcasting all my groups and users...`", quote=True)
       list_1 = get_chats()
       list_2 = get_users()
       chat_id = []
