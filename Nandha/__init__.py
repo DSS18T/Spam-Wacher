@@ -2,7 +2,7 @@ import config
 import logging
 import pyromod.listen
 from pymongo import MongoClient 
-from pyrogram import Client
+from pyrogram import Client , idle
 from aiohttp import ClientSession
 from pyrogram.enums import ParseMode
 
