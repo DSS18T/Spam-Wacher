@@ -103,7 +103,7 @@ async def google_image(_, message):
        await msg.delete()
        is_downloading = False
        os.system("rm -rf gg_images")
-     except Exception as e: return await message.reply(e)
+     except Exception as e: await message.reply(e)
      await msg.delete()
      is_downloading = False
      os.system("rm -rf gg_images")
