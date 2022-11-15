@@ -141,11 +141,13 @@ async def purge(_, message):
     reply = message.reply_to_message
     if message.chat.type == enums.ChatType.PRIVATE:
            start = time.now()
+           message_ids = []
            for ids in range(reply.id, message.id +0):
-              await Nandha.delete_messages(chat_id, ids, revoke=True)
+              message_ids.append(ids)
+           await Nandha.delete_messages(chat_id, message_ids, revoke=True)
            end = time.now()
            delete_time = (end - start).seconds / 10000
-           return await message.reply(f"**Success Purged {delete_time}s!**")
+           return await message.reply_text(f"**Success Purged {delete_time}s!**")
     if (await is_admin(chat_id,user_id)) == False and user_id not in config.DEVS:
             return await message.reply("`Admins Only!`")
     elif (await can_delete_messages(chat_id,user_id)) == False and user_id not in config.DEVS:
@@ -162,8 +164,10 @@ async def purge(_, message):
                 elif not reply:
                       return await message.reply("`Reply to Message for purge!`")
                 start = time.now()
+                message_ids = []
                 for ids in range(message_reply_id, message_id +0):
-                    await Nandha.delete_messages(chat_id, ids, revoke=True)
+                     message_ids.append(ids)
+                await Nandha.delete_messages(chat_id, message_ids, revoke=True)
                 end = time.now()
                 y = (end - start).seconds / 10000
                 await message.reply(f"**Success Purged {y}s!**")
