@@ -10,9 +10,9 @@ from Nandha.help.usersdb import *
 async def global_cast(_, message):
       reply = message.reply_to_message
       chat = message.chat  
-      if not reply: return await message.reply("Reply to Message to Forward My all Groups")
+      if not reply: return await message.reply("Reply to Message to Brodcast!")
       success = "**Global Brodcast**:\n**Success**: `{}`\n**Failed**: `{}`"
-      msg = await message.reply("`Broadcasting all my groups and users...`", quote=True)
+      msg = await message.reply("`Please wait Some Minutes!`", quote=True)
       list_1 = get_chats()
       list_2 = get_users()
       chat_id = []
@@ -23,7 +23,7 @@ async def global_cast(_, message):
       done = 0
       for ids in chat_id:
           try:
-             await Nandha.forward_messages(ids, chat.id, reply.id)
+             await Nandha.copy_message(ids, chat.id, reply.id)
              done +=+1
              await asyncio.sleep(3)
           except: fail = len(chat_id)-done    
