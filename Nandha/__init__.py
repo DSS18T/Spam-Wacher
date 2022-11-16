@@ -37,11 +37,12 @@ plugins=plugins,
 parse_mode=ParseMode.DEFAULT).start()
 
 
+async def UB():
+     await UB.start()
 
-
-if __name__ == "__init__":
-      Nandha.run()  
-      UB.start()    
+print("USERBOT alive!")
+UB()
+      
 
 
 
