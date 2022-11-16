@@ -29,7 +29,7 @@ api_id=config.APP_ID,
 api_hash=config.APP_HASH,
 session_string=config.SESSION).start()
 
-Nandha = api_id=config.APP_ID, 
+Nandha = Client(api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
