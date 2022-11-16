@@ -1,5 +1,6 @@
 import config
 import logging
+import asyncio
 import pyromod.listen
 from pymongo import MongoClient 
 from pyrogram import Client , idle
@@ -20,25 +21,29 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 
-
-
 plugins = dict(root="Nandha")
 
+
+
+async def main():
+    apps = [Client("UB",
+api_id=config.APP_ID,
+api_hash=config.APP_HASH,
+session_string=config.SESSION),
 Nandha = Client("Nandha", 
 api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
-parse_mode=ParseMode.DEFAULT)
+parse_mode=ParseMode.DEFAULT)]
+    for app in apps:
+        app.start()
+    await idle()
+    for app in apps:
+        await app.stop()
 
 
-UB = Client("UB",
-api_id=config.APP_ID,
-api_hash=config.APP_HASH,
-session_string=config.SESSION)
-
-UB.start()
-
+asyncio.run(main())
      
 
 session = ClientSession()
