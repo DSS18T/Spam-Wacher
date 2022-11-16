@@ -28,7 +28,7 @@ UB = Client("UB",
 api_id=config.APP_ID,
 api_hash=config.APP_HASH,
 session_string=config.SESSION,
-parse_mode=ParseMode.DEFAULT)
+parse_mode=ParseMode.DEFAULT).start()
 
 Nandha = Client("Nandha",api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
@@ -36,13 +36,7 @@ bot_token=config.TOKEN,
 plugins=plugins,
 parse_mode=ParseMode.DEFAULT)
 
-
-if __name__ == "__init__":
-      Nandha.run()  
-      UB.run()    
-      
-
-
+    
 
      
 
