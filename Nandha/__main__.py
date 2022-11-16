@@ -169,6 +169,4 @@ async def start(_, message):
      else: return await message.reply_video(caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
 
 
-if __name__ == "__main__":
-    Nandha.run()
 
