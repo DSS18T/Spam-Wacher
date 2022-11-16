@@ -37,7 +37,7 @@ bot_token=config.TOKEN,
 plugins=plugins,
 parse_mode=ParseMode.DEFAULT)]
     for app in apps:
-        app.start()
+        await app.start()
     await idle()
     for app in apps:
         await app.stop()
