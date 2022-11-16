@@ -40,8 +40,8 @@ parse_mode=ParseMode.DEFAULT).start()
 
 
  if __name__ == "__init__":
-      await Nandha.run()  
-      await UB.run()    
+      Nandha.run()  
+      UB.run()    
 
 
 
