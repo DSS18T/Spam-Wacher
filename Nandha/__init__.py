@@ -33,8 +33,14 @@ Nandha = Client(api_id=config.APP_ID,
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
-parse_mode=ParseMode.DEFAULT).start()
+parse_mode=ParseMode.DEFAULT)
 
+
+
+
+       
+if __name__ == "__init__":
+       Nandha.run()
 
 
 
