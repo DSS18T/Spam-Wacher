@@ -24,26 +24,20 @@ LOGGER = logging.getLogger(__name__)
 plugins = dict(root="Nandha")
 
 
-
-async def main():
-    apps = [Client("UB",
+UB = Client("UB",
 api_id=config.APP_ID,
 api_hash=config.APP_HASH,
-session_string=config.SESSION),
-Client("Nandha", 
-api_id=config.APP_ID, 
+session_string=config.SESSION).start()
+
+Nandha = api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
-parse_mode=ParseMode.DEFAULT)]
-    for app in apps:
-        await app.start()
-    await idle()
-    for app in apps:
-        await app.stop()
+parse_mode=ParseMode.DEFAULT).start()
 
 
-asyncio.run(main())
+
+
      
 
 session = ClientSession()
