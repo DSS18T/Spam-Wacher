@@ -34,7 +34,7 @@ Nandha = Client("Nandha",api_id=config.APP_ID,
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
-parse_mode=ParseMode.DEFAULT)
+parse_mode=ParseMode.DEFAULT).start()
 
 
 
