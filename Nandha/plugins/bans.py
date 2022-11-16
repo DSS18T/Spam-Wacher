@@ -40,6 +40,8 @@ async def bans(_, message):
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 if message.text[1].lower() == "s":
                    try:
+                      if reply:
+                          await reply.delete()
                       msg = await Nandha.ban_chat_member(chat_id, ban_id)
                       await msg.delete()
                       await message.delete()
@@ -84,6 +86,8 @@ async def kicks(_, message):
                        return await message.reply_text("`The User Is Admin! I can't ban!`")
                 if message.text[1].lower() == "s":
                    try:
+                       if reply:
+                           await reply.delete()
                        msg = await Nandha.ban_chat_member(chat_id, kick_id)
                        await Nandha.unban_chat_member(chat_id, kick_id)
                        await msg.delete()
