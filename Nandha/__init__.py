@@ -41,7 +41,7 @@ parse_mode=ParseMode.DEFAULT).start()
 
 if __name__ == "__init__":
       Nandha.run()  
-      UB.run()    
+      UB.start()    
 
 
 
