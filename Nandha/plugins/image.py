@@ -17,10 +17,10 @@ from PIL import Image
 async def sticker(_, message):
      reply = message.reply_to_message
      chat = message.chat
-     if reply and reply.media:
-       path = await reply.download()
-       return await message.reply_photo(path)
-
+     if reply and reply.sticker:
+        path = await reply.download(f"{reply.sticker.file_unique_id}.png")
+        return await message.reply_photo(path)
+     else: return await message.reply("Reply To Sticker!")
 
 @Nandha.on_message(filters.command("merge",config.CMDS))
 async def merge(_, message):
