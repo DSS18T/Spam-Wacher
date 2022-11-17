@@ -18,8 +18,8 @@ async def sticker(_, message):
      reply = message.reply_to_message
      chat = message.chat
      if reply and reply.media:
-     path = await reply.download()
-     return await message.reply_photo(path)
+       path = await reply.download()
+       return await message.reply_photo(path)
 
 
 @Nandha.on_message(filters.command("merge",config.CMDS))
