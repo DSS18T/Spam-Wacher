@@ -18,8 +18,11 @@ async def sticker(_, message):
      reply = message.reply_to_message
      chat = message.chat
      if reply and reply.sticker:
+        x = await message.reply_text("downloading...")
         path = await reply.download(f"{reply.sticker.file_unique_id}.png")
+        await x.edit("uploading...")
         return await message.reply_photo(path)
+        await x.delete()
      else: return await message.reply("Reply To Sticker!")
 
 @Nandha.on_message(filters.command("merge",config.CMDS))
