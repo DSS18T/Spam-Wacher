@@ -166,7 +166,7 @@ async def start(_, message):
              await Nandha.send_message(config.LOG_CHANNEL_ID,NUT.format(user.mention,user.id))
              return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
          else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
-     else: return await message.reply_video(caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
+     else: return await message.reply_video(config.profile,caption=strings.START_TEXT,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help Commands!",callback_data="help_back"),]]))
 
 
 if __name__ == "__main__":
