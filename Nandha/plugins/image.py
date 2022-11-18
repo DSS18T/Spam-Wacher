@@ -250,6 +250,7 @@ async def glitch(_, message):
 __MODULE__ = "Editor"
 
 __HELP__ = """
+- /getsticker: reply to sticker get image Format.
 - /glitch: glitch the image or sticker you want.
 - /bw: get black and white image.
 - /cl: add color in black or white images.
