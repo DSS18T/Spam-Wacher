@@ -9,6 +9,7 @@ async def inline(_, query):
      async for photo in Nandha.get_chat_photos(user_id):
          await Nandha.answer_inline_query(
          query.id,
+         is_gallery=True,
          results = [
             InlineQueryResultCachedPhoto(
                title = "Get Profile of Yours!",
