@@ -57,7 +57,11 @@ async def ai(_, message):
       if is_chat(chat.id) == True:
           if reply and reply.from_user.id == BOT_ID:
                 question = message.text
-                answer = requests.get(API_URL.format(API_KEY,question)).json()
+                result = requests.get(API_URL.format(API_KEY,question)).json()
+                if result.lower() in "luna":
+                   answer = result.replace("luna", "SpamWatcher")
+                if result.lower() in "stb":
+                   answer = result.replace("stb", "Nandha")
                 return await message.reply(answer, quote=True)
           
 __MODULE__ = "AI"
