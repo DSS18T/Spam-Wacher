@@ -1,10 +1,9 @@
 from pyrogram import filters
 from pyrogram.types import *
-
 from Nandha import Nandha
 
 
-Nandha = """
+Nandha_INFO = """
 Nandha is my owner
 Nandha birth is 2006
 Nandha is playboy
@@ -18,4 +17,4 @@ async def Nandha(_, query):
          results = [
            InlineQueryResultArticle(
                "Nandha",
-            InputTextMessageContent(Nandha))])
+            InputTextMessageContent(Nandha_INFO))])
