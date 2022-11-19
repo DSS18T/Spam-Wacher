@@ -58,9 +58,9 @@ async def ai(_, message):
           if reply and reply.from_user.id == BOT_ID:
                 question = message.text
                 result = requests.get(API_URL.format(API_KEY,question)).json()
-                if result.lower() in "luna":
+                if "luna" in result.lower():
                    answer = result.replace("luna", "SpamWatcher")
-                if result.lower() in "stb":
+                if "stb" in result.lower():
                    answer = result.replace("stb", "Nandha")
                 else: answer = result
                 return await message.reply(answer, quote=True)
