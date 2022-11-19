@@ -58,10 +58,10 @@ async def ai(_, message):
           if reply and reply.from_user.id == BOT_ID:
                 question = message.text
                 result = requests.get(API_URL.format(API_KEY,question)).json()
-                if "luna" in result.lower():
-                   answer = result.replace("luna", "SpamWatcher")
-                if "stb" in result.lower():
-                   answer = result.replace("stb", "Nandha")
+                if "luna" in result.casefold():
+                    answer = result.replace("Luna", "SpamWatcher")
+                elif "stb" in result.casefold():
+                    answer = result.replace("STB", "Nandha")
                 else: answer = result
                 return await message.reply(answer, quote=True)
           
@@ -72,3 +72,18 @@ advance chat bot future based on Luna also called by Iseria
 to enable chatbot `/ai on` to disable chatbot into your chat `/ai off`
 thanks for having me!
 """
+
+
+import requests
+
+gay = "What's your name?"
+r = requests.get(f"http://Iseria.up.railway.app/api=Luna743378a2-041f-4973-bddf-6e3c7f228e24/prompt={gay}").json()
+if "Luna" in r:
+    result = r.replace("Luna", "AiChan")
+elif "STB".casefold() in r:
+     result = r.replace("Luna", "AiChan")
+else:
+    result = r
+
+print(result)
+
