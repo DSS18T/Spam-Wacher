@@ -74,16 +74,4 @@ thanks for having me!
 """
 
 
-import requests
-
-gay = "What's your name?"
-r = requests.get(f"http://Iseria.up.railway.app/api=Luna743378a2-041f-4973-bddf-6e3c7f228e24/prompt={gay}").json()
-if "Luna" in r:
-    result = r.replace("Luna", "AiChan")
-elif "STB".casefold() in r:
-     result = r.replace("Luna", "AiChan")
-else:
-    result = r
-
-print(result)
 
