@@ -10,8 +10,8 @@ Nandha is playboy
 Nandha don't have any ambition for his life!
 """
 
-@Nandha.on_inline_query(filters.regex("Nandha"))
-async def Nandha(_, query):
+@Nandha.on_inline_query(filters.regex("^Nandha"))
+async def inline(_, query):
      await Nandha.answer_inline_query(
          query.id,
          results = [
