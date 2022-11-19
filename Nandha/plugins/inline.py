@@ -10,7 +10,7 @@ async def inline(_, query):
          await Nandha.answer_inline_query(
          query.id,
          results = [
-            InlineQueryResultPhoto(
+            InlineQueryResultCachedPhoto(
                title = "Get Profile of Yours!",
                description = "Get Profile Photo",
                photo_file_id=photo.file_id)])
