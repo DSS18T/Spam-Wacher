@@ -62,6 +62,7 @@ async def ai(_, message):
                    answer = result.replace("luna", "SpamWatcher")
                 if result.lower() in "stb":
                    answer = result.replace("stb", "Nandha")
+                else: answer = result
                 return await message.reply(answer, quote=True)
           
 __MODULE__ = "AI"
