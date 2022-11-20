@@ -18,7 +18,7 @@ keywards = [
 
 async def img_inline(search: str):
     API = "https://apibu.herokuapp.com/api/y-images?query="
-    result = requests.get(API+search).json()["result"][:30]
+    result = requests.get(API+ requests.utils.requote_uri(search)).json()["result"][:30]
     answers = []
     for url in result:      
         answers.append(
