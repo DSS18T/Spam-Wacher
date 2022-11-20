@@ -9,11 +9,12 @@ async def inline(_, query):
      photos = []
      async for photo in Nandha.get_chat_photos(user_id):
           photos.append(photo.file_id)
-     for photo in photos: 
+     for i in photos: 
         await Nandha.answer_inline_query(
           query.id,
+          is_gallery=True,
              results = [
             InlineQueryResultCachedPhoto(
                title = "Get Profile of Yours!",
                description = "Get Profile Photo",
-               photo_file_id=photo)], is_gallery=True, cache_time=2)
+               photo_file_id=i)], cache_time=2)
