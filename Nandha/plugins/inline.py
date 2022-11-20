@@ -26,7 +26,7 @@ async def help_inline():
      answers = []
      buttons = []
      for x in keywards:
-        buttons.append([InlineKeyboardButton(x, switch_inline_query=x)])
+        buttons.append([InlineKeyboardButton(x, switch_inline_query_current_chat=x)])
      answers.append(InlineQueryResultArticle(
          "Help Inline!",
          InputTextMessageContent("inline commands!"),reply_markup=InlineKeyboardMarkup(buttons)))
