@@ -44,5 +44,4 @@ async def inline(_, query):
           answers = await pfp_inline(user_id)
           return await query.answer(answers, cache_time=30)
      else:
-          answers = await help_inline()
-          return await query.answer(answers)
+          return await query.answer(switch_pm_parameter="Invalid Inline!")
