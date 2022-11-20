@@ -42,7 +42,8 @@ async def inline(_, query):
      string = query.query.casefold()
      user_id = query.from_user.id
      if string.strip() == "":
-         return await query.answer(result=[InlineQueryResultArticle("Read How To Use Commands!",InputTextMessageContent(HELP_INLINE_TEXT))])
+          answers = await help_inline()
+          return await query.answer(answers)
      elif string.split()[0] == "pfp":
           answers = await pfp_inline(user_id)
           return await query.answer(answers, cache_time=30)
