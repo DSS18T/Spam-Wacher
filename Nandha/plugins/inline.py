@@ -4,20 +4,13 @@ from pyrogram.types import *
 from Nandha import Nandha
 
 
-HELP_INLINE_TEXT = f"""
-**Inline for in @{config.USERNAME} .**:
+keywards = [
+"ping",
+"pfp",
+"img",
+]
 
-**how to use ?**
-  here the example:
-     `@{config.USERNAME} pfp`
-**copy this and paste your messaging pad**
 
-**Commands**:
-
-- `pfp`: get your all profile pictures.
-
-**all coming sooon.....**
-"""
 async def pfp_inline(user_id: int):
      answers = []
      async for photo in Nandha.get_chat_photos(user_id):
@@ -31,9 +24,12 @@ async def pfp_inline(user_id: int):
 
 async def help_inline():
      answers = []
+     buttons = []
+     for x in keywards:
+        buttons.append([InlineKeyboardButton(x, switch_inline_query=x)])
      answers.append(InlineQueryResultArticle(
          "Help Inline!",
-         InputTextMessageContent(HELP_INLINE_TEXT)))
+         InputTextMessageContent("inline commands!"),reply_markup=InlineKeyboardMarkup(buttons)))
      return answers 
 
 
