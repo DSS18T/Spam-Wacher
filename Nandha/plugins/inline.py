@@ -28,7 +28,7 @@ async def img_inline(search):
         answers.append(
         InlineQueryResultDocument(
            document_url = f"/app/img_images/{link}",
-           thumb_url = f"/app/img_images/{link},
+           thumb_url = f"/app/img_images/{link}",
            caption = "Made by @NandhaBots"))
     return answers
     
