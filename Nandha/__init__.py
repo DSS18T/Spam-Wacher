@@ -9,6 +9,7 @@ from pyrogram.enums import ParseMode
 
 MOD_LOAD = []
 MOD_NOLOAD = []
+START_TIME = time.time()
 
 
 # enable logging
