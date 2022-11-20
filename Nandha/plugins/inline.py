@@ -34,7 +34,7 @@ async def help_inline():
      answers.append(InlineQueryResultArticle(
          title = "Help Inline!",
          description = "Read About Available Inline commands!",
-         input_message_content=HELP_INLINE_TEXT))
+         input_message_content(HELP_INLINE_TEXT)))
      return answers 
 
 
