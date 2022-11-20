@@ -4,7 +4,7 @@ from pyrogram.types import *
 from Nandha import Nandha
 
 
-HELP_INLINE_TEXT = """
+HELP_INLINE_TEXT = f"""
 Inline future in **@{config.USERNAME}**:
 
 **how to use ?**
@@ -32,8 +32,7 @@ async def pfp_inline(user_id: int):
 async def help_inline():
      answers = []
      answers.append(InlineQueryResultArticle(
-         title = "Help Inline!",
-         description = "Read About Available Inline commands!",
+         "Help Inline!",
          InputTextMessageContent(HELP_INLINE_TEXT)))
      return answers 
 
