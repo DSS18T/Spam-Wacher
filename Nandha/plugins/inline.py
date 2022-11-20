@@ -17,16 +17,16 @@ keywards = [
 
 
 async def img_inline(search: str):
-    API = "https://apibu.herokuapp.com/api/y-images?query="
-    result = requests.get(API+ requests.utils.requote_uri(search)).json()["result"][:30]
+    API = "https://apibu.herokuapp.com/api/y-images?query={}".format(search)
+    result = requests.get(API).json()["result"][:30]
     answers = []
     for url in result:      
         answers.append(
         InlineQueryResultDocument(
            title = f"Result for {search}",
-           document_url = url,
-           thumb_url = url,
-           caption = "Made by @NandhaBots"))
+           document_url=url,
+           thumb_url=url,
+           caption="Made by @NandhaBots"))
     return answers
     
       
