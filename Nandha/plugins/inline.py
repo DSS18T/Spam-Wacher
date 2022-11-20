@@ -17,4 +17,5 @@ async def inline(_, query):
             )
            )
 
-     await query.answer(answers)
+     await query.answer(answers, cache_time=30)
+     
