@@ -62,7 +62,7 @@ async def inline(_, query):
           return await query.answer(answers)
      elif string.split()[0] == "pfp":
           answers = await pfp_inline(user_id)
-          return await query.answer(answers, cache_time=30)
+          return await query.answer(answers, cache_time=200)
      elif string.split()[0] == "ping":
           answers = await ping_inline()
           return await query.answer(answers)
