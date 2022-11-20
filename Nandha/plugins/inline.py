@@ -11,7 +11,7 @@ async def inline(_, query):
         answers.append(
             InlineQueryResultCachedPhoto(
                 title=query.query.capitalize(),
-                description=result,
+                description=f"{query.from_user.first_name}, photos!",
                 caption="Made by @NandhaxD",
                 photo_file_id=photo.file_id
             )
