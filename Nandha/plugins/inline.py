@@ -1,7 +1,23 @@
+import config
 from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha
 
+
+HELP_INLINE_TEXT = """
+Inline future in **@{config.USERNAME}**:
+
+**how to use ?**
+  here the example:
+     `@{config.USERNAME} pfp`
+copy this and paste your messaging pad
+
+commands:
+
+- `pfp`: get your all profile pictures.
+
+all coming sooon.....
+"""
 async def pfp_inline(user_id: int):
      answers = []
      async for photo in Nandha.get_chat_photos(user_id):
@@ -13,6 +29,14 @@ async def pfp_inline(user_id: int):
            )
      return answers
 
+async def help_inline():
+     answers = []
+     answers.append(InlineQueryResultArticle(
+         title = "Help Inline!",
+         description = "Read About Available Inline commands!",
+         input_message_content=HELP_INLINE_TEXT))
+     return answers 
+
 
 @Nandha.on_inline_query()
 async def inline(_, query):
@@ -21,4 +45,6 @@ async def inline(_, query):
      if string.split()[0] == "pfp":
           answers = await pfp_inline(user_id)
           return await query.answer(answers, cache_time=30)
-     
+     else:
+          answers = await help_inline()
+          return await query.answer(answers)
