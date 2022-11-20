@@ -1,7 +1,8 @@
 import config
 from pyrogram import filters
 from pyrogram.types import *
-from Nandha import Nandha
+from Nandha import Nandha, START_TIME
+from Nandha.help.helper_func import get_readable_time
 
 
 keywards = [
@@ -21,6 +22,23 @@ async def pfp_inline(user_id: int):
             )
            )
      return answers
+
+
+PING_TEXT = """
+**Pong!** `{}`
+**Uptime!** `{}`
+"""
+
+async def ping_inline():
+      start = time.time()
+      end = time.time()
+      ping_time = round((end - start) * 1000, 3)
+      uptime = get_readable_time((time.time() - START_TIME))
+      answers = [
+          InlineQueryResultArticle("Server Ping!",
+          InputTextMessageContent(PING_TEXT.format(ping_time, uptime)))]
+      return answers
+     
 
 async def help_inline():
      answers = []
@@ -43,5 +61,8 @@ async def inline(_, query):
      elif string.split()[0] == "pfp":
           answers = await pfp_inline(user_id)
           return await query.answer(answers, cache_time=30)
+     elif string.split()[0] == "ping":
+          answers = await ping_inline()
+          return await query.answer(answers)
      else:
-          return await query.answer(results=[InlineQueryResultArticle("Help Inline!",InputTextMessageContent("Invalid Inline command! 🧐")),],switch_pm_parameter="Invalid Inline!")
+          return await query.answer(results=[InlineQueryResultArticle("Error Raises!",InputTextMessageContent("Invalid Inline Command! 🧐"))],switch_pm_parameter="Invalid Inline!")
