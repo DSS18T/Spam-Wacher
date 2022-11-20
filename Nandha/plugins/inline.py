@@ -1,13 +1,12 @@
 import time
-import os
+import requests
 
 import config
 from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha, START_TIME
 from Nandha.help.helper_func import get_readable_time
-from icrawler.builtin import GoogleImageCrawler
-from subprocess import getoutput as run
+
 
 
 keywards = [
@@ -17,19 +16,16 @@ keywards = [
 ]
 
 
-async def img_inline(search):
-    google_Crawler = GoogleImageCrawler(storage = {'root_dir': r'wall_images'})
-    google_Crawler.crawl(keyword = search, max_num = 6)
-    image = run("ls gg_images").split()
+async def img_inline(search: str):
+    API = "https://apibu.herokuapp.com/api/y-images?query="
+    result = requests.get(API+search).json()["result"][:30]
     answers = []
-    
-    for link in image:
-        
+    for url in result:      
         answers.append(
         InlineQueryResultDocument(
-           title = "Image from Google",
-           document_url = f"/app/img_images/{link}",
-           thumb_url = f"/app/img_images/{link}",
+           title = f"Result for {search}",
+           document_url = url,
+           thumb_url = url,
            caption = "Made by @NandhaBots"))
     return answers
     
