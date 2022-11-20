@@ -5,18 +5,18 @@ from Nandha import Nandha
 
 
 HELP_INLINE_TEXT = f"""
-Inline future in **@{config.USERNAME}**:
+**Inline for in @{config.USERNAME} .**:
 
 **how to use ?**
   here the example:
      `@{config.USERNAME} pfp`
-copy this and paste your messaging pad
+**copy this and paste your messaging pad**
 
-commands:
+**Commands**:
 
 - `pfp`: get your all profile pictures.
 
-all coming sooon.....
+**all coming sooon.....**
 """
 async def pfp_inline(user_id: int):
      answers = []
@@ -41,7 +41,9 @@ async def help_inline():
 async def inline(_, query):
      string = query.query.casefold()
      user_id = query.from_user.id
-     if string.split()[0] == "pfp":
+     if string.strip() == "":
+         return await query.answer(result=[InlineQueryResultArticle("Read How To Use Commands!",InputTextMessageContent(HELP_INLINE_TEXT))])
+     elif string.split()[0] == "pfp":
           answers = await pfp_inline(user_id)
           return await query.answer(answers, cache_time=30)
      else:
