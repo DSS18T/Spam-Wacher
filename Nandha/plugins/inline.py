@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha
 
-async def pfp_inline(user_id; int):
+async def pfp_inline(user_id: int):
      answers = []
      async for photo in Nandha.get_chat_photos(user_id):
         answers.append(
