@@ -18,7 +18,7 @@ def ai_off(chat_id: int):
     if is_db:
        db.update_one({"chat_id": chat_id},{"$set":{"chatbot": "off"}})
         
-def get_chats(chat_id: int):
+def get_chats():
     chats = []
     for i in db.find():
        chats.append(i["chat_id"])
