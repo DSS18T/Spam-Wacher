@@ -16,7 +16,7 @@ async def boobs(_, message):
 
 @Nandha.on_message(filters.user(config.OWNER_ID) & filters.command("porn",config.CMDS))
 async def porn(_, message):
-      porn_channel_id = -1001166649999
+      porn_channel_id = "@pornlab_hd"
       chat_id = message.chat.id
       porn_video_ids = []
       async for message in UB.search_messages(porn_channel_id, filter=enums.MessagesFilter.VIDEO, limit=100):
