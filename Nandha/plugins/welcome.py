@@ -13,6 +13,9 @@ NAME: **{}**
 CID: `{}`
 """
 
+ADDING_KYB = InlineKeyboardMarkup([[
+InlineKeyboardButton("Support", url=config.GROUP_LINK)
+InlineKeyboardButton("Channel", url=config.CHANNEL_LINK),]])
 
 @Nandha.on_message(filters.new_chat_members)
 async def new_member(_, m):
@@ -22,6 +25,7 @@ async def new_member(_, m):
          await Nandha.send_message(config.LOG_CHANNEL_ID,NCT.format(chat.title,chat.id))
     for member in m.new_chat_members:
            first_name = member.first_name
+           user_id = member.id
            if member.is_bot:
                is_bot = True
            else:
@@ -60,5 +64,8 @@ async def new_member(_, m):
         duration=150,
         loop=0,
     )
-    if is_bot: return await m.reply("**Hi bro!**")
+    if user_id == config.BOT_ID:
+        return await message.reply_text("Thanks For Adding to Your Groups I Hope This Group Checkout My Commands Doing /help.",
+         reply_markup=ADDING_KYB)
+    elif is_bot: return await m.reply("**Hi bro!**")
     else: return await m.reply_animation(animation="welcome.gif",caption=f"**Welcome to {m.chat.title} Group!**")
