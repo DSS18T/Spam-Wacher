@@ -6,7 +6,7 @@ from Nandha.help.chatsdb import *
 from Nandha.help.usersdb import *
 
 
-@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command("groupcast",config.CMDS))
+@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command(["groupcast","pgroupcast"],config.CMDS))
 async def group_cast(_, message):
       reply = message.reply_to_message
       chat = message.chat  
@@ -19,14 +19,16 @@ async def group_cast(_, message):
       done = 0
       for ids in chat_id:
           try:
-             await Nandha.copy_message(ids, chat.id, reply.id)
+             cast = await Nandha.copy_message(ids, chat.id, reply.id)
              done +=+1
+             if message.text[1].casefold() == "p":
+                  await cast.pin()
              await asyncio.sleep(3)
           except: fail = len(chat_id)-done    
       return await msg.edit(success.format(done, fail))
          
        
-@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command("usercast",config.CMDS))
+@Nandha.on_message(filters.user(config.OWNER_ID) & filters.command(["usercast","pusercast"],config.CMDS))
 async def user_cast(_, message):
       reply = message.reply_to_message
       chat = message.chat  
@@ -39,8 +41,10 @@ async def user_cast(_, message):
       done = 0
       for ids in chat_id:
           try:
-             await Nandha.copy_message(ids, chat.id, reply.id)
+             cast = await Nandha.copy_message(ids, chat.id, reply.id)
              done +=+1
+             if message.text[1].casefold() == "p":
+                  await cast.pin()
              await asyncio.sleep(3)
           except: fail = len(chat_id)-done    
       return await msg.edit(success.format(done, fail))
