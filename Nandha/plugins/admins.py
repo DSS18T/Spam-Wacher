@@ -390,4 +390,6 @@ __HELP__ = """
 - `/setgpic`: set group profile photo.
 - `/setgtitle`: set group title.
 - `/setgdesc`: set group description.
+- `/pin`: reply to message and pin.
+- `/unpin`: reply to message and unpin.
 """
