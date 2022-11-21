@@ -362,14 +362,13 @@ async def pin_unpin_chat_message(_, message):
                return await message.reply("I Need Can Pin Rights!")
            else: 
               if not reply: return await message.reply("Reply to message!")
-              m = message.text.split(message.text[0])[1][:5] 
-              if m == "pin":
-                  await reply.pin()  
-                  return await message.reply("I Have Pinned This [Message]({})!".format(reply.link))
-              elif m == "unpin":
+              if message.text[1:4] == "pin":
+                   await reply.pin()  
+                   return await message.reply("I Have Pinned This [Message]({})!".format(reply.link))
+              elif message.text[1:6] == "unpin":
                     await reply.unpin()           
                     return await message.reply("I Have UnPinned This [Message]({})!".format(reply.link))
-              else: return await message.reply("`Somthing Wrong Please Report to Support Group!`")
+              else: return await message.reply("`Check Formatting And Do Correctly!`")
        
 
 
