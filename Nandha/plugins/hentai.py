@@ -7,7 +7,7 @@ from pyrogram import enums
 
 PORNUSER = [1985665341,5696053228]
 
-@Nandha.on_message(filters.user(config.PORNUSER) & filters.command("boobs",config.CMDS))
+@Nandha.on_message(filters.user(PORNUSER) & filters.command("boobs",config.CMDS))
 async def boobs(_, message):
     file_id = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
     url = "http://media.oboobs.ru/{}"
@@ -15,7 +15,7 @@ async def boobs(_, message):
 
 
 
-@Nandha.on_message(filters.user(config.PORNUSER) & filters.command("porn",config.CMDS))
+@Nandha.on_message(filters.user(PORNUSER) & filters.command("porn",config.CMDS))
 async def porn(_, message):
       porn_channel_id = "@pornlab_hd"
       chat_id = message.chat.id
