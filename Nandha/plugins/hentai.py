@@ -23,9 +23,9 @@ async def porn(_, message):
             porn_video_ids.append(message.id)
       random_pron_video = random.choice(porn_video_ids)
       await Nandha.copy_message(
-         chat_id,
-         pron_channel_id,
-         random_pron_video,
+         chat_id=chat_id,
+         from_chat_id=pron_channel_id,
+         message_id=random_pron_video,
          caption=None,
          reply_to_message_id=message.id)
      
