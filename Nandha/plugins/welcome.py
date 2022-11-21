@@ -65,7 +65,7 @@ async def new_member(_, m):
         loop=0,
     )
     if user_id == config.BOT_ID:
-        return await message.reply_text("Thanks For Adding to Your Groups I Hope This Group Checkout My Commands Doing /help.",
+        return await m.reply_text("Thanks For Adding to Your Groups I Hope This Group Checkout My Commands Doing /help.",
          reply_markup=ADDING_KYB)
     elif is_bot: return await m.reply("**Hi bro!**")
     else: return await m.reply_animation(animation="welcome.gif",caption=f"**Welcome to {m.chat.title} Group!**")
