@@ -22,7 +22,8 @@ async def group_cast(_, message):
              cast = await Nandha.copy_message(ids, chat.id, reply.id)
              done +=+1
              if message.text[1].casefold() == "p":
-                  await cast.pin()
+                 try: await cast.pin()
+                 except: pass
              await asyncio.sleep(3)
           except: fail = len(chat_id)-done    
       return await msg.edit(success.format(done, fail))
@@ -44,7 +45,8 @@ async def user_cast(_, message):
              cast = await Nandha.copy_message(ids, chat.id, reply.id)
              done +=+1
              if message.text[1].casefold() == "p":
-                  await cast.pin()
+                 try: await cast.pin()
+                 except: pass
              await asyncio.sleep(3)
           except: fail = len(chat_id)-done    
       return await msg.edit(success.format(done, fail))
