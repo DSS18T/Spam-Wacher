@@ -364,10 +364,10 @@ async def pin_unpin_chat_message(_, message):
               if not reply: return await message.reply("Reply to message!")
               if message.text[1:4] == "pin":
                    await reply.pin()  
-                   return await message.reply("I Have Pinned This [Message]({})!".format(reply.link))
+                   return await message.reply("I Have Pinned This [Message]({})!".format(reply.link), disable_web_page_preview=True)
               elif message.text[1:6] == "unpin":
                     await reply.unpin()           
-                    return await message.reply("I Have UnPinned This [Message]({})!".format(reply.link))
+                    return await message.reply("I Have UnPinned This [Message]({})!".format(reply.link), disable_web_page_preview=True)
               else: return await message.reply("`Check Formatting And Do Correctly!`")
        
 
