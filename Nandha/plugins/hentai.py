@@ -24,8 +24,8 @@ async def porn(_, message):
       random_porn_video = random.choice(porn_video_ids)
       await Nandha.copy_message(
          chat_id=chat_id,
+         reply_to_message_id=message.id
          from_chat_id=porn_channel_id,
          message_id=random_porn_video,
-         caption="",
-         reply_to_message_id=message.id)
+         caption="",)
      
