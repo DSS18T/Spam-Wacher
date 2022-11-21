@@ -19,7 +19,7 @@ async def porn(_, message):
       pron_channel_id = -1001166649999
       chat_id = message.chat.id
       porn_video_ids = []
-      async for message in UB.search_messages(pron_channel_id, filter=enums.MessagesFilter.VIDEO):
+      async for message in UB.search_messages(pron_channel_id, filter=enums.MessagesFilter.VIDEO, limit=100):
             porn_video_ids.append(message.id)
       random_pron_video = random.choice(porn_video_ids)
       await Nandha.copy_message(
