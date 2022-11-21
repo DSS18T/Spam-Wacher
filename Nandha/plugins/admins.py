@@ -346,6 +346,33 @@ async def demoting(_, message):
                       return await message.reply(e)
 
 
+@Nandha.on_message(filters.command(["pin","unpin"],config.CMDS))
+async def pin_unpin_chat_message(_, message):
+       user = message.from_user
+       chat = message.chat
+       reply = message.reply_to_message
+       if await is_admin(chat.id, user.id) == False:
+            return await message.reply("Admins Only")
+       elif await can_pin_messages(chat.id, user.id) == False:
+            return await message.reply("You Need Can Pin Rights!")
+       else:
+           if await is_admin(chat.id, config.BOT_ID) == False:
+               return await message.reply("Make Me Admin")
+           elif await can_pin_messages(chat.id, config.BOT_ID) == False:
+               return await message.reply("I Need Can Pin Rights!")
+           else: 
+              if not reply: return await message.reply("Reply to message!")
+              m = message.text.split(message.text[0])[1][:5] 
+              if m == "pin":
+                  await reply.pin()  
+                  return await message.reply("I Have Pinned This [Message]({})!".format(reply.link))
+              elif m == "unpin":
+                    await reply.unpin()           
+                    return await message.reply("I Have UnPinned This [Message]({})!".format(reply.link))
+              else: return await message.reply("`Somthing Wrong Please Report to Support Group!`")
+       
+
+
 __MODULE__ = "Admin"
 
 __HELP__ = """
