@@ -14,7 +14,7 @@ CID: `{}`
 """
 
 ADDING_KYB = InlineKeyboardMarkup([[
-InlineKeyboardButton("Support", url=config.GROUP_LINK)
+InlineKeyboardButton("Support", url=config.GROUP_LINK),
 InlineKeyboardButton("Channel", url=config.CHANNEL_LINK),]])
 
 @Nandha.on_message(filters.new_chat_members)
