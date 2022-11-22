@@ -4,6 +4,8 @@ import os
 import glob
 import config
 import requests
+import pyqrcode
+import 
 from telegraph import upload_file
 from Nandha import Nandha, UB
 from pyrogram import filters
@@ -11,10 +13,24 @@ from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin, batbin
 
- 
+
 
 is_downloading = False
 
+
+
+@Nandha.message(filters.command("qr",config.CMDS))
+async def qr_png(_, message):
+      if reply and reply.text: text = reply.text
+      elif reply or not reply and len(message.text.split()) == 1: text = message.text.split(None,1)[1]
+      else: return await message.reply("wrong formatting!")
+      m = await message.reply_text("`Processing...`")
+      qr_code = pyqrcode.create(text)
+      qr_code.png("qr_code.png", scale=5)
+      await message.reply_photo("qr_code.png")
+      os.remove("qr_code.png")
+      return await m.delete()
+       
 
 @Nandha.on_message(filters.command("echo",config.CMDS))
 async def echo(_, message):
