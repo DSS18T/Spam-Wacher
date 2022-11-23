@@ -23,11 +23,11 @@ is_downloading = False
 async def qr_png(_, message):
       if reply and reply.text: text = reply.text
       elif reply or not reply and len(message.text.split()) == 1: text = message.text.split(None,1)[1]
-      else: return await message.reply("wrong formatting!")
+      else: return await message.reply_text("wrong formatting!")
       m = await message.reply_text("`Processing...`")
       qr_code = pyqrcode.create(text)
       qr_code.png("qr_code.png", scale=5)
-      await message.reply_photo("qr_code.png")
+      await message.reply_photo("qr_code.png", qoute=True)
       os.remove("qr_code.png")
       return await m.delete()
        
