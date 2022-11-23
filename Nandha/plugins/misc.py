@@ -20,13 +20,14 @@ is_downloading = False
 
 @Nandha.on_message(filters.command("qr",config.CMDS))
 async def qr_png(_, message):
+      reply = message.reply_to_message
       if reply and reply.text: text = reply.text
       elif reply or not reply and len(message.text.split()) == 1: text = message.text.split(None,1)[1]
       else: return await message.reply_text("wrong formatting!")
       m = await message.reply_text("`Processing...`")
       qr_code = pyqrcode.create(text)
       qr_code.png("qr_code.png", scale=5)
-      await message.reply_photo("qr_code.png", qoute=True)
+      await Nandha.send_photo(chat_id=message.chat.id, photo="qr_code.png", reply_to_message_id=message.id)
       os.remove("qr_code.png")
       return await m.delete()
        
