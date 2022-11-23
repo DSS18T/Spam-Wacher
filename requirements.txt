@@ -4,6 +4,7 @@ pyromod
 pillow
 pymongo 
 pymongo[srv]
+pypng
 pyqrcode
 tgcrypto
 telegraph
