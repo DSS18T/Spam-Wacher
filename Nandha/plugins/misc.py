@@ -18,7 +18,7 @@ is_downloading = False
 
 
 
-@Nandha.message(filters.command("qr",config.CMDS))
+@Nandha.on_message(filters.command("qr",config.CMDS))
 async def qr_png(_, message):
       if reply and reply.text: text = reply.text
       elif reply or not reply and len(message.text.split()) == 1: text = message.text.split(None,1)[1]
