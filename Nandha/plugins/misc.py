@@ -5,7 +5,6 @@ import glob
 import config
 import requests
 import pyqrcode
-import 
 from telegraph import upload_file
 from Nandha import Nandha, UB
 from pyrogram import filters
