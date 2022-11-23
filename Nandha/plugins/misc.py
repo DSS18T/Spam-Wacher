@@ -4,7 +4,7 @@ import os
 import glob
 import config
 import requests
-import pyqrcode
+import pyqrcode, png
 from telegraph import upload_file
 from Nandha import Nandha, UB
 from pyrogram import filters
