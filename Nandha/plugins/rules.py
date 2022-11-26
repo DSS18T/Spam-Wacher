@@ -42,13 +42,13 @@ async def rules(_, message):
     if message.chat.type == enums.ChatType.PRIVATE:
         return await message.reply("try on groups not in dms",quote=True)
     else: 
-       if reply:
+       if reply and chat_id in rules_chat():
           return await message.reply_to_message.reply_text("click below button to get rules in this chat!",
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules{chat_id}")]]))
-       else: 
+       elif not reply and chat_id in rules_chat(): 
           return await message.reply_text("click below button to get rules in this chat!",
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Rules" , url=f"https://t.me/{config.USERNAME}?start=rules{chat_id}")]]))
-                   
+       else: return await message.reply_text("Semms Like This Chat Don't Haven't Any Rules!")
 
     
     
