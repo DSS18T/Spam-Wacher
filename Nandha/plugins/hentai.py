@@ -11,7 +11,7 @@ from pyrogram import enums
 async def boobs(_, message):
     file_id = requests.get("http://api.oboobs.ru/noise/1").json()[0]["preview"]
     url = "http://media.oboobs.ru/{}"
-    await Nandha.send_photo(message.chat.id, url.format(file_id),protect_content=True, quote=True)
+    await Nandha.send_photo(message.chat.id, url.format(file_id),protect_content=True, reply_to_message_id=message.id)
 
 
 
@@ -25,7 +25,7 @@ async def porn(_, message):
       random_porn_video = random.choice(porn_video_ids)
       await Nandha.copy_message(
          chat_id=chat_id,
-         quote=True,
+         reply_to_message_id=message.id,
          protect_content=True,
          from_chat_id=porn_channel_id,
          message_id=random_porn_video,
