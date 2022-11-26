@@ -160,7 +160,7 @@ async def start(_, message):
           elif name[0:5] == "rules":
             chat_id = int(name.split("s")[1])
             if not chat_id in rules_chat():
-                 return await message.reply(f"`{chat_id}` don't have rules!")
+                 return await message.reply(f"`Semms like the chat Don't haven't any rules!`")
             else: 
                  x = get_rules(chat_id)
                  return await message.reply_text(x)
