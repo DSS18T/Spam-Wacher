@@ -12,6 +12,7 @@ requests
 asyncio
 aiohttp
 aiofiles
+bs4
 icrawler
 opencv-python-headless # image edit
 gpytranslate
