@@ -12,9 +12,9 @@ db = mongodb["WARNNING"]
 WARN_TEXT = """
 WARNNING ⚠️
 name: {name}
-uid: {user_id}
+uid: [`{user_id}`]
 
-warns: {warns}
+warns: [`{warns}`]
 """
 
 @Nandha.on_message(filters.command("warn"))
@@ -38,6 +38,5 @@ async def warn(_, message):
              ll = {"chat_id": chat.id, "user_id": user.id, "warn": 1}
              db.insert_one(ll)
          user = await Nandha.get_users(user_id)
-         y = db.find_one({"chat_id": chat.id, "user_id": user_id})
-         warns = int(y["warn"])
+         warns = int(x["warn"])
          return await message.reply_text(WARN_TEXT.format(name=user.first_name, user_id=user.id, warns=warns))
