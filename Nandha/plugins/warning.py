@@ -35,8 +35,9 @@ async def warn(_, message):
              n_warn = int(x["warn"])+1
              db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn}})
          else:
-             ll = {"chat_id": chat.id, "user_id": user.id, "warn": 1}
+             ll = {"chat_id": chat.id, "user_id": user_id, "warn": 1}
              db.insert_one(ll)
          user = await Nandha.get_users(user_id)
+         x = db.find_one({"chat_id": chat.id, "user_id": user_id})
          warns = int(x["warn"])
          return await message.reply_text(WARN_TEXT.format(name=user.first_name, user_id=user.id, warns=warns))
