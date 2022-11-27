@@ -27,7 +27,7 @@ async def warn(_, message):
            return await message.reply_text("You Needs a can_restrict_members Rights!")
      else:
          reply = message.reply_to_message
-         if reply and : user_id = reply.from_user.id
+         if reply: user_id = reply.from_user.id
          elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
          else: return await message.reply_text("Invalid Method!")
          x = db.find_one({"user_id": user_id})
