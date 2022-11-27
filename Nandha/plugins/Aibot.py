@@ -86,11 +86,8 @@ async def chatbot(_, query):
 @Nandha.on_message(filters.text, group=200)
 async def chatbot(_, message):
      if message.chat.id in get_chat():
-          if not message.reply_to_message:
-                return
-          elif not message.reply_to_message.from_user.id == config.BOT_ID:
-                return
-          elif message.text and message.reply_to_message.from_user.id == config.BOT_ID:
+          reply = message.reply_to_message
+          if reply and reply.from_user.id == config.BOT_ID:
               try: 
                   Message = message.text
                   chat_log = session.get('chat_log')
