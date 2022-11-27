@@ -31,7 +31,7 @@ async def warn(_, message):
          elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
          else: return await message.reply_text("Invalid Method!")
          x = db.find_one({"chat_id": chat.id, "user_id": user_id})
-         if bool(x) == True:
+         if bool(x):
              n_warn = int(x["warn"])+1
              db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn}})
          else:
@@ -39,5 +39,5 @@ async def warn(_, message):
              db.insert_one(ll)
          user = await Nandha.get_users(user_id)
          y = db.find_one({"chat_id": chat.id, "user_id": user_id})
-         warns = y["warn"]
+         warns = int(y["warn"])
          return await message.reply_text(WARN_TEXT.format(name=user.first_name, user_id=user.id, warns=warns))
