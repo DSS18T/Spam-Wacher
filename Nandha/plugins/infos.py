@@ -79,7 +79,7 @@ async def ids(_, message):
          id += f"**Your ID**: `{message.from_user.id}`\n"
          id += f"**Your Message ID**: `{message.id}`\n"
          if reply:
-             id + = f"**Replied Message ID**: `{reply.id}`\n"
+             id += f"**Replied Message ID**: `{reply.id}`\n"
          if reply.forward_from:
              id += f"**Forward From ID**:\n`{reply.forward_from.id}`\n"
          elif reply.left_chat_member:
