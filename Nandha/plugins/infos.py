@@ -75,11 +75,10 @@ async def ids(_, message):
       if reply:
          id = ""
          id += f"**Chat ID**: `{message.chat.id}`\n"
-         id += f"**Replied ID**: `{reply.from_user.id}`\n"
-         id += f"**Your ID**: `{message.from_user.id}`\n"
+         id += f"**Replied UID**: `{reply.from_user.id}`\n"
+         id += f"**Your UID**: `{message.from_user.id}`\n"
          id += f"**Your Message ID**: `{message.id}`\n"
-         if reply:
-             id += f"**Replied Message ID**: `{reply.id}`\n"
+         id += f"**Replied Message ID**: `{reply.id}`\n"
          if reply.forward_from:
              id += f"**Forward From ID**:\n`{reply.forward_from.id}`\n"
          elif reply.left_chat_member:
@@ -100,7 +99,7 @@ async def ids(_, message):
               if len(message.text.split()) <2:
                   id = ""
                   id += f"**Chat ID**: `{message.chat.id}`\n"
-                  id += f"**Your ID**: `{message.from_user.id}`\n"
+                  id += f"**Your UID**: `{message.from_user.id}`\n"
                   return await message.reply(text=(id),disable_web_page_preview=True)
               elif len(message.text.split()) >2:
                   return await message.reply("`wrong input!`")
@@ -108,9 +107,9 @@ async def ids(_, message):
               id = ""
               try:
                  they = await Nandha.get_chat(username)
-                 id += f"**They ID**: `{they.id}`\n"
+                 id += f"**They UID**: `{they.id}`\n"
                  id += f"**Chat ID**: `{message.chat.id}`\n"
-                 id += f"**Your ID**: `{message.from_user.id}`\n"
+                 id += f"**Your UID**: `{message.from_user.id}`\n"
                  await message.reply(text=(id), disable_web_page_preview=True)
               except PeerIdInvalid:
                     await message.reply("`forward user msg and reply or direct reply user to get id I can't find the user so!`")
