@@ -33,7 +33,7 @@ async def warn(_, message):
          x = db.find_one({"user_id": user_id})
          if x:
              n_warn = int(x["warn"])+1
-             db.update_one({"user_id": user_id}, {"$set: {"warn": n_warn}})
+             db.update_one({"user_id": user_id}, {"$set": {"warn": n_warn}})
          else:
              ll = {"chat_id": chat.id, "user_id": user.id, "warn": 1, }
              db.insert_one(ll)
