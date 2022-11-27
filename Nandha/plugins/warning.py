@@ -31,9 +31,9 @@ async def warn(_, message):
          elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
          else: return await message.reply_text("Invalid Method!")
          x = db.find_one({"chat_id": chat.id, "user_id": user_id})
-         if bool(x):
+         if bool(x) == True:
              n_warn = int(x["warn"])+1
-             db.update_one({"user_id": user_id}, {"$set": {"warn": n_warn}})
+             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn}})
          else:
              ll = {"chat_id": chat.id, "user_id": user.id, "warn": 1}
              db.insert_one(ll)
