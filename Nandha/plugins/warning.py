@@ -23,7 +23,7 @@ async def warn(_, message):
      chat = message.chat
      if await is_admin(chat_id=chat.id, user_id=user.id) == False:
            return await message.reply_text("Admins Only Can Warn Members!")
-     elif can_ban_members(chat_id=chat.id, user_id=user.id) == False:  
+     elif await can_ban_members(chat_id=chat.id, user_id=user.id) == False:  
            return await message.reply_text("You Needs a can_restrict_members Rights!")
      else:
          reply = message.reply_to_message
