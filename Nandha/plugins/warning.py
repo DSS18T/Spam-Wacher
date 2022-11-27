@@ -40,4 +40,4 @@ async def warn(_, message):
          user = await Nandha.get_users(user_id)
          x = db.find_one({"user_id": user_id})
          warns = x["warn"]
-         return await message.reply_text(WARN_TEXT.format(name=user.first_name, user_id=user.id, warns=warns)
+         return await message.reply_text(WARN_TEXT.format(name=user.first_name, user_id=user.id, warns=warns))
