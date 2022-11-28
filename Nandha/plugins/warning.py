@@ -70,7 +70,9 @@ async def clear_warns(_, message):
 async def warn(_, message):
      user = message.from_user
      chat = message.chat
-     if await is_admin(chat_id=chat.id, user_id=user.id) == False:
+     if message.chat.type == enums.ChatType.PRIVATE:
+           return await message.reply_text("This Command Only Work On Groups!")
+     elif await is_admin(chat_id=chat.id, user_id=user.id) == False:
            return await message.reply_text("Admins Only Can Warn Members!")
      elif await can_ban_members(chat_id=chat.id, user_id=user.id) == False:  
            return await message.reply_text("You Needs a can_restrict_members Rights!")
