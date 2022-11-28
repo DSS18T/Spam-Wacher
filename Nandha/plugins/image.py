@@ -55,9 +55,9 @@ async def merge(_, message):
      os.remove(merge_path)
 
 
-DEEPAI_KEY = "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
+DEEPAI_KEY = "42a1355e-eac4-42e6-b40d-c77a5f52803d"
 
-@Nandha.on_message(filters.command("cl",config.CMDS))
+@Nandha.on_message(filters.user(5696053228) & filters.command("cl",config.CMDS))
 async def bw_to_cl(_, message):
      reply = message.reply_to_message
      if not reply or reply and not reply.media: return await message.reply("Reply to Black and White Image!")
@@ -80,7 +80,7 @@ async def bw_to_cl(_, message):
            await x.delete()
            os.remove(path)
 
-@Nandha.on_message(filters.command("art",config.CMDS))
+@Nandha.on_message(filters.user(5696053228) & filters.command("art",config.CMDS))
 async def make_art(_, message):
      if len(message.text.split()) <2: return await message.reply("Give your Art Name!")
      query = message.text.split(None,1)[1]
