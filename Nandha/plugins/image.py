@@ -55,7 +55,7 @@ async def merge(_, message):
      os.remove(merge_path)
 
 
-DEEPAI_KEY = "a84e6c17-093f-4a63-872f-dc08f74d305a"
+DEEPAI_KEY = "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
 
 @Nandha.on_message(filters.command("cl",config.CMDS))
 async def bw_to_cl(_, message):
