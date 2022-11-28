@@ -79,7 +79,7 @@ async def warn(_, message):
          else: return await message.reply_text("Invalid Method!")
          try: x = await message.chat.get_member(user_id)
          except UserNotParticipant: return await message.reply("that user not a Member here!")
-         if await is_admin(chat_id=chat.id, user_id=user_id) == False:
+         if await is_admin(chat_id=chat.id, user_id=user_id):
               return await message.reply_text("Your Trying to Warn A Admin I couldn't do that!")
          x = db.find_one({"chat_id": chat.id, "user_id": user_id})
          user = await Nandha.get_users(user_id)
