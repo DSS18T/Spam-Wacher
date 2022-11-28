@@ -4,8 +4,7 @@ from Nandha import Nandha
 from pyrogram import filters
 from Nandha.help.chatsdb import *
 from Nandha.help.usersdb import *
-
-
+from pyrogram.enums import ParseMode
 @Nandha.on_message(filters.user(config.OWNER_ID) & filters.command(["groupcast","pgroupcast"],config.CMDS))
 async def group_cast(_, message):
       reply = message.reply_to_message
@@ -19,7 +18,7 @@ async def group_cast(_, message):
       done = 0
       for ids in chat_id:
           try:
-             cast = await Nandha.copy_message(ids, chat.id, reply.id)
+             cast = await Nandha.copy_message(ids, chat.id, reply.id, parse_mode=ParseMode.DEFAULT)
              done +=+1
              if message.text[1].casefold() == "p":
                  try: await cast.pin()
@@ -42,7 +41,7 @@ async def user_cast(_, message):
       done = 0
       for ids in chat_id:
           try:
-             cast = await Nandha.copy_message(ids, chat.id, reply.id)
+             cast = await Nandha.copy_message(ids, chat.id, reply.id,parse_mode=ParseMode.DEFAULT)
              done +=+1
              if message.text[1].casefold() == "p":
                  try: await cast.pin()
