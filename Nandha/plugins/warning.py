@@ -44,7 +44,7 @@ async def warn(_, message):
          else: return await message.reply_text("Invalid Method!")
          x = db.find_one({"chat_id": chat.id, "user_id": user_id})
          user = await Nandha.get_users(user_id)
-         if int(x["warn"]) == 3:
+         if int(x["warn"]) == 3 and bool(x):
               await Nandha.ban_chat_member(chat.id, user_id)
               await message.reply_text(WARN_B_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=warns))
               return
