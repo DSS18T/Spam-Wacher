@@ -77,7 +77,10 @@ async def warn(_, message):
          if reply: user_id = reply.from_user.id
          elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
          else: return await message.reply_text("Invalid Method!")
-         try: x = await message.chat.get_member(user_id)
+         try: 
+            x = await message.chat.get_member(user_id)
+            if x.is_member == False:
+                 return await message.reply("that user not a Member here!")
          except UserNotParticipant: return await message.reply("that user not a Member here!")
          if await is_admin(chat_id=chat.id, user_id=user_id):
               return await message.reply_text("Your Trying to Warn A Admin I couldn't do that!")
