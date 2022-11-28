@@ -56,5 +56,4 @@ async def warn(_, message):
              db.insert_one(ll)
          x = db.find_one({"chat_id": chat.id, "user_id": user_id})
          warns = int(x["warn"])
-         return await message.reply_text(WARN_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention warns=warns))
-return await message.reply_text(WARN_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=warns))
+         return await message.reply_text(WARN_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=warns))
