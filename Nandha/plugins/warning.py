@@ -4,6 +4,7 @@ from Nandha import (
 mongodb, Nandha, )
 
 from pyrogram.types import *
+from pyrogram.errors import UserNotParticipant
 from pyrogram import filters 
 from Nandha.help.admin import *
 
