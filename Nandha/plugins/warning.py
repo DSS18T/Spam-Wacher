@@ -25,6 +25,18 @@ warn by {admin}
 total warns: [`{warns}`]
 """
 
+
+async def is_warn_user(chat_id; int, user_id; int):
+      x = db.find_one({"chat_id": chat.id, "user_id": user_id})
+      if bool(x):
+         return True
+      else: return False
+
+async def get_warn_count(chat_id; int, user_id; int):
+    x = db.find_one({"chat_id": chat.id, "user_id": user_id})
+    warns = x["warn"]
+    return warns
+
 @Nandha.on_message(filters.command("clearwarn",config.CMDS))
 async def clear_warns(_, message):
      user = message.from_user
