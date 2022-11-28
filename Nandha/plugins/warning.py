@@ -7,7 +7,7 @@ from pyrogram.types import *
 from pyrogram import filters 
 from Nandha.help.admin import *
 
-db = mongodb["WARNNING"]
+db = mongodb["WARNING"]
 
 
 WARN_TEXT = """
@@ -25,7 +25,27 @@ warn by {admin}
 total warns: [`{warns}`]
 """
 
-@Nandha.on_message(filters.command("warn"))
+@Nandha.on_message(filters.command("clearwarn",config.CMDS))
+async def clear_warns(_, message):
+     user = message.from_user
+     chat = message.chat
+     if await is_admin(chat_id=chat.id, user_id=user.id) == False:
+           return await message.reply_text("Admins Only Can Warn Members!")
+     elif await can_ban_members(chat_id=chat.id, user_id=user.id) == False:  
+           return await message.reply_text("You Needs a can_restrict_members Rights!")
+     else:
+       if reply: user_id = reply.from_user.id
+       elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
+       else: return await message.reply_text("Invalid Method!")
+       x = db.find_one({"chat_id": chat.id, "user_id": user_id})
+       user = await Nandha.get_users(user_id)
+       if bool(x):
+            db.delete_one(x)
+            await message.reply_text("{} Successfully Warns Cleared!".format(user.mention))
+            return
+       else: return await message.reply_text("No Warns Restored in that ID!")
+
+@Nandha.on_message(filters.command("warn",config.CMDS))
 async def warn(_, message):
      user = message.from_user
      chat = message.chat
