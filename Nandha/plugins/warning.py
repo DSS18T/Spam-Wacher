@@ -96,14 +96,14 @@ async def warn(_, message):
          user = await Nandha.get_users(user_id)
          if bool(x):
              n_warn = int(x["warn"])+1
-             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn, f"reason {n_warn}": reason}})
+             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn, "reasons": {f"reason {n_warn}": reason}}})
              if n_warn > 2:
                   await Nandha.ban_chat_member(chat_id=chat.id, user_id=user.id)
                   await message.reply_text(WARN_B_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=n_warn))
                   db.delete_one(x)
                   return
          else:
-             ll = {"chat_id": chat.id, "user_id": user_id, "warn": 1, "reason 1": reason}
+             ll = {"chat_id": chat.id, "user_id": user_id, "warn": 1, "reasons":{"reason 1": reason}}
              db.insert_one(ll)
          x = db.find_one({"chat_id": chat.id, "user_id": user_id,})
          warns = int(x["warn"])
