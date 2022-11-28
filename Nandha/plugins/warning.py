@@ -13,10 +13,11 @@ db = mongodb["WARNING"]
 
 WARN_TEXT = """
 WARNING!
-name: {name}
-uid: [`{user_id}`]
-warn by {admin}
-total warns: [`{warns}`]
+Name: {name}
+UID: [`{user_id}`]
+Warn by {admin}
+Reason: `{reason}`
+Total warns: [`{warns}`]
 """
 WARN_B_TEXT = """
 BANNED!
@@ -74,8 +75,15 @@ async def warn(_, message):
          elif await can_ban_members(chat_id=chat.id, user_id=config.BOT_ID) == False:  
               return await message.reply_text("I Needs a can_restrict_members Rights!")
          reply = message.reply_to_message
-         if reply: user_id = reply.from_user.id
-         elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
+         if reply: 
+               user_id = reply.from_user.id
+               if len(message.text.split()) >1: reason = message.text.split(None,1)[1]
+               else: reason = "No Reason Provide!"
+         elif not reply and len(message.text.split()) == 2: 
+               user_id = message.text.split()[1]
+               if len(message.text.split()) >2:
+                     reason = message.text.split(None,2)[2]
+               else: reason = "No Reason Provide!"
          else: return await message.reply_text("Invalid Method!")
          try: 
             x = await message.chat.get_member(user_id)
@@ -88,15 +96,15 @@ async def warn(_, message):
          user = await Nandha.get_users(user_id)
          if bool(x):
              n_warn = int(x["warn"])+1
-             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn}})
+             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn, f"reason {n_warn}": reason}})
              if n_warn > 2:
                   await Nandha.ban_chat_member(chat_id=chat.id, user_id=user.id)
                   await message.reply_text(WARN_B_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=n_warn))
                   db.delete_one(x)
                   return
          else:
-             ll = {"chat_id": chat.id, "user_id": user_id, "warn": 1}
+             ll = {"chat_id": chat.id, "user_id": user_id, "warn": 1, "reason 1": reason}
              db.insert_one(ll)
-         x = db.find_one({"chat_id": chat.id, "user_id": user_id})
+         x = db.find_one({"chat_id": chat.id, "user_id": user_id,})
          warns = int(x["warn"])
-         return await message.reply_text(WARN_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=warns))
+         return await message.reply_text(WARN_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, reason=reason, warns=warns))
