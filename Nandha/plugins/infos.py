@@ -4,6 +4,7 @@ from pyrogram import filters
 from pyrogram import enums
 from Nandha import Nandha
 from Nandha.help.admin import *
+from Nandha.plugins.warning import ( is_warm_user, get_warn_count )
 
 from pyrogram.types import *
 from pyrogram.errors import (
@@ -13,6 +14,7 @@ PeerIdInvalid,UsernameInvalid, UserNotParticipant)
 async def user_info(_, message):
       " information about users "
       reply = message.reply_to_message
+      chat_id = int(message.chat.id)
       if reply: user_id = reply.from_user.id
       elif not reply and len(message.text.split()) == 2: user_id = message.text.split()[1]
       elif not reply and len(message.text.split()) == 1: user_id = message.from_user.id
@@ -42,6 +44,7 @@ async def user_info(_, message):
            try: x = await message.chat.get_member(user_id)
            except UserNotParticipant: return await message.reply("This User Is Not Member Here To Give You Info You Can Dm Me To Find His/She Info!")
            except Exception as e: return await message.reply(e)
+           user_id = int(x.user.id)
            text = "<b>Profile Info</b>:\n"
            text += "<b>Name</b>: {}\n".format(x.user.first_name)
            text += "<b>ID</b>: {}\n".format(x.user.id)
@@ -58,6 +61,9 @@ async def user_info(_, message):
            if x.privileges:
                  text += "<b>Status</b>: <code>{}</code>\n".format("Group Stuff")
            else: text += "<b>Status</b>: <code>{}</code>\n".format("Group Member")
+           if await is_warn_user(chat_id, user_id):
+                  warns = await get_warn_count(chat_id, user_id)
+                  text += "<b> Warning Count</b>: <code>{}</code>\n".format(warns)
            try:
                 if x.user.photo: 
                     profile = []
