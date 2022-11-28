@@ -13,18 +13,23 @@ db = mongodb["WARNING"]
 
 WARN_TEXT = """
 WARNING!
-Name: {name}
-UID: [`{user_id}`]
-Warn by {admin}
-Reason: `{reason}`
-Total warns: [`{warns}`]
+**Name**: {name}
+**UID**: [`{user_id}`]
+**Warn by** {admin}
+**Reason**: `{reason}`
+**Total warns**: [`{warns}`]
 """
 WARN_B_TEXT = """
 BANNED!
-name: {name}
-uid: [`{user_id}`]
-warn by {admin}
-total warns: [`{warns}`]
+**Name**: {name}
+**UID**: [`{user_id}`]
+**Warn by** {admin}
+
+**Reached Maximum Warns**: [`{warns}`]
+
+**Reason 1**: `{reason1}`
+**Reason 2**: `{reason2}`
+**Reason 3**: `{reason3}`
 """
 
 
@@ -96,10 +101,13 @@ async def warn(_, message):
          user = await Nandha.get_users(user_id)
          if bool(x):
              n_warn = int(x["warn"])+1
-             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn, "reason {n_warn}": reason}})
+             db.update_one({"chat_id": chat.id, "user_id": user_id}, {"$set": {"warn": n_warn, f"reason {n_warn}": reason}})
              if n_warn > 2:
+                  reason1 = x["reason 1"]
+                  reason2 = x["reason 2"]
+                  reason3 = reason
                   await Nandha.ban_chat_member(chat_id=chat.id, user_id=user.id)
-                  await message.reply_text(WARN_B_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=n_warn))
+                  await message.reply_text(WARN_B_TEXT.format(name=user.mention, user_id=user.id,admin=message.from_user.mention, warns=n_warn, reason1=reason1, reason2=reason2, reason3=reason3))
                   db.delete_one(x)
                   return
          else:
