@@ -63,7 +63,7 @@ async def user_info(_, message):
            else: text += "<b>Status</b>: <code>{}</code>\n".format("Group Member")
            if await is_warn_user(chat_id, user_id):
                   warns = await get_warn_count(chat_id, user_id)
-                  text += "<b> Warning Count</b>: <code>{}</code>\n".format(warns)
+                  text += "<b>Warning Count</b>: <code>{}</code>\n".format(warns)
            try:
                 if x.user.photo: 
                     profile = []
