@@ -29,11 +29,13 @@ total warns: [`{warns}`]
 async def clear_warns(_, message):
      user = message.from_user
      chat = message.chat
+ 
      if await is_admin(chat_id=chat.id, user_id=user.id) == False:
            return await message.reply_text("Admins Only Can Warn Members!")
      elif await can_ban_members(chat_id=chat.id, user_id=user.id) == False:  
            return await message.reply_text("You Needs a can_restrict_members Rights!")
      else:
+       reply = message.reply_to_message
        if reply: user_id = reply.from_user.id
        elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
        else: return await message.reply_text("Invalid Method!")
