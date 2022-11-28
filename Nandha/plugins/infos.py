@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram import enums
 from Nandha import Nandha
 from Nandha.help.admin import *
-from Nandha.plugins.warning import ( is_warm_user, get_warn_count )
+from Nandha.plugins.warning import ( is_warn_user, get_warn_count )
 
 from pyrogram.types import *
 from pyrogram.errors import (
