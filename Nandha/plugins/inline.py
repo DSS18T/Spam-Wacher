@@ -6,15 +6,11 @@ from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha, START_TIME
 from Nandha.help.helper_func import get_readable_time
-from telegraph import upload_file
-
-
-
 
 keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
-InlineKeyboardButton("Tm", switch_inline_query_current_chat="tm"),],[
+InlineKeyboardButton("Version", switch_inline_query_current_chat="version"),],[
 InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 
 anime_kyb = InlineKeyboardMarkup([[
@@ -74,22 +70,7 @@ async def husbando_in():
     return answers
 
 
-async def telegraph_in(query):
-   reply = query.message.reply_to_message
-   if not reply or reply and not reply.media:
-       answers = [
-         InlineQueryResultArticle("Error!",
-         InputTextMessageContent("Reply to Media!"))]
-       return answers
-   else:
-       telegraph = upload_file(await reply.download())
-       for file_id in telegraph:
-           url = "https://graph.org" + file_id
-       answers = [
-         InlineQueryResultArticle("Successfully Uploaded!",
-         InputTextMessageContent(url))]
-       return answers
-   
+
       
       
 
@@ -152,8 +133,5 @@ async def inline(_, query):
      elif string.split()[0] == "hbd":
           answers = await husbando_in()
           await query.answer(answers, cache_time=6)
-     elif string.split()[0] == "tm":
-          answers = await telegraph_in(query=Mquery)
-          await query.answer(answers, cache_time=2)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
