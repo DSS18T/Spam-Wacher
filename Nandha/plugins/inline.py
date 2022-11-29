@@ -15,13 +15,13 @@ keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
 InlineKeyboardButton("Tm", switch_inline_query_current_chat="tm"),],[
-InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
+InlineKeyboardButton("Anime Typo ➡️", callback_data=f"AnimeTypo:{user_id}"),]])
 
 anime_kyb = InlineKeyboardMarkup([[
 InlineKeyboardButton("Waifu", switch_inline_query_current_chat="waifu"),
 InlineKeyboardButton("Neko", switch_inline_query_current_chat="neko"),
 InlineKeyboardButton("Husbando", switch_inline_query_current_chat="husbando"),],[
-InlineKeyboardButton("back ⬅️", callback_data="inline_kyb"),]])
+InlineKeyboardButton("back ⬅️", callback_data=f"inline_kyb:{user_id}"),]])
 
 
 @Nandha.on_callback_query(filters.regex("AnimeTypo"))
@@ -36,7 +36,7 @@ async def Inline_help(_, query):
 
 async def waifu_in():
     images = []
-    for x in range(10):
+    for x in range(5):
        api = requests.get("https://api.waifu.pics/sfw/waifu").json()
        images.append(api["url"])
     answers = []
@@ -49,7 +49,7 @@ async def waifu_in():
 
 async def neko_in():
     images = []
-    for x in range(10):
+    for x in range(5):
        api = requests.get("https://api.waifu.pics/sfw/neko").json()
        images.append(api["url"])
     answers = []
@@ -100,6 +100,7 @@ async def help_in():
 
 @Nandha.on_inline_query()
 async def inline(_, query):
+     global user_id
      string = query.query.casefold()
      user_id = query.from_user.id
      if string.strip() == "":
@@ -113,7 +114,7 @@ async def inline(_, query):
           return await query.answer(answers)
      elif string.split()[0] == "waifu":
           answers = await waifu_in()
-          await query.answer(answers, cache_time=11)
+          await query.answer(answers, cache_time=6)
      elif string.split()[0] == "neko":
           answers = await neko_in()
           await query.answer(answers, cache_time=6)
