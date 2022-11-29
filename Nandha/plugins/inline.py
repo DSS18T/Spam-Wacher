@@ -21,7 +21,7 @@ anime_kyb = InlineKeyboardMarkup([[
 InlineKeyboardButton("waifu", switch_inline_query_current_chat="waifu"),
 InlineKeyboardButton("neko", switch_inline_query_current_chat="neko"),
 InlineKeyboardButton("husbando", switch_inline_query_current_chat="husbando"),],[
-InlineKeyboardButton("back ⬅️", callback_data="Animetypo"),]])
+InlineKeyboardButton("back ⬅️", callback_data="AnimeTypo"),]])
 
 
 @Nandha.on_callback_query(filters.regex("AnimeTypo"))
