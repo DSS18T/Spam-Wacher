@@ -155,4 +155,4 @@ async def inline(_, query):
           answers = await telegraph_in(query)
           await query.answer(answers, cache_time=2)
      else:
-          return await query.answer(results=[InlineQueryResultArticle(f"Not Found!",InputTextMessageContent("Anything Found > {string} <"))],switch_pm_parameter="Invalid Inline!")
+          return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
