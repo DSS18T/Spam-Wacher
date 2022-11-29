@@ -12,7 +12,7 @@ async def save(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
      if message.chat.type == enums.ChatType.PRIVATE: return await message.reply_text("Commands Work Only On Groups!")
-     try: note_name = message.text.split(None,1)[1]
+     try: note_name = message.text.split(None,1)[1].lower()
      except: return await message.reply_text("Give Note Name To Save!")
      if reply and reply.text:
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text})
@@ -49,6 +49,6 @@ async def get_notes(_, message):
                 video = x["video"]
                 caption = x["caption"]
                 await message.reply_video(video=video, caption=caption)
-
+     else: return await message.reply("No notes saved in >`{}`<".format(note_name))
 
 
