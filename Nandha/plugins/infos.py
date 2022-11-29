@@ -4,7 +4,6 @@ from pyrogram import filters
 from pyrogram import enums
 from Nandha import Nandha
 from Nandha.help.admin import *
-from Nandha.plugins.warning import ( is_warn_user, get_warn_count )
 
 from pyrogram.types import *
 from pyrogram.errors import (
@@ -61,9 +60,6 @@ async def user_info(_, message):
            if x.privileges:
                  text += "<b>Status</b>: <code>{}</code>\n".format("Group Stuff")
            else: text += "<b>Status</b>: <code>{}</code>\n".format("Group Member")
-           if await is_warn_user(chat_id, user_id):
-                  warns = await get_warn_count(chat_id, user_id)
-                  text += "<b>Warning Count</b>: <code>{}</code>\n".format(warns)
            try:
                 if x.user.photo: 
                     profile = []
