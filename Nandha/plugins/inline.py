@@ -7,10 +7,11 @@ from pyrogram.types import *
 from Nandha import Nandha, START_TIME
 from Nandha.help.helper_func import get_readable_time
 
+
 keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
-InlineKeyboardButton("Version", switch_inline_query_current_chat="version"),],[
+],[
 InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 
 anime_kyb = InlineKeyboardMarkup([[
@@ -71,8 +72,6 @@ async def husbando_in():
 
 
 
-      
-      
 
 async def pfp_inline(user_id: int):
      answers = []
