@@ -94,6 +94,10 @@ async def ids(_, message):
              id += f"**Sent Animation ID**:\n`{reply.animation.file_id}`"
          elif reply.audio:
              id += f"**Sent Audio ID**:\n`{reply.audio.file_id}`"
+         elif reply.document:
+             id += f"**Sent Animation ID**:\n`{reply.document.file_id}`"
+         elif reply.video:
+             id += f"**Sent Audio ID**:\n`{reply.video.file_id}`"
          elif reply.sticker:
              id += f"**Sent Sticker ID**:\n`{reply.sticker.file_id}`"
          await message.reply(text=(id),disable_web_page_preview=True)
