@@ -133,6 +133,7 @@ async def help_in():
 async def inline(_, query):
      string = query.query.casefold()
      user_id = query.from_user.id
+     Mquery = query.query
      if string.strip() == "":
           answers = await help_in()
           return await query.answer(answers)
@@ -152,7 +153,7 @@ async def inline(_, query):
           answers = await husbando_in()
           await query.answer(answers, cache_time=6)
      elif string.split()[0] == "tm":
-          answers = await telegraph_in(query)
+          answers = await telegraph_in(query=Mquery)
           await query.answer(answers, cache_time=2)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
