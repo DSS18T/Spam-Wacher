@@ -43,6 +43,7 @@ async def get_notes(_, message):
      chat_id = message.chat.id
      if message.chat.type == enums.ChatType.PRIVATE: return await message.reply_text("Commands Work Only On Groups!")
      try: note_name = message.text.split("#")[1].strip()
+     except: return await message.reply_text("example: `#test`")
      x = db.find_one({"chat_id": chat_id, "note_name": note_name})
      if bool(x):
           if bool(x["video"]):
