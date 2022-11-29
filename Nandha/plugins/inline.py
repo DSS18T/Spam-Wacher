@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha, START_TIME
 from Nandha.help.helper_func import get_readable_time
-
+from telegraph import upload_file
 
 
 
@@ -74,6 +74,23 @@ async def husbando_in():
     return answers
 
 
+async def telegraph_in(query):
+   reply = query.message.reply_to_message
+   if not reply or reply and not reply.media:
+       answers = [
+         InlineQueryResultArticle("Error!",
+         InputTextMessageContent("Reply to Media!"))]
+       return answers
+   else:
+       telegraph = upload_file(await reply.download())
+       for file_id in telegraph:
+           url = "https://graph.org" + file_id
+       answers = [
+         InlineQueryResultArticle("Successfully Uploaded!",
+         InputTextMessageContent(url))]
+       return answers
+   
+      
       
 
 async def pfp_inline(user_id: int):
@@ -114,7 +131,6 @@ async def help_in():
 
 @Nandha.on_inline_query()
 async def inline(_, query):
-     global user_id
      string = query.query.casefold()
      user_id = query.from_user.id
      if string.strip() == "":
@@ -135,5 +151,8 @@ async def inline(_, query):
      elif string.split()[0] == "hbd":
           answers = await husbando_in()
           await query.answer(answers, cache_time=6)
+     elif string.split()[0] == "tm":
+          answers = await telegraph_in(query)
+          await query.answer(answers, cache_time=2)
      else:
           return await query.answer(results=[InlineQueryResultArticle(f"Not Found!",InputTextMessageContent("Anything Found > {string} <"))],switch_pm_parameter="Invalid Inline!")
