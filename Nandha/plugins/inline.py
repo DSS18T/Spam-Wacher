@@ -18,9 +18,9 @@ keywards = [
 
 
 async def waifu_in():
-    api = requests.get("https://api.waifu.pics/sfw/waifu").json()
     images = []
     for x in range(5):
+       api = requests.get("https://api.waifu.pics/sfw/waifu").json()
        images.append(api["url"])
     answers = []
     for y in images:
