@@ -62,7 +62,7 @@ async def warns_check(_, message):
        else: return await message.reply_text("That User Don't Had Any Warns here!")
 
 
-@Nandha.on_message(filters.command("clearwarn",config.CMDS))
+@Nandha.on_message(filters.command("clearwarns",config.CMDS))
 async def clear_warns(_, message):
      user = message.from_user
      chat = message.chat
@@ -136,3 +136,18 @@ async def warn(_, message):
          x = db.find_one({"chat_id": chat.id, "user_id": user_id,})
          warns = int(x["warn"])
          return await message.reply_text(WARN_TEXT.format(name=user.mention, user_id=user.id, reason=reason, warns=warns))
+
+
+__MODULE__ = "warning"
+
+__HELP__ = """
+warning the user in a group.
+
+Maximum Warns 3 if the user got 3 the we'll get banned  in your chat
+to warn member in your group use:
+- /warn: 123456789
+- /warn: reply to user
+you want to remove users warning use: /clearwarns
+check user warn count use: /warns
+
+"""
