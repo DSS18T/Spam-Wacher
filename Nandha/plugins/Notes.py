@@ -3,6 +3,7 @@ import config
 from Nandha import mongodb, Nandha
 from pyrogram import filters
 from pyrogram.types import *
+from pyrogram import enums
 
 db = mongodb["NOTES"]
 
