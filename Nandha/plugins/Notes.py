@@ -7,7 +7,7 @@ from pyrogram.types import *
 db = mongodb["NOTES"]
 
 @Nandha.on_message(filters.command("save",config.CMDS))
-async save(_, message):
+async def save(_, message):
      reply = message.reply_to_message
      chat_id = message.chat.id
      user_id = message.from_user.id
