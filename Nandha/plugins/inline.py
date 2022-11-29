@@ -15,8 +15,21 @@ keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("ping", switch_inline_query_current_chat="ping"),
 InlineKeyboardButton("tm", switch_inline_query_current_chat="tm"),],[
-InlineKeyboardButton("Anime Typo", callback_data="Anime typo"),]])
+InlineKeyboardButton("Anime Typo ➡️", callback_data="Animetypo"),]])
 
+anime_kyb = InlineKeyboardMarkup([[
+InlineKeyboardButton("waifu", switch_inline_query_current_chat="waifu"),
+InlineKeyboardButton("neko", switch_inline_query_current_chat="neko"),
+InlineKeyboardButton("husbando", switch_inline_query_current_chat="husbando"),],[
+InlineKeyboardButton("back ⬅️", callback_data="Animetypo"),]])
+
+
+@Nandha.on_inline_query(filters.regex("AnimeTypo"))
+async def AnimeTypo(_, query):
+      await Nandha.edit_inline_text(inline_message_id=query.id, "Anime Typo Commands!", reply_markup=anime_kyb)
+      
+      
+      
 
 
 async def waifu_in():
