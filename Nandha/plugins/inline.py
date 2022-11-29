@@ -20,7 +20,7 @@ InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 anime_kyb = InlineKeyboardMarkup([[
 InlineKeyboardButton("Waifu", switch_inline_query_current_chat="waifu"),
 InlineKeyboardButton("Neko", switch_inline_query_current_chat="neko"),
-InlineKeyboardButton("Husbando", switch_inline_query_current_chat="husbando"),],[
+InlineKeyboardButton("Husbando", switch_inline_query_current_chat="hbd"),],[
 InlineKeyboardButton("back ⬅️", callback_data="inline_kyb"),]])
 
 
@@ -132,8 +132,8 @@ async def inline(_, query):
      elif string.split()[0] == "neko":
           answers = await neko_in()
           await query.answer(answers, cache_time=6)
-     elif string.split()[0] == "husbando":
+     elif string.split()[0] == "hbd":
           answers = await husbando_in()
           await query.answer(answers, cache_time=6)
      else:
-          return await query.answer(results=[InlineQueryResultArticle("Error Raises!",InputTextMessageContent("Invalid Inline Command! 🧐"))],switch_pm_parameter="Invalid Inline!")
+          return await query.answer(results=[InlineQueryResultArticle(f"Not Found!",InputTextMessageContent("Anything Found > {string} <"))],switch_pm_parameter="Invalid Inline!")
