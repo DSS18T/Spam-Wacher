@@ -15,7 +15,7 @@ keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("ping", switch_inline_query_current_chat="ping"),
 InlineKeyboardButton("tm", switch_inline_query_current_chat="tm"),],[
-InlineKeyboardButton("Anime Typo ➡️", callback_data="Animetypo"),]])
+InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 
 anime_kyb = InlineKeyboardMarkup([[
 InlineKeyboardButton("waifu", switch_inline_query_current_chat="waifu"),
