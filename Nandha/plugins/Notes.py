@@ -47,23 +47,23 @@ async def get_notes(_, message):
      except: return await message.reply_text("example: `#test`")
      x = db.find_one({"chat_id": chat_id, "note_name": note_name})
      if bool(x):
-          if bool(x["video"]):
+          if x["video"]:
                 video = x["video"]
                 caption = x["caption"]
                 return await message.reply_video(video=video, caption=caption)
-          if bool(x["animation"]):
+          if x["animation"]:
                 animation = x["animation"]
                 caption = x["caption"]
-                await message.reply_animation(animation=animation, caption=caption)
-          if bool(x["photo"]):
+                return await message.reply_animation(animation=animation, caption=caption)
+          if x["photo"]:
                 photo = x["photo"]
                 caption = x["caption"]
                 return await message.reply_photo(photo=photo, caption=caption)
-          if bool(x["document"]):
+          if x["document"]:
                 document = x["document"]
                 caption = x["caption"]
                 return await message.reply_document(document=document, caption=caption)
-          if bool(x["text"]):
+          if x["text"]:
                 text = x["text"]              
                 return await message.reply_text(text=text)
           else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
