@@ -12,23 +12,26 @@ from Nandha.help.helper_func import get_readable_time
 keywards = [
 "ping",
 "pfp",
-"img",
+"waifu",
 ]
 
 
-async def img_inline(search: str):
-    API = "https://apibu.herokuapp.com/api/y-images?query={}".format(search)
-    result = requests.get(API).json()["result"][:30]
+
+async def waifu_in():
+    api = requests.get("https://api.waifu.pics/sfw/waifu").json()
+    images = []
+    for x in range(5):
+       images.append(api["url"])
     answers = []
-    for url in result:      
-        answers.append(
-        InlineQueryResultDocument(
-           title = f"Result for {search}",
-           document_url=url,
-           thumb_url=url,
+    for y in images:
+      answers.append(InlineQueryResultPhoto(
+           photo_url=y,
+           thumb_url=y,
            caption="Made by @NandhaBots"))
     return answers
-    
+
+
+
       
 
 async def pfp_inline(user_id: int):
@@ -83,10 +86,8 @@ async def inline(_, query):
      elif string.split()[0] == "ping":
           answers = await ping_inline()
           return await query.answer(answers)
-     elif string.split()[0] == "img":
-          search = string.split(string.split()[0])[1]
-          answers = await img_inline(search)
-          await query.answer(answers, cache_time=200)
-          return os.system("rm -rf wall_images")
+     elif string.split()[0] == "waifu":
+          answers = await waifu_in()
+          await query.answer(answers, cache_time=6)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Error Raises!",InputTextMessageContent("Invalid Inline Command! 🧐"))],switch_pm_parameter="Invalid Inline!")
