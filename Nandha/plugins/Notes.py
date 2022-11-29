@@ -16,7 +16,7 @@ async def save(_, message):
      try: note_name = message.text.split(None,1)[1].lower()
      except: return await message.reply_text("Give Note Name To Save!")
      if reply and reply.text:
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text}, "type": "text")
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text, "type": "text"})
      elif reply and reply.video:
           if reply.caption:
                caption = reply.caption
