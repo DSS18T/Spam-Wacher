@@ -12,15 +12,15 @@ from Nandha.help.helper_func import get_readable_time
 
 
 keywards = InlineKeyboardMarkup([[
-InlineKeyboardButton("pfp", switch_inline_query_current_chat="pfp"),
-InlineKeyboardButton("ping", switch_inline_query_current_chat="ping"),
-InlineKeyboardButton("tm", switch_inline_query_current_chat="tm"),],[
+InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
+InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
+InlineKeyboardButton("Tm", switch_inline_query_current_chat="tm"),],[
 InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 
 anime_kyb = InlineKeyboardMarkup([[
-InlineKeyboardButton("waifu", switch_inline_query_current_chat="waifu"),
-InlineKeyboardButton("neko", switch_inline_query_current_chat="neko"),
-InlineKeyboardButton("husbando", switch_inline_query_current_chat="husbando"),],[
+InlineKeyboardButton("Waifu", switch_inline_query_current_chat="waifu"),
+InlineKeyboardButton("Neko", switch_inline_query_current_chat="neko"),
+InlineKeyboardButton("Husbando", switch_inline_query_current_chat="husbando"),],[
 InlineKeyboardButton("back ⬅️", callback_data="inline_kyb"),]])
 
 
@@ -33,13 +33,10 @@ async def AnimeTypo(_, query):
 async def Inline_help(_, query):
       await Nandha.edit_inline_text(inline_message_id=query.inline_message_id, 
            text="Inline Commands!", reply_markup=keywards)     
-      
-      
-
 
 async def waifu_in():
     images = []
-    for x in range(5):
+    for x in range(10):
        api = requests.get("https://api.waifu.pics/sfw/waifu").json()
        images.append(api["url"])
     answers = []
@@ -50,7 +47,18 @@ async def waifu_in():
            caption="Made by @NandhaBots"))
     return answers
 
-
+async def neko_in():
+    images = []
+    for x in range(10):
+       api = requests.get("https://api.waifu.pics/sfw/neko").json()
+       images.append(api["url"])
+    answers = []
+    for y in images:
+      answers.append(InlineQueryResultPhoto(
+           photo_url=y,
+           thumb_url=y,
+           caption="Made by @NandhaBots"))
+    return answers
 
       
 
@@ -105,6 +113,9 @@ async def inline(_, query):
           return await query.answer(answers)
      elif string.split()[0] == "waifu":
           answers = await waifu_in()
+          await query.answer(answers, cache_time=11)
+     elif string.split()[0] == "neko":
+          answers = await neko_in()
           await query.answer(answers, cache_time=6)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Error Raises!",InputTextMessageContent("Invalid Inline Command! 🧐"))],switch_pm_parameter="Invalid Inline!")
