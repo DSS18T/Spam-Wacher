@@ -55,17 +55,11 @@ async def warns_check(_, message):
        try:
           user = await Nandha.get_users(user_id)
        except Exception as e: return await message.reply(e)
-       x = db.find_one({"chat_id": chat.id, "user_id": user_id})
-       if bool(x):
-           warns = x["warn"]
+       if await is_warn_user(chat_id=chat.id, user_id=user_id):
+           warns = await get_warn_count(chat_id=chat.id, user_id=user_id)
            await message.reply_text(
                 f"**{user.mention}'s warn** [`{warns}`]")
        else: return await message.reply_text("That User Don't Had Any Warns here!")
-
-
-
-
-
 
 
 @Nandha.on_message(filters.command("clearwarn",config.CMDS))
