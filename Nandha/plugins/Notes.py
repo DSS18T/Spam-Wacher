@@ -38,7 +38,7 @@ async def save(_, message):
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "photo": reply.photo.file_id, "caption": caption})
      return await message.reply_text("Added! `#{}`".format(note_name))
 
-@Nandha.on_message(filters.regex("^#")
+@Nandha.on_message(filters.regex("^#"))
 async def get_notes(_, message):
      chat_id = message.chat.id
      if message.chat.type == enums.ChatType.PRIVATE: return await message.reply_text("Commands Work Only On Groups!")
