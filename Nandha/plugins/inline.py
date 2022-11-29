@@ -15,13 +15,13 @@ keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
 InlineKeyboardButton("Tm", switch_inline_query_current_chat="tm"),],[
-InlineKeyboardButton("Anime Typo ➡️", callback_data=f"AnimeTypo:{user_id}"),]])
+InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 
 anime_kyb = InlineKeyboardMarkup([[
 InlineKeyboardButton("Waifu", switch_inline_query_current_chat="waifu"),
 InlineKeyboardButton("Neko", switch_inline_query_current_chat="neko"),
 InlineKeyboardButton("Husbando", switch_inline_query_current_chat="husbando"),],[
-InlineKeyboardButton("back ⬅️", callback_data=f"inline_kyb:{user_id}"),]])
+InlineKeyboardButton("back ⬅️", callback_data="inline_kyb"),]])
 
 
 @Nandha.on_callback_query(filters.regex("AnimeTypo"))
