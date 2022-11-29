@@ -51,6 +51,22 @@ async def get_notes(_, message):
                 video = x["video"]
                 caption = x["caption"]
                 await message.reply_video(video=video, caption=caption)
-     else: return await message.reply("No notes saved in >`{}`<".format(note_name))
+          elif bool(x["animation"]):
+                animation = x["animation"]
+                caption = x["caption"]
+                await message.reply_animation(animation=animation, caption=caption)
+          elif bool(x["photo"]):
+                photo = x["photo"]
+                caption = x["caption"]
+                await message.reply_photo(photo=photo, caption=caption)
+          elif bool(x["document"]):
+                document = x["document"]
+                caption = x["caption"]
+                await message.reply_document(document=document, caption=caption)
+          elif bool(x["text"]):
+                text = x["text"]              
+                await message.reply_text(text=text)
+          else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
+     else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
 
 
