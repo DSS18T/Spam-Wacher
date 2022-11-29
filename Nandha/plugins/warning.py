@@ -40,6 +40,34 @@ async def get_warn_count(chat_id: int, user_id: int):
     warns = x["warn"]
     return warns
 
+@Nandha.on_message(filters.command("warns",config.CMDS))
+async def warns_check(_, message):
+     chat = message.chat
+     user = message.from_user
+     if message.chat.type == enums.ChatType.PRIVATE: return await message.reply("Command Works Only On Groups!")
+     elif await is_admin(chat_id=chat.id, user_id=user.id) == False:
+           return await message.reply_text("Admins Only Can Warn Members!")
+     else:
+       reply = message.reply_to_message
+       if reply: user_id = reply.from_user.id
+       elif not reply and len(message.text.split()) >1: user_id = message.text.split()[1]
+       else: return await message.reply_text("Invalid Method!")
+       try:
+          user = await Nandha.get_users(user_id)
+       except Exception as e: return await message.reply(e)
+       x = db.find_one({"chat_id": chat.id, "user_id": user_id})
+       if bool(x):
+           warns = x["warn"]
+           await message.reply_text(
+                f"**{user.mention}'s warn** [`{warns}`]")
+       else: return await message.reply_text("That User Don't Had Any Warns here!")
+
+
+
+
+
+
+
 @Nandha.on_message(filters.command("clearwarn",config.CMDS))
 async def clear_warns(_, message):
      user = message.from_user
