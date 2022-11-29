@@ -60,6 +60,20 @@ async def neko_in():
            caption="Made by @NandhaBots"))
     return answers
 
+async def husbando_in():
+    images = []
+    for x in range(5):
+       api = requests.get("https://nekos.best/api/v2/husbando").json()
+       images.append(api["results"][0]["url"])
+    answers = []
+    for y in images:
+      answers.append(InlineQueryResultPhoto(
+           photo_url=y,
+           thumb_url=y,
+           caption="Made by @NandhaBots"))
+    return answers
+
+
       
 
 async def pfp_inline(user_id: int):
@@ -117,6 +131,9 @@ async def inline(_, query):
           await query.answer(answers, cache_time=6)
      elif string.split()[0] == "neko":
           answers = await neko_in()
+          await query.answer(answers, cache_time=6)
+     elif string.split()[0] == "husbando":
+          answers = await husbando_in()
           await query.answer(answers, cache_time=6)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Error Raises!",InputTextMessageContent("Invalid Inline Command! 🧐"))],switch_pm_parameter="Invalid Inline!")
