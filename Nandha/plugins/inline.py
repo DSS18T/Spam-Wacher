@@ -9,11 +9,13 @@ from Nandha.help.helper_func import get_readable_time
 
 
 
-keywards = [
-"ping",
-"pfp",
-"waifu",
-]
+
+
+keywards = InlineKeyboardMarkup([[
+InlineKeyboardButton("pfp", switch_inline_query_current_chat="pfp"),
+InlineKeyboardButton("ping", switch_inline_query_current_chat="ping"),
+InlineKeyboardButton("tm", switch_inline_query_current_chat="tm"),],[
+InlineKeyboardButton("Anime Typo", callback_data="Anime typo"),]]
 
 
 
@@ -63,23 +65,19 @@ async def ping_inline():
       return answers
      
 
-async def help_inline():
-     answers = []
-     buttons = []
-     for x in keywards:
-        buttons.append([InlineKeyboardButton(x, switch_inline_query_current_chat=x)])
-     answers.append(InlineQueryResultArticle(
-         "Help Inline!",
-         InputTextMessageContent("inline commands!"),reply_markup=InlineKeyboardMarkup(buttons)))
-     return answers 
-
+async def help_in():
+      answers = [
+         InlineQueryResultArticle("Help Menu!",
+         InputTextMessageContent("Inline Commands!"),
+         reply_markup=keywards,)]
+      return answers
 
 @Nandha.on_inline_query()
 async def inline(_, query):
      string = query.query.casefold()
      user_id = query.from_user.id
      if string.strip() == "":
-          answers = await help_inline()
+          answers = await help_in()
           return await query.answer(answers)
      elif string.split()[0] == "pfp":
           answers = await pfp_inline(user_id)
