@@ -24,7 +24,7 @@ InlineKeyboardButton("husbando", switch_inline_query_current_chat="husbando"),],
 InlineKeyboardButton("back ⬅️", callback_data="Animetypo"),]])
 
 
-@Nandha.on_inline_query(filters.regex("AnimeTypo"))
+@Nandha.on_callback_query(filters.regex("AnimeTypo"))
 async def AnimeTypo(_, query):
       await Nandha.edit_inline_text(inline_message_id=query.id, text="Anime Typo Commands!", reply_markup=anime_kyb)
       
