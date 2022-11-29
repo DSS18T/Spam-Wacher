@@ -58,7 +58,7 @@ async def ping_inline():
       uptime = get_readable_time((time.time() - START_TIME))
       answers = [
           InlineQueryResultArticle("Server Ping!",
-          InputTextMessageContent(PING_TEXT.format(ping_time, uptime))
+          InputTextMessageContent(PING_TEXT.format(ping_time, uptime)),
           thumb_url="https://graph.org/file/ae344e920d7fa4e5a2398.jpg",)]
       return answers
      
