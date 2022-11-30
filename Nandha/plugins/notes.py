@@ -49,7 +49,7 @@ async def save(_, message):
           if reply.caption:
                caption = reply.caption
           else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "voice": reply.voice.file_id, "type": "voice"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "voice": reply.voice.file_id,"caption": caption, "type": "voice"})
      elif reply and reply.video:
           if reply.caption:
                caption = reply.caption
