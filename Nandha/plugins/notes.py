@@ -110,3 +110,12 @@ async def get_notes(_, message):
           else: return await message.reply_text("can't send this Note  >`{}`<".format(note_name))
      else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
 
+
+__MODULE__ = "Notes"
+
+__HELP__ = """
+Save Notes On Your Chats.
+- /save: reply to any messages with notename.
+- /clear: use with notename.
+- /notes: get notes in your chat. 
+"""
