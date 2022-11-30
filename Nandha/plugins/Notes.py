@@ -11,11 +11,12 @@ db = mongodb["NOTES"]
 @Nandha.on_message(filters.command("notes",config.CMDS))
 async def notes(_, message):
      chat_id = message.chat.id
+     notes = ""
      for note in db.find({"chat_id": chat_id}):
          if bool(note):
-               notes = note["note_name"]
-               return await message.reply_text(notes)
+               notes += "**{num}.** `{name}`".format(num=note+1, name=x["note_name"])
          else: return await message.reply("No Notes Saved Here!")
+     return await message.reply_text(notes)
 
 @Nandha.on_message(filters.command("clear",config.CMDS))
 async def clear(_, message):
