@@ -99,11 +99,11 @@ async def get_notes(_, message):
           elif "text" == x["type"]:
                 text = x["text"]              
                 return await message.reply_text(text=text)
-          elif "voice" == x["voice"]:
+          elif "voice" == x["type"]:
                 voice = x["voice"]
                 caption = x["caption"]
                 return await message.reply_voice(voice=voice)
-          elif "sticker" == x["sticker"]:
+          elif "sticker" == x["type"]:
                 sticker = x["sticker"]
                 return await message.reply_sticker(sticker=sticker)
           else: return await message.reply_text("can't send this Note  >`{}`<".format(note_name))
