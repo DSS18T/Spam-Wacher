@@ -31,7 +31,7 @@ async def clear(_, message):
       if bool(x):
           db.delete_one(x)
           return await message.reply_text(f"Deleted! > `{note_name}` <")
-      return await message.reply_text("No Notes In This > `{note_name}` <")
+      return await message.reply_text(f"No Notes Named > `{note_name}` <")
 
 @Nandha.on_message(filters.command("save",config.CMDS))
 async def save(_, message):
