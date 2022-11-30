@@ -43,6 +43,8 @@ async def save(_, message):
      except: return await message.reply_text("Give Note Name To Save!")
      if reply and reply.text:
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text, "type": "text"})
+     elif reply and reply.sticker:
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "sticker": reply.sticker.file_id, "type": "sticker"})
      elif reply and reply.video:
           if reply.caption:
                caption = reply.caption
@@ -92,7 +94,10 @@ async def get_notes(_, message):
           elif "text" == x["type"]:
                 text = x["text"]              
                 return await message.reply_text(text=text)
-          else: return await message.reply_text("can't send this note in >`{}`<".format(note_name))
+          elif "sticker" == x["sticker"]:
+                sticker = x["sticker"]
+                return await message.reply_sticker(sticker=sticker)
+          else: return await message.reply_text("can't send this Note  >`{}`<".format(note_name))
      else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
 
 
