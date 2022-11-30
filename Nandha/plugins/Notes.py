@@ -8,6 +8,14 @@ from Nandha.help.admin import *
 
 db = mongodb["NOTES"]
 
+@Nandha.on_message(filters.command("notes",config.CMDS))
+async def notes(_, message):
+     chat_id = message.chat.id
+     for note in db.find({"chat_id": chat_id})
+         if bool(note):
+               notes = note["note_name"]
+               return await message.reply_text(notes)
+         else: return await message.reply("No Notes Saved Here!")
 
 @Nandha.on_message(filters.command("clear",config.CMDS))
 async def clear(_, message):
