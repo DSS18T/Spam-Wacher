@@ -16,7 +16,7 @@ async def notes(_, message):
      for note in db.find({"chat_id": chat_id}):
          if bool(note):
                num = note_num+1
-               notes += "**{num}.** `{name}`\n".format(num, name=note["note_name"])
+               notes += "**{num}.** `{name}`\n".format(num=num, name=note["note_name"])
          else: return await message.reply("No Notes Saved Here!")
      return await message.reply_text(notes)
 
