@@ -42,47 +42,29 @@ async def save(_, message):
      try: note_name = message.text.split(None,1)[1].lower()
      except: return await message.reply_text("Give Note Name To Save!")
      if reply and reply.text:
-          if reply.reply_markup:
-               kyb = str(reply.reply_markup)
-          else: kyb = None
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text,"keyboard": kyb, "type": "text"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text, "type": "text"})
      elif reply and reply.sticker:
-          if reply.reply_markup:
-               kyb = str(reply.reply_markup)
-          else: kyb = None
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "sticker": reply.sticker.file_id,"keyboard": kyb, "type": "sticker"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "sticker": reply.sticker.file_id, "type": "sticker"})
      elif reply and reply.video:
-          if reply.reply_markup:
-               kyb = str(reply.reply_markup)
-          else: kyb = None
           if reply.caption:
                caption = reply.caption
           else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "video": reply.video.file_id, "caption": caption,"keyboard": kyb, "type": "video"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "video": reply.video.file_id, "caption": caption, "type": "video"})
      elif reply and reply.document:
-          if reply.reply_markup:
-               kyb = str(reply.reply_markup)
-          else: kyb = None
           if reply.caption:
                caption = reply.caption
           else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "document": reply.document.file_id, "caption": caption,"keyboard": kyb, "type": "document"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "document": reply.document.file_id, "caption": caption, "type": "document"})
      elif reply and reply.animation:
-          if reply.reply_markup:
-               kyb = str(reply.reply_markup)
-          else: kyb = None
           if reply.caption:
                caption = reply.caption
           else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "animation": reply.animation.file_id, "caption": caption,"keyboard": kyb, "type": "animation"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "animation": reply.animation.file_id, "caption": caption, "type": "animation"})
      elif reply and reply.photo:
-          if reply.reply_markup:
-               kyb = str(reply.reply_markup)
-          else: kyb = None
           if reply.caption:
                caption = reply.caption
           else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "photo": reply.photo.file_id, "caption": caption,"keyboard": kyb, "type": "photo"})
+          db.insert_one({"chat_id": chat_id, "note_name": note_name, "photo": reply.photo.file_id, "caption": caption, "type": "photo"})
      return await message.reply_text("Added! `#{}`".format(note_name))
 
 @Nandha.on_message(filters.regex("^#"))
@@ -96,31 +78,25 @@ async def get_notes(_, message):
           if "video" == x["type"]:
                 video = x["video"]
                 caption = x["caption"]
-                keyboard = x["keyboard"]
-                return await message.reply_video(video=video, caption=caption, reply_markup=keyboard)
+                return await message.reply_video(video=video, caption=caption)
           elif "animation" == x["type"]:
                 animation = x["animation"]
                 caption = x["caption"]
-                keyboard = x["keyboard"]
-                return await message.reply_animation(animation=animation, caption=caption, reply_markup=keyboard)
+                return await message.reply_animation(animation=animation, caption=caption)
           elif "photo" == x["type"]:
                 photo = x["photo"]
                 caption = x["caption"]
-                keyboard = x["keyboard"]
-                return await message.reply_photo(photo=photo, caption=caption, reply_markup=keyboard)
+                return await message.reply_photo(photo=photo, caption=caption)
           elif "document" == x["type"]:
                 document = x["document"]
                 caption = x["caption"]
-                keyboard = x["keyboard"]
-                return await message.reply_document(document=document, caption=caption, reply_markup=keyboard)
+                return await message.reply_document(document=document, caption=caption)
           elif "text" == x["type"]:
-                text = x["text"]    
-                keyboard = x["keyboard"]          
-                return await message.reply_text(text=text, reply_markup=keyboard)
+                text = x["text"]              
+                return await message.reply_text(text=text)
           elif "sticker" == x["sticker"]:
                 sticker = x["sticker"]
                 return await message.reply_sticker(sticker=sticker)
           else: return await message.reply_text("can't send this Note  >`{}`<".format(note_name))
      else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
-
 
