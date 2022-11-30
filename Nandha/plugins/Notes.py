@@ -12,9 +12,10 @@ db = mongodb["NOTES"]
 async def notes(_, message):
      chat_id = message.chat.id
      notes = ""
+     note_num = 0
      for note in db.find({"chat_id": chat_id}):
          if bool(note):
-               num = note+1
+               num = note_num+1
                notes += "**{num}.** `{name}`\n".format(num, name=note["note_name"])
          else: return await message.reply("No Notes Saved Here!")
      return await message.reply_text(notes)
