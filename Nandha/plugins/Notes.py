@@ -43,17 +43,17 @@ async def save(_, message):
      except: return await message.reply_text("Give Note Name To Save!")
      if reply and reply.text:
           if reply.reply_markup:
-               kyb = reply.reply_markup
+               kyb = str(reply.reply_markup)
           else: kyb = None
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text,"keyboard": kyb, "type": "text"})
      elif reply and reply.sticker:
           if reply.reply_markup:
-               kyb = reply.reply_markup
+               kyb = str(reply.reply_markup)
           else: kyb = None
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "sticker": reply.sticker.file_id,"keyboard": kyb, "type": "sticker"})
      elif reply and reply.video:
           if reply.reply_markup:
-               kyb = reply.reply_markup
+               kyb = str(reply.reply_markup)
           else: kyb = None
           if reply.caption:
                caption = reply.caption
@@ -61,7 +61,7 @@ async def save(_, message):
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "video": reply.video.file_id, "caption": caption,"keyboard": kyb, "type": "video"})
      elif reply and reply.document:
           if reply.reply_markup:
-               kyb = reply.reply_markup
+               kyb = str(reply.reply_markup)
           else: kyb = None
           if reply.caption:
                caption = reply.caption
@@ -69,7 +69,7 @@ async def save(_, message):
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "document": reply.document.file_id, "caption": caption,"keyboard": kyb, "type": "document"})
      elif reply and reply.animation:
           if reply.reply_markup:
-               kyb = reply.reply_markup
+               kyb = str(reply.reply_markup)
           else: kyb = None
           if reply.caption:
                caption = reply.caption
@@ -77,7 +77,7 @@ async def save(_, message):
           db.insert_one({"chat_id": chat_id, "note_name": note_name, "animation": reply.animation.file_id, "caption": caption,"keyboard": kyb, "type": "animation"})
      elif reply and reply.photo:
           if reply.reply_markup:
-               kyb = reply.reply_markup
+               kyb = str(reply.reply_markup)
           else: kyb = None
           if reply.caption:
                caption = reply.caption
