@@ -101,7 +101,7 @@ async def ids(_, message):
          elif reply.sticker:
              id += f"**Sent Sticker ID**:\n`{reply.sticker.file_id}`"
          elif reply.voice:
-             id += f"**Sent Sticker ID**:\n`{reply.voice.file_id}`"
+             id += f"**Sent Voice ID**:\n`{reply.voice.file_id}`"
              
          await message.reply(text=(id),disable_web_page_preview=True)
       elif not reply:
