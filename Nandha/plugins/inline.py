@@ -11,7 +11,9 @@ from Nandha.help.helper_func import get_readable_time
 keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
+],[
 InlineKeyboardButton("Dog Fact", switch_inline_query_current_chat="dogfact"),
+InlineKeyboardButton("Cat Fact", switch_inline_query_current_chat="catfact"),
 ],[
 InlineKeyboardButton("Anime Typo ➡️", callback_data="AnimeTypo"),]])
 
@@ -33,6 +35,19 @@ async def Inline_help(_, query):
            text="Inline Commands!", reply_markup=keywards)     
 
 async def dog_fact():
+    answers = []
+    for x in range(5):
+       api = requests.get("https://some-random-api.ml/animal/dog").json()
+       url = api["image"]
+       fact = api["fact"]
+       answers.append(
+             InlineQueryResultPhoto(
+             photo_url=url,
+             thumb_url=url,
+             caption=fact))
+    return answers
+
+async def cat_fact():
     answers = []
     for x in range(5):
        api = requests.get("https://some-random-api.ml/animal/cat").json()
@@ -146,6 +161,9 @@ async def inline(_, query):
           await query.answer(answers, cache_time=6)
      elif string.split()[0] == "dogfact":
           answers = await dog_fact()
+          await query.answer(answers, cache_time=6)
+     elif string.split()[0] == "catfact":
+          answers = await cat_fact()
           await query.answer(answers, cache_time=6)
      elif string.split()[0] == "hbd":
           answers = await husbando_in()
