@@ -6,14 +6,91 @@ import requests
 from Nandha import Nandha
 from pyrogram import filters
 
+from telegraph import upload_file
 
-@Nandha.on_message(filters.command(["dog","doge"],config.CMDS))
-async def doge(_, message):
-      api = requests.get("https://random.dog/woof.json").json()
-      url = api["url"]
-      if url.endswith(".gif"): await message.reply_animation(url)
-      else: await message.reply_photo(url)
+async def graph(media):
+     telegraph = upload_file(media)
+      for file_id in telegraph:
+          url = "https://graph.org" + file_id
+      return url
 
+@Nandha.on_message(filters.command("ytc",config.CMDS))
+async def youtube_comment(_, message):
+       if message.reply_to_message and message.reply_to_message.media:
+           try:
+              username_txt = message.text.split("-u")[1].split("-c")[0]
+              comment_txt = message.text.split("-c")[1]
+           except: 
+               return await message.reply_text("Format: /ytc -u Nandha -c hello world")
+           x = await message.reply_text("downloading media!")
+           media = await Nandha.download_media(message.from_user.photo.file_id)
+           await x.edit("complete download!")
+           await x.edit("Uploading graph!")
+           url = await graph(media)
+           await x.edit("done graph upload!")
+       else:
+          try:
+              username_txt = message.from_user.username
+              comment_txt = message.text.split(None,1)[1]
+          except: 
+              return await message.reply_text("Format: /yt hello world")
+          x = await message.reply_text("downloading mediafrom telegraph import upload_file
+
+async def graph(media):
+     telegraph = upload_file(media)
+      for file_id in telegraph:
+          url = "https://graph.org" + file_id
+      return url
+
+@Nandha.on_message(filters.command("ytc",config.CMDS))
+async def youtube_comment(_, message):
+       if message.reply_to_message and message.reply_to_message.media:
+           try:
+              username_txt = message.text.split("-u")[1].split("-c")[0]
+              comment_txt = message.text.split("-c")[1]
+           except: 
+               return await message.reply_text("Format: /ytc -u Nandha -c hello world")
+           x = await message.reply_text("downloading media!")
+           media = await Nandha.download_media(message.from_user.photo.file_id)
+           await x.edit("complete download!")
+           await x.edit("Uploading graph!")
+           url = await graph(media)
+           await x.edit("done graph upload!")
+       else:
+          try:
+              username_txt = message.from_user.username
+              comment_txt = message.text.split(None,1)[1]
+          except: 
+              return await message.reply_text("Format: /yt hello world")
+          x = await message.reply_text("downloading media!")
+          media = await Nandha.download_media(message.from_user.photo.file_id)
+          await x.edit("complete download!")
+          await x.edit("Uploading graph!")
+          url = await graph(media)
+          await x.edit("done graph upload!") 
+        if len(username_txt.split()) > 2:
+              username = username_txt.replace(" ", "%20")
+        else: username = username_txt
+        if len(comment_txt.split()) > 2:
+              comment = comment_txt.replace(" ", "%20")
+        else: comment = comment_txt   
+        photo_url= f"https://some-random-api.ml/canvas/youtube-comment?username={username}&comment={comment}&avatar={url}&dark=true​")
+        return await message.reply_photo(url)
+        
+          media = await Nandha.download_media(message.from_user.photo.file_id)
+          await x.edit("complete download!")
+          await x.edit("Uploading graph!")
+          url = await graph(media)
+          await x.edit("done graph upload!") 
+        if len(username_txt.split()) > 2:
+              username = username_txt.replace(" ", "%20")
+        else: username = username_txt
+        if len(comment_txt.split()) > 2:
+              comment = comment_txt.replace(" ", "%20")
+        else: comment = comment_txt   
+        photo_url= f"https://some-random-api.ml/canvas/youtube-comment?username={username}&comment={comment}&avatar={url}&dark=true​")
+        return await message.reply_photo(url)
+        
 
 @Nandha.on_message(filters.command(["cat","kitty"],config.CMDS))
 async def cate(_, message):
