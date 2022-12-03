@@ -76,7 +76,7 @@ async def ping(_, message):
       uptime = get_readable_time((time.time() - START_TIME))
       await message.reply(
           f"**PING**: `{ping}` ms\n"
-          f"**UPTime**: `{uptime}`)
+          f"**UPTime**: `{uptime}"`)
 
 
 @Nandha.on_message(filters.command("ud",config.CMDS))
