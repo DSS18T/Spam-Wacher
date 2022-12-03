@@ -19,11 +19,12 @@ async def unzipping (_ , message):
                    zip.extractall(unzip_path)
             await x.edit("Successfully Unzipped Your Zip File (:")
             await x.edit("Uploading...")
+            fail = 0
             for file in os.listdir(f"{unzip_path}/{filename}"):
                 try:
-                   await message.reply_text(f"{unzip_path}/{filename}/{file}")
+                   await message.reply_document(f"{unzip_path}/{filename}/{file}")
                    await asyncio.sleep(2)
-                except: pass
-            await x.edit("done! uploading join @NandhaBots") 
+                except: fail+= 1
+            await x.edit(f"done! uploading join @NandhaBots - fail {fail}") 
             return os.system(f"rm -rf {unzip_path}")           
        return await message.reply_text("Only Extract Zip Files!")
