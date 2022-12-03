@@ -26,10 +26,6 @@ LOGGER = logging.getLogger(__name__)
 plugins = dict(root="Nandha")
 
 
-UB = Client("NandhaUB",
-api_id=config.APP_ID,
-api_hash=config.APP_HASH,
-session_string=config.SESSION).start()
 
 Nandha = Client("NandhaBOT",
 api_id=config.APP_ID, 
