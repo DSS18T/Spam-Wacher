@@ -14,20 +14,15 @@ async def unzipping (_ , message):
        if reply.document and reply.document.file_name.endswith(".zip"):
             x = await message.reply_text("Zip file downloading...")
             path = await message.reply_to_message.download()
-            filename = reply.document.file_name.split(".zip")[0]
             with ZipFile(path, "r") as zip:
                    zip.extractall(unzip_path)
             await x.edit("Successfully Unzipped Your Zip File (:")
             await x.edit("Uploading...")
             fail = 0
-            for file in os.listdir(f"{unzip_path}/{filename}"):
+            for file in os.listdir(f"{unzip_path}"):
                 try:
-                   await message.reply_document(f"{unzip_path}/{filename}/{file}")
-                except:
-                   try:
-                      for name in os.listdir(f"{unzip_path}/{filename}/{file}"):
-                          await message.reply_document(f"{unzip_path}/{filename}/{file}/{name}") 
-                   except: fail += 1            
+                   await message.reply_document(f"{unzip_path}/{file}")
+                except: fail += 1            
             await x.delete()
             await message.reply_text(f"**failed** - `{fail}`\n Successfully Unzipped join @NandhaBots") 
             return os.system(f"rm -rf {unzip_path}")           
