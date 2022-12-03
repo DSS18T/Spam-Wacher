@@ -7,7 +7,7 @@ from pyrogram import filters
 from zipfile import ZipFile
 
 
-@Nandha.on_message(filters.private & filters.command("unzip",config.CMDS))
+@Nandha.on_message(filters.command("unzip",config.CMDS))
 async def unzipping (_ , message):
        unzip_path = "zipfiles/{}".format(message.from_user.id)
        reply = message.reply_to_message
@@ -23,8 +23,11 @@ async def unzipping (_ , message):
             for file in os.listdir(f"{unzip_path}/{filename}"):
                 try:
                    await message.reply_document(f"{unzip_path}/{filename}/{file}")
-                   await asyncio.sleep(2)
-                except: fail+= 1
+                except:
+                   try:
+                      for name in os.listdir(f"{unzip_path}/{filename}/{file}"):
+                          await message.reply_document(f"{unzip_path}/{filename}/{file}/{name}") 
+                   except: fail += 1            
             await x.edit(f"done! uploading join @NandhaBots - fail {fail}") 
             return os.system(f"rm -rf {unzip_path}")           
        return await message.reply_text("Only Extract Zip Files!")
