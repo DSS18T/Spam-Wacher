@@ -3,13 +3,14 @@ import aiofiles
 import os
 import glob
 import config
+import time
 import requests
 import pyqrcode, png
 from telegraph import upload_file
-from Nandha import Nandha, UB
+from Nandha import Nandha, UB, START_TIME
 from pyrogram import filters
 from pyrogram.types import *
-from datetime import datetime as time
+from datetime import datetime
 from Nandha.help.paste import spacebin, batbin
 from Nandha.help.helper_func import get_readable_time
 
@@ -70,11 +71,11 @@ async def telegraph(_, message):
 
 @Nandha.on_message(filters.command("ping",config.CMDS))
 async def ping(_, message):
-      start = time.now()
-      end = time.now()
+      start = datetime.time.now()
+      end = datetime.time.now()
       ping = (end - start).microseconds / 1000
       uptime = get_readable_time((time.time() - START_TIME))
-      await message.reply(
+      await message.reply_text(
           f"**PING**: `{ping}` ms\n"
           f"**UPTime**: `{uptime}`")
 
