@@ -25,5 +25,5 @@ async def unzipping (_ , message):
                       await asyncio.sleep(2)
                    except: pass
             await x.edit("done! uploading join @NandhaBots") 
-            return os.remove(unzip_path)           
+            return os.system(f"rm -rf {unzip_path}")           
        return await message.reply_text("Only Extract Zip Files!")
