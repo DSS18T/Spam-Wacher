@@ -29,7 +29,8 @@ plugins = dict(root="Nandha")
 UB = Client("NandhaUB",
 api_id=config.APP_ID,
 api_hash=config.APP_HASH,
-session_string=config.SESSION).start()
+session_string=config.SESSION,
+in_memory=True).start()
 
 Nandha = Client("NandhaBOT",api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
