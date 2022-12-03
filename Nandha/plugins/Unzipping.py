@@ -14,7 +14,7 @@ async def unzipping (_ , message):
        if reply.document and reply.document.file_name.endswith(".zip"):
             x = await message.reply_text("Zip file downloading...")
             path = await message.reply_to_message.download()
-            filename = reply.document.file_name
+            filename = reply.document.file_name.split(".zip")[0]
             with ZipFile(path, "r") as zip:
                    zip.extractall(unzip_path)
             await x.edit("Successfully Unzipped Your Zip File (:")
