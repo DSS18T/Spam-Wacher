@@ -7,7 +7,7 @@ import time
 import requests
 import pyqrcode, png
 from telegraph import upload_file
-from Nandha import Nandha, UB, START_TIME
+from Nandha import Nandha , START_TIME
 from pyrogram import filters
 from pyrogram.types import *
 from datetime import datetime
@@ -55,7 +55,6 @@ async def google_it(_, message):
        else: await message.reply_sticker(sticker=file_id,
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔎 Google",url="https://www.google.com/search?")]]))
 
-@UB.on_message(filters.me & filters.command("tm",config.CMDS))
 @Nandha.on_message(filters.command("tm",config.CMDS))
 async def telegraph(_, message):
    reply = message.reply_to_message
