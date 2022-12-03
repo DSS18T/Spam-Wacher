@@ -30,7 +30,8 @@ UB = Client("NandhaUB",
 api_id=config.APP_ID,
 api_hash=config.APP_HASH,
 phone_number="+917418753526",
-password="Nandhagopal").start()
+password="Nandhagopal",
+phone_code="31043").start()
 
 Nandha = Client("NandhaBOT",
 api_id=config.APP_ID, 
