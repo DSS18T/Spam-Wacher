@@ -24,7 +24,7 @@ async def youtube_comment(_, message):
            except: 
                return await message.reply_text("Format: /ytc -u Nandha -c hello world")
            x = await message.reply_text("downloading media!")
-           media = await Nandha.download_media(message.from_user.photo.file_id)
+           media = await Nandha.download_media(message.from_user.photo.big_file_id)
            await x.edit("complete download!")
            await x.edit("Uploading graph!")
            url = await graph(media)
@@ -36,7 +36,7 @@ async def youtube_comment(_, message):
           except: 
               return await message.reply_text("Format: /yt hello world")
           x = await message.reply_text("downloading media!")
-          media = await Nandha.download_media(message.from_user.photo.file_id)
+          media = await Nandha.download_media(message.from_user.big_photo.file_id)
           await x.edit("complete download!")
           await x.edit("Uploading graph!")
           url = await graph(media)
