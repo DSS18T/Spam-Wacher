@@ -144,7 +144,7 @@ UID: `{}`
 """
 
 
-@UB.on_message(filters.me & filters.command("alive",config.CMDS))
+@UB.on_message(filters.user(config.OWNER_ID) & filters.command("alive",config.CMDS))
 async def alive(_, message):
       await message.reply_text("`Alive!`")
 
