@@ -1,6 +1,6 @@
 import strings
 import config
-from Nandha import Nandha, UB
+from Nandha import Nandha
 from pyrogram import filters
 
 import time
@@ -144,9 +144,6 @@ UID: `{}`
 """
 
 
-@UB.on_message(filters.user(config.OWNER_ID) & filters.command("alive",config.CMDS))
-async def alive(_, message):
-      await message.reply_text("`Alive!`")
 
 @Nandha.on_message(filters.command("start",config.CMDS))
 async def start(_, message):
