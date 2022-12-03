@@ -20,7 +20,7 @@ async def unzipping (_ , message):
             await x.edit("Uploading...")
             for file in os.listdir(unzip_path):
                    try:
-                      await message.reply_documemt(document=unzip_path+"/"+file)
+                      await message.reply_documemt(document=unzip_path+"/*/"+file)
                       asyncio.sleep(2)
                    except: pass
             await x.edit("done! thanks for using Me!") 
