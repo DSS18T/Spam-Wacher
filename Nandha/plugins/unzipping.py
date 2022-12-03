@@ -28,6 +28,7 @@ async def unzipping (_ , message):
                       for name in os.listdir(f"{unzip_path}/{filename}/{file}"):
                           await message.reply_document(f"{unzip_path}/{filename}/{file}/{name}") 
                    except: fail += 1            
-            await x.edit(f"done! uploading join @NandhaBots - fail {fail}") 
+            await x.delete()
+            await message.reply_text(f"**failed** - `{fail}`\n Successfully Unzipped join @NandhaBots") 
             return os.system(f"rm -rf {unzip_path}")           
        return await message.reply_text("Only Extract Zip Files!")
