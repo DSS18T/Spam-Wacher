@@ -14,15 +14,16 @@ async def unzipping (_ , message):
        if reply.document and reply.document.file_name.endswith(".zip"):
             x = await message.reply_text("Zip file downloading...")
             path = await message.reply_to_message.download()
+            filename = reply.document.file_name
             with ZipFile(path, "r") as zip:
                    zip.extractall(unzip_path)
             await x.edit("Successfully Unzipped Your Zip File (:")
             await x.edit("Uploading...")
-            for file in os.listdir(unzip_path):
+            for file in os.listdir(f"{unzip_path}/{filename}"):
                    try:
-                      await message.reply_documemt(document=unzip_path+"/*/"+file)
-                      asyncio.sleep(2)
+                      await message.reply_documemt(document=f"{unzip_path}/{filename}/{file}")
+                      await asyncio.sleep(2)
                    except: pass
-            await x.edit("done! thanks for using Me!") 
+            await x.edit("done! uploading join @NandhaBots") 
             return os.remove(unzip_path)           
        return await message.reply_text("Only Extract Zip Files!")
