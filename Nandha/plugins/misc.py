@@ -71,8 +71,8 @@ async def telegraph(_, message):
 
 @Nandha.on_message(filters.command("ping",config.CMDS))
 async def ping(_, message):
-      start = datetime.time.now()
-      end = datetime.time.now()
+      start = datetime.now()
+      end = datetime.now()
       ping = (end - start).microseconds / 1000
       uptime = get_readable_time((time.time() - START_TIME))
       await message.reply_text(
