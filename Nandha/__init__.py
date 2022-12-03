@@ -26,20 +26,19 @@ LOGGER = logging.getLogger(__name__)
 plugins = dict(root="Nandha")
 
 
-UB = Client("NandhaUB",
-api_id=config.APP_ID,
-api_hash=config.APP_HASH,
-session_string=config.SESSION).start()
+async def main():
+    async with Client("my_account", api_id=config.APP_ID, api_hash=config.APP_HASH) as UB:
+        await UB.send_message("me", "Greetings from **Pyrogram**!")
+
+asyncio.run(main())
+
 
 Nandha = Client("NandhaBOT",api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
 parse_mode=ParseMode.DEFAULT)
-
-    
-
-     
+       
 
 session = ClientSession()
 
