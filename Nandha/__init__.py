@@ -26,13 +26,11 @@ LOGGER = logging.getLogger(__name__)
 plugins = dict(root="Nandha")
 
 
-UB = Client("UB",
+UB = Client("user",
 api_id=config.APP_ID,
-api_hash=config.APP_HASH,
-session_string=config.SESSION,
-parse_mode=ParseMode.DEFAULT).start()
+api_hash=config.APP_HASH).start()
 
-Nandha = Client("Nandha",api_id=config.APP_ID, 
+Nandha = Client("bot",api_id=config.APP_ID, 
 api_hash=config.APP_HASH,
 bot_token=config.TOKEN,
 plugins=plugins,
