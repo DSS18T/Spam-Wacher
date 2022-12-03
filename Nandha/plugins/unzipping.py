@@ -11,7 +11,7 @@ from zipfile import ZipFile
 async def unzipping (_ , message):
        unzip_path = "zipfiles/{}".format(message.from_user.id)
        reply = message.reply_to_message
-       if reply.document and reply.document.file_name.endswith(".zip"):
+       if reply and reply.document and reply.document.file_name.endswith(".zip"):
             x = await message.reply_text("Zip file downloading...")
             path = await message.reply_to_message.download()
             with ZipFile(path, "r") as zip:
