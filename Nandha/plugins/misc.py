@@ -11,6 +11,7 @@ from pyrogram import filters
 from pyrogram.types import *
 from datetime import datetime as time
 from Nandha.help.paste import spacebin, batbin
+from Nandha.help.helper_func import get_readable_time
 
 
 
@@ -42,10 +43,6 @@ async def echo(_, message):
      else: return await message.reply_text("What should I be echo?")
 
 
-@UB.on_message(filters.command("alive",config.CMDS))
-async def alive(_, message):
-        return await message.reply_text("Alive!", quote=True)
-     
 
 @Nandha.on_message(filters.regex("google"))
 @Nandha.on_message(filters.command("gt",config.CMDS))
@@ -76,7 +73,10 @@ async def ping(_, message):
       start = time.now()
       end = time.now()
       ping = (end - start).microseconds / 1000
-      await message.reply(f"**PING**: `{ping}` ms")
+      uptime = get_readable_time((time.time() - START_TIME))
+      await message.reply(
+          f"**PING**: `{ping}` ms\n"
+          f"**UPTime**: `{uptime}`)
 
 
 @Nandha.on_message(filters.command("ud",config.CMDS))
@@ -131,4 +131,8 @@ __HELP__ = """
 - `/ping`: see ping server.
 - `/tm`: upload a image to telegraph.
 - `/gt`: google it reply.
+- `/echo`: 
+( reply to message to reply that message to reply user) 
+( reply to user with /echo hi to send message via bot )
+- `/qr`: make qr image reply to message
 """
