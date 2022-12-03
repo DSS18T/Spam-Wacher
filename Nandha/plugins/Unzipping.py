@@ -23,5 +23,6 @@ async def unzipping (_ , message):
                       await message.reply_documemt(document=unzip_path+"/"+file)
                       asyncio.sleep(2)
                    except: pass
-            await x.edit("done! thanks for using Me!")            
+            await x.edit("done! thanks for using Me!") 
+            return os.remove(unzip_path)           
        return await message.reply_text("Only Extract Zip Files!")
