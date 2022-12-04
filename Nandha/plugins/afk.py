@@ -14,7 +14,6 @@ from pyrogram.types import *
 
 db = mongodb.AFK
 
-afk_users = []
 
 @Nandha.on_message(group=100)
 async def AFK(_, message):
@@ -30,20 +29,29 @@ async def AFK(_, message):
           db.insert_one({"user_id": user_id, "afk": afk})
           return await message.reply_text(f"Bye {name} Take A Rest! 👻")
     
+    afk_users = []
+
     for find in db.find():
          afk_users.append(find["user_id"])
+
+    if message.from_user.id in afk_users:
+          find = db.find_one({"user_id": user_id})
+          db.delete_one(find)
+          return await message.reply_text(f"Welcome Back {name} 🌚!")
+
+@Nandha.on_message(group=100)
+async def hmm(_, message):
     try:
        reply = message.reply_to_message
        reply_uid = reply.from_user.id
        reply_uname = reply.from_user.first_name
     except: pass
+    
+    afk_users = []
+
     if reply and reply_uid in afk_users:
            find = db.find_one({"user_id": user_id})
            if None == find["afk"]: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
            else: afk = find["afk"]
            return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
-    if message.from_user.id in afk_users:
-          find = db.find_one({"user_id": user_id})
-          db.delete_one(find)
-          return await message.reply_text(f"Welcome Back {name} 🌚!")
 
