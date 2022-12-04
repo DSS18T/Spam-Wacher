@@ -4,7 +4,7 @@ import os
 import config
 import random
 import requests
-from Nandha import Nandha, UB
+from Nandha import Nandha
 from pyrogram import filters
 
 from PIL import Image, ImageDraw, ImageFont
@@ -23,7 +23,7 @@ LOGO_LINKS = [
 ]
 
 
-@UB.on_message(filters.me & filters.command("logo",config.CMDS))
+
 @Nandha.on_message(filters.command("logo",config.CMDS))
 async def logo(_, message):
      chat = message.chat
