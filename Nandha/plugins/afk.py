@@ -33,7 +33,7 @@ async def back_to_afk(_, message):
        user_id = message.from_user.id
        name = message.from_user.first_name
     except: pass
-    is_db = find_one({"user_id": user_id})
+    is_db = db.find_one({"user_id": user_id})
     if is_db:
         db.delete_one(is_db)
         return await message.reply_text(f"welcome back {name} 🌚")
