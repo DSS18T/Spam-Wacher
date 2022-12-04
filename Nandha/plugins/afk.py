@@ -28,7 +28,7 @@ async def AFK(_, message):
                afk = message.text.split(None,1)[1]
            except: afk = False
            db.insert_one({"user_id": user_id, "afk": afk})
-           await message.reply_text(f"Bye {name} Take A Rest! 👻")
+           return await message.reply_text(f"Bye {name} Take A Rest! 👻")
     except: pass
     
     afk_users = []
@@ -39,7 +39,7 @@ async def AFK(_, message):
     if message.from_user.id in afk_users:
           find = db.find_one({"user_id": user_id})
           db.delete_one(find)
-          await message.reply_text(f"Welcome Back {name} 🌚!")
+          return await message.reply_text(f"Welcome Back {name} 🌚!")
 
 @Nandha.on_message( group=20)
 async def afk_s(_, message):
