@@ -41,14 +41,14 @@ async def youtube_comment(_, message):
           await x.edit("Uploading graph!")
           url = await graph(media)
           await x.edit("done graph upload!") 
-       if len(username_txt.split()) > 2:
+       if len(username_txt.split()) > 1:
               username = username_txt.replace(" ", "%20")
        else: username = username_txt
-       if len(comment_txt.split()) > 2:
+       if len(comment_txt.split()) > 1:
               comment = comment_txt.replace(" ", "%20")
        else: comment = comment_txt   
        photo_url= f"https://some-random-api.ml/canvas/youtube-comment?username={username}&comment={comment}&avatar={url}&dark=true​"
-       return await message.reply_text(photo_url)
+       return await message.reply_photo(photo_url)
         
           
 
