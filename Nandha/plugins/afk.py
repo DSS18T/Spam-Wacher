@@ -41,7 +41,7 @@ async def AFK(_, message):
           db.delete_one(find)
           return await message.reply_text(f"Welcome Back {name} 🌚!")
 
-@Nandha.on_message(group=20)
+@Nandha.on_message(filters.all, group=20)
 async def afk_s(_, message):
 
     afk_users = []
