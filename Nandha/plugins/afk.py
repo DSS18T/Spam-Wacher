@@ -41,7 +41,7 @@ async def AFK(_, message):
           db.delete_one(find)
           return await message.reply_text(f"Welcome Back {name} 🌚!")
 
-@Nandha.on_message(filters.all, group=20)
+@Nandha.on_message( group=20)
 async def afk_s(_, message):
 
     afk_users = []
@@ -55,10 +55,4 @@ async def afk_s(_, message):
     
 
     if reply and reply_uid in afk_users:
-           find = db.find_one({"user_id": reply_uid})
-           if find["afk"] == False:
-                return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
-           else: 
-                afk = find["afk"]
-                return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
-
+           return await message.reply("his offline!")
