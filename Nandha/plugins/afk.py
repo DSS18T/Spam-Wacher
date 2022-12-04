@@ -15,7 +15,7 @@ from pyrogram.types import *
 db = mongodb.AFK
 
 
-@Nandha.on_message(group=100)
+@Nandha.on_message(group=20)
 async def AFK(_, message):
     text = message.text
     try:
@@ -41,8 +41,8 @@ async def AFK(_, message):
           db.delete_one(find)
           return await message.reply_text(f"Welcome Back {name} 🌚!")
 
-@Nandha.on_message(group=100)
-async def hmm(_, message):
+@Nandha.on_message(group=20)
+async def afk_s(_, message):
 
     afk_users = []
 
