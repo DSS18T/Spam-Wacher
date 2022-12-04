@@ -6,7 +6,7 @@
 
 import config
 import random
-
+import re
 from Nandha import ( Nandha, mongodb )
 from pyrogram import filters
 from pyrogram.types import *
@@ -16,44 +16,34 @@ db = mongodb.AFK
 
 afk_users = []
 
-
-@Nandha.on_message(filters.command("afk",config.CMDS))
-async def AFK_set(_, message):
-   user_id = message.from_user.id
-   try: afk = message.text.split(None,1)[1]
-   except: afk = None
-   db.insert_one({"user_id": user_id, "afk": afk})
-   name = message.from_user.first_name
-   return await message.reply_text("{} was AFK Now Bye Take A Reset 🤗".format(name))
-   
-   
 @Nandha.on_message(group=100)
-async def back_to_afk(_, message):
+async def AFK(_, message):
+    text = message.text
     try:
        user_id = message.from_user.id
        name = message.from_user.first_name
     except: pass
-    is_db = db.find_one({"user_id": user_id})
-    if is_db:
-        db.delete_one(is_db)
-        return await message.reply_text(f"welcome back {name} 🌚")
-       
-   
-@Nandha.on_message(group=100)
-async def afk(_, message):
-     reply = message.reply_to_message
-     try:
-       user_id = message.from_user.id
-       name = message.from_user.first_name
-     except: pass
-     for uid in db.find():
-         afk_users.append(uid["user_id"])
-     if reply and reply.from_user.id in afk_users:
+    if re.search("^afk", text.split(text[0])[1]):
+          try:
+              afk = message.text.split(None,1)[1]
+          else: afk = None
+          db.insert_one({"user_id": user_id, "afk": afk})
+          return await message.reply_text("Bye {name} Take A Rest! 👻")
+    
+    for find in db.find():
+         afk_users.append(find["user_id"])
+    try:
+       reply = message.reply_to_message
+       reply_uid = reply.from_user.id
+       reply_uname = reply.from_user.first_name
+    except: pass
+    if reply and reply_uid in afk_users:
            find = db.find_one({"user_id": user_id})
-           afk = find["afk"]
-           if afk == None:
-             return await message.reply_text(
-                 f"hey {name} was afk now!")
-           else: return await message.reply(
-                f"hey {name} was afk!\n reason: {afk}")
-                                    
+           if find["afk"] == None: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
+           else: afk = find["afk"]
+           return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
+    elif message.from_user.id in afk_users:
+          find = db.find_one({"user_id": user_id})
+          db.delete_one(find)
+          return await message.reply_text("Welcome Back {name} 🌚!")
+
