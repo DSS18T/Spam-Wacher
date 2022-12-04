@@ -47,8 +47,9 @@ async def youtube_comment(_, message):
        if len(comment_txt.split()) > 1:
               comment = comment_txt.replace(" ", "%20")
        else: comment = comment_txt   
-       photo_url= f"https://some-random-api.ml/canvas/youtube-comment?username={username}&comment={comment}&avatar={url}&dark=true​"
-       return await message.reply_text(photo_url)
+       p_url= f"https://some-random-api.ml/canvas/youtube-comment?username={username}&comment={comment}&avatar={url}&dark=true​"
+       photo_url = p_url.encode('ascii', 'ignore').decode('ascii')
+       return await message.reply_photo(photo_url, caption="Made By @NandhaBots")
         
           
 
