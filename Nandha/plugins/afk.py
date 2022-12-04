@@ -43,20 +43,21 @@ async def AFK(_, message):
 
 @Nandha.on_message(group=100)
 async def hmm(_, message):
-    try:
-       reply = message.reply_to_message
-       reply_uid = reply.from_user.id
-       reply_uname = reply.from_user.first_name
-    except: pass
-    
+
     afk_users = []
 
     for find in db.find():
          afk_users.append(find["user_id"])
 
+    reply_uid = reply.from_user.id
+    reply_uname = reply.from_user.first_name
+    reply = message.reply_to_message
+
     if reply and reply_uid in afk_users:
            find = db.find_one({"user_id": reply_uid})
-           if find["afk"] == False: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
-           else: afk = find["afk"]
-           return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
+           if find["afk"] == False:
+                return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
+           else: 
+                afk = find["afk"]
+                return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
 
