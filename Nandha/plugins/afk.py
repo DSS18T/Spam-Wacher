@@ -49,9 +49,10 @@ async def hmm(_, message):
     for find in db.find():
          afk_users.append(find["user_id"])
 
+    reply = message.reply_to_message
     reply_uid = reply.from_user.id
     reply_uname = reply.from_user.first_name
-    reply = message.reply_to_message
+    
 
     if reply and reply_uid in afk_users:
            find = db.find_one({"user_id": reply_uid})
