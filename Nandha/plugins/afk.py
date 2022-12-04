@@ -26,7 +26,7 @@ async def AFK(_, message):
     if re.search("^afk", text.split(text[0])[1]):
           try:
               afk = message.text.split(None,1)[1]
-          else: afk = None
+          except: afk = None
           db.insert_one({"user_id": user_id, "afk": afk})
           return await message.reply_text("Bye {name} Take A Rest! 👻")
     
