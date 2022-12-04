@@ -28,7 +28,7 @@ async def AFK_set(_, message):
    
    
 @Nandha.on_message(group=100)
-async def back_to_afk(_, message)
+async def back_to_afk(_, message):
     try:
        user_id = message.from_user.id
        name = message.from_user.first_name
