@@ -49,8 +49,8 @@ async def youtube_comment(_, message):
        else: comment = comment_txt   
        p_url= f"https://some-random-api.ml/canvas/youtube-comment?username={username}&comment={comment}&avatar={url}&dark=true​"
        photo_url = p_url.encode('ascii', 'ignore').decode('ascii')
-       return await message.reply_photo(photo_url, caption="Made By @NandhaBots")
-        
+       await message.reply_photo(photo_url, caption="Made By @NandhaBots")
+       return await x.delete()
           
 
 @Nandha.on_message(filters.command(["cat","kitty"],config.CMDS))
