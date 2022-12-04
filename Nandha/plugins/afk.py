@@ -26,7 +26,7 @@ async def AFK(_, message):
       if re.search("^afk", text.split(text[0])[1]):
            try:
                afk = message.text.split(None,1)[1]
-           except: afk = None
+           except: afk = False
            db.insert_one({"user_id": user_id, "afk": afk})
            return await message.reply_text(f"Bye {name} Take A Rest! 👻")
     except: pass
@@ -56,7 +56,7 @@ async def hmm(_, message):
 
     if reply and reply_uid in afk_users:
            find = db.find_one({"user_id": reply_uid})
-           if find["afk"] == None: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
+           if find["afk"] == False: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
            else: afk = find["afk"]
            return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
 
