@@ -42,7 +42,7 @@ async def AFK(_, message):
            if find["afk"] == None: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
            else: afk = find["afk"]
            return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
-    elif message.from_user.id in afk_users:
+    if message.from_user.id in afk_users:
           find = db.find_one({"user_id": user_id})
           db.delete_one(find)
           return await message.reply_text("Welcome Back {name} 🌚!")
