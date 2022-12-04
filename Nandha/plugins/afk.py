@@ -55,8 +55,8 @@ async def hmm(_, message):
          afk_users.append(find["user_id"])
 
     if reply and reply_uid in afk_users:
-           find = db.find_one({"user_id": user_id})
-           if None == find["afk"]: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
+           find = db.find_one({"user_id": reply_uid})
+           if find["afk"] == None: return await message.reply_text(f"{reply_uname}'s was afk! 🌚")
            else: afk = find["afk"]
            return await message.reply_text(f"{reply_uname}'s was afk!\nreason: {afk}")
 
