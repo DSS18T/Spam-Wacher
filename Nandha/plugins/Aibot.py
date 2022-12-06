@@ -9,7 +9,7 @@ from pyrogram.types import *
 from Nandha.help.admin import *
 from pyrogram import enums
 
-openai.api_key = "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"
+openai.api_key = "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"
 completion = openai.Completion()
 
 start_sequence = "\nSpamWatcher:"
