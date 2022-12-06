@@ -6,9 +6,11 @@ from pyrogram import filters
 from pyrogram.types import *
 from Nandha import Nandha, START_TIME
 from Nandha.help.helper_func import get_readable_time
-
+from Nandha.help.encodes import encode, decode
 
 keywards = InlineKeyboardMarkup([[
+InlineKeyboardButton("Encode", switch_inline_query_current_chat="encode"),
+InlineKeyboardButton("Decode", switch_inline_query_current_chat="decode"),
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
 ],[
@@ -60,6 +62,19 @@ async def cat_fact():
              caption=fact))
     return answers
        
+
+async def encode_string(text: str):
+      encode_string = encode(text)
+      answers = [ InlineQueryResultArticle("Encode String!",
+         InputTextMessageContent(encode_string), )]
+      return answers
+
+async def decode_string(text: str):
+      decode_string = decode(text)
+      answers = [ InlineQueryResultArticle("Decode String!",
+         InputTextMessageContent(edecode_string), )]
+      return answers
+
 
 async def waifu_in():
     images = []
@@ -168,5 +183,11 @@ async def inline(_, query):
      elif string.split()[0] == "hbd":
           answers = await husbando_in()
           await query.answer(answers, cache_time=6)
+     elif string.split()[0] == "encode":
+          answers = await encode_string(string.split(string.split()[0])[1])
+          await query.answer(answers, cache_time=2)
+     elif string.split()[0] == "decode":
+          answers = await decode_string(string.split(string.split()[0])[1])
+          await query.answer(answers, cache_time=2)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
