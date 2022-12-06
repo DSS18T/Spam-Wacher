@@ -66,13 +66,15 @@ async def cat_fact():
 async def encode_string(text: str):
       encode_string = encode(text)
       answers = [ InlineQueryResultArticle("Encode String!",
-         InputTextMessageContent(encode_string), )]
+         InputTextMessageContent(encode_string), 
+         thumb_url="https://graph.org/file/97a4fcab86a0efc84a491.jpg",)]
       return answers
 
 async def decode_string(text: str):
       decode_string = decode(text)
       answers = [ InlineQueryResultArticle("Decode String!",
-         InputTextMessageContent(edecode_string), )]
+         InputTextMessageContent(decode_string),
+         thumb_url="https://graph.org/file/97a4fcab86a0efc84a491.jpg",)]
       return answers
 
 
