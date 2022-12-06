@@ -11,6 +11,7 @@ from Nandha.help.encodes import encode, decode
 keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Encode", switch_inline_query_current_chat="encode"),
 InlineKeyboardButton("Decode", switch_inline_query_current_chat="decode"),
+],[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
 ],[
