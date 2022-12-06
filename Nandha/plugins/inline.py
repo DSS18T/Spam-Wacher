@@ -188,9 +188,9 @@ async def inline(_, query):
           await query.answer(answers, cache_time=6)
      elif string.split()[0] == "encode":
           answers = await encode_string(string.split(string.split()[0])[1])
-          await query.answer(answers, cache_time=2)
+          await query.answer(answers, cache_time=2, switch_pm_parameter="Input me string.")
      elif string.split()[0] == "decode":
           answers = await decode_string(string.split(string.split()[0])[1])
-          await query.answer(answers, cache_time=2)
+          await query.answer(answers, cache_time=2, switch_pm_parameter="Input me string.")
      else:
           return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
