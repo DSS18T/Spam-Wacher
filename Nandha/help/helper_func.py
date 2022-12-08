@@ -1,3 +1,10 @@
+from telegraph import upload_file
+
+async def graph(media):
+     telegraph = upload_file(media)
+     for file_id in telegraph:
+          url = "https://graph.org" + file_id
+     return url
 
 
 def get_readable_time(seconds: int) -> str:
