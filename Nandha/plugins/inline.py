@@ -83,12 +83,7 @@ async def decode_string(text: str):
 
 async def paste(text):
       paste = await batbin(text)
-      answers = [
-
- InlineQueryResultPhoto(
-         photo_url=paste,
-         thumb_url=paste), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Paste link", url=paste)]])
-]
+      answers = [InlineQueryResultPhoto(photo_url=paste,thumb_url=paste), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Paste link", url=paste)]])]
       return answers
 
 async def waifu_in():
@@ -206,7 +201,7 @@ async def inline(_, query):
           answers = await decode_string(string.split(string.split()[0])[1])
           await query.answer(answers, cache_time=2, switch_pm_parameter="Input Me string.")
      elif string.split()[0] == "paste":
-            answers = await paste(string.split(string.split()[0])[1])
+            answers = await paste(text=string.split(string.split()[0])[1])
             await query.answer(answers, cache_time=2)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
