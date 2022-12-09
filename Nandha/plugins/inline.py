@@ -7,6 +7,8 @@ from pyrogram.types import *
 from Nandha import Nandha, START_TIME
 from Nandha.help.helper_func import get_readable_time
 from Nandha.help.encodes import encode, decode
+from Nandha.help.paste import batbin
+
 
 keywards = InlineKeyboardMarkup([[
 InlineKeyboardButton("Encode", switch_inline_query_current_chat="encode"),
@@ -14,6 +16,7 @@ InlineKeyboardButton("Decode", switch_inline_query_current_chat="decode"),
 ],[
 InlineKeyboardButton("Pfp", switch_inline_query_current_chat="pfp"),
 InlineKeyboardButton("Ping", switch_inline_query_current_chat="ping"),
+InlineKeyboardButton("Paste", switch_inline_query_current_chat="paste"),
 ],[
 InlineKeyboardButton("Dog Fact", switch_inline_query_current_chat="dogfact"),
 InlineKeyboardButton("Cat Fact", switch_inline_query_current_chat="catfact"),
@@ -78,6 +81,15 @@ async def decode_string(text: str):
          thumb_url="https://graph.org/file/97a4fcab86a0efc84a491.jpg",)]
       return answers
 
+async def paste(text):
+      paste = await batbin(text)
+      answers = [
+
+ InlineQueryResultPhoto(
+         photo_url=paste,
+         thumb_url=paste), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Paste link", url=paste)]])
+]
+      return answers
 
 async def waifu_in():
     images = []
@@ -193,5 +205,8 @@ async def inline(_, query):
      elif string.split()[0] == "decode":
           answers = await decode_string(string.split(string.split()[0])[1])
           await query.answer(answers, cache_time=2, switch_pm_parameter="Input Me string.")
+     elif string.split()[0] == "paste":
+            answers = await paste(string.split(string.split()[0])[1])
+            await query.answer(answers, cache_time=2)
      else:
           return await query.answer(results=[InlineQueryResultArticle("Not Found!",InputTextMessageContent(f"Anything Found > {string} <"))],switch_pm_parameter="Invalid Method!")
