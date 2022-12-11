@@ -73,7 +73,7 @@ async def ChatBot(_, message):
                 else: 
                      question = string
                 api = requests.get("https://api.roseloverx.com/api/chatbot?message="+question).json()["responses"]
-                if ".gif" in answers:
+                if ".gif" in api:
                     image = api.split(api.split(".gif")[1])[0]
                     text = api.split(".gif")[1]
                     await message.reply_photo(photo=image, caption=text)
