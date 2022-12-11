@@ -78,7 +78,7 @@ async def ChatBot(_, message):
                     text = api.split(".gif")[1]
                     await message.reply_animation(animation=image, caption=text)
                 elif ".jpg" in api:
-                    image = api.split(api.split(".gif")[1])[0].strip()
+                    image = api.split(api.split(".jpg")[1])[0].strip()
                     text = api.split(".jpg")[1]
                     await message.reply_photo(photo=image, caption=text)
                 else:
