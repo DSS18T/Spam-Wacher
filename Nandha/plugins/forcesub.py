@@ -5,7 +5,7 @@ from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOc
 
 db = mongodb.FSUB
 
-@Nandha.on_message(filters.command("fsub"config.CMDS))
+@Nandha.on_message(filters.command("fsub",config.CMDS))
 async def ForceSubscribe(_, message):
       chat_id = message.chat.id
       bot_id = Nandha.me.id
