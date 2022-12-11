@@ -61,7 +61,7 @@ async def unmute_fsubbed(_, query):
 async def ForceSubscribe(_, message):
       chat_id = message.chat.id
       bot_id = Nandha.me.id
-
+      user_id = message.from_user.id
       if message.chat.type == enums.ChatType.PRIVATE:
            return await message.reply_text("This Command Only work in Groups!") 
       if await is_admin(chat_id, user_id) == False:
