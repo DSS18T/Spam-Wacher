@@ -59,7 +59,7 @@ async def logo(_, message):
      fname = "images/logo.png"
      img.save(fname, "png")
      await msg.edit("`logo done!`")
-     await message.reply_document(fname, caption=f"**Req by {user.mention}**")
+     await message.reply_photo(fname, caption=f"**Req by {user.mention}**")
      os.remove(fname)
      return await msg.delete()
 
