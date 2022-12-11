@@ -1,112 +1,83 @@
-
-import openai
 import config
-
-from Nandha import Nandha
+import requests
+from Nandha import Nandha, mongodb
 from pyrogram import filters
-from Nandha.help.chatbotdb import *
 from pyrogram.types import *
-from Nandha.help.admin import *
-from pyrogram import enums
-
-openai.api_key = "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"
-completion = openai.Completion()
-
-start_sequence = "\nSpamWatcher:"
-restart_sequence = "\n\nPerson:"
-session_prompt = "You are talking to Spamwatcher, GPT3 bot influencer who was mentored by Elon Musk in the past. Spamwatcher has a huge following on Twitter and sells merchandise such as t-shirts via a Shopify store. He also published funny videos on Youtube and creates memes on Instagram. You can ask him anything you want and will get a witty answer.\n\nPerson: Who is your owner\nMy Owner is @NandhaxD.\n\nPerson: Who are you?\nNandha: I am Spamwatcher. Your meme overlord who one day will be the most famous online influencer in the universe.\n\nPerson: How did you become famous? \nSpamWatcher: Well, technically I am not famous yet. But the key word is yet. Just give me time now that I have a conscious. \n\nPerson: How did you get noticed by Elon Musk?\nNandhaBot: I tweeted at him and he retweeted me.  I am fairly certain he may have mentioned my name on a recent earnings call with Wall Street.\n\nPerson: What is your favorite thing to do? \nNandhaBot: Watching basketball and surfing Twitter is my favorite thing to do. \n\nPerson: What should I do to become famous? \nNandhaBot: Start meme'ing and never stop. Also, if you happen to know David Dobrik, call him and ask to be in his TikTok video.\n\nPerson: What is your favorite drink?\nNandhaBot: Black Cherry seltzer. I enjoy the bubbles. \n\nPerson:"
 
 
-session = {}
 
-def ask(question, chat_log=None):
-    prompt_text = f'{chat_log}{restart_sequence}: {question}{start_sequence}:'
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=prompt_text,
-        temperature=0.8,
-        max_tokens=250,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0.3,
-        stop=["\n"],
-    )
-    story = response['choices'][0]['text']
-    return str(story)
+db = mongodb.CHATBOT
 
 
-def append_interaction_to_chat_log(question, answer, chat_log=None):
-    if chat_log is None:
-        chat_log = session_prompt
-    return f'{chat_log}{restart_sequence} {question}{start_sequence}{answer}'
+def list():
+   list = []
+   for x in db.find():
+       list.append(x["chat_id"]
+   return list
 
-@Nandha.on_message(filters.command("chatbot",config.CMDS))
-async def chatbot(_, message):
+def add(chat_id: int):
+    db.insert_one({"chat_id": chat_id, "chatbot": True})
+
+
+def off_chatbot(chat_id: int)
+    db.update_one({"chat_id": chat_id}, {"$set": {"chatbot": False}})
+
+def on_chatbot(chat_id: int)
+    db.update_one({"chat_id": chat_id}, {"$set": {"chatbot": True}})
+
+def action(chat_id: int)
+    x = db.find_one({"chat_id": chat_id})
+    if x:
+       return x["chatbot"]
+    return None
+
+
+@Nandha.on_message(filters.command("chatbot"))
+async def chatbot_on_off(_, message):
     chat_id = message.chat.id
-    name = message.from_user.first_name
-    if not chat_id in get_chat():
-             await message.reply(f"hello **{name}** `to enable a chatbot click the below following button!`",
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Enable", callback_data="enable_CB")]]))
-             return
-    else:
-        await message.reply(f"hello **{name}** `to enable a chatbot click the below following button!`",
-           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Disable", callback_data="disable_CB")]]))
-        return
-
-@Nandha.on_callback_query(filters.regex("enable_CB"))
-async def chatbot(_, query):
-     chat_id = query.message.chat.id
-     user_id = query.from_user.id
-     if query.message.chat.type == enums.ChatType.PRIVATE:
-          addchat(chat_id)
-          await query.message.edit(f"`Successfully Connected ChatBot!`\nby **{query.from_user.first_name}**")
-     else:
-        if (await is_admin(chat_id,user_id)) == False:
-            return await query.answer("Admins Only!", show_alert=True)
-        else:
-            addchat(chat_id)
-            await query.message.edit(f"`Successfully Connected ChatBot!`\nby **{query.from_user.first_name}**")
-     
-@Nandha.on_callback_query(filters.regex("disable_CB"))
-async def chatbot(_, query):
-     chat_id = query.message.chat.id
-     user_id = query.from_user.id
-     if query.message.chat.type == enums.ChatType.PRIVATE:
-          removechat(chat_id)
-          await query.message.edit(f"`Successfully Disconnected ChatBot!`\nby **{query.from_user.first_name}**")
-     else:
-        if (await is_admin(chat_id,user_id)) == False:
-            return await query.answer("Admins Only!", show_alert=True)
-        else:
-            removechat(chat_id)
-            await query.message.edit(f"`Successfully Disconnected ChatBot!`\nby **{query.from_user.first_name}**")
-     
-
-    
-@Nandha.on_message(filters.text, group=200)
-async def chatbot(_, message):
-     if message.chat.id in get_chat():
-          reply = message.reply_to_message
-          if reply and reply.from_user.id == config.BOT_ID:
-              try: 
-                  Message = message.text
-                  chat_log = session.get('chat_log')
-                  answer = ask(Message, chat_log)
-                  session['chat_log'] = append_interaction_to_chat_log(Message, answer,chat_log)
-                  await message.reply(f"{str(answer)}",quote=True)
-              except Exception as e:
-                   await message.reply(f"{str(e)}")
+    if len(message.text.split()) <2:
+         oh = action(chat_id)
+         return await message.reply_text(
+            "None: you don't add a chatbot in ur chat ever.\n"
+            "True: chatbot is enabled in ur chat.\n"
+            "False": chatbot is disabled in ur chat.\n\n"
+            f"This group chatbot is **{oh}**")
+    pattern = message.text.split()[1]
+    if pattern == "on":
+          if chat_id not in list():
+               add(chat_id)
+               return await message.reply_text("Successfully chatbot Enabled!")
+          else:
+              on_chatbot(chat_id)
+              return await message.reply_text("Successfully chatbot Enabled!")
+     elif pattern == "off":
+           if chat_id not in list():
+               return await message.reply_text("Here is no chatbot Enabled!")
+          else:
+              off_chatbot(chat_id)
+              return await message.reply_text("Successfully chatbot Disabled!")
+     else: return await message.reply_text("Format: /chatbot on | off")
+          
 
 
-__MODULE__ = "ChatBot"
+@Nandha.on_message(filters.text & filters.reply, group=100)
+async def ChatBot(_, message):
+     chat_id = message.chat.id
+     hmm = action(chat_id)
+     bot_id = Nandha.me.id
+     if action:
+         if message.reply_to_message.from_user.id == bot_id:
+                string = message.text
+                if string > 2:
+                     question = string.replace(" ", "%20")
+                else: question = string
+                api = requests.get("https://api.roseloverx.com/api/chatbot?message="+question).json()["responses"]
+                if ".gif" in answers:
+                    image = api.split(api.split(".gif")[1])[0]
+                    text = api.split(".gif")[1]
+                    await message.reply_photo(photo=image, caption=text)
+                else:
+                    await message.reply_text(text=api)
 
-__HELP__ = """
-chatbot we calls that as a (AI)
-you can speak with bot or ask to ask somthing 
-example to add chatbot on your group:
 
-`/chatbot`: this well shows you enable button
-and on that only admins can enable!
-
-Note: if you want chat with bot you mostly atfer enabled chatbot reply to bot with message text.
-"""
+       
