@@ -50,13 +50,13 @@ async def chatbot_on_off(_, message):
           else:
               on_chatbot(chat_id)
               return await message.reply_text("Successfully chatbot Enabled!")
-     elif pattern == "off":
+    elif pattern == "off":
            if chat_id not in list():
                return await message.reply_text("Here is no chatbot Enabled!")
           else:
               off_chatbot(chat_id)
               return await message.reply_text("Successfully chatbot Disabled!")
-     else: return await message.reply_text("Format: /chatbot on | off")
+    else: return await message.reply_text("Format: /chatbot on | off")
           
 
 
