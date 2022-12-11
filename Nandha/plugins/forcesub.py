@@ -64,6 +64,10 @@ async def ForceSubscribe(_, message):
 
       if message.chat.type == enums.ChatType.PRIVATE:
            return await message.reply_text("This Command Only work in Groups!") 
+      if await is_admin(chat_id, user_id) == False:
+            return await message.reply_text("Only group admins can Force sub a channel!")
+      elif await can_change_info(chat_id, user_id) == False: 
+            return await message.reply_text("You don't have can change group info rights!")
       try:
           message.text.split()[1]
       except: return await message.reply_text("Format: /fsub on/off")
