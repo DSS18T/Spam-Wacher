@@ -53,9 +53,9 @@ async def chatbot_on_off(_, message):
     elif pattern == "off":
            if chat_id not in list():
                return await message.reply_text("Here is no chatbot Enabled!")
-          else:
-              off_chatbot(chat_id)
-              return await message.reply_text("Successfully chatbot Disabled!")
+           else:
+               off_chatbot(chat_id)
+               return await message.reply_text("Successfully chatbot Disabled!")
     else: return await message.reply_text("Format: /chatbot on | off")
           
 
@@ -70,7 +70,8 @@ async def ChatBot(_, message):
                 string = message.text
                 if string > 2:
                      question = string.replace(" ", "%20")
-                else: question = string
+                else: 
+                     question = string
                 api = requests.get("https://api.roseloverx.com/api/chatbot?message="+question).json()["responses"]
                 if ".gif" in answers:
                     image = api.split(api.split(".gif")[1])[0]
