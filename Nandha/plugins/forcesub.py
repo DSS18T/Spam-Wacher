@@ -21,7 +21,7 @@ async def ForceSubscribe(_, message):
            except UsernameNotOccupied:
                   return await message.reply_text("Double check channel username the username is invalid!")
            fsub_chat = await Nandha.get_chat(Fsub_channel)
-           x = db.find_one({"chat_id: chat_id})
+           x = db.find_one({"chat_id": chat_id})
            if x:
               db.update_one({"chat_id": chat_id}, {"$set": {"channel": Fsub_channel}})
            else:
