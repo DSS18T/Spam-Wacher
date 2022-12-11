@@ -31,7 +31,7 @@ async def ForceSub(_, message):
           else:
      
               try:
-                  xx = await Nandha.get_chat_member(user_id, channel)
+                  xx = await Nandha.get_chat_member(user_id, fsub_channel)
               except UserNotParticipant:
                     link = (await Nandha.get_chat(fsub_channel)).invite_link
                     await Nandha.restrict_chat_member(chat_id, user_id, ChatPermissions())
