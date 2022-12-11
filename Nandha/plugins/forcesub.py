@@ -24,7 +24,7 @@ async def ForceSub(_, message):
           x = db.find_one({"chat_id": chat_id})
           fsub_channel = x["channel"]
           user_id = message.from_user.id
-          if await is_admin(chat_id, bot_id) == Flase:
+          if await is_admin(chat_id, bot_id) == False:
                return await message.reply_text("Make Me Admin Baka!")
           elif await can_ban_members(chat_id, bot_id) == False:
                return await message.reply_text("Give Me Restrict right to mute who don't sub a channel!")
@@ -47,9 +47,11 @@ async def ForceSubscribe(_, message):
       bot_id = Nandha.me.id
 
       if message.chat.type == enums.ChatType.PRIVATE:
-           return await message.reply_text("This Command Only work in Groups!")
-      pattern = message.text.split()[1]
-      if pattern == "on":
+           return await message.reply_text("This Command Only work in Groups!") 
+      try:
+          message.text.split()[1]
+      except: return await message.reply_text("Format: /fsub on/off")
+      if message.text.split()[1] == "on":
            ask = await Nandha.ask(chat_id, 
                   text="okay send me Force Subscribe channel username.", 
                   reply_to_message_id=message.id, reply_markup=ForceReply(selective=True))
@@ -71,7 +73,7 @@ async def ForceSubscribe(_, message):
            else:
               db.insert_one({"chat_id": chat_id, "fsub": True, "channel": Fsub_channel})          
            return await message.reply_text(f"okay thanks for using and I have now Force Subscribed this group to {fsub_chat.title}")
-      elif pattern == "off":
+      elif message.text.split()[1] == "off":
            return await message.reply_text("Semms like this chat don't have set any Force subs!")
       else:
            return await message.reply_text("Format: /fsub on/off")
