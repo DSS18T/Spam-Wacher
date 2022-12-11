@@ -68,7 +68,7 @@ async def ChatBot(_, message):
      if action:
          if message.reply_to_message.from_user.id == bot_id:
                 string = message.text
-                if string > 2:
+                if len(string.split()) > 2:
                      question = string.replace(" ", "%20")
                 else: 
                      question = string
