@@ -35,7 +35,7 @@ async def ForceSub(_, message):
               except UserNotParticipant:
                     link = (await Nandha.get_chat(fsub_channel)).invite_link
                     await Nandha.restrict_chat_member(chat_id, user_id, ChatPermissions())
-              await message.reply_text("I have mute you join my force sub channel and click the below button !",
+                    await message.reply_text("I have mute you join my force sub channel and click the below button !",
                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("join Channel ✅", url=link),
                        InlineKeyboardButton("Unmute Me!", callback_data=f"fsub_user:{user_id}"),]]))
 
