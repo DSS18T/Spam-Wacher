@@ -3,7 +3,7 @@ from Nandha import Nandha, mongodb
 from pyrogram import filters, enums
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, UsernameInvalid
 from pyrogram.types import *
-from Nandha.help.admin import is_admin, can_ban_members
+from Nandha.help.admin import is_admin, can_ban_members, can_change_info
 
 db = mongodb.FSUB
 
