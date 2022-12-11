@@ -3,8 +3,43 @@ from Nandha import Nandha, mongodb
 from pyrogram import filters, enums
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, UsernameInvalid
 from pyrogram.types import ForceReply
+from Nandha.help.admin import is_admin, can_ban_members
 
 db = mongodb.FSUB
+
+
+
+def fsub_chats():
+   chats = []
+   for x in db.find():
+      chats.append(x["chat_id"])
+   return chats
+
+@Nandha.on_message(filters.incoming, group=100)
+async def ForceSub(_, message):
+     
+     chat_id = message.chat.id
+     bot_id = Nandha.me.id
+     if chat_id in fsub_chats():
+          x = db.find_one({"chat_id": chat_id})
+          fsub_channel = x["channel"]
+          user_id = message.from_user.id
+          if await is_admin(chat_id, bot_id) == Flase:
+               return await message.reply_text("Make Me Admin Baka!")
+          elif await can_ban_members(chat_id, bot_id) == False:
+               return await message.reply_text("Give Me Restrict right to mute who don't sub a channel!")
+          else:
+     
+              try:
+                  xx = await Nandha.get_chat_member(user_id, channel)
+              except UserNotParticipant:
+                    link = (await Nandha.get_chat(fsub_channel)).invite_link
+                    await Nandha.restrict_chat_member(chat_id, user_id, ChatPermissions())
+              await message.reply_text("I have mute you join my force sub channel and click the below button !",
+                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("join Channel ✅", url=link),
+                       InlineKeyboardButton("Unmute Me!", callback_data=f"fsub_user:{user_id}"),]]))
+
+                
 
 @Nandha.on_message(filters.command("fsub",config.CMDS))
 async def ForceSubscribe(_, message):
