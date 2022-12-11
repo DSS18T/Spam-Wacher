@@ -17,7 +17,6 @@ def fsub_chats():
 
 @Nandha.on_message(filters.incoming, group=100)
 async def ForceSub(_, message):
-     
      chat_id = message.chat.id
      bot_id = Nandha.me.id
      if chat_id in fsub_chats():
@@ -37,9 +36,25 @@ async def ForceSub(_, message):
                     await Nandha.restrict_chat_member(chat_id, user_id, ChatPermissions())
                     await message.reply_text("I have mute you join my force sub channel and click the below button !",
                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("join Channel ✅", url=link),
-                       InlineKeyboardButton("Unmute Me!", callback_data=f"fsub_user:{user_id}"),]]))
+                       InlineKeyboardButton("Unmute Me", callback_data=f"fsub_user:{user_id}"),]]))
 
                 
+@Nandha.on_callback_query(filters.regex("fsub_user"))
+async def unmute_fsubbed(_, query):
+       user_id = query.data.split(":")[1]
+       if not user_id == query.from_user.id:
+           return await query.answer("This Button not for you Nimba!", show_alert=True)
+       else:
+           xx = db.find_one({"chat_id": chat_id})
+           channel = xx["channel"]
+           try:
+              hmm = await Nandha.get_chat_member(channel, user_id)
+           except UserNotParticipant:
+                 return query.answer("you most join the force channel after click this button to mute you!", show_alert=True)
+           await Nandha.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
+           return await query.message.edit("Thanks For Joining My Channel Now you can speak to members!")
+
+
 
 @Nandha.on_message(filters.command("fsub",config.CMDS))
 async def ForceSubscribe(_, message):
