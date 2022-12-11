@@ -41,7 +41,7 @@ async def ForceSub(_, message):
                 
 @Nandha.on_callback_query(filters.regex("fsub_user"))
 async def unmute_fsubbed(_, query):
-       user_id = query.data.split(":")[1]
+       user_id = int(query.data.split(":")[1])
        if not user_id == query.from_user.id:
            return await query.answer("This Button not for you Nimba!", show_alert=True)
        else:
