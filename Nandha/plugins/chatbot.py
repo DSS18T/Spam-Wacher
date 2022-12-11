@@ -12,7 +12,7 @@ db = mongodb.CHATBOT
 def list():
    list = []
    for x in db.find():
-       list.append(x["chat_id"]
+       list.append(x["chat_id"])
    return list
 
 def add(chat_id: int):
