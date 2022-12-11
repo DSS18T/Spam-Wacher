@@ -49,9 +49,9 @@ async def unmute_fsubbed(_, query):
            xx = db.find_one({"chat_id": chat_id})
            channel = xx["channel"]
            try:
-              hmm = await Nandha.get_chat_member(channel, user_id)
+              hmm = await Nandha.get_chat_member(chat_id=channel, user_id=user_id)
            except UserNotParticipant:
-                 return query.answer("you most join the force channel after click this button to mute you!", show_alert=True)
+                 return await query.answer("you most join the force channel after click this button to unmute you!", show_alert=True)
            await Nandha.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
            return await query.message.edit("Thanks For Joining My Channel Now you can speak to members!")
 
@@ -90,7 +90,12 @@ async def ForceSubscribe(_, message):
               db.insert_one({"chat_id": chat_id, "fsub": True, "channel": Fsub_channel})          
            return await message.reply_text(f"okay thanks for using and I have now Force Subscribed this group to {fsub_chat.title}")
       elif message.text.split()[1] == "off":
-           return await message.reply_text("Semms like this chat don't have set any Force subs!")
+           x = db.find_one({"chat_id": chat_id})
+           if x:
+               db.delete_one(x)
+               return await message.reply_text("okay removed {} channel Force Subscribe!".format(x["channel"]))
+           else:
+               return await message.reply_text("Semms like this chat don't have set any Force subs!")
       else:
            return await message.reply_text("Format: /fsub on/off")
              
