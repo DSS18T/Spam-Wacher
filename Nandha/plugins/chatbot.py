@@ -72,7 +72,7 @@ async def ChatBot(_, message):
                      question = string.replace(" ", "%20")
                 else: 
                      question = string
-                api = requests.get("https://api.roseloverx.com/api/chatbot?message="+question).json()["responses"]
+                api = requests.get("https://api.roseloverx.com/api/chatbot?message="+question).json()["responses"][0]
                 if ".gif" in api:
                     image = api.split(api.split(".gif")[1])[0]
                     text = api.split(".gif")[1]
