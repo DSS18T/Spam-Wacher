@@ -19,13 +19,13 @@ def add(chat_id: int):
     db.insert_one({"chat_id": chat_id, "chatbot": True})
 
 
-def off_chatbot(chat_id: int)
+def off_chatbot(chat_id: int):
     db.update_one({"chat_id": chat_id}, {"$set": {"chatbot": False}})
 
-def on_chatbot(chat_id: int)
+def on_chatbot(chat_id: int):
     db.update_one({"chat_id": chat_id}, {"$set": {"chatbot": True}})
 
-def action(chat_id: int)
+def action(chat_id: int):
     x = db.find_one({"chat_id": chat_id})
     if x:
        return x["chatbot"]
