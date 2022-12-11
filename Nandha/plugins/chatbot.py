@@ -40,7 +40,7 @@ async def chatbot_on_off(_, message):
          return await message.reply_text(
             "None: you don't add a chatbot in ur chat ever.\n"
             "True: chatbot is enabled in ur chat.\n"
-            "False": chatbot is disabled in ur chat.\n\n"
+            "False: chatbot is disabled in ur chat.\n\n"
             f"This group chatbot is **{oh}**")
     pattern = message.text.split()[1]
     if pattern == "on":
