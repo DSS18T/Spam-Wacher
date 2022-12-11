@@ -2,6 +2,7 @@ import config
 from Nandha import Nandha, mongodb
 from pyrogram import filters
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
+from pyrogram.types import ForceReply
 
 db = mongodb.FSUB
 
@@ -12,7 +13,7 @@ async def ForceSubscribe(_, message):
       if message.text.split()[1] == "on":
            ask = await Nandha.ask(chat_id, 
                   text="okay send me Force Subscribe channel username.", 
-                  reply_to_message_id=message.id)
+                  reply_to_message_id=message.id, reply_markup=ForceReply(selective=True))
            try:
                Fsub_channel = ask.text
                hmm = await Nandha.get_chat_member(chat_id=Fsub_channel, user_id=bot_id)
@@ -28,10 +29,7 @@ async def ForceSubscribe(_, message):
               db.insert_one({"chat_id": chat_id, "fsub": True, "channel": Fsub_channel})          
            return await message.reply_text(f"okay thanks for using and I have now Force Subscribed this group to {fsub_chat.title}")
       elif message.text.split()[1] == "off":
-           x = db.find_one({"chat_id": chat_id})
-           if x:
-               db.delete_one(x)
-               return await message.reply_text("okay I have stopped the force subscription!")
            return await message.reply_text("Semms like this chat don't have set any Force subs!")
-      else: return await message.reply_text("Format: /fsub on/off")
+      else:
+           return await message.reply_text("Format: /fsub on/off")
              
