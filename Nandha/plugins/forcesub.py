@@ -21,6 +21,8 @@ async def ForceSubscribe(_, message):
            try:
                Fsub_channel = ask.text
                hmm = await Nandha.get_chat_member(chat_id=Fsub_channel, user_id=bot_id)
+           except UserNotParticipant:
+                 return await message.reply_text("Add Me there and make me sure Am Admin!")
            except ChatAdminRequired:
                   return await message.reply_text(f"I don't have rights to check the user is a member in a channel please make me sure am admin in {Fsub_channel}")
            except UsernameNotOccupied:
