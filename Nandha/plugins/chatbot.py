@@ -82,7 +82,10 @@ async def ChatBot(_, message):
                     text = api.split(".jpg")[1]
                     await message.reply_photo(photo=image, caption=text)
                 else:
-                    await message.reply_text(text=api)
+                    await Nandha.send_message(
+                        chat_id, 
+                        text=api, 
+                        reply_to_message_id=message.id)
 
 
        
