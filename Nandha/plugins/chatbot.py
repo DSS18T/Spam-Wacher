@@ -76,11 +76,15 @@ async def ChatBot(_, message):
                 if ".gif" in api:
                     image = api.split(api.split(".gif")[1])[0].strip()
                     text = api.split(".gif")[1]
-                    await message.reply_animation(animation=image, caption=text)
+                    try:
+                       await message.reply_animation(animation=image, caption=text, quote=True)
+                    except: await message.reply_text("animation: {image}\n\n{api}".format(image=image, api=api),quote=True)
                 elif ".jpg" in api:
                     image = api.split(api.split(".jpg")[1])[0].strip()
                     text = api.split(".jpg")[1]
-                    await message.reply_photo(photo=image, caption=text)
+                    try:
+                       await message.reply_photo(photo=image, caption=text, quote=True)
+                    except: await message.reply_text("photo: {image}\n\n{api}".format(image=image, api=api), quote=True)
                 else:
                     await Nandha.send_message(
                         chat_id, 
