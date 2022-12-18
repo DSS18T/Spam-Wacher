@@ -152,9 +152,9 @@ dice_images = [
 
 @Nandha.on_message(filters.command("dice"))
 async def dice(_, message):
-     x = await message.reply("Ready for the Dice?. 😆")
+     x = await message.reply_photo(photo="https://graph.org/file/c1545a2f50bc422449ccc.jpg", caption="Ready for the Dice?. 😆")
      await asyncio.sleep(2)
-     await x.edit("Let's big in. 🌚")
+     await x.edit_caption("Let's big in. 🌚")
      image = random.choice(dice_images)
      await Nandha.edit_message_media(
           chat_id=message.chat.id,
