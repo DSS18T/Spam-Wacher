@@ -151,7 +151,7 @@ dice_images = [
 
 
 @Nandha.on_message(filters.command("dice"))
-async def dice(_, m):
+async def dice(_, message):
      x = await message.reply("Read for the Dice?. 😆")
      await asyncio.sleep(2)
      await x.edit("Let's big in. 🌚")
