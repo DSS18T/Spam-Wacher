@@ -136,3 +136,40 @@ __HELP__ = """
 ( reply to user with /echo hi to send message via bot )
 - `/qr`: make qr image reply to message
 """
+
+
+dice_images = [
+"https://graph.org/file/0e639cb966ca35317c622.jpg",
+"https://graph.org/file/a929afa493ec934bf2f22.jpg",
+"https://graph.org/file/f9d32958769878b8ff297.jpg",
+"https://graph.org/file/fe302a1d5f4cf09d34b0f.jpg",
+"https://graph.org/file/86fc5303dc9493723a39f.jpg",
+"https://graph.org/file/dafe4ce12056b277bc63b.jpg",
+]
+
+
+@Nandha.on_message(filters.command("dice"))
+async def dice(_, m):
+     x = await message.reply("Read for the Dice?")
+     await asyncio.sleep(2)
+     await x.edit("Let's big in.")
+     image = random.choice(dice_images)
+     await Nandha.edit_message_media(
+          chat_id=m.chat.id,
+          message_id=x.id,
+          media=InputMediaPhoto(image),)
+     await asyncio.sleep(2)
+     await Nandha.edit_message_media(
+          chat_id=m.chat.id,
+          message_id=x.id,
+          media=InputMediaPhoto(image),)
+     await asyncio.sleep(2)
+     await Nandha.edit_message_media(
+          chat_id=m.chat.id,
+          message_id=x.id,
+          media=InputMediaPhoto(image, caption="okay dice completed.\nnow see your dice on photo!"), )
+    
+    
+     
+     
+
