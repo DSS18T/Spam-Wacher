@@ -28,8 +28,8 @@ def on_chatbot(chat_id: int):
 def action(chat_id: int):
     x = db.find_one({"chat_id": chat_id})
     if x:
-       return x["chatbot"]
-    return None
+       return True
+    return False
 
 
 @Nandha.on_message(filters.command("chatbot"))
@@ -61,7 +61,7 @@ async def chatbot_on_off(_, message):
 
 
 @Nandha.on_message(filters.text & filters.reply, group=100)
-async def ChatBot(_, message):
+async def chatbot(_, message):
      chat_id = message.chat.id
      hmm = action(chat_id)
      bot_id = Nandha.me.id
