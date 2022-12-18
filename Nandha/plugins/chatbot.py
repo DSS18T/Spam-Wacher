@@ -72,24 +72,13 @@ async def ChatBot(_, message):
                      question = string.replace(" ", "%20")
                 else: 
                      question = string
-                api = requests.get("https://api.roseloverx.com/api/chatbot?message="+question).json()["responses"][0]
-                if ".gif" in api:
-                    image = api.split(api.split(".gif")[1])[0].strip()
-                    text = api.split(".gif")[1]
-                    try:
-                       await message.reply_animation(animation=str(image), caption=text, quote=True)
-                    except: await message.reply_text("animation: {image}\n\n{api}".format(image=image, api=api),quote=True)
-                elif ".jpg" in api:
-                    image = api.split(api.split(".jpg")[1])[0].strip()
-                    text = api.split(".jpg")[1]
-                    try:
-                       await message.reply_photo(photo=str(image), caption=text, quote=True)
-                    except: await message.reply_text("photo: {image}\n\n{api}".format(image=image, api=api), quote=True)
-                else:
-                    await Nandha.send_message(
+                text = requests.get("https://apikatsu.otakatsu.studio/api/chatbot/cleverbot?name=Vegeta&owner=Nandha&message="+question).json()["reply"]
+                try:
+                   await Nandha.send_message(
                         chat_id, 
-                        text=api, 
+                        text=text, 
                         reply_to_message_id=message.id)
+                except Exception as e: return await message.reply(f"this an error you need contact support group. {e}")
 
 
        
