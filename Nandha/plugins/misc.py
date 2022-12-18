@@ -3,6 +3,7 @@ import aiofiles
 import os
 import asyncio
 import glob
+import random
 import config
 import time
 import requests
@@ -151,9 +152,9 @@ dice_images = [
 
 @Nandha.on_message(filters.command("dice"))
 async def dice(_, m):
-     x = await message.reply("Read for the Dice?")
+     x = await message.reply("Read for the Dice?. 😆")
      await asyncio.sleep(2)
-     await x.edit("Let's big in.")
+     await x.edit("Let's big in. 🌚")
      image = random.choice(dice_images)
      await Nandha.edit_message_media(
           chat_id=m.chat.id,
@@ -168,7 +169,7 @@ async def dice(_, m):
      await Nandha.edit_message_media(
           chat_id=m.chat.id,
           message_id=x.id,
-          media=InputMediaPhoto(image, caption="okay dice completed.\nnow see your dice on photo!"), )
+          media=InputMediaPhoto(image, caption="okay dice completed 👍.\nnow see your dice on photo! 😇"), )
     
     
      
