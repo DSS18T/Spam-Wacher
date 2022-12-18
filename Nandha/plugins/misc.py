@@ -161,11 +161,13 @@ async def dice(_, message):
           message_id=x.id,
           media=InputMediaPhoto(image),)
      await asyncio.sleep(2)
+     image = random.choice(dice_images)
      await Nandha.edit_message_media(
           chat_id=message.chat.id,
           message_id=x.id,
           media=InputMediaPhoto(image),)
      await asyncio.sleep(2)
+     image = random.choice(dice_images)
      await Nandha.edit_message_media(
           chat_id=message.chat.id,
           message_id=x.id,
