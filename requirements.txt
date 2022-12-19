@@ -3,6 +3,7 @@ pyrogram
 pyromod
 pillow
 pymongo 
+pytube
 pymongo[srv]
 pypng
 pyqrcode
