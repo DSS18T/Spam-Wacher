@@ -17,7 +17,7 @@ def add_gban_user(user_id: int):
         db.insert_one(string)
 
 def remove_gban_user(user_id: int):
-     if not is_gbanned(user_id)
+     if not is_gbanned(user_id):
           return
      else:
          x = db.find_one({"user_id": user_id})
