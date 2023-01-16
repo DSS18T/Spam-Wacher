@@ -29,13 +29,13 @@ async def MentionAll(_, message):
                    string = ""
                    for x in MembersID:
                        k = await Nandha.get_users(x)
-                       string += f"[{k.first_name}](tg://user?id={k})"
+                       string += f"[{k.first_name}](tg://user?id={k.id})"
                    await message.reply_to_message.reply_text(string)
              else:
                    string = ""
                    for x in MembersID:
                        k = await Nandha.get_users(x)
-                       string += f"[{k.first_name}](tg://user?id={k})"
+                       string += f"[{k.first_name}](tg://user?id={k.id})"
                    await message.reply_text(string)
                     
       return await message.reply_text("Sorry Group Owner Only Can Mention All!")
