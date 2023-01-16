@@ -19,7 +19,7 @@ async def MentionAll(_, message):
       if message.chat.type == ChatType.PRIVATE:
            return await message.reply_text("Sorry you can use This command only in groups!")
            
-      if await is_owner(chat_id,user_id):
+      if (await is_owner(chat_id,user_id)) == True:
              MembersID = []
              async for a in Nandha.get_chat_members(chat_id):
                      MembersID.append(a.user.id)
@@ -29,13 +29,13 @@ async def MentionAll(_, message):
                    string = ""
                    for x in MembersID:
                        k = await Nandha.get_users(x)
-                       string += "[{k.first_name}](tg://user?id={k})"
+                       string += f"[{k.first_name}](tg://user?id={k})"
                    await message.reply_to_message.reply_text(string)
              else:
                    string = ""
                    for x in MembersID:
                        k = await Nandha.get_users(x)
-                       string += "[{k.first_name}](tg://user?id={k})"
+                       string += f"[{k.first_name}](tg://user?id={k})"
                    await message.reply_text(string)
                     
       return await message.reply_text("Sorry Group Owner Only Can Mention All!")
