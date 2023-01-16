@@ -1,7 +1,7 @@
 #group & channels and bot username 
 GROUP_LINK = "t.me/NandhaSupport"
 CHANNEL_LINK = "t.me/Nandhabots"
-USERNAME = "VegetaRobot"
+USERNAME = "spamwatcherBot"
 
 #group & channels and bot I'd
 
@@ -15,9 +15,9 @@ DEVS = [5696053228]
 
 CMDS = ["/","!",".","?","$",]
 
-profile = "https://i.imgur.com/HGlOm7Q.jpeg"
+profile = "https://graph.org/file/45bc8c1c0ff800e84a56f.jpg"
 
 APP_ID = 13257951
 APP_HASH = "d8ea642aedb736d40035bc05f0cfd477"
-TOKEN = "2128359921:AAEWCm5u8avaqii-aXO318YfjLdLNE0RpOI"
+TOKEN = "5561055962:AAHgMqyf3Hqqrv3Q7REa_Cpz_ZoT5aRaK7M"
 SESSION = "BQDKTN8AqQWEwZPnhHEQSxr-9qm5lacod-CtbehbAy4DdKy93u8pQPODGHROY8FWk9VSwPr_F8IflQXd8DhpUFFEGt9FpG0QhqBm9jsOdZ4Pt60ceRYX-TDBdq-8VId5Jk2xZDdf3sBFVT8YRp_qVXIrFavEvr3EaeoByR9dH-V-KIvp154WW5WJhNqrjVSSWcR6D-h2S1AH-hiouGXARYX8GVJL1UeZJzCqPro_QjwCXZMBBynN5i3V3xtV1UEFtyrwv3uxrqy5BX9_ZVaEOGNZAT6gQ96rhADjLmR1mZgceI4mjNGFsHzf0x35F0Zj4KL-43Nxj50EBpJLsMuYixBC3h3nXQAAAAFTgt_sAA"
