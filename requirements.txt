@@ -1,4 +1,4 @@
-openai
+
 pyrogram
 pyromod
 pillow
@@ -17,4 +17,3 @@ icrawler
 opencv-python-headless # image edit
 gpytranslate
 glitch_this
-fpdf
