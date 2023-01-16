@@ -108,8 +108,7 @@ async def get_notes(_, message):
                 sticker = x["sticker"]
                 return await message.reply_sticker(sticker=sticker)
           else: return await message.reply_text("can't send this Note  >`{}`<".format(note_name))
-     else: return await message.reply_text("No notes saved in >`{}`<".format(note_name))
-
+     else: return 
 
 __MODULE__ = "Notes"
 
