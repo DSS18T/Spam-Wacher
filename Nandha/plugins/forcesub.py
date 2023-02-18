@@ -5,7 +5,7 @@ from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOc
 from pyrogram.types import *
 from Nandha.help.admin import is_admin, can_ban_members, can_change_info
 
-db = mongodb.FSUB
+db = mongodb.FSUB #db
 
 
 
@@ -72,7 +72,7 @@ async def ForceSubscribe(_, message):
           message.text.split()[1]
       except: return await message.reply_text("Format: /fsub on/off")
       if message.text.split()[1] == "on":
-           ASK = await Nandha.ask(chat_id, 
+           ASK = await message.chat.ask( 
                   text="okay send me Force Subscribe channel username.", 
                   reply_to_message_id=message.id, reply_markup=ForceReply(selective=True))
            try:
