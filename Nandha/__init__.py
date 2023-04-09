@@ -37,6 +37,6 @@ parse_mode=ParseMode.DEFAULT)
 
 session = ClientSession()
 
-MONGO = "mongodb+srv://nandhaxd:rw5T7YJRjsE3fmk3@cluster0.80igexg.mongodb.net/?retryWrites=true&w=majority"
+MONGO = "use your own db url #hehe"
 mongo = MongoClient(MONGO)
 mongodb = mongo.NANDHA
