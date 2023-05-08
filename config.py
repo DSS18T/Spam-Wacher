@@ -20,3 +20,4 @@ profile = "https://te.legra.ph/file/0e218a33897370f71eda8.jpg"
 APP_ID = 6212330
 APP_HASH = "1dcf154704672a8c279126e1ecf229c3"
 TOKEN = "5930553271:AAG18uoOwAYZKIcI1fq_a23REFZrs9MsXS8"
+MONGO_DB_URI = "mongodb+srv://Lund:Lund@cluster0.k9blarh.mongodb.net/?retryWrites=true&w=majority"
